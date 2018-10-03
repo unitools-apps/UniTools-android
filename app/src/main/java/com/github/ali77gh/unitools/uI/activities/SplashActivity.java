@@ -25,6 +25,7 @@ public class SplashActivity extends AppCompatActivity {
         //todo if first time start wizard
         findViewById(android.R.id.content).postDelayed(() -> {
             startActivity(new Intent(this, HomeActivity.class));
+            overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
         }, 1000);
     }
 

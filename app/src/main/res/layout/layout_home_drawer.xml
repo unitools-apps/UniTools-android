@@ -23,15 +23,40 @@
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_wall"/>
+            android:src="@drawable/home_drawer_wall"
+            android:tint="@color/accent"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:text="دیوار"
+            android:text="خانه"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/accent"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:orientation="horizontal"
+        android:id="@+id/linear_drawer_jozve">
+
+        <ImageView
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="16dp"
+            android:layout_gravity="center_vertical"
+            android:src="@drawable/home_drawer_jozve"
+            android:tint="@color/accent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:text="جزوه یاب"
+            android:layout_marginStart="10dp"
+            android:textColor="@color/accent"/>
 
     </LinearLayout>
 
@@ -46,7 +71,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_baygani"/>
+            android:src="@drawable/home_drawer_baygani"
+            android:tint="@color/accent"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -54,7 +80,7 @@
             android:layout_gravity="center_vertical"
             android:text="بایگانی"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/accent"/>
 
     </LinearLayout>
 
@@ -62,14 +88,16 @@
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:orientation="horizontal"
-        android:id="@+id/linear_drawer_transfer">
+        android:id="@+id/linear_drawer_transfer"
+        android:background="@color/background_darker">
 
         <ImageView
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_transfer"/>
+            android:src="@drawable/home_drawer_transfer"
+            android:tint="@color/primary"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -77,7 +105,7 @@
             android:layout_gravity="center_vertical"
             android:text="رفت و آمد"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/primary"/>
 
     </LinearLayout>
 
@@ -92,7 +120,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_friend"/>
+            android:src="@drawable/home_drawer_friend"
+            android:tint="@color/accent"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -100,7 +129,7 @@
             android:layout_gravity="center_vertical"
             android:text="دوستان"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/accent"/>
 
     </LinearLayout>
 
@@ -124,7 +153,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_help"/>
+            android:src="@drawable/home_drawer_help"
+            android:tint="@color/accent"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -132,7 +162,7 @@
             android:layout_gravity="center_vertical"
             android:text="راهنما"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/accent"/>
 
     </LinearLayout>
 
@@ -147,7 +177,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_settings"/>
+            android:src="@drawable/home_drawer_settings"
+            android:tint="@color/accent"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -155,7 +186,7 @@
             android:layout_gravity="center_vertical"
             android:text="تنظیمات"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/accent"/>
 
     </LinearLayout>
 
@@ -170,7 +201,8 @@
             android:layout_height="30dp"
             android:layout_marginStart="16dp"
             android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_info"/>
+            android:src="@drawable/home_drawer_info"
+            android:tint="@color/accent"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -178,7 +210,7 @@
             android:layout_gravity="center_vertical"
             android:text="درباره ی ما"
             android:layout_marginStart="10dp"
-            android:textColor="@color/black"/>
+            android:textColor="@color/accent"/>
 
     </LinearLayout>
 

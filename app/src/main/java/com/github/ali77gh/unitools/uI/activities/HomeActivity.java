@@ -18,6 +18,7 @@ import com.github.ali77gh.unitools.uI.fragments.AboutUsFragment;
 import com.github.ali77gh.unitools.uI.fragments.BayganiFragment;
 import com.github.ali77gh.unitools.uI.fragments.FriendsFragment;
 import com.github.ali77gh.unitools.uI.fragments.HelpFragment;
+import com.github.ali77gh.unitools.uI.fragments.JozveFragment;
 import com.github.ali77gh.unitools.uI.fragments.SettingsFragment;
 import com.github.ali77gh.unitools.uI.fragments.TransferFragment;
 import com.github.ali77gh.unitools.uI.fragments.WallFragment;
@@ -49,7 +50,9 @@ public class HomeActivity extends AppCompatActivity {
         ft.replace(R.id.home_frag_place_holder, new WallFragment(), "tag");
         ft.commit();
 
+
         LinearLayout wall = findViewById(R.id.linear_drawer_wall);
+        LinearLayout jozve = findViewById(R.id.linear_drawer_jozve);
         LinearLayout baygani = findViewById(R.id.linear_drawer_bayegani);
         LinearLayout transfer = findViewById(R.id.linear_drawer_transfer);
         LinearLayout friends = findViewById(R.id.linear_drawer_friends);
@@ -61,37 +64,57 @@ public class HomeActivity extends AppCompatActivity {
         wall.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
             switchFragment(new WallFragment());
+            drawer.closeDrawer(Gravity.START);
+            title.setText("دیوار");
+        });
 
+        jozve.setOnClickListener(view -> {
+            Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
+            switchFragment(new JozveFragment());
+            drawer.closeDrawer(Gravity.START);
+            title.setText("جزوه یاب");
         });
 
         baygani.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
             switchFragment(new BayganiFragment());
+            drawer.closeDrawer(Gravity.START);
+            title.setText("بایگانی");
         });
 
         transfer.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
             switchFragment(new TransferFragment());
+            drawer.closeDrawer(Gravity.START);
+            title.setText("رفت و آمد");
         });
 
         friends.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
-            switchFragment( new FriendsFragment());
+            switchFragment(new FriendsFragment());
+            drawer.closeDrawer(Gravity.START);
+            title.setText("دوستان");
         });
 
         help.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
-            switchFragment( new HelpFragment());
+            switchFragment(new HelpFragment());
+            drawer.closeDrawer(Gravity.START);
+            title.setText("راهنما");
         });
 
         settings.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
             switchFragment(new SettingsFragment());
+            drawer.closeDrawer(Gravity.START);
+            title.setText("تنظیمات");
         });
 
         info.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
             switchFragment(new AboutUsFragment());
+            drawer.closeDrawer(Gravity.START);
+            title.setText("درباره ی ما");
         });
 
         //todo: setup click listeners           done
