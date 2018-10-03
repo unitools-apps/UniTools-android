@@ -8,10 +8,13 @@ import android.view.ViewGroup;
 
 import com.github.ali77gh.unitools.R;
 
+/**
+ * Created by ali on 10/3/18.
+ */
 
-public class WallFragment extends Fragment {
+public class AboutUsFragment extends Fragment {
 
-    public WallFragment() {
+    public AboutUsFragment() {
         // Required empty public constructor
     }
 
@@ -25,7 +28,7 @@ public class WallFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_wall, container, false);
+        return inflater.inflate(R.layout.fragment_about_us, container, false);
     }
 
     @Override
@@ -33,6 +36,4 @@ public class WallFragment extends Fragment {
         super.onDetach();
         //todo destroy
     }
-
-
 }
