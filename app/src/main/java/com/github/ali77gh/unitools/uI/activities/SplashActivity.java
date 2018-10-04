@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
         findViewById(android.R.id.content).postDelayed(() -> {
             startActivity(new Intent(this, HomeActivity.class));
             overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
-        }, 1000);
+        }, 500);
     }
 
     private void MakeItPersian() {

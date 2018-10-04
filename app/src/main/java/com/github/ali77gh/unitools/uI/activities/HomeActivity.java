@@ -1,6 +1,7 @@
 package com.github.ali77gh.unitools.uI.activities;
 
 import android.content.res.Resources;
+import android.graphics.PorterDuff;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
@@ -8,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.view.Gravity;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -45,11 +47,6 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void SetupNavigationService() {
-        //init -> load Wall as default
-        final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.home_frag_place_holder, new WallFragment(), "tag");
-        ft.commit();
-
 
         LinearLayout wall = findViewById(R.id.linear_drawer_wall);
         LinearLayout jozve = findViewById(R.id.linear_drawer_jozve);
@@ -60,12 +57,19 @@ public class HomeActivity extends AppCompatActivity {
         LinearLayout settings = findViewById(R.id.linear_drawer_settings);
         LinearLayout info = findViewById(R.id.linear_drawer_info);
 
+        //init -> load Wall as default
+        final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+        ft.replace(R.id.home_frag_place_holder, new WallFragment(), "tag");
+        ft.commit();
+        SelectMenuVisually(wall);
+
 
         wall.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
             switchFragment(new WallFragment());
             drawer.closeDrawer(Gravity.START);
-            title.setText("دیوار");
+            title.setText("خانه");
+            SelectMenuVisually(wall);
         });
 
         jozve.setOnClickListener(view -> {
@@ -73,6 +77,7 @@ public class HomeActivity extends AppCompatActivity {
             switchFragment(new JozveFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText("جزوه یاب");
+            SelectMenuVisually(jozve);
         });
 
         baygani.setOnClickListener(view -> {
@@ -80,6 +85,7 @@ public class HomeActivity extends AppCompatActivity {
             switchFragment(new BayganiFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText("بایگانی");
+            SelectMenuVisually(baygani);
         });
 
         transfer.setOnClickListener(view -> {
@@ -87,6 +93,7 @@ public class HomeActivity extends AppCompatActivity {
             switchFragment(new TransferFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText("رفت و آمد");
+            SelectMenuVisually(transfer);
         });
 
         friends.setOnClickListener(view -> {
@@ -94,6 +101,7 @@ public class HomeActivity extends AppCompatActivity {
             switchFragment(new FriendsFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText("دوستان");
+            SelectMenuVisually(friends);
         });
 
         help.setOnClickListener(view -> {
@@ -101,6 +109,7 @@ public class HomeActivity extends AppCompatActivity {
             switchFragment(new HelpFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText("راهنما");
+            SelectMenuVisually(help);
         });
 
         settings.setOnClickListener(view -> {
@@ -108,6 +117,7 @@ public class HomeActivity extends AppCompatActivity {
             switchFragment(new SettingsFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText("تنظیمات");
+            SelectMenuVisually(settings);
         });
 
         info.setOnClickListener(view -> {
@@ -115,18 +125,20 @@ public class HomeActivity extends AppCompatActivity {
             switchFragment(new AboutUsFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText("درباره ی ما");
+            SelectMenuVisually(info);
         });
 
         //todo: setup click listeners           done
-        //todo: switch fragment
-        //todo: change title
+        //todo: switch fragment                 done
+        //todo: change title                    done
         //todo: refresh toolbar
+        //todo:selected item effect
     }
 
     public void switchFragment(Fragment baseFragment) {
         try {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-            ft.setCustomAnimations(android.R.anim.slide_in_left, android.R.anim.slide_out_right);
+            ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
             if (getSupportFragmentManager().findFragmentById(R.id.home_frag_place_holder) == null) {
                 ft.add(R.id.home_frag_place_holder, baseFragment);
             } else {
@@ -137,6 +149,35 @@ public class HomeActivity extends AppCompatActivity {
         } catch (Exception e) {
             throw e;
         }
+    }
+
+    private void SelectMenuVisually(LinearLayout selectedMenu) {
+
+        //deselect all
+        LinearLayout parent = findViewById(R.id.linear_drawer_menu_parent);
+        for (int i = 0; i != parent.getChildCount(); i++) {
+            View row = parent.getChildAt(i);
+
+            if (row instanceof LinearLayout) {
+
+                LinearLayout lRow = (LinearLayout) row;
+                ImageView icon = (ImageView) lRow.getChildAt(0);
+                TextView lable = (TextView) lRow.getChildAt(1);
+
+                lRow.setBackgroundColor(getResources().getColor(R.color.background));
+                lable.setTextColor(getResources().getColor(R.color.accent));
+                icon.setColorFilter(getResources().getColor(R.color.accent), PorterDuff.Mode.SRC_IN);
+            }
+        }
+
+        //select
+
+        ImageView icon = (ImageView) selectedMenu.getChildAt(0);
+        TextView lable = (TextView) selectedMenu.getChildAt(1);
+
+        selectedMenu.setBackgroundColor(getResources().getColor(R.color.background_darker));
+        lable.setTextColor(getResources().getColor(R.color.primary));
+        icon.setColorFilter(getResources().getColor(R.color.primary), PorterDuff.Mode.SRC_IN);
     }
 
     private void MakeItPersian() {

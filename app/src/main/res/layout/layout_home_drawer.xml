@@ -7,211 +7,217 @@
     android:orientation="vertical"
     android:paddingBottom="10dp">
 
-    <Space
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_weight="1"/>
-
     <LinearLayout
+        android:id="@+id/linear_drawer_menu_parent"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:id="@+id/linear_drawer_wall">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:id="@+id/linear_drawer_wall"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/home_drawer_wall"
+                android:tint="@color/accent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:text="خانه"
+                android:textColor="@color/accent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_drawer_jozve"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/home_drawer_jozve"
+                android:tint="@color/accent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:text="جزوه یاب"
+                android:textColor="@color/accent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_drawer_bayegani"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/home_drawer_baygani"
+                android:tint="@color/accent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:text="بایگانی"
+                android:textColor="@color/accent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_drawer_transfer"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/background"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/home_drawer_transfer"
+                android:tint="@color/accent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:text="رفت و آمد"
+                android:textColor="@color/accent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_drawer_friends"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/home_drawer_friend"
+                android:tint="@color/accent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:text="دوستان"
+                android:textColor="@color/accent" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1px"
+            android:layout_marginBottom="5dp"
             android:layout_marginStart="16dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_wall"
-            android:tint="@color/accent"/>
+            android:layout_marginTop="5dp"
+            android:alpha=".5"
+            android:background="@color/black" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="خانه"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/accent"/>
+        <LinearLayout
+            android:id="@+id/linear_drawer_help"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
 
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/home_drawer_help"
+                android:tint="@color/accent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:text="راهنما"
+                android:textColor="@color/accent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_drawer_settings"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/home_drawer_settings"
+                android:tint="@color/accent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:text="تنظیمات"
+                android:textColor="@color/accent" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linear_drawer_info"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="16dp"
+                android:src="@drawable/home_drawer_info"
+                android:tint="@color/accent" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginStart="10dp"
+                android:text="درباره ی ما"
+                android:textColor="@color/accent" />
+
+        </LinearLayout>
     </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:id="@+id/linear_drawer_jozve">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_jozve"
-            android:tint="@color/accent"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="جزوه یاب"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/accent"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:id="@+id/linear_drawer_bayegani">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_baygani"
-            android:tint="@color/accent"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="بایگانی"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/accent"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:id="@+id/linear_drawer_transfer"
-        android:background="@color/background_darker">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_transfer"
-            android:tint="@color/primary"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="رفت و آمد"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/primary"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:id="@+id/linear_drawer_friends">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_friend"
-            android:tint="@color/accent"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="دوستان"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/accent"/>
-
-    </LinearLayout>
-
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="1px"
-        android:background="@color/black"
-        android:alpha=".5"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginStart="16dp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:id="@+id/linear_drawer_help">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_help"
-            android:tint="@color/accent"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="راهنما"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/accent"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:id="@+id/linear_drawer_settings">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_settings"
-            android:tint="@color/accent"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="تنظیمات"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/accent"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:orientation="horizontal"
-        android:id="@+id/linear_drawer_info">
-
-        <ImageView
-            android:layout_width="30dp"
-            android:layout_height="30dp"
-            android:layout_marginStart="16dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/home_drawer_info"
-            android:tint="@color/accent"/>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:text="درباره ی ما"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/accent"/>
-
-    </LinearLayout>
-
 </LinearLayout>
