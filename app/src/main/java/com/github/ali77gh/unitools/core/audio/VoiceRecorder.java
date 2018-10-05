@@ -1,18 +1,17 @@
 package com.github.ali77gh.unitools.core.audio;
 
 import android.app.Activity;
-import android.content.pm.PackageManager;
-import android.media.MediaPlayer;
 import android.media.MediaRecorder;
-import android.os.Environment;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.util.Log;
 import android.widget.Toast;
 
+import java.io.File;
 import java.io.IOException;
 
 import static android.Manifest.permission.RECORD_AUDIO;
-import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
+import static android.support.v4.content.PermissionChecker.PERMISSION_GRANTED;
 
 /**
  * Created by ali on 10/5/18.
@@ -20,67 +19,71 @@ import static android.Manifest.permission.WRITE_EXTERNAL_STORAGE;
 
 public class VoiceRecorder {
 
-    private String AudioSavePathInDevice;
+    private String TempAudioPath;
     private MediaRecorder mediaRecorder;
     private String fileName = "temp";
 
-    private Activity mContext;
+    private Activity mActivity;
 
-    public VoiceRecorder(Activity context) {
-        mContext = context;
-        AudioSavePathInDevice =
-                Environment.getExternalStorageDirectory()
-                        .getAbsolutePath() + "/" +
-                        fileName + "AudioRecording.3gp";
+    public VoiceRecorder(Activity activity) {
+        mActivity = activity;
+        TempAudioPath = activity.getFilesDir() + "/" + fileName + ".3gp";
     }
 
-    public void Record() throws IOException {
+    public void Record() {
 
         if (checkPermission()) {
 
             MediaRecorderReady();
-
             try {
                 mediaRecorder.prepare();
-                mediaRecorder.start();
-            } catch (IllegalStateException e) {
-                throw e;
             } catch (IOException e) {
-                throw e;
+                throw new RuntimeException(e.getMessage());
             }
-            Toast.makeText(mContext, "Recording started",
-                    Toast.LENGTH_LONG).show();
+            mediaRecorder.start();
+
         } else {
             requestPermission();
         }
     }
 
-    public void StopRecord() {
+    public void stop() {
         mediaRecorder.stop();
-        Toast.makeText(mContext, "Recording Completed", Toast.LENGTH_LONG).show();
     }
 
     public void requestPermission() {
-        ActivityCompat.requestPermissions(mContext, new
-                String[]{WRITE_EXTERNAL_STORAGE, RECORD_AUDIO}, 1);
+        ActivityCompat.requestPermissions(mActivity, new String[]{RECORD_AUDIO}, 1);
     }
 
     public boolean checkPermission() {
-        int result = ContextCompat.checkSelfPermission(mContext,
-                WRITE_EXTERNAL_STORAGE);
-        int result1 = ContextCompat.checkSelfPermission(mContext,
-                RECORD_AUDIO);
-        return result == PackageManager.PERMISSION_GRANTED &&
-                result1 == PackageManager.PERMISSION_GRANTED;
+        return ContextCompat.checkSelfPermission(mActivity, RECORD_AUDIO) == PERMISSION_GRANTED;
     }
 
+    //configs
     private void MediaRecorderReady() {
         mediaRecorder = new MediaRecorder();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
         mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
         mediaRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
-        mediaRecorder.setOutputFile(AudioSavePathInDevice);
+        mediaRecorder.setOutputFile(TempAudioPath);
     }
 
+    public void SaveTempAs(String id) {
 
+        File dir = mActivity.getFilesDir();
+        if (dir.exists()) {
+            File from = new File(dir, "temp.3gp");
+            File to = new File(dir, id);
+
+            //debug
+            Log.d("files", dir.getPath());
+            for (String child : dir.list())
+                Log.d("files", child);
+
+            if (from.exists())
+                from.renameTo(to);
+            else Log.d("files", "from not found");
+        } else
+            Log.d("files", "dir not found");
+    }
 }

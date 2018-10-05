@@ -2,11 +2,10 @@ package com.github.ali77gh.unitools;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.widget.Toast;
 
+import com.github.ali77gh.unitools.core.audio.VoicePlayer;
 import com.github.ali77gh.unitools.core.audio.VoiceRecorder;
 
-import java.io.IOException;
 
 public class TestActivity extends AppCompatActivity {
 
@@ -16,21 +15,15 @@ public class TestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_test);
 
         VoiceRecorder voiceRecorder = new VoiceRecorder(this);
+        VoicePlayer voicePlayer = new VoicePlayer(this);
+
+        voiceRecorder.Record();
 
         findViewById(android.R.id.content).postDelayed(() -> {
-            try {
-                voiceRecorder.Record();
-            } catch (IOException e) {
-                Toast.makeText(this, "record failed", Toast.LENGTH_SHORT).show();
-            }
-        },2000);
+            voiceRecorder.stop();
+            voiceRecorder.SaveTempAs("uyuti");
+            voicePlayer.play("uyuti");
+        }, 10000);
 
-        findViewById(android.R.id.content).postDelayed(() -> {
-            voiceRecorder.StopRecord();
-        },4000);
-
-        findViewById(android.R.id.content).postDelayed(() -> {
-            voiceRecorder.Play();
-        },5000);
     }
 }

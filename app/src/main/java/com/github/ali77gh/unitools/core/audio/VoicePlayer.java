@@ -2,8 +2,6 @@ package com.github.ali77gh.unitools.core.audio;
 
 import android.app.Activity;
 import android.media.MediaPlayer;
-import android.os.Environment;
-import android.widget.Toast;
 
 import java.io.IOException;
 
@@ -14,33 +12,30 @@ import java.io.IOException;
 public class VoicePlayer {
 
     private MediaPlayer mediaPlayer;
+    private Activity mActivity;
 
-    String AudioSavePathInDevice;
-    private String fileName = "temp";
-
-    public VoicePlayer(Activity activity){
-        AudioSavePathInDevice =
-                Environment.getExternalStorageDirectory()
-                        .getAbsolutePath() + "/" +
-                        fileName + "AudioRecording.3gp";
+    public VoicePlayer(Activity activity) {
+        mActivity = activity;
     }
 
-    public void Play() {
+    public void play(String name) {
+
+        String AudioPath = mActivity.getFilesDir() + "/" + name ;
 
         mediaPlayer = new MediaPlayer();
         try {
-            mediaPlayer.setDataSource(AudioSavePathInDevice);
+            mediaPlayer.setDataSource(AudioPath);
             mediaPlayer.prepare();
         } catch (IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e.getMessage());
         }
 
         mediaPlayer.start();
     }
 
-    public void StopPlay(){
+    public void Stop() {
 
-        if(mediaPlayer != null){
+        if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.release();
         }
