@@ -31,14 +31,15 @@ public class FileRepo {
     public String Add(Bitmap bitmap, String... tags) {
 
         //todo return random id
+        return null;
     }
 
     public Bitmap getBitmapById(String id) {
-
+        return null;
     }
 
     public ArrayList<Bitmap> getBitmapByTag(String... tag) {
-
+        return null;
     }
 
     //todo add audio Load / Save

@@ -1,5 +1,7 @@
 package com.github.ali77gh.unitools;
 
+import com.github.ali77gh.unitools.core.ShortIdGenerator;
+
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -13,5 +15,11 @@ public class ExampleUnitTest {
     @Test
     public void addition_isCorrect() throws Exception {
         assertEquals(4, 2 + 2);
+
+        Log(ShortIdGenerator.Generate(8));
+    }
+
+    private void Log(Object o) {
+        System.out.println(o);
     }
 }
