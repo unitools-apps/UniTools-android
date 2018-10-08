@@ -74,6 +74,7 @@ public class HomeActivity extends AppCompatActivity {
 
         jozve.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
+            if (true)return;
             switchFragment(new JozveFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText("جزوه یاب");
@@ -82,6 +83,7 @@ public class HomeActivity extends AppCompatActivity {
 
         baygani.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
+            if (true)return;
             switchFragment(new BayganiFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText("بایگانی");
@@ -90,6 +92,7 @@ public class HomeActivity extends AppCompatActivity {
 
         transfer.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
+            if (true)return;
             switchFragment(new TransferFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText("رفت و آمد");
@@ -98,6 +101,7 @@ public class HomeActivity extends AppCompatActivity {
 
         friends.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
+            if (true)return;
             switchFragment(new FriendsFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText("دوستان");
@@ -106,6 +110,7 @@ public class HomeActivity extends AppCompatActivity {
 
         help.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
+            if (true)return;
             switchFragment(new HelpFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText("راهنما");
@@ -121,7 +126,6 @@ public class HomeActivity extends AppCompatActivity {
         });
 
         info.setOnClickListener(view -> {
-            Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
             switchFragment(new AboutUsFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText("درباره ی ما");
@@ -135,14 +139,14 @@ public class HomeActivity extends AppCompatActivity {
         //todo:selected item effect
     }
 
-    public void switchFragment(Fragment baseFragment) {
+    public void switchFragment(Fragment newFragment) {
         try {
             FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
             ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
             if (getSupportFragmentManager().findFragmentById(R.id.home_frag_place_holder) == null) {
-                ft.add(R.id.home_frag_place_holder, baseFragment);
+                ft.add(R.id.home_frag_place_holder, newFragment);
             } else {
-                ft.replace(R.id.home_frag_place_holder, baseFragment);
+                ft.replace(R.id.home_frag_place_holder, newFragment);
             }
             ft.addToBackStack(null);
             ft.commit();

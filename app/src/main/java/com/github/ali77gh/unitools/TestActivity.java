@@ -21,8 +21,8 @@ public class TestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
 
-        VoiceRecorder voiceRecorder = new VoiceRecorder(this);
-        VoicePlayer voicePlayer = new VoicePlayer(this);
+//        VoiceRecorder voiceRecorder = new VoiceRecorder(this);
+//        VoicePlayer voicePlayer = new VoicePlayer(this);
 
         //recorder test
 //        voiceRecorder.Record();

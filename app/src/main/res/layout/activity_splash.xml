@@ -10,13 +10,15 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Uni tools"
-        android:textSize="40dp"/>
+        android:textSize="40dp"
+        android:textColor="@color/white"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="left|bottom"
         android:layout_margin="16dp"
-        android:text="beta 0.0.0" />
+        android:text="@string/app_version"
+        android:textColor="@color/white"/>
 
 </FrameLayout>
