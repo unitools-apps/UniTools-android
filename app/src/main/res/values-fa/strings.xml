@@ -2,8 +2,32 @@
 <resources>
     <string name="home_fragment">home fragment</string>
 
+    <string name="LangID">"fa</string>
+
     <string name="app_version">version 0.0.0</string>
 
-    <string name="about_text">felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar </string>
+    <string name="about_text">فلان و بیسار فلان و بیسار فلان و بیسار فلان و بیسار فلان و بیسار فلان و بیسار فلان و بیسار فلان و بیسار فلان و بیسار فلان و بیسار  </string>
+    <string name="language">زبان</string>
+    <string name="theme">تم</string>
+    <string name="notification">نوتیفیکیشن</string>
+    <string name="clear">پاک کردن</string>
+    <string name="guide">راهنما</string>
+    <string name="settings">تنظیمات</string>
+    <string name="about_us">درباره ی ما</string>
+    <string name="home">خانه</string>
+    <string name="doc_founder">جزوه یاب</string>
+    <string name="storage">بایگانی</string>
+    <string name="transfer">رفت و آمد</string>
+    <string name="friends">دوستان</string>
 
+    <string-array name="notofication_modes">
+        <item>نوتیفیکیشن + صدا</item>
+        <item>فقط نوتیفیکیشن</item>
+        <item>هیچی</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>english</item>
+        <item>فارسی</item>
+    </string-array>
 </resources>

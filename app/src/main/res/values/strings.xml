@@ -1,11 +1,35 @@
 <resources>
     <string name="app_name">UniTools</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="LangID">"en</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_fragment">home fragment</string>
 
     <string name="app_version">version 0.0.0</string>
 
     <string name="about_text">felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar </string>
+    <string name="language">language</string>
+    <string name="theme">theme</string>
+    <string name="notification">notification</string>
+    <string name="clear">clear</string>
+    <string name="guide">guide</string>
+    <string name="settings">settings</string>
+    <string name="about_us">about us</string>
+    <string name="home">home</string>
+    <string name="doc_founder">doc founder</string>
+    <string name="storage">storage</string>
+    <string name="transfer">transfer</string>
+    <string name="friends">friends</string>
+
+    <string-array name="notofication_modes">
+        <item>notification + sound</item>
+        <item>only notification</item>
+        <item>nothing</item>
+    </string-array>
+
+    <string-array name="languages">
+        <item>english</item>
+        <item>فارسی</item>
+    </string-array>
 </resources>

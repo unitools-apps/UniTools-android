@@ -42,7 +42,7 @@ public class UserInfoRepo {
     public void AddClass(UClass uClass) {
         UserInfo ui = getUserInfo();
 
-        ui.classes.add(uClass);
+        ui.Classes.add(uClass);
         setUserInfo(ui);
     }
 
@@ -51,20 +51,20 @@ public class UserInfoRepo {
         UserInfo ui = getUserInfo();
         int index = -1;
         //find
-        for (UClass uClass : ui.classes) {
+        for (UClass uClass : ui.Classes) {
             if (uClass.id.equals(id)) ;
-            index = ui.classes.indexOf(uClass);
+            index = ui.Classes.indexOf(uClass);
         }
         if (index == -1) throw new RuntimeException("class not found on RemoveClass");
         //remove
-        ui.classes.remove(index);
+        ui.Classes.remove(index);
         setUserInfo(ui);
     }
 
     public void RemoveAllClasses() {
 
         UserInfo ui = getUserInfo();
-        ui.classes = new ArrayList<>();
+        ui.Classes = new ArrayList<>();
         setUserInfo(ui);
     }
 

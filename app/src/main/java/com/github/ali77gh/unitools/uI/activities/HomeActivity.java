@@ -1,13 +1,11 @@
 package com.github.ali77gh.unitools.uI.activities;
 
-import android.content.res.Resources;
 import android.graphics.PorterDuff;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.util.DisplayMetrics;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
@@ -25,8 +23,6 @@ import com.github.ali77gh.unitools.uI.fragments.SettingsFragment;
 import com.github.ali77gh.unitools.uI.fragments.TransferFragment;
 import com.github.ali77gh.unitools.uI.fragments.WallFragment;
 
-import java.util.Locale;
-
 public class HomeActivity extends AppCompatActivity {
 
     private DrawerLayout drawer;
@@ -36,7 +32,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        MakeItPersian();
+
 
         ImageView drawerToggle = findViewById(R.id.btn_home_drawer_toggle);
         title = findViewById(R.id.text_home_title);
@@ -68,67 +64,66 @@ public class HomeActivity extends AppCompatActivity {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
             switchFragment(new WallFragment());
             drawer.closeDrawer(Gravity.START);
-            title.setText("خانه");
+            title.setText(getResources().getString(R.string.home));
             SelectMenuVisually(wall);
         });
 
         jozve.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
-            if (true)return;
+            if (true) return;
             switchFragment(new JozveFragment());
             drawer.closeDrawer(Gravity.START);
-            title.setText("جزوه یاب");
+            title.setText(getResources().getString(R.string.doc_founder));
             SelectMenuVisually(jozve);
         });
 
         baygani.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
-            if (true)return;
+            if (true) return;
             switchFragment(new BayganiFragment());
             drawer.closeDrawer(Gravity.START);
-            title.setText("بایگانی");
+            title.setText(getResources().getString(R.string.storage));
             SelectMenuVisually(baygani);
         });
 
         transfer.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
-            if (true)return;
+            if (true) return;
             switchFragment(new TransferFragment());
             drawer.closeDrawer(Gravity.START);
-            title.setText("رفت و آمد");
+            title.setText(getResources().getString(R.string.transfer));
             SelectMenuVisually(transfer);
         });
 
         friends.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
-            if (true)return;
+            if (true) return;
             switchFragment(new FriendsFragment());
             drawer.closeDrawer(Gravity.START);
-            title.setText("دوستان");
+            title.setText(getResources().getString(R.string.friends));
             SelectMenuVisually(friends);
         });
 
         help.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
-            if (true)return;
+            if (true) return;
             switchFragment(new HelpFragment());
             drawer.closeDrawer(Gravity.START);
-            title.setText("راهنما");
+            title.setText(getResources().getString(R.string.guide));
             SelectMenuVisually(help);
         });
 
         settings.setOnClickListener(view -> {
-            Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
             switchFragment(new SettingsFragment());
             drawer.closeDrawer(Gravity.START);
-            title.setText("تنظیمات");
+            title.setText(getResources().getString(R.string.settings));
             SelectMenuVisually(settings);
         });
 
         info.setOnClickListener(view -> {
             switchFragment(new AboutUsFragment());
             drawer.closeDrawer(Gravity.START);
-            title.setText("درباره ی ما");
+            title.setText(getResources().getString(R.string.about_us));
             SelectMenuVisually(info);
         });
 
@@ -182,16 +177,6 @@ public class HomeActivity extends AppCompatActivity {
         selectedMenu.setBackgroundColor(getResources().getColor(R.color.background_darker));
         lable.setTextColor(getResources().getColor(R.color.primary));
         icon.setColorFilter(getResources().getColor(R.color.primary), PorterDuff.Mode.SRC_IN);
-    }
-
-    private void MakeItPersian() {
-        Resources res = getResources();
-        // Change locale settings in the app.
-        DisplayMetrics dm = res.getDisplayMetrics();
-        android.content.res.Configuration conf = res.getConfiguration();
-        conf.setLocale(new Locale("fa".toLowerCase())); // API 17+ only.
-        // Use conf.locale = new Locale(...) if targeting lower versions
-        res.updateConfiguration(conf, dm);
     }
 
     @Override

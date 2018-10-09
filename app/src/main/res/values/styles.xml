@@ -9,6 +9,8 @@
 
         <!--for removing white screen before app starts-->
         <item name="android:windowBackground">@color/background</item>
+
+        <item name="android:fontFamily">@font/dirooz</item>
     </style>
 
 </resources>

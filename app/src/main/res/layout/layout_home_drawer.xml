@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
-                android:text="راهنما"
+                android:text="@string/guide"
                 android:textColor="@color/accent" />
 
         </LinearLayout>
@@ -63,7 +63,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
-                android:text="تنظیمات"
+                android:text="@string/settings"
                 android:textColor="@color/accent" />
 
         </LinearLayout>
@@ -87,7 +87,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
-                android:text="درباره ی ما"
+                android:text="@string/about_us"
                 android:textColor="@color/accent" />
 
         </LinearLayout>
@@ -120,7 +120,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
-                android:text="خانه"
+                android:text="@string/home"
                 android:textColor="@color/accent" />
 
         </LinearLayout>
@@ -144,7 +144,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
-                android:text="جزوه یاب"
+                android:text="@string/doc_founder"
                 android:textColor="@color/accent" />
 
         </LinearLayout>
@@ -168,7 +168,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
-                android:text="بایگانی"
+                android:text="@string/storage"
                 android:textColor="@color/accent" />
 
         </LinearLayout>
@@ -193,7 +193,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
-                android:text="رفت و آمد"
+                android:text="@string/transfer"
                 android:textColor="@color/accent" />
 
         </LinearLayout>
@@ -217,7 +217,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
-                android:text="دوستان"
+                android:text="@string/friends"
                 android:textColor="@color/accent" />
 
         </LinearLayout>

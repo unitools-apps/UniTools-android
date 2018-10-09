@@ -8,8 +8,12 @@ import java.util.List;
 
 public class UserInfo {
 
-    public boolean darkTheme;
-    public String langId; // "fa" , "en" ,...
-    public boolean mute;
-    public List<UClass> classes;
+    public boolean DarkTheme;
+    public String LangId; // "fa" , "en" ,...
+    public List<UClass> Classes;
+    public int NotificationMode;
+
+    public final static int NOTIFICATION_WITH_SOUND = 0;
+    public final static int NOTIFICATION_JUST_NOTIFI = 1;
+    public final static int NOTIFICATION_NOTHING = 2;
 }
