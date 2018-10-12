@@ -32,6 +32,14 @@
     <string name="you_have_no_more_friends">دوست بیشتری وجود ندارد</string>
     <string name="you_have_no_more_events">رویداد بیشتری وجود ندارد</string>
     <string name="show_less">فقط یکی</string>
+    <string name="cancel">بازگشت</string>
+    <string name="ok">تایید</string>
+    <string name="where_is_it">کجاست</string>
+    <string name="lable">نام</string>
+    <string name="hour_or_min_is_not_valid">ساعت یا دقیفه درست نیست</string>
+    <string name="fill_blanks">همه رو پر کنید</string>
+    <string name="hour">ساعت</string>
+    <string name="min">دقیقه</string>
 
 
     <string-array name="nums">

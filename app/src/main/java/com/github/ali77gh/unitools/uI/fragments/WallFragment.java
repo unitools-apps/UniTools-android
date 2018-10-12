@@ -19,6 +19,7 @@ import com.github.ali77gh.unitools.data.Repo.EventRepo;
 import com.github.ali77gh.unitools.data.Repo.FriendRepo;
 import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.animation.ExpandAndCollapse;
+import com.github.ali77gh.unitools.uI.dialogs.AddClassDialog;
 import com.github.ali77gh.unitools.uI.view.NonScrollListView;
 
 import java.util.ArrayList;
@@ -159,14 +160,19 @@ public class WallFragment extends Fragment {
 
         classesAddBtn.setOnClickListener(view -> {
             Toast.makeText(getActivity(), "todo show dialog", Toast.LENGTH_SHORT).show();
+            AddClassDialog addFriendDialog = new AddClassDialog(getActivity());
+            addFriendDialog.setListener(uClass ->{
+                Toast.makeText(getActivity(), Translator.getClassReadable(uClass), Toast.LENGTH_SHORT).show();
+            });
+            addFriendDialog.show();
         });
 
         friendAddBtn.setOnClickListener(view -> {
             Toast.makeText(getActivity(), "todo show dialog", Toast.LENGTH_SHORT).show();
 //            AddFriendDialog addFriendDialog = new AddFriendDialog(getActivity());
-//            addFriendDialog.setListener(new AddFriendDialog.AddFriendDialogListener() {
+//            addFriendDialog.setListener(new AddFriendDialog.AddClassDialogListener() {
 //                @Override
-//                public void onNewFriend(Friend friend) {
+//                public void onNewClass(Friend friend) {
 //
 //                }
 //
