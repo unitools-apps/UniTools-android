@@ -15,38 +15,38 @@ import java.util.ArrayList;
 
 public class UserInfoRepo {
 
-    private ObjectRepo objectRepo;
-    private String id = "user_config";
+    private static ObjectRepo objectRepo;
+    private static String id = "user_config";
 
-    public UserInfoRepo(Context context) {
+    public static void init(Context context) {
         objectRepo = new ObjectRepo(context, GRepo.Mode.LOCAL);
     }
 
-    public boolean IsExist() {
+    public static boolean IsExist() {
         return objectRepo.Load(id, UserInfo.class) != null;
 
     }
 
-    public UserInfo getUserInfo() {
+    public static UserInfo getUserInfo() {
         return (UserInfo) objectRepo.Load(id, UserInfo.class);
     }
 
-    public void setUserInfo(UserInfo userInfo) {
+    public static void setUserInfo(UserInfo userInfo) {
         objectRepo.Save(id, userInfo);
     }
 
-    public void Drop() {
+    public static void Drop() {
         objectRepo.Remove(id);
     }
 
-    public void AddClass(UClass uClass) {
+    public static void AddClass(UClass uClass) {
         UserInfo ui = getUserInfo();
 
         ui.Classes.add(uClass);
         setUserInfo(ui);
     }
 
-    public void RemoveClass(String id) {
+    public static void RemoveClass(String id) {
 
         UserInfo ui = getUserInfo();
         int index = -1;
@@ -61,12 +61,10 @@ public class UserInfoRepo {
         setUserInfo(ui);
     }
 
-    public void RemoveAllClasses() {
+    public static void RemoveAllClasses() {
 
         UserInfo ui = getUserInfo();
         ui.Classes = new ArrayList<>();
         setUserInfo(ui);
     }
-
-
 }

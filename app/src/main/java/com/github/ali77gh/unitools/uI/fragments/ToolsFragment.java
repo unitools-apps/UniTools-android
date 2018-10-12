@@ -12,10 +12,10 @@ import com.github.ali77gh.unitools.R;
  * Created by ali on 10/3/18.
  */
 
-public class FriendsFragment extends Fragment {
+public class ToolsFragment extends Fragment {
 
 
-    public FriendsFragment() {
+    public ToolsFragment() {
         // Required empty public constructor
     }
 
@@ -29,7 +29,7 @@ public class FriendsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_friends, container, false);
+        return inflater.inflate(R.layout.fragment_tools, container, false);
     }
 
     @Override

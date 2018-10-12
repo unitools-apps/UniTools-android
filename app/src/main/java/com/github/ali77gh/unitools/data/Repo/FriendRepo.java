@@ -15,35 +15,35 @@ import java.util.UUID;
 
 public class FriendRepo {
 
-    private KeyValDb db;
-    private String table = "friends";
+    private static KeyValDb db;
+    private static String table = "friends";
 
-    public FriendRepo(Context context) {
+    public static void init(Context context) {
         db = new KeyValDb(context, table);
     }
 
-    public List<Friend> getAll() {
+    public static List<Friend> getAll() {
         ArrayList<Friend> list = new ArrayList<>();
         for (Object o : db.ReadAllOfType(Friend.class))
             list.add((Friend) o);
         return (list);
     }
 
-    public void insert(Friend newFriend) {
+    public static void insert(Friend newFriend) {
 
         db.insert(UUID.randomUUID().toString(), newFriend);
     }
 
-    public Friend getById(String id) {
+    public static Friend getById(String id) {
         return (Friend) db.Read(id, Friend.class);
     }
 
 
-    public boolean IsEmpty() {
+    public static boolean IsEmpty() {
         return db.IsEmpty();
     }
 
-    public void Remove(String id) {
+    public static void Remove(String id) {
         db.Remove(id);
     }
 }

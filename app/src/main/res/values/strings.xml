@@ -21,8 +21,47 @@
     <string name="storage">storage</string>
     <string name="transfer">transfer</string>
     <string name="friends">friends</string>
+    <string name="next_class">next class</string>
+    <string name="there_is_no_class_yet">there is no class yet :)</string>
+    <string name="add">add</string>
+    <string name="show_all">show all</string>
+    <string name="you_have_no_event_yet">you have no event yet :(</string>
+    <string name="you_have_no_friends_yet">you have no friends yet :(</string>
+    <string name="backup">backup</string>
+    <string name="tools">tools</string>
+    <string name="events">events</string>
+    <string name="you_have_no_more_classes">you have no more classes</string>
+    <string name="you_have_no_more_friends">you have no more friends</string>
+    <string name="you_have_no_more_events">you have no more events</string>
+    <string name="show_less">show less</string>
+    <string name="today">today</string>
+    <string name="tomorrow">tomorrow</string>
 
-    <string-array name="notofication_modes">
+
+    <string-array name="nums">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+
+    <string-array name="weekDays">
+        <item>saturday</item>
+        <item>sunday</item>
+        <item>monday</item>
+        <item>tuesday</item>
+        <item>wednesday</item>
+        <item>thursday</item>
+        <item>friday</item>
+    </string-array>
+
+    <string-array name="notification_modes">
         <item>notification + sound</item>
         <item>only notification</item>
         <item>nothing</item>

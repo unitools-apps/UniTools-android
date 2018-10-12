@@ -9,6 +9,8 @@ import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.data.Model.UserInfo;
 import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
 
+import java.util.ArrayList;
+
 /**
  * this activity runs in first time
  */
@@ -32,7 +34,8 @@ public class WelcomeActivity extends AppCompatActivity {
             userInfo.LangId = getString(R.string.LangID);
             userInfo.NotificationMode = UserInfo.NOTIFICATION_NOTHING;
             userInfo.DarkTheme = true;
-            new UserInfoRepo(this).setUserInfo(userInfo);
+            userInfo.Classes = new ArrayList<>();
+            UserInfoRepo.setUserInfo(userInfo);
         }).start();
     }
 }

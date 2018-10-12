@@ -1,5 +1,6 @@
 package com.github.ali77gh.unitools.uI.fragments;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
@@ -10,12 +11,14 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.data.Model.UserInfo;
 import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
+import com.github.ali77gh.unitools.uI.activities.AboutUsActivity;
 
 import java.util.Locale;
 
@@ -24,8 +27,6 @@ import java.util.Locale;
  */
 
 public class SettingsFragment extends Fragment {
-
-    private UserInfoRepo userInfoRepo;
 
     private Spinner languageSpinner;
     private Spinner notificationSpinner;
@@ -46,22 +47,25 @@ public class SettingsFragment extends Fragment {
                              Bundle savedInstanceState) {
         View cView = inflater.inflate(R.layout.fragment_settings, container, false);
 
-        userInfoRepo = new UserInfoRepo(getActivity());
-
         languageSpinner = cView.findViewById(R.id.spinner_settings_language);
         notificationSpinner = cView.findViewById(R.id.spinner_settings_notification);
         notifiState = cView.findViewById(R.id.image_settings_notification_state);
-
+        LinearLayout aboutUs = cView.findViewById(R.id.linear_settings_about_us);
 
         SetupLanguage();
         SetupNotification();
         LoadCurrentSettings();
 
+        aboutUs.setOnClickListener(view -> {
+            startActivity(new Intent(getActivity(), AboutUsActivity.class));
+//            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
+        });
+
         return cView;
     }
 
     private void LoadCurrentSettings() {
-        UserInfo ui = userInfoRepo.getUserInfo();
+        UserInfo ui = UserInfoRepo.getUserInfo();
 
         switch (ui.LangId) {
             case "fa":
@@ -127,7 +131,7 @@ public class SettingsFragment extends Fragment {
 
     private void SetupNotification() {
 
-        String modes[] = getResources().getStringArray(R.array.notofication_modes);
+        String modes[] = getResources().getStringArray(R.array.notification_modes);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, modes);
         notificationSpinner.setAdapter(adapter);
@@ -140,7 +144,7 @@ public class SettingsFragment extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                UserInfo ui = userInfoRepo.getUserInfo();
+                UserInfo ui = UserInfoRepo.getUserInfo();
                 switch (i) {
                     case 0:
                         ui.NotificationMode = UserInfo.NOTIFICATION_WITH_SOUND;
@@ -155,7 +159,7 @@ public class SettingsFragment extends Fragment {
                         notifiState.setImageDrawable(getResources().getDrawable(R.drawable.settings_notifi_mute));
                         break;
                 }
-                userInfoRepo.setUserInfo(ui);
+                UserInfoRepo.setUserInfo(ui);
             }
 
             @Override
@@ -183,9 +187,9 @@ public class SettingsFragment extends Fragment {
 
         if (getResources().getString(R.string.LangID).equals(lang)) return;
 
-        UserInfo ui = userInfoRepo.getUserInfo();
+        UserInfo ui = UserInfoRepo.getUserInfo();
         ui.LangId = lang;
-        userInfoRepo.setUserInfo(ui);
+        UserInfoRepo.setUserInfo(ui);
 
         Resources res = getResources();
         // Change locale settings in the app.

@@ -7,6 +7,11 @@ import android.os.Bundle;
 import android.util.DisplayMetrics;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.ContextHolder;
+import com.github.ali77gh.unitools.core.Translator;
+import com.github.ali77gh.unitools.data.Repo.EventRepo;
+import com.github.ali77gh.unitools.data.Repo.FileRepo;
+import com.github.ali77gh.unitools.data.Repo.FriendRepo;
 import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
 
 import java.util.Locale;
@@ -18,13 +23,21 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-
+        initStatics();
         Next();
+    }
+
+    private void initStatics(){
+        EventRepo.init(this);
+        FileRepo.init(this);
+        FriendRepo.init(this);
+        UserInfoRepo.init(this);
+        ContextHolder.init(this);
     }
 
     private void Next() {
         findViewById(android.R.id.content).postDelayed(() -> {
-            if (new UserInfoRepo(this).getUserInfo() == null) {
+            if (UserInfoRepo.getUserInfo() == null) {
                 startActivity(new Intent(this, WelcomeActivity.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             } else {
@@ -38,7 +51,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void SetupLang() {
 
-        String lang = new UserInfoRepo(this).getUserInfo().LangId;
+        String lang = UserInfoRepo.getUserInfo().LangId;
 
         Resources res = getResources();
         // Change locale settings in the app.

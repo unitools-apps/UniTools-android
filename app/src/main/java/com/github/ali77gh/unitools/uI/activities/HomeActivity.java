@@ -14,9 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.uI.fragments.AboutUsFragment;
 import com.github.ali77gh.unitools.uI.fragments.BayganiFragment;
-import com.github.ali77gh.unitools.uI.fragments.FriendsFragment;
+import com.github.ali77gh.unitools.uI.fragments.ToolsFragment;
 import com.github.ali77gh.unitools.uI.fragments.HelpFragment;
 import com.github.ali77gh.unitools.uI.fragments.JozveFragment;
 import com.github.ali77gh.unitools.uI.fragments.SettingsFragment;
@@ -48,10 +47,9 @@ public class HomeActivity extends AppCompatActivity {
         LinearLayout jozve = findViewById(R.id.linear_drawer_jozve);
         LinearLayout baygani = findViewById(R.id.linear_drawer_bayegani);
         LinearLayout transfer = findViewById(R.id.linear_drawer_transfer);
-        LinearLayout friends = findViewById(R.id.linear_drawer_friends);
+        LinearLayout tools = findViewById(R.id.linear_drawer_tools);
         LinearLayout help = findViewById(R.id.linear_drawer_help);
         LinearLayout settings = findViewById(R.id.linear_drawer_settings);
-        LinearLayout info = findViewById(R.id.linear_drawer_info);
 
         //init -> load Wall as default
         final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
@@ -95,13 +93,13 @@ public class HomeActivity extends AppCompatActivity {
             SelectMenuVisually(transfer);
         });
 
-        friends.setOnClickListener(view -> {
+        tools.setOnClickListener(view -> {
             Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
             if (true) return;
-            switchFragment(new FriendsFragment());
+            switchFragment(new ToolsFragment());
             drawer.closeDrawer(Gravity.START);
             title.setText(getResources().getString(R.string.friends));
-            SelectMenuVisually(friends);
+            SelectMenuVisually(tools);
         });
 
         help.setOnClickListener(view -> {
@@ -120,18 +118,11 @@ public class HomeActivity extends AppCompatActivity {
             SelectMenuVisually(settings);
         });
 
-        info.setOnClickListener(view -> {
-            switchFragment(new AboutUsFragment());
-            drawer.closeDrawer(Gravity.START);
-            title.setText(getResources().getString(R.string.about_us));
-            SelectMenuVisually(info);
-        });
-
         //todo: setup click listeners           done
         //todo: switch fragment                 done
         //todo: change title                    done
         //todo: refresh toolbar
-        //todo:selected item effect
+        //todo: selected item effect            done
     }
 
     public void switchFragment(Fragment newFragment) {

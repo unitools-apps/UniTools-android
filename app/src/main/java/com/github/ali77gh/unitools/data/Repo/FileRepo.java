@@ -16,29 +16,29 @@ import java.util.ArrayList;
 
 public class FileRepo {
 
-    private KeyValDb db;
-    private BitmapRepo bitmapRepo;
-    private StringRepo stringRepo;
+    private static KeyValDb db;
+    private static BitmapRepo bitmapRepo;
+    private static StringRepo stringRepo;
 
-    private String table = "files";
+    private static String table = "files";
 
-    public FileRepo(Context context) {
+    public static void init(Context context) {
         db = new KeyValDb(context, table);
         bitmapRepo = new BitmapRepo(context, GRepo.Mode.LOCAL);
         stringRepo = new StringRepo(context, GRepo.Mode.LOCAL);
     }
 
-    public String Add(Bitmap bitmap, String... tags) {
+    public static String Add(Bitmap bitmap, String... tags) {
 
         //todo return random id
         return null;
     }
 
-    public Bitmap getBitmapById(String id) {
+    public static Bitmap getBitmapById(String id) {
         return null;
     }
 
-    public ArrayList<Bitmap> getBitmapByTag(String... tag) {
+    public static ArrayList<Bitmap> getBitmapByTag(String... tag) {
         return null;
     }
 

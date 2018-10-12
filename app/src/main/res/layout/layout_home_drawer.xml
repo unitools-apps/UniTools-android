@@ -16,8 +16,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="1"/>
-
+            android:layout_weight="1" />
 
 
         <LinearLayout
@@ -68,38 +67,14 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linear_drawer_info"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:orientation="horizontal">
-
-            <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="16dp"
-                android:src="@drawable/home_drawer_info"
-                android:tint="@color/accent" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="10dp"
-                android:text="@string/about_us"
-                android:textColor="@color/accent" />
-
-        </LinearLayout>
-
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_marginBottom="5dp"
             android:layout_marginStart="16dp"
             android:layout_marginTop="5dp"
-            android:alpha=".5"
-            android:background="@color/black" />
+            android:alpha=".3"
+            android:background="@color/white" />
 
         <LinearLayout
             android:id="@+id/linear_drawer_wall"
@@ -199,17 +174,19 @@
         </LinearLayout>
 
         <LinearLayout
-            android:id="@+id/linear_drawer_friends"
+            android:id="@+id/linear_drawer_tools"
             android:layout_width="match_parent"
             android:layout_height="50dp"
+            android:background="@color/background"
             android:orientation="horizontal">
 
             <ImageView
+                android:padding="2dp"
                 android:layout_width="30dp"
                 android:layout_height="30dp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="16dp"
-                android:src="@drawable/home_drawer_friend"
+                android:src="@drawable/home_drawer_tools"
                 android:tint="@color/accent" />
 
             <TextView
@@ -217,11 +194,10 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_vertical"
                 android:layout_marginStart="10dp"
-                android:text="@string/friends"
+                android:text="@string/tools"
                 android:textColor="@color/accent" />
 
         </LinearLayout>
-
 
     </LinearLayout>
 </LinearLayout>

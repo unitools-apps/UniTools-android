@@ -12,6 +12,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+            <!--language-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -46,6 +47,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="20dp"
                     android:background="@null"
+                    android:gravity="end"
                     android:spinnerMode="dropdown" />
 
             </LinearLayout>
@@ -56,6 +58,7 @@
                 android:alpha=".5"
                 android:background="@color/white" />
 
+            <!--theme-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -85,6 +88,7 @@
                 android:alpha=".5"
                 android:background="@color/white" />
 
+            <!--notification-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -119,6 +123,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginEnd="20dp"
                     android:background="@null"
+                    android:gravity="end"
                     android:spinnerMode="dropdown" />
 
             </LinearLayout>
@@ -129,6 +134,7 @@
                 android:alpha=".5"
                 android:background="@color/white" />
 
+            <!--clear-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -148,6 +154,66 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="20dp"
                     android:text="@string/clear"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:alpha=".5"
+                android:background="@color/white" />
+
+            <!--backup-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/settings_backup"
+                    android:tint="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/backup"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:alpha=".5"
+                android:background="@color/white" />
+
+            <LinearLayout
+                android:id="@+id/linear_settings_about_us"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/settings_info"
+                    android:tint="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/about_us"
                     android:textColor="@color/white" />
 
             </LinearLayout>

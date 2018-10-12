@@ -19,6 +19,43 @@
     <string name="storage">بایگانی</string>
     <string name="transfer">رفت و آمد</string>
     <string name="friends">دوستان</string>
+    <string name="next_class">کلاس بعدی</string>
+    <string name="there_is_no_class_yet">هنوز هیچ کلاسی ندارید :)</string>
+    <string name="show_all">نمایش همه</string>
+    <string name="add">اضافه کن</string>
+    <string name="you_have_no_event_yet">هنوز هیچ رویدادی ندارید :(</string>
+    <string name="you_have_no_friends_yet">هنوز هیچ دوستی ندارید :(</string>
+    <string name="backup">بک آپ گیری</string>
+    <string name="tools">ابزار</string>
+    <string name="events">رویداد ها</string>
+    <string name="you_have_no_more_classes">کلاس بیشتری وجود ندارد</string>
+    <string name="you_have_no_more_friends">دوست بیشتری وجود ندارد</string>
+    <string name="you_have_no_more_events">رویداد بیشتری وجود ندارد</string>
+    <string name="show_less">فقط یکی</string>
+
+
+    <string-array name="nums">
+        <item>۰</item>
+        <item>۱</item>
+        <item>۲</item>
+        <item>۳</item>
+        <item>۴</item>
+        <item>۵</item>
+        <item>۶</item>
+        <item>۷</item>
+        <item>۸</item>
+        <item>۹</item>
+    </string-array>
+
+    <string-array name="weekDays">
+        <item>شنبه</item>
+        <item>یک شنبه</item>
+        <item>دوشنبه</item>
+        <item>سه شنبه</item>
+        <item>چهارشنبه</item>
+        <item>پنجشنبه</item>
+        <item>جمعه</item>
+    </string-array>
 
     <string-array name="notofication_modes">
         <item>نوتیفیکیشن + صدا</item>
