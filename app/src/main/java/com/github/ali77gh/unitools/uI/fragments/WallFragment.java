@@ -14,12 +14,12 @@ import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.data.Model.Event;
 import com.github.ali77gh.unitools.data.Model.Friend;
 import com.github.ali77gh.unitools.data.Model.UClass;
-import com.github.ali77gh.unitools.data.Model.UserInfo;
 import com.github.ali77gh.unitools.data.Repo.EventRepo;
 import com.github.ali77gh.unitools.data.Repo.FriendRepo;
 import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.animation.ExpandAndCollapse;
 import com.github.ali77gh.unitools.uI.dialogs.AddClassDialog;
+import com.github.ali77gh.unitools.uI.dialogs.AddEventDialog;
 import com.github.ali77gh.unitools.uI.view.NonScrollListView;
 
 import java.util.ArrayList;
@@ -78,15 +78,15 @@ public class WallFragment extends Fragment {
     private void SetupListsAndFirstRow() {
 
         List<String> items = new ArrayList<>();
-        for (UClass uClass :  UserInfoRepo.getUserInfo().Classes){
-            items.add(Translator.getClassReadable(uClass));
+        for (UClass uClass : UserInfoRepo.getUserInfo().Classes) {
+            items.add(Translator.getUClassReadable(uClass));
         }
         ArrayAdapter<String> classesStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, items);
         classesList.setAdapter(classesStringAdapter);
 
 
         items.clear();
-        for (Friend friend : FriendRepo.getAll()){
+        for (Friend friend : FriendRepo.getAll()) {
             items.add(friend.name);
         }
         ArrayAdapter<String> friendsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, items);
@@ -94,8 +94,8 @@ public class WallFragment extends Fragment {
 
 
         items.clear();
-        for (Event event : EventRepo.getAll()){
-            items.add(event.title);
+        for (Event event : EventRepo.getAll()) {
+            items.add(Translator.getEventReadable(event));
         }
         ArrayAdapter<String> eventsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, items);
         eventsList.setAdapter(eventsStringAdapter);
@@ -106,7 +106,7 @@ public class WallFragment extends Fragment {
         classesShowAllBtn.setOnClickListener(view -> {
             if (classesList.getVisibility() != View.VISIBLE) {
                 // expand
-                if (classesList.getChildCount()>1) {
+                if (classesList.getChildCount() > 1) {
                     ExpandAndCollapse.expand(classesList);
                     classesShowAllBtn.setText(getString(R.string.show_less));
                 } else
@@ -123,7 +123,7 @@ public class WallFragment extends Fragment {
         friendShowAllBtn.setOnClickListener(view -> {
             if (friendsList.getVisibility() != View.VISIBLE) {
                 // expand
-                if (friendsList.getChildCount()>1) {
+                if (friendsList.getChildCount() > 1) {
                     ExpandAndCollapse.expand(friendsList);
                     friendShowAllBtn.setText(getString(R.string.show_less));
                 } else
@@ -140,7 +140,7 @@ public class WallFragment extends Fragment {
         eventShowAllBtn.setOnClickListener(view -> {
             if (eventsList.getVisibility() != View.VISIBLE) {
                 // expand
-                if (friendsList.getChildCount()>1) {
+                if (friendsList.getChildCount() > 1) {
                     ExpandAndCollapse.expand(eventsList);
                     eventShowAllBtn.setText(getString(R.string.show_less));
                 } else
@@ -161,31 +161,25 @@ public class WallFragment extends Fragment {
         classesAddBtn.setOnClickListener(view -> {
             Toast.makeText(getActivity(), "todo show dialog", Toast.LENGTH_SHORT).show();
             AddClassDialog addFriendDialog = new AddClassDialog(getActivity());
-            addFriendDialog.setListener(uClass ->{
-                Toast.makeText(getActivity(), Translator.getClassReadable(uClass), Toast.LENGTH_SHORT).show();
+            addFriendDialog.setListener(uClass -> {
+                UserInfoRepo.AddClass(uClass);
+                SetupListsAndFirstRow(); // todo refresh layout not tested
             });
             addFriendDialog.show();
         });
 
         friendAddBtn.setOnClickListener(view -> {
             Toast.makeText(getActivity(), "todo show dialog", Toast.LENGTH_SHORT).show();
-//            AddFriendDialog addFriendDialog = new AddFriendDialog(getActivity());
-//            addFriendDialog.setListener(new AddFriendDialog.AddClassDialogListener() {
-//                @Override
-//                public void onNewClass(Friend friend) {
-//
-//                }
-//
-//                @Override
-//                public void onCancel() {
-//
-//                }
-//            });
-//            addFriendDialog.show();
+
         });
 
         eventAddBtn.setOnClickListener(view -> {
-            Toast.makeText(getActivity(), "todo show dialog", Toast.LENGTH_SHORT).show();
+            AddEventDialog addEventDialog = new AddEventDialog(getActivity());
+            addEventDialog.setListener(event -> {
+                EventRepo.insert(event);
+                SetupListsAndFirstRow();
+            });
+            addEventDialog.show();
         });
     }
 }

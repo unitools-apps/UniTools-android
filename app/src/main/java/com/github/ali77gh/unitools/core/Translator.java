@@ -2,6 +2,7 @@ package com.github.ali77gh.unitools.core;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.time.DateTimeTools;
+import com.github.ali77gh.unitools.data.Model.Event;
 import com.github.ali77gh.unitools.data.Model.UClass;
 
 /**
@@ -10,19 +11,33 @@ import com.github.ali77gh.unitools.data.Model.UClass;
 
 public class Translator {
 
-    public static String getClassReadable(UClass uClass){
-
+    public static String getUClassReadable(UClass uClass){
         String day;
-        if (DateTimeTools.getCurrentDayOfWeek() == uClass.dayOfWeek){
+        if (DateTimeTools.getCurrentDayOfWeek() == uClass.time.dayOfWeek){
             day = ContextHolder.getAppContext().getString(R.string.today);
-        } else if (DateTimeTools.getCurrentDayOfWeek() + 1 == uClass.dayOfWeek | (DateTimeTools.getCurrentDayOfWeek() == 6 & 0 == uClass.dayOfWeek )){
+        } else if (DateTimeTools.getCurrentDayOfWeek() + 1 == uClass.time.dayOfWeek | (DateTimeTools.getCurrentDayOfWeek() == 6 & 0 == uClass.time.dayOfWeek )){
             day = ContextHolder.getAppContext().getString(R.string.tomorrow);
         } else {
-            day = getDayString(uClass.dayOfWeek);
+            day = getDayString(uClass.time.dayOfWeek);
         }
 
         return day + " " + NumToString(uClass.time.hour) + ":" + NumToString(uClass.time.min) + " " + uClass.what + " " + uClass.where;
     }
+
+    public static String getEventReadable(Event event){
+        String day;
+        if (DateTimeTools.getCurrentDayOfWeek() == event.time.dayOfWeek){
+            day = ContextHolder.getAppContext().getString(R.string.today);
+        } else if (DateTimeTools.getCurrentDayOfWeek() + 1 == event.time.dayOfWeek | (DateTimeTools.getCurrentDayOfWeek() == 6 & 0 == event.time.dayOfWeek )){
+            day = ContextHolder.getAppContext().getString(R.string.tomorrow);
+        } else {
+            day = getDayString(event.time.dayOfWeek);
+        }
+
+        return day + " " + NumToString(event.time.hour) + ":" + NumToString(event.time.min) + " " + event.what;
+    }
+
+
 
     public static String getDayString(int day) {
         return ContextHolder.getAppContext().getResources().getStringArray(R.array.weekDays)[day];

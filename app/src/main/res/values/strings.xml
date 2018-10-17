@@ -38,12 +38,17 @@
     <string name="tomorrow">tomorrow</string>
     <string name="cancel">Cancel</string>
     <string name="ok">Ok</string>
-    <string name="where_is_it">where is it</string>
-    <string name="lable">lable</string>
+    <string name="where_is_it">where is it?</string>
+    <string name="lable">what is it?</string>
     <string name="hour_or_min_is_not_valid">hour or min is not valid</string>
     <string name="fill_blanks">fill blanks</string>
     <string name="hour">hour</string>
     <string name="min">min</string>
+    <string name="add_new_event">add new event</string>
+    <string name="add_new_class">add new class</string>
+    <string name="whats_is_he_she_name">whats is he/she name?</string>
+    <string name="not_set">not set</string>
+    <string name="add_new_friend">add new friend</string>
 
 
     <string-array name="nums">

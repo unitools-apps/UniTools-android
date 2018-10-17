@@ -34,12 +34,17 @@
     <string name="show_less">فقط یکی</string>
     <string name="cancel">بازگشت</string>
     <string name="ok">تایید</string>
-    <string name="where_is_it">کجاست</string>
-    <string name="lable">نام</string>
+    <string name="where_is_it">کجاست؟</string>
+    <string name="lable">چیه؟</string>
     <string name="hour_or_min_is_not_valid">ساعت یا دقیفه درست نیست</string>
     <string name="fill_blanks">همه رو پر کنید</string>
     <string name="hour">ساعت</string>
     <string name="min">دقیقه</string>
+    <string name="add_new_event">add new event</string>
+    <string name="add_new_class">add new class</string>
+    <string name="whats_is_he_she_name">whats is he/she name?</string>
+    <string name="not_set">not set</string>
+    <string name="add_new_friend">add new friend</string>
 
 
     <string-array name="nums">

@@ -9,6 +9,5 @@ public class UClass {
     public String id;
     public String where;
     public String what;
-    public int dayOfWeek; // 0 -> 6
     public Time time;
 }

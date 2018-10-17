@@ -6,7 +6,13 @@ package com.github.ali77gh.unitools.data.Model;
 
 public class Event {
 
-    public String title;
-    public String description;
+    public String what;
     public Time time;
+
+    public Event(String what , Time time){
+        this.what = what;
+        this.time = time;
+    }
+
+    public Event(){}
 }

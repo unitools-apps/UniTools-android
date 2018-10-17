@@ -1,17 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="300dp"
     android:layout_height="wrap_content"
-    android:orientation="vertical"
     android:layout_gravity="center"
+    android:orientation="vertical"
     android:background="@color/background_darker">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/add_new_class"
+        android:text="@string/add_new_event"
         android:textColor="@color/white"
         android:layout_marginTop="10dp"/>
 
@@ -30,7 +29,7 @@
             android:tint="@color/white"/>
 
         <Spinner
-            android:id="@+id/spinner_home_add_class_day"
+            android:id="@+id/spinner_home_add_event_day"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
@@ -61,7 +60,7 @@
             android:layoutDirection="ltr">
 
             <EditText
-                android:id="@+id/text_home_add_class_dialog_hour"
+                android:id="@+id/text_home_add_event_dialog_hour"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -69,8 +68,8 @@
                 android:hint="@string/hour"
                 android:textColorHint="@color/gray_middle"
                 android:layout_margin="10dp"
-                android:maxLines="1"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:maxLines="1"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -80,7 +79,7 @@
                 android:layout_gravity="center_vertical"/>
 
             <EditText
-                android:id="@+id/text_home_add_class_dialog_min"
+                android:id="@+id/text_home_add_event_dialog_min"
                 android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
@@ -109,41 +108,13 @@
             android:tint="@color/white"/>
 
         <EditText
-            android:id="@+id/text_home_add_class_dialog_lable"
+            android:id="@+id/text_home_add_event_dialog_lable"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:hint="@string/lable"
+            android:hint="what is this?"
             android:textColorHint="@color/gray_middle"
-            android:layout_margin="10dp"
-            android:maxLines="1"
-            android:singleLine="true"/>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_marginStart="16dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/all_locaion"
-            android:layout_gravity="center_vertical"
-            android:tint="@color/white"/>
-
-        <EditText
-            android:id="@+id/text_home_add_class_dialog_where"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/white"
-            android:hint="@string/where_is_it"
-            android:textColorHint="@color/gray_middle"
-            android:layout_margin="10dp"
-            android:maxLines="1"
-            android:singleLine="true"/>
+            android:layout_margin="10dp"/>
 
     </LinearLayout>
 
@@ -155,7 +126,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_home_add_class_dialog_cancel"
+            android:id="@+id/btn_home_add_event_dialog_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
@@ -164,7 +135,7 @@
             android:textColor="@color/white" />
 
         <Button
-            android:id="@+id/btn_home_add_class_dialog_ok"
+            android:id="@+id/btn_home_add_event_dialog_ok"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
