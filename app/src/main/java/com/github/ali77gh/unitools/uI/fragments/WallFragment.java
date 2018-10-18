@@ -2,6 +2,7 @@ package com.github.ali77gh.unitools.uI.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -77,27 +78,26 @@ public class WallFragment extends Fragment {
 
     private void SetupListsAndFirstRow() {
 
-        List<String> items = new ArrayList<>();
+        List<String> classes = new ArrayList<>();
         for (UClass uClass : UserInfoRepo.getUserInfo().Classes) {
-            items.add(Translator.getUClassReadable(uClass));
+            classes.add(Translator.getUClassReadable(uClass));
         }
-        ArrayAdapter<String> classesStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, items);
+        ArrayAdapter<String> classesStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner,classes );
         classesList.setAdapter(classesStringAdapter);
 
-
-        items.clear();
+        List<String> friends = new ArrayList<>();
         for (Friend friend : FriendRepo.getAll()) {
-            items.add(friend.name);
+            friends.add(friend.name);
         }
-        ArrayAdapter<String> friendsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, items);
+        ArrayAdapter<String> friendsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, new ArrayList<>(friends));
         friendsList.setAdapter(friendsStringAdapter);
 
 
-        items.clear();
+        List<String> events = new ArrayList<>();
         for (Event event : EventRepo.getAll()) {
-            items.add(Translator.getEventReadable(event));
+            events.add(Translator.getEventReadable(event));
         }
-        ArrayAdapter<String> eventsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, items);
+        ArrayAdapter<String> eventsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, new ArrayList<>(events));
         eventsList.setAdapter(eventsStringAdapter);
     }
 

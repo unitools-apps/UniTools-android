@@ -16,6 +16,6 @@ public class DateTimeTools {
 
     public static Time getCurrentTime() {
         Date d = new Date();
-        return new Time(d.getHours(), d.getMinutes());
+        return new Time(getCurrentDayOfWeek(),d.getHours(), d.getMinutes());
     }
 }

@@ -40,11 +40,11 @@
     <string name="fill_blanks">همه رو پر کنید</string>
     <string name="hour">ساعت</string>
     <string name="min">دقیقه</string>
-    <string name="add_new_event">add new event</string>
-    <string name="add_new_class">add new class</string>
-    <string name="whats_is_he_she_name">whats is he/she name?</string>
-    <string name="not_set">not set</string>
-    <string name="add_new_friend">add new friend</string>
+    <string name="add_new_event">اضافه کردن رویداد</string>
+    <string name="add_new_class">اضافه کردن کلاس</string>
+    <string name="whats_is_he_she_name">اسمش چیه؟</string>
+    <string name="not_set">انتخاب نشده</string>
+    <string name="add_new_friend">اضافه کردن دوست</string>
 
 
     <string-array name="nums">
