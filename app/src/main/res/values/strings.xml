@@ -25,7 +25,7 @@
     <string name="there_is_no_class_yet">there is no class yet :)</string>
     <string name="add">add</string>
     <string name="show_all">show all</string>
-    <string name="you_have_no_event_yet">you have no event yet :(</string>
+    <string name="you_have_no_event_yet">you have no event yet :)</string>
     <string name="you_have_no_friends_yet">you have no friends yet :(</string>
     <string name="backup">backup</string>
     <string name="tools">tools</string>
@@ -37,7 +37,7 @@
     <string name="today">today</string>
     <string name="tomorrow">tomorrow</string>
     <string name="cancel">Cancel</string>
-    <string name="ok">Ok</string>
+    <string name="ok">OK</string>
     <string name="where_is_it">where is it?</string>
     <string name="lable">what is it?</string>
     <string name="hour_or_min_is_not_valid">hour or min is not valid</string>
@@ -48,8 +48,15 @@
     <string name="add_new_class">add new class</string>
     <string name="whats_is_he_she_name">whats is he/she name?</string>
     <string name="not_set">not set</string>
+    <string name="ready_to_add">ready to add</string>
     <string name="add_new_friend">add new friend</string>
-
+    <string name="first_set_friend">first setup friend info</string>
+    <string name="what_is_this">what is this?</string>
+    <string name="qr_code">QR code</string>
+    <string name="paste">paste</string>
+    <string name="week_number_5">week number 5</string>
+    <string name="reminder">reminder</string>
+    <string name="auto_silent">auto silent</string>
 
     <string-array name="nums">
         <item>0</item>

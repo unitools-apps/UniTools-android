@@ -16,7 +16,7 @@ import com.journeyapps.barcodescanner.BarcodeEncoder;
 
 public class QrCodeTools {
 
-    //to Qr code
+    // to Qr code
 
     public static Bitmap Generate(String content) {
 

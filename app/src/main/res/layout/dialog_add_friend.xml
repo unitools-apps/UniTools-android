@@ -50,13 +50,13 @@
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="QR code"
+            android:text="@string/qr_code"
             android:id="@+id/btn_add_friend_dialog_qrcode"/>
 
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="paste"
+            android:text="@string/paste"
             android:id="@+id/btn_add_friend_dialog_paste"/>
 
     </LinearLayout>

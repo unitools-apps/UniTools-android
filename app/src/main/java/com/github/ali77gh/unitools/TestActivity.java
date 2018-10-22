@@ -34,12 +34,12 @@ public class TestActivity extends AppCompatActivity {
 //        }, 10000);
 
 
-        //QrCodeTools.LaunchCameraFromActivity(this);
+        QrCodeTools.LaunchCameraFromActivity(this);
 
-        String friendJson = "{\"name\":\"ali\",\"classList\":[{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}}]}\n";
-        Friend friend = QrCodeTools.Parse(friendJson);
-        ImageView imageView = findViewById(R.id.image_qr_test);
-        imageView.setImageBitmap(QrCodeTools.Generate(friend));
+//        String friendJson = "{\"name\":\"ali\",\"classList\":[{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}},{\"id\":\"fsalkfvslmv\",\"where\":\"b110\",\"what\":\"شیمی\",\"dayOfWeek\":3,\"time\":{\"hour\":12,\"min\":30}}]}\n";
+//        Friend friend = QrCodeTools.Parse(friendJson);
+//        ImageView imageView = findViewById(R.id.image_qr_test);
+//        imageView.setImageBitmap(QrCodeTools.Generate(friend));
 
     }
 

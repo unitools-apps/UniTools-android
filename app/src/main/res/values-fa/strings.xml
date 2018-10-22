@@ -23,7 +23,7 @@
     <string name="there_is_no_class_yet">هنوز هیچ کلاسی ندارید :)</string>
     <string name="show_all">نمایش همه</string>
     <string name="add">اضافه کن</string>
-    <string name="you_have_no_event_yet">هنوز هیچ رویدادی ندارید :(</string>
+    <string name="you_have_no_event_yet">هنوز هیچ رویدادی ندارید :)</string>
     <string name="you_have_no_friends_yet">هنوز هیچ دوستی ندارید :(</string>
     <string name="backup">بک آپ گیری</string>
     <string name="tools">ابزار</string>
@@ -32,6 +32,8 @@
     <string name="you_have_no_more_friends">دوست بیشتری وجود ندارد</string>
     <string name="you_have_no_more_events">رویداد بیشتری وجود ندارد</string>
     <string name="show_less">فقط یکی</string>
+    <string name="today">امروز</string>
+    <string name="tomorrow">فردا</string>
     <string name="cancel">بازگشت</string>
     <string name="ok">تایید</string>
     <string name="where_is_it">کجاست؟</string>
@@ -44,7 +46,15 @@
     <string name="add_new_class">اضافه کردن کلاس</string>
     <string name="whats_is_he_she_name">اسمش چیه؟</string>
     <string name="not_set">انتخاب نشده</string>
+    <string name="ready_to_add">آماده اضافه کردن</string>
     <string name="add_new_friend">اضافه کردن دوست</string>
+    <string name="first_set_friend">ابتدا مشخصات دوست خود را وارد کنید</string>
+    <string name="what_is_this">چیه؟</string>
+    <string name="qr_code">بارکد</string>
+    <string name="paste">چسباندن</string>
+    <string name="week_number_5">هفته پنجم</string>
+    <string name="reminder">یادآوری</string>
+    <string name="auto_silent">سایلنت اتوماتیک</string>
 
 
     <string-array name="nums">

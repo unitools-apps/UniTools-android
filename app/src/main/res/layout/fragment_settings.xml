@@ -108,7 +108,7 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="20dp"
-                    android:text="@string/notification"
+                    android:text="@string/reminder"
                     android:textColor="@color/white" />
 
                 <Space
@@ -125,6 +125,47 @@
                     android:background="@null"
                     android:gravity="end"
                     android:spinnerMode="dropdown" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:alpha=".5"
+                android:background="@color/white" />
+
+            <!--silent-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/settings_auto_silent"
+                    android:tint="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/auto_silent"
+                    android:textColor="@color/white" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"/>
+
+                <Switch
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginEnd="16dp"/>
 
             </LinearLayout>
 
@@ -194,6 +235,7 @@
                 android:alpha=".5"
                 android:background="@color/white" />
 
+            <!--about us-->
             <LinearLayout
                 android:id="@+id/linear_settings_about_us"
                 android:layout_width="match_parent"

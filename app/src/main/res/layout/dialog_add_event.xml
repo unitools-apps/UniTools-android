@@ -112,7 +112,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
-            android:hint="what is this?"
+            android:hint="@string/what_is_this"
             android:textColorHint="@color/gray_middle"
             android:layout_margin="10dp"/>
 

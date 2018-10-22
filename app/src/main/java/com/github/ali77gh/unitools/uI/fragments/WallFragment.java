@@ -2,12 +2,12 @@ package com.github.ali77gh.unitools.uI.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
@@ -21,6 +21,7 @@ import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.animation.ExpandAndCollapse;
 import com.github.ali77gh.unitools.uI.dialogs.AddClassDialog;
 import com.github.ali77gh.unitools.uI.dialogs.AddEventDialog;
+import com.github.ali77gh.unitools.uI.dialogs.AddFriendDialog;
 import com.github.ali77gh.unitools.uI.view.NonScrollListView;
 
 import java.util.ArrayList;
@@ -32,14 +33,18 @@ public class WallFragment extends Fragment {
     private Button classesAddBtn;
     private Button classesShowAllBtn;
     private NonScrollListView classesList;
+    private TextView classesFirstRow;
 
     private Button friendAddBtn;
     private Button friendShowAllBtn;
     private NonScrollListView friendsList;
+    private TextView friendsFirstRow;
+    private AddFriendDialog addFriendDialog;
 
     private Button eventAddBtn;
     private Button eventShowAllBtn;
     private NonScrollListView eventsList;
+    private TextView eventsFirstRow;
 
     public WallFragment() {
         // Required empty public constructor
@@ -60,14 +65,17 @@ public class WallFragment extends Fragment {
         classesAddBtn = cView.findViewById(R.id.btn_home_classes_add);
         classesShowAllBtn = cView.findViewById(R.id.btn_home_classes_show_all);
         classesList = cView.findViewById(R.id.listview_home_classes_expandble);
+        classesFirstRow = cView.findViewById(R.id.text_classes_first_row);
 
         friendAddBtn = cView.findViewById(R.id.btn_home_friends_add);
         friendShowAllBtn = cView.findViewById(R.id.btn_home_friends_show_all);
         friendsList = cView.findViewById(R.id.listview_home_friends_expandble);
+        friendsFirstRow = cView.findViewById(R.id.text_friends_first_row);
 
         eventAddBtn = cView.findViewById(R.id.btn_home_events_add);
         eventShowAllBtn = cView.findViewById(R.id.btn_home_events_show_all);
         eventsList = cView.findViewById(R.id.listview_home_events_expandble);
+        eventsFirstRow = cView.findViewById(R.id.text_event_first_row);
 
         SetupListsAndFirstRow();
         SetupExpandCollapse();
@@ -78,26 +86,37 @@ public class WallFragment extends Fragment {
 
     private void SetupListsAndFirstRow() {
 
-        List<String> classes = new ArrayList<>();
-        for (UClass uClass : UserInfoRepo.getUserInfo().Classes) {
-            classes.add(Translator.getUClassReadable(uClass));
+        //classes
+        List<String> classesString = new ArrayList<>();
+        List<UClass> uClasses = UserInfoRepo.getUserInfo().Classes;
+        // todo sort classes with time
+        for (UClass uClass : uClasses) {
+            if (uClasses.indexOf(uClass) == 0) classesFirstRow.setText(Translator.getUClassReadable(uClass));
+            else classesString.add(Translator.getUClassReadable(uClass));
         }
-        ArrayAdapter<String> classesStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner,classes );
+        ArrayAdapter<String> classesStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner,classesString );
         classesList.setAdapter(classesStringAdapter);
 
-        List<String> friends = new ArrayList<>();
-        for (Friend friend : FriendRepo.getAll()) {
-            friends.add(friend.name);
+        //friends
+        List<String> friendsString = new ArrayList<>();
+        List<Friend> friends = FriendRepo.getAll();
+        // todo sort friends with time
+        for (Friend friend : friends) {
+            if (friends.indexOf(friend) == 0) friendsFirstRow.setText(friend.name);
+            else friendsString.add(friend.name);
         }
-        ArrayAdapter<String> friendsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, new ArrayList<>(friends));
+        ArrayAdapter<String> friendsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, new ArrayList<>(friendsString));
         friendsList.setAdapter(friendsStringAdapter);
 
-
-        List<String> events = new ArrayList<>();
-        for (Event event : EventRepo.getAll()) {
-            events.add(Translator.getEventReadable(event));
+        //events
+        List<String> eventsString = new ArrayList<>();
+        List<Event> events = EventRepo.getAll();
+        //todo sort events with time
+        for (Event event : events) {
+            if (events.indexOf(event) == 0) eventsFirstRow.setText(Translator.getEventReadable(event));
+            else eventsString.add(Translator.getEventReadable(event));
         }
-        ArrayAdapter<String> eventsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, new ArrayList<>(events));
+        ArrayAdapter<String> eventsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, new ArrayList<>(eventsString));
         eventsList.setAdapter(eventsStringAdapter);
     }
 
@@ -106,7 +125,7 @@ public class WallFragment extends Fragment {
         classesShowAllBtn.setOnClickListener(view -> {
             if (classesList.getVisibility() != View.VISIBLE) {
                 // expand
-                if (classesList.getChildCount() > 1) {
+                if (UserInfoRepo.getUserInfo().Classes.size() > 1) {
                     ExpandAndCollapse.expand(classesList);
                     classesShowAllBtn.setText(getString(R.string.show_less));
                 } else
@@ -123,7 +142,7 @@ public class WallFragment extends Fragment {
         friendShowAllBtn.setOnClickListener(view -> {
             if (friendsList.getVisibility() != View.VISIBLE) {
                 // expand
-                if (friendsList.getChildCount() > 1) {
+                if (FriendRepo.getAll().size() > 1) {
                     ExpandAndCollapse.expand(friendsList);
                     friendShowAllBtn.setText(getString(R.string.show_less));
                 } else
@@ -140,7 +159,7 @@ public class WallFragment extends Fragment {
         eventShowAllBtn.setOnClickListener(view -> {
             if (eventsList.getVisibility() != View.VISIBLE) {
                 // expand
-                if (friendsList.getChildCount() > 1) {
+                if (EventRepo.getAll().size() > 1) {
                     ExpandAndCollapse.expand(eventsList);
                     eventShowAllBtn.setText(getString(R.string.show_less));
                 } else
@@ -156,10 +175,11 @@ public class WallFragment extends Fragment {
 
     }
 
+
+
     private void SetupAdd() {
 
         classesAddBtn.setOnClickListener(view -> {
-            Toast.makeText(getActivity(), "todo show dialog", Toast.LENGTH_SHORT).show();
             AddClassDialog addFriendDialog = new AddClassDialog(getActivity());
             addFriendDialog.setListener(uClass -> {
                 UserInfoRepo.AddClass(uClass);
@@ -169,17 +189,25 @@ public class WallFragment extends Fragment {
         });
 
         friendAddBtn.setOnClickListener(view -> {
-            Toast.makeText(getActivity(), "todo show dialog", Toast.LENGTH_SHORT).show();
-
+            addFriendDialog= new AddFriendDialog(getActivity(),this);
+            addFriendDialog.setListener(friend -> {
+                FriendRepo.insert(friend);
+                SetupListsAndFirstRow(); // todo refresh layout not tested
+            });
+            addFriendDialog.show();
         });
 
         eventAddBtn.setOnClickListener(view -> {
             AddEventDialog addEventDialog = new AddEventDialog(getActivity());
             addEventDialog.setListener(event -> {
                 EventRepo.insert(event);
-                SetupListsAndFirstRow();
+                SetupListsAndFirstRow(); // todo refresh layout not tested
             });
             addEventDialog.show();
         });
+    }
+
+    public void OnBarcodeReaded(String text){
+        addFriendDialog.onFriendStringReady(text);
     }
 }
