@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.Translator;
+import com.github.ali77gh.unitools.core.tools.Sort;
 import com.github.ali77gh.unitools.data.Model.Event;
 import com.github.ali77gh.unitools.data.Model.Friend;
 import com.github.ali77gh.unitools.data.Model.UClass;
@@ -89,7 +90,8 @@ public class WallFragment extends Fragment {
         //classes
         List<String> classesString = new ArrayList<>();
         List<UClass> uClasses = UserInfoRepo.getUserInfo().Classes;
-        // todo sort classes with time
+        // todo test sort classes with time
+        Sort.SortClass(uClasses);
         for (UClass uClass : uClasses) {
             if (uClasses.indexOf(uClass) == 0) classesFirstRow.setText(Translator.getUClassReadable(uClass));
             else classesString.add(Translator.getUClassReadable(uClass));

@@ -11,9 +11,18 @@ public class Time {
     public int min;
 
     public Time(int dayOfWeek, int hour, int min) {
+        if (!Validator(hour, min))
+            throw new IllegalArgumentException("time is not valid" + hour + ":" + min);
         this.dayOfWeek = dayOfWeek;
         this.hour = hour;
         this.min = min;
+    }
+
+    /**
+     * @return minutes from last minute of last week
+     */
+    public int getMins() {
+        return min + (hour * 60) + (dayOfWeek * 1440);
     }
 
     public static boolean Validator(int hour, int min) {
