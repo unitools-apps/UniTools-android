@@ -28,18 +28,18 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/week_number_5"
-                        android:textColor="@color/white"
+                        android:layout_gravity="center"
                         android:layout_margin="16dp"
-                        android:layout_gravity="center"/>
+                        android:text="@string/week_number_5"
+                        android:textColor="@color/white" />
 
                     <ProgressBar
                         android:id="@+id/progress_login"
                         style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="-8dp"
                         android:layout_marginBottom="-6dp"
+                        android:layout_marginTop="-8dp"
                         android:progress="30"
                         android:visibility="visible" />
 
@@ -99,12 +99,20 @@
                         android:textColor="@color/white"
                         android:textSize="18sp" />
 
-                    <com.github.ali77gh.unitools.uI.view.NonScrollListView
-                        android:id="@+id/listview_home_classes_expandble"
+                    <!--need parent for fix expand collapse effect-->
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:visibility="gone"
-                        android:layout_margin="10dp"/>
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <com.github.ali77gh.unitools.uI.view.NonScrollListView
+                            android:id="@+id/listview_home_classes_expandble"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp" />
+                    </LinearLayout>
+
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -188,12 +196,19 @@
                         android:textColor="@color/white"
                         android:textSize="18sp" />
 
-                    <com.github.ali77gh.unitools.uI.view.NonScrollListView
-                        android:id="@+id/listview_home_events_expandble"
+                    <!--need parent for fix expand collapse effect-->
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:visibility="gone"
-                        android:layout_margin="10dp"/>
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <com.github.ali77gh.unitools.uI.view.NonScrollListView
+                            android:id="@+id/listview_home_events_expandble"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -277,12 +292,19 @@
                         android:textColor="@color/white"
                         android:textSize="18sp" />
 
-                    <com.github.ali77gh.unitools.uI.view.NonScrollListView
-                        android:id="@+id/listview_home_friends_expandble"
+                    <!--need parent for fix expand collapse effect-->
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="0dp"
-                        android:visibility="gone"
-                        android:layout_margin="10dp"/>
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <com.github.ali77gh.unitools.uI.view.NonScrollListView
+                            android:id="@+id/listview_home_friends_expandble"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="10dp" />
+                    </LinearLayout>
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -313,7 +335,6 @@
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-
 
 
         </LinearLayout>

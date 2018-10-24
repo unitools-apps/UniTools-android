@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -125,51 +126,54 @@ public class WallFragment extends Fragment {
     private void SetupExpandCollapse() {
 
         classesShowAllBtn.setOnClickListener(view -> {
-            if (classesList.getVisibility() != View.VISIBLE) {
+            LinearLayout parent =(LinearLayout) classesList.getParent();
+            if (parent.getVisibility() != View.VISIBLE) {
                 // expand
                 if (UserInfoRepo.getUserInfo().Classes.size() > 1) {
-                    ExpandAndCollapse.expand(classesList);
+                    ExpandAndCollapse.expand(parent);
                     classesShowAllBtn.setText(getString(R.string.show_less));
                 } else
                     Toast.makeText(getActivity(), getString(R.string.you_have_no_more_classes), Toast.LENGTH_LONG).show();
 
             } else {
                 // collapse
-                ExpandAndCollapse.collapse(classesList);
+                ExpandAndCollapse.collapse(parent);
                 classesShowAllBtn.setText(getString(R.string.show_all));
             }
 
         });
 
         friendShowAllBtn.setOnClickListener(view -> {
-            if (friendsList.getVisibility() != View.VISIBLE) {
+            LinearLayout parent =(LinearLayout) friendsList.getParent();
+            if (parent.getVisibility() != View.VISIBLE) {
                 // expand
                 if (FriendRepo.getAll().size() > 1) {
-                    ExpandAndCollapse.expand(friendsList);
+                    ExpandAndCollapse.expand(parent);
                     friendShowAllBtn.setText(getString(R.string.show_less));
                 } else
                     Toast.makeText(getActivity(), getString(R.string.you_have_no_more_friends), Toast.LENGTH_LONG).show();
 
             } else {
                 // collapse
-                ExpandAndCollapse.collapse(friendsList);
+                ExpandAndCollapse.collapse(parent);
                 friendShowAllBtn.setText(getString(R.string.show_all));
             }
 
         });
 
         eventShowAllBtn.setOnClickListener(view -> {
-            if (eventsList.getVisibility() != View.VISIBLE) {
+            LinearLayout parent =(LinearLayout) eventsList.getParent();
+            if (parent.getVisibility() != View.VISIBLE) {
                 // expand
                 if (EventRepo.getAll().size() > 1) {
-                    ExpandAndCollapse.expand(eventsList);
+                    ExpandAndCollapse.expand(parent);
                     eventShowAllBtn.setText(getString(R.string.show_less));
                 } else
                     Toast.makeText(getActivity(), getString(R.string.you_have_no_more_events), Toast.LENGTH_LONG).show();
 
             } else {
                 // collapse
-                ExpandAndCollapse.collapse(eventsList);
+                ExpandAndCollapse.collapse(parent);
                 eventShowAllBtn.setText(getString(R.string.show_all));
             }
 
