@@ -17,6 +17,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.ContextHolder;
+import com.github.ali77gh.unitools.data.Repo.EventRepo;
+import com.github.ali77gh.unitools.data.Repo.FileRepo;
+import com.github.ali77gh.unitools.data.Repo.FriendRepo;
+import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.fragments.BayganiFragment;
 import com.github.ali77gh.unitools.uI.fragments.ToolsFragment;
 import com.github.ali77gh.unitools.uI.fragments.HelpFragment;
@@ -37,7 +42,7 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        initStatics();
 
         ImageView drawerToggle = findViewById(R.id.btn_home_drawer_toggle);
         title = findViewById(R.id.text_home_title);
@@ -204,5 +209,13 @@ public class HomeActivity extends AppCompatActivity {
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
+    }
+
+    private void initStatics(){
+        EventRepo.init(this);
+        FileRepo.init(this);
+        FriendRepo.init(this);
+        UserInfoRepo.init(this);
+        ContextHolder.init(this);
     }
 }
