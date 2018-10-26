@@ -5,6 +5,7 @@ import android.graphics.PorterDuff;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
@@ -58,15 +59,14 @@ public class HomeActivity extends AppCompatActivity {
 
         //init -> load Wall as default
         final FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        wallFragment =  new WallFragment();
+        wallFragment = new WallFragment();
         ft.replace(R.id.home_frag_place_holder, wallFragment, "tag");
         ft.commit();
         SelectMenuVisually(wall);
 
 
         wall.setOnClickListener(view -> {
-            Toast.makeText(this, "به زودی", Toast.LENGTH_SHORT).show();
-            wallFragment =  new WallFragment();
+            wallFragment = new WallFragment();
             switchFragment(wallFragment);
             drawer.closeDrawer(Gravity.START);
             title.setText(getResources().getString(R.string.home));
@@ -124,17 +124,12 @@ public class HomeActivity extends AppCompatActivity {
             title.setText(getResources().getString(R.string.settings));
             SelectMenuVisually(settings);
         });
-
-        //todo: setup click listeners           done
-        //todo: switch fragment                 done
-        //todo: change title                    done
-        //todo: refresh toolbar
-        //todo: selected item effect            done
     }
 
     public void switchFragment(Fragment newFragment) {
         try {
-            FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
+            FragmentManager fm = getSupportFragmentManager();
+            FragmentTransaction ft = fm.beginTransaction();
             ft.setCustomAnimations(android.R.anim.fade_in, android.R.anim.fade_out);
             if (getSupportFragmentManager().findFragmentById(R.id.home_frag_place_holder) == null) {
                 ft.add(R.id.home_frag_place_holder, newFragment);
@@ -143,8 +138,17 @@ public class HomeActivity extends AppCompatActivity {
             }
             ft.addToBackStack(null);
             ft.commit();
+            clearBackStack();
         } catch (Exception e) {
             throw e;
+        }
+    }
+
+    private void clearBackStack() {
+        FragmentManager manager = getSupportFragmentManager();
+        if (manager.getBackStackEntryCount() > 0) {
+            FragmentManager.BackStackEntry first = manager.getBackStackEntryAt(0);
+            manager.popBackStack(first.getId(), FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
     }
 
