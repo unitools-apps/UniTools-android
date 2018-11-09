@@ -57,6 +57,12 @@
     <string name="week_number_5">week number 5</string>
     <string name="reminder">reminder</string>
     <string name="auto_silent">auto silent</string>
+    <string name="copy">Copy</string>
+    <string name="classes">classes</string>
+    <string name="next">next: </string>
+    <string name="enter_current_week_number">enter current week number</string>
+    <string name="enter_number">enter number :|</string>
+    <string name="week">week</string>
 
     <string-array name="nums">
         <item>0</item>

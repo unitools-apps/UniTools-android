@@ -68,12 +68,12 @@ public class AddFriendDialog extends Dialog {
 
             mFriend.name = name.getText().toString();
             listener.onNewFriend(mFriend);
+            dismiss();
         });
 
         pasteBtn.setOnClickListener(view -> {
-            Toast.makeText(mActivity, "todo read clipboard", Toast.LENGTH_SHORT).show();
             ClipboardManager clipboardManager =(ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-            String friendString = clipboardManager != null ? clipboardManager.getPrimaryClip().toString() : "";
+            String friendString = clipboardManager.getText().toString() ;
             onFriendStringReady(friendString);
         });
 

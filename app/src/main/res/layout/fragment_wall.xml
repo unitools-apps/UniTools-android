@@ -19,31 +19,51 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp">
 
-                <LinearLayout
+                <FrameLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/background_darker"
-                    android:orientation="vertical">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_margin="16dp"
-                        android:text="@string/week_number_5"
-                        android:textColor="@color/white" />
-
-                    <ProgressBar
-                        android:id="@+id/progress_login"
-                        style="?android:attr/progressBarStyleHorizontal"
+                    android:layout_height="wrap_content">
+                    <LinearLayout
+                        android:id="@+id/linear_wall_week_number_parent"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginBottom="-6dp"
-                        android:layout_marginTop="-8dp"
-                        android:progress="30"
-                        android:visibility="visible" />
+                        android:layout_height="match_parent"
+                        android:background="@color/background_darker"
+                        android:orientation="vertical">
 
-                </LinearLayout>
+                        <TextView
+                            android:id="@+id/text_wall_week_number"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_margin="16dp"
+                            android:text="@string/week_number_5"
+                            android:textColor="@color/white" />
+
+                        <ProgressBar
+                            android:id="@+id/progress_login"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="-8dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:progress="30"
+                            android:visibility="visible" />
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/btn_wall_setup_week_counter"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/home_drawer_settings"
+                        android:tint="@color/white"
+                        android:padding="5dp"
+                        android:layout_gravity="center_vertical|start"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="4dp"/>
+                </FrameLayout>
+
+
             </android.support.v7.widget.CardView>
 
             <!--classes fast review-->
@@ -69,9 +89,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_margin="16dp"
-                            android:text="@string/next_class"
+                            android:text="@string/classes"
                             android:textColor="@color/white"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
 
                         <Space
                             android:layout_width="0dp"
@@ -89,12 +109,13 @@
                             android:tint="@color/white" />
 
                         <ImageView
+                            android:id="@+id/btn_wall_share_class"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
                             android:layout_gravity="center_vertical"
                             android:layout_marginEnd="16dp"
                             android:padding="5dp"
-                            android:src="@drawable/all_3dot"
+                            android:src="@drawable/all_share"
                             android:tint="@color/white" />
                     </LinearLayout>
 
@@ -107,7 +128,7 @@
                         android:layout_marginRight="16dp"
                         android:text="@string/there_is_no_class_yet"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <!--need parent for fix expand collapse effect-->
                     <LinearLayout
@@ -160,7 +181,7 @@
                             android:layout_margin="16dp"
                             android:text="@string/events"
                             android:textColor="@color/white"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
 
                         <Space
                             android:layout_width="0dp"
@@ -195,7 +216,7 @@
                         android:layout_marginRight="16dp"
                         android:text="@string/you_have_no_event_yet"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <!--need parent for fix expand collapse effect-->
                     <LinearLayout
@@ -247,7 +268,7 @@
                             android:layout_margin="16dp"
                             android:text="@string/friends"
                             android:textColor="@color/white"
-                            android:textSize="20sp" />
+                            android:textSize="18sp" />
 
                         <Space
                             android:layout_width="0dp"
@@ -282,7 +303,7 @@
                         android:layout_marginRight="16dp"
                         android:text="@string/you_have_no_friends_yet"
                         android:textColor="@color/white"
-                        android:textSize="18sp" />
+                        android:textSize="16sp" />
 
                     <!--need parent for fix expand collapse effect-->
                     <LinearLayout
@@ -308,7 +329,6 @@
 
                 </LinearLayout>
             </android.support.v7.widget.CardView>
-
 
         </LinearLayout>
 

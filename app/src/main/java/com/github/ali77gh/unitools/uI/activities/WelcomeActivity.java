@@ -40,11 +40,12 @@ public class WelcomeActivity extends AppCompatActivity {
             userInfo.NotificationMode = UserInfo.NOTIFICATION_NOTHING;
             userInfo.DarkTheme = true;
             userInfo.Classes = new ArrayList<>();
+            userInfo.FirstDayOfUni = 0;
             UserInfoRepo.setUserInfo(userInfo);
         }).start();
     }
 
-    private void initStatics(){
+    private void initStatics() {
         EventRepo.init(this);
         FileRepo.init(this);
         FriendRepo.init(this);

@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.easyrepolib.abstracts.GRepo;
 import com.example.easyrepolib.repos.ObjectRepo;
+import com.github.ali77gh.unitools.core.tools.DateTimeTools;
 import com.github.ali77gh.unitools.data.Model.UClass;
 import com.github.ali77gh.unitools.data.Model.UserInfo;
 
@@ -66,5 +67,15 @@ public class UserInfoRepo {
         UserInfo ui = getUserInfo();
         ui.Classes = new ArrayList<>();
         setUserInfo(ui);
+    }
+
+    public static void setWeekNumber(int weekNumber) {
+        UserInfo ui = getUserInfo();
+        ui.FirstDayOfUni = DateTimeTools.WeekTools.getFirstDayOfUni(weekNumber);
+        setUserInfo(ui);
+    }
+
+    public static int getWeekNumber() {
+        return DateTimeTools.WeekTools.getWeekNumber(getUserInfo().FirstDayOfUni);
     }
 }

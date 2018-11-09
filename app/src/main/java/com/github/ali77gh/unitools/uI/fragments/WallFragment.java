@@ -2,12 +2,14 @@ package com.github.ali77gh.unitools.uI.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,8 @@ import com.github.ali77gh.unitools.uI.animation.ExpandAndCollapse;
 import com.github.ali77gh.unitools.uI.dialogs.AddClassDialog;
 import com.github.ali77gh.unitools.uI.dialogs.AddEventDialog;
 import com.github.ali77gh.unitools.uI.dialogs.AddFriendDialog;
+import com.github.ali77gh.unitools.uI.dialogs.SetupWeekCounterDialog;
+import com.github.ali77gh.unitools.uI.dialogs.ShareClassesDialog;
 import com.github.ali77gh.unitools.uI.view.NonScrollListView;
 
 import java.util.ArrayList;
@@ -32,7 +36,11 @@ import java.util.List;
 
 public class WallFragment extends Fragment {
 
+    private ImageView setWeekCounter;
+    private LinearLayout weekNummberParent;
+
     private ImageView expandClassesBtn;
+    private ImageView shareClassesBtn;
     private ImageView addClassBtn;
     private NonScrollListView classesList;
     private TextView classesFirstRow;
@@ -43,7 +51,7 @@ public class WallFragment extends Fragment {
     private TextView eventsFirstRow;
 
     private ImageView expandFriendsBtn;
-    private ImageView addFrindBtn;
+    private ImageView addFriendBtn;
     private NonScrollListView friendsList;
     private TextView friendsFirstRow;
     private AddFriendDialog addFriendDialog;
@@ -65,7 +73,11 @@ public class WallFragment extends Fragment {
         // Inflate the layout for this fragment
         View cView = inflater.inflate(R.layout.fragment_wall, container, false);
 
+        setWeekCounter = cView.findViewById(R.id.btn_wall_setup_week_counter);
+        weekNummberParent = cView.findViewById(R.id.linear_wall_week_number_parent);
+
         addClassBtn = cView.findViewById(R.id.btn_wall_add_class);
+        shareClassesBtn = cView.findViewById(R.id.btn_wall_share_class);
         expandClassesBtn = cView.findViewById(R.id.image_wall_expand_classes);
         classesList = cView.findViewById(R.id.listview_home_classes_expandble);
         classesFirstRow = cView.findViewById(R.id.text_classes_first_row);
@@ -75,16 +87,36 @@ public class WallFragment extends Fragment {
         eventsList = cView.findViewById(R.id.listview_home_events_expandble);
         eventsFirstRow = cView.findViewById(R.id.text_event_first_row);
 
-        addFrindBtn = cView.findViewById(R.id.btn_wall_add_friend);
+        addFriendBtn = cView.findViewById(R.id.btn_wall_add_friend);
         expandFriendsBtn = cView.findViewById(R.id.image_wall_expand_friends);
         friendsList = cView.findViewById(R.id.listview_home_friends_expandble);
         friendsFirstRow = cView.findViewById(R.id.text_friends_first_row);
 
+
+        SetupWeekCounter();
         SetupListsAndFirstRow();
         SetupExpandCollapse();
-        SetupAdd();
+        SetupAddAndShare();
 
         return cView;
+    }
+
+    private void SetupWeekCounter() {
+        setWeekCounter.setOnClickListener(view -> {
+            SetupWeekCounterDialog dialog = new SetupWeekCounterDialog(getActivity());
+            dialog.show();
+            dialog.setOnDismissListener(dialogInterface -> {
+                SetupWeekCounter();
+            });
+        });
+
+        TextView text = (TextView) weekNummberParent.getChildAt(0);
+        ProgressBar progress = (ProgressBar) weekNummberParent.getChildAt(1);
+
+        int currentWeek = UserInfoRepo.getWeekNumber();
+
+        text.setText(Translator.getWeekNumberString(currentWeek));
+        progress.setProgress((int) (((float) currentWeek / 16) * 100));
     }
 
     private void SetupListsAndFirstRow() {
@@ -96,11 +128,27 @@ public class WallFragment extends Fragment {
         Sort.SortClass(uClasses);
         for (UClass uClass : uClasses) {
             if (uClasses.indexOf(uClass) == 0)
-                classesFirstRow.setText(Translator.getUClassReadable(uClass));
+                classesFirstRow.setText(getResources().getString(R.string.next) + " " + Translator.getUClassReadable(uClass));
             else classesString.add(Translator.getUClassReadable(uClass));
         }
         ArrayAdapter<String> classesStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, classesString);
         classesList.setAdapter(classesStringAdapter);
+        classesList.setOnItemLongClickListener((adapterView, view, i, l) -> {
+            Toast.makeText(getActivity(), String.valueOf(i), Toast.LENGTH_SHORT).show();
+            return true; // search about this
+        });
+
+        //events
+        List<String> eventsString = new ArrayList<>();
+        List<Event> events = EventRepo.getAll();
+        //todo sort events with time
+        for (Event event : events) {
+            if (events.indexOf(event) == 0)
+                eventsFirstRow.setText(getResources().getString(R.string.next) + " " + Translator.getEventReadable(event));
+            else eventsString.add(Translator.getEventReadable(event));
+        }
+        ArrayAdapter<String> eventsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, new ArrayList<>(eventsString));
+        eventsList.setAdapter(eventsStringAdapter);
 
         //friends
         List<String> friendsString = new ArrayList<>();
@@ -112,18 +160,6 @@ public class WallFragment extends Fragment {
         }
         ArrayAdapter<String> friendsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, new ArrayList<>(friendsString));
         friendsList.setAdapter(friendsStringAdapter);
-
-        //events
-        List<String> eventsString = new ArrayList<>();
-        List<Event> events = EventRepo.getAll();
-        //todo sort events with time
-        for (Event event : events) {
-            if (events.indexOf(event) == 0)
-                eventsFirstRow.setText(Translator.getEventReadable(event));
-            else eventsString.add(Translator.getEventReadable(event));
-        }
-        ArrayAdapter<String> eventsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, new ArrayList<>(eventsString));
-        eventsList.setAdapter(eventsStringAdapter);
     }
 
     private void SetupExpandCollapse() {
@@ -184,8 +220,9 @@ public class WallFragment extends Fragment {
 
     }
 
+    private void SetupAddAndShare() {
 
-    private void SetupAdd() {
+        //classes
 
         addClassBtn.setOnClickListener(view -> {
             AddClassDialog addFriendDialog = new AddClassDialog(getActivity());
@@ -196,6 +233,12 @@ public class WallFragment extends Fragment {
             addFriendDialog.show();
         });
 
+        shareClassesBtn.setOnClickListener(view -> {
+            new ShareClassesDialog(getActivity()).show();
+        });
+
+        //events
+
         addEventBtn.setOnClickListener(view -> {
             AddEventDialog addEventDialog = new AddEventDialog(getActivity());
             addEventDialog.setListener(event -> {
@@ -205,7 +248,9 @@ public class WallFragment extends Fragment {
             addEventDialog.show();
         });
 
-        addFrindBtn.setOnClickListener(view -> {
+        //friends
+
+        addFriendBtn.setOnClickListener(view -> {
             addFriendDialog = new AddFriendDialog(getActivity(), this);
             addFriendDialog.setListener(friend -> {
                 FriendRepo.insert(friend);
@@ -213,6 +258,7 @@ public class WallFragment extends Fragment {
             });
             addFriendDialog.show();
         });
+
     }
 
     public void OnBarcodeReaded(String text) {

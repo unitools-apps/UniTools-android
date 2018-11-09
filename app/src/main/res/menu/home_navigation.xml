@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/home_drawer_wall"
+        android:title="@string/home" />
+
+    <item
+        android:id="@+id/navigation_storage"
+        android:icon="@drawable/home_drawer_baygani"
+        android:title="@string/storage" />
+
+    <item
+        android:id="@+id/navigation_docs"
+        android:icon="@drawable/home_drawer_jozve"
+        android:title="@string/doc_founder" />
+
+    <item
+        android:id="@+id/navigation_settings"
+        android:icon="@drawable/home_drawer_settings"
+        android:title="@string/settings" />
+
+</menu>

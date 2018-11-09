@@ -1,9 +1,13 @@
 package com.github.ali77gh.unitools;
 
+import android.util.Log;
+
+import com.github.ali77gh.unitools.core.tools.DateTimeTools;
 import com.github.ali77gh.unitools.data.Model.UClass;
 
 import org.junit.Test;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,21 +16,19 @@ import java.util.List;
  * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
  */
 public class ExampleUnitTest {
-    @Test
-    public void addition_isCorrect() throws Exception {
 
-
-    }
 
     private void Log(Object o) {
         System.out.println(o);
     }
 
-    private void Log(UClass u){
+    private void Log(UClass u) {
         Log(u.id);
     }
 
-    private void LogList(List<UClass> list){
+    private void LogList(List<UClass> list) {
         for (UClass o : list) Log(o);
     }
+
+
 }

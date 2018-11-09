@@ -12,6 +12,7 @@ public class UserInfo {
     public String LangId; // "fa" , "en" ,...
     public List<UClass> Classes;
     public int NotificationMode;
+    public int FirstDayOfUni;
 
     public final static int NOTIFICATION_WITH_SOUND = 0;
     public final static int NOTIFICATION_JUST_NOTIFI = 1;

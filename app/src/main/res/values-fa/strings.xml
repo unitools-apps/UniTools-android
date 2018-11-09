@@ -55,7 +55,12 @@
     <string name="week_number_5">هفته پنجم</string>
     <string name="reminder">یادآوری</string>
     <string name="auto_silent">سایلنت اتوماتیک</string>
-
+    <string name="copy">کپی</string>
+    <string name="classes">کلاس ها</string>
+    <string name="next">بعدی: </string>
+    <string name="enter_current_week_number">الان هفته چندمه؟</string>
+    <string name="enter_number">عدد وارد کنید</string>
+    <string name="week">هفته</string>
 
     <string-array name="nums">
         <item>۰</item>
