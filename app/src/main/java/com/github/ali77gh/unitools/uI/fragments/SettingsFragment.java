@@ -2,14 +2,16 @@ package com.github.ali77gh.unitools.uI.fragments;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.support.v4.app.Fragment;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
@@ -18,7 +20,6 @@ import android.widget.TextView;
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.data.Model.UserInfo;
 import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
-import com.github.ali77gh.unitools.uI.activities.AboutUsActivity;
 
 import java.util.Locale;
 
@@ -26,11 +27,13 @@ import java.util.Locale;
  * Created by ali on 10/3/18.
  */
 
-public class SettingsFragment extends Fragment {
+public class SettingsFragment extends Fragment implements Backable {
 
     private Spinner languageSpinner;
     private Spinner notificationSpinner;
     private ImageView notifiState;
+    private LinearLayout aboutUsBtn;
+    private FrameLayout aboutUs;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -39,7 +42,6 @@ public class SettingsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -50,16 +52,13 @@ public class SettingsFragment extends Fragment {
         languageSpinner = cView.findViewById(R.id.spinner_settings_language);
         notificationSpinner = cView.findViewById(R.id.spinner_settings_notification);
         notifiState = cView.findViewById(R.id.image_settings_notification_state);
-        LinearLayout aboutUs = cView.findViewById(R.id.linear_settings_about_us);
+        aboutUsBtn = cView.findViewById(R.id.linear_settings_about_us);
+        aboutUs = cView.findViewById(R.id.layout_settings_about);
 
         SetupLanguage();
         SetupNotification();
         LoadCurrentSettings();
-
-        aboutUs.setOnClickListener(view -> {
-            startActivity(new Intent(getActivity(), AboutUsActivity.class));
-//            overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
-        });
+        SetupAboutUs();
 
         return cView;
     }
@@ -169,6 +168,19 @@ public class SettingsFragment extends Fragment {
         });
     }
 
+    private void SetupAboutUs() {
+
+        LinearLayout github = aboutUs.findViewById(R.id.linear_about_github);
+        LinearLayout playStore = aboutUs.findViewById(R.id.linear_about_play_store);
+        github.setOnClickListener(view -> OpenGithub());
+        playStore.setOnClickListener(view -> OpenPlayStore());
+        aboutUsBtn.setOnClickListener(view -> {
+            aboutUs.setAlpha(0);
+            aboutUs.setVisibility(View.VISIBLE);
+            aboutUs.animate().alpha(1).start();
+        });
+    }
+
     @Override
     public void onDetach() {
         super.onDetach();
@@ -199,5 +211,26 @@ public class SettingsFragment extends Fragment {
         // Use conf.locale = new Locale(...) if targeting lower versions
         res.updateConfiguration(conf, dm);
         getActivity().recreate();
+    }
+
+    private void OpenGithub() {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ali77gh/UniTools"));
+        startActivity(browserIntent);
+    }
+
+    private void OpenPlayStore() {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://todoPlayStoreLinkHere"));
+        startActivity(browserIntent);
+    }
+
+    @Override
+    public boolean onBack() {
+        if (aboutUs.getVisibility() == View.VISIBLE) {
+            aboutUs.setAlpha(1);
+            aboutUs.animate().alpha(0).start();
+            aboutUs.postDelayed(() -> aboutUs.setVisibility(View.GONE), 500);
+            return true;
+        }
+        return false;
     }
 }

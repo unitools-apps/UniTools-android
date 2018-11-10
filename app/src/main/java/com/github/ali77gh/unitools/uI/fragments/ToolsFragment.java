@@ -12,7 +12,7 @@ import com.github.ali77gh.unitools.R;
  * Created by ali on 10/3/18.
  */
 
-public class ToolsFragment extends Fragment {
+public class ToolsFragment extends Fragment implements Backable {
 
 
     public ToolsFragment() {
@@ -36,5 +36,10 @@ public class ToolsFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         //todo destroy
+    }
+
+    @Override
+    public boolean onBack() {
+        return false;
     }
 }

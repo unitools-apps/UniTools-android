@@ -24,7 +24,7 @@ public class WelcomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_welcome);
-        initStatics();
+        ContextHolder.initStatics(this);
 
         Button ok = findViewById(R.id.btn_welcome_ok);
 
@@ -43,13 +43,5 @@ public class WelcomeActivity extends AppCompatActivity {
             userInfo.FirstDayOfUni = 0;
             UserInfoRepo.setUserInfo(userInfo);
         }).start();
-    }
-
-    private void initStatics() {
-        EventRepo.init(this);
-        FileRepo.init(this);
-        FriendRepo.init(this);
-        UserInfoRepo.init(this);
-        ContextHolder.init(this);
     }
 }

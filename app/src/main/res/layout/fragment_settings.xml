@@ -269,4 +269,8 @@
         </LinearLayout>
     </ScrollView>
 
+    <include
+        android:id="@+id/layout_settings_about"
+        layout="@layout/layout_about_us"
+        android:visibility="gone"/>
 </FrameLayout>

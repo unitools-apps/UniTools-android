@@ -16,6 +16,7 @@ import com.github.ali77gh.unitools.data.Repo.FileRepo;
 import com.github.ali77gh.unitools.data.Repo.FriendRepo;
 import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
+import com.github.ali77gh.unitools.uI.fragments.Backable;
 import com.github.ali77gh.unitools.uI.fragments.BayganiFragment;
 import com.github.ali77gh.unitools.uI.fragments.JozveFragment;
 import com.github.ali77gh.unitools.uI.fragments.SettingsFragment;
@@ -27,13 +28,14 @@ public class HomeActivity extends AppCompatActivity {
 
     private ViewPager viewpager;
     private BottomNavigationView navigation;
-    private WallFragment wallFragment;
+    private ViewPagerAdapter viewPagerAdapter;
+    private Backable currentFrag;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        initStatics();
+        ContextHolder.initStatics(this);
         SetupNav();
     }
 
@@ -44,8 +46,8 @@ public class HomeActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         viewpager.addOnPageChangeListener(onPageChangeListener);
 
-        ViewPagerAdapter viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        wallFragment = new WallFragment();
+        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+        WallFragment wallFragment = new WallFragment();
         BayganiFragment bayganiFragment = new BayganiFragment();
         JozveFragment jozveFragment = new JozveFragment();
         SettingsFragment settingsFragment = new SettingsFragment();
@@ -53,6 +55,7 @@ public class HomeActivity extends AppCompatActivity {
         viewPagerAdapter.AddFragment(bayganiFragment);
         viewPagerAdapter.AddFragment(jozveFragment);
         viewPagerAdapter.AddFragment(settingsFragment);
+        currentFrag = wallFragment;
         viewpager.setAdapter(viewPagerAdapter);
     }
 
@@ -60,17 +63,22 @@ public class HomeActivity extends AppCompatActivity {
         switch (item.getItemId()) {
             case R.id.navigation_home:
                 viewpager.setCurrentItem(0, true);
+                currentFrag = (Backable) viewPagerAdapter.getItem(0);
                 return true;
             case R.id.navigation_storage:
                 viewpager.setCurrentItem(1, true);
+                currentFrag = (Backable) viewPagerAdapter.getItem(1);
                 return true;
             case R.id.navigation_docs:
                 viewpager.setCurrentItem(2, true);
+                currentFrag = (Backable) viewPagerAdapter.getItem(2);
                 return true;
             case R.id.navigation_settings:
                 viewpager.setCurrentItem(3, true);
+                currentFrag = (Backable) viewPagerAdapter.getItem(3);
                 return true;
         }
+
         return false;
     };
 
@@ -97,7 +105,7 @@ public class HomeActivity extends AppCompatActivity {
                 default:
                     throw new IllegalArgumentException("invalid page");
             }
-
+            currentFrag = (Backable) viewPagerAdapter.getItem(i);
         }
 
         @Override
@@ -112,18 +120,20 @@ public class HomeActivity extends AppCompatActivity {
             if (result.getContents() == null) {
                 Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
             } else {
-                wallFragment.OnBarcodeReaded(result.getContents());
+                if (currentFrag instanceof WallFragment)
+                    ((WallFragment) currentFrag).OnBarcodeReaded(result.getContents());
             }
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
     }
 
-    private void initStatics() {
-        EventRepo.init(this);
-        FileRepo.init(this);
-        FriendRepo.init(this);
-        UserInfoRepo.init(this);
-        ContextHolder.init(this);
+
+
+    @Override
+    public void onBackPressed() {
+        if (!currentFrag.onBack()) {
+            super.onBackPressed();
+        }
     }
 }

@@ -12,7 +12,7 @@ import com.github.ali77gh.unitools.R;
  * Created by ali on 10/3/18.
  */
 
-public class TransferFragment extends Fragment {
+public class TransferFragment extends Fragment implements Backable {
 
     public TransferFragment() {
         // Required empty public constructor
@@ -35,5 +35,10 @@ public class TransferFragment extends Fragment {
     public void onDetach() {
         super.onDetach();
         //todo destroy
+    }
+
+    @Override
+    public boolean onBack() {
+        return false;
     }
 }

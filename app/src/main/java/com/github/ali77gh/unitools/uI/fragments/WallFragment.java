@@ -2,7 +2,6 @@ package com.github.ali77gh.unitools.uI.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.ContextHolder;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.core.tools.Sort;
 import com.github.ali77gh.unitools.data.Model.Event;
@@ -34,7 +34,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class WallFragment extends Fragment {
+public class WallFragment extends Fragment implements Backable {
 
     private ImageView setWeekCounter;
     private LinearLayout weekNummberParent;
@@ -263,5 +263,11 @@ public class WallFragment extends Fragment {
 
     public void OnBarcodeReaded(String text) {
         addFriendDialog.onFriendStringReady(text);
+    }
+
+    @Override
+    public boolean onBack() {
+        Toast.makeText(ContextHolder.getAppContext(), "back detect on wall", Toast.LENGTH_SHORT).show();
+        return true;
     }
 }

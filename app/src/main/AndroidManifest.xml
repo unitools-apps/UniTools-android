@@ -44,9 +44,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".uI.activities.AboutUsActivity"
-            android:screenOrientation="portrait" />
+
     </application>
 
 </manifest>

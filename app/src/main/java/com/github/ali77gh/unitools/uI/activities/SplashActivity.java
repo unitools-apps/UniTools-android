@@ -23,16 +23,8 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
-        initStatics();
+        ContextHolder.initStatics(this);
         Next();
-    }
-
-    private void initStatics(){
-        EventRepo.init(this);
-        FileRepo.init(this);
-        FriendRepo.init(this);
-        UserInfoRepo.init(this);
-        ContextHolder.init(this);
     }
 
     private void Next() {
