@@ -8,6 +8,7 @@ public class Event {
 
     public String what;
     public Time time;
+    public String id;
 
     public Event(String what , Time time){
         this.what = what;

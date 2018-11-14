@@ -2,6 +2,7 @@ package com.github.ali77gh.unitools.uI.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.style.UpdateLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,6 +27,9 @@ import com.github.ali77gh.unitools.uI.animation.ExpandAndCollapse;
 import com.github.ali77gh.unitools.uI.dialogs.AddClassDialog;
 import com.github.ali77gh.unitools.uI.dialogs.AddEventDialog;
 import com.github.ali77gh.unitools.uI.dialogs.AddFriendDialog;
+import com.github.ali77gh.unitools.uI.dialogs.ClassInfoDialog;
+import com.github.ali77gh.unitools.uI.dialogs.EventInfoDialog;
+import com.github.ali77gh.unitools.uI.dialogs.FriendInfoDialog;
 import com.github.ali77gh.unitools.uI.dialogs.SetupWeekCounterDialog;
 import com.github.ali77gh.unitools.uI.dialogs.ShareClassesDialog;
 import com.github.ali77gh.unitools.uI.view.NonScrollListView;
@@ -122,9 +126,9 @@ public class WallFragment extends Fragment implements Backable {
     private void SetupListsAndFirstRow() {
 
         //classes
+        classesFirstRow.setText(getString(R.string.there_is_no_class_yet));
         List<String> classesString = new ArrayList<>();
         List<UClass> uClasses = UserInfoRepo.getUserInfo().Classes;
-        // todo test sort classes with time
         Sort.SortClass(uClasses);
         for (UClass uClass : uClasses) {
             if (uClasses.indexOf(uClass) == 0)
@@ -133,15 +137,29 @@ public class WallFragment extends Fragment implements Backable {
         }
         ArrayAdapter<String> classesStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, classesString);
         classesList.setAdapter(classesStringAdapter);
-        classesList.setOnItemLongClickListener((adapterView, view, i, l) -> {
-            Toast.makeText(getActivity(), String.valueOf(i), Toast.LENGTH_SHORT).show();
-            return true; // search about this
+
+        classesFirstRow.setOnClickListener(view -> {
+            if (uClasses.size() > 0)
+                new ClassInfoDialog(getActivity(), uClasses.get(0), () -> {
+                    //on delete
+                    UserInfoRepo.RemoveClass(uClasses.get(0).id);
+                    SetupListsAndFirstRow();
+                }).show();
         });
 
+        classesList.setOnItemClickListener((adapterView, view, i, l) -> {
+            new ClassInfoDialog(getActivity(), uClasses.get(i + 1), () -> {
+                //on delete
+                UserInfoRepo.RemoveClass(uClasses.get(i + 1).id);
+                SetupListsAndFirstRow();
+            }).show();
+        });
+
+
         //events
+        eventsFirstRow.setText(getString(R.string.you_have_no_event_yet));
         List<String> eventsString = new ArrayList<>();
         List<Event> events = EventRepo.getAll();
-        //todo sort events with time
         for (Event event : events) {
             if (events.indexOf(event) == 0)
                 eventsFirstRow.setText(getResources().getString(R.string.next) + " " + Translator.getEventReadable(event));
@@ -150,7 +168,26 @@ public class WallFragment extends Fragment implements Backable {
         ArrayAdapter<String> eventsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, new ArrayList<>(eventsString));
         eventsList.setAdapter(eventsStringAdapter);
 
+        eventsFirstRow.setOnClickListener(view -> {
+            if (events.size() > 0)
+            new EventInfoDialog(getActivity(), events.get(0), () -> {
+                //on delete
+                EventRepo.Remove(events.get(0).id);
+                SetupListsAndFirstRow();
+            }).show();
+        });
+
+        //list
+        eventsList.setOnItemClickListener((adapterView, view, i, l) -> {
+            new EventInfoDialog(getActivity(), events.get(i + 1), () -> {
+                //on delete
+                EventRepo.Remove(events.get(i + 1).id);
+                SetupListsAndFirstRow();
+            }).show();
+        });
+
         //friends
+        friendsFirstRow.setText(getString(R.string.you_have_no_friends_yet));
         List<String> friendsString = new ArrayList<>();
         List<Friend> friends = FriendRepo.getAll();
         // todo sort friends with time
@@ -160,6 +197,23 @@ public class WallFragment extends Fragment implements Backable {
         }
         ArrayAdapter<String> friendsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, new ArrayList<>(friendsString));
         friendsList.setAdapter(friendsStringAdapter);
+
+        friendsFirstRow.setOnClickListener(view -> {
+            if (friends.size() > 0)
+                new FriendInfoDialog(getActivity(), friends.get(0), () -> {
+                    //on delete
+                    FriendRepo.Remove(friends.get(0).id);
+                    SetupListsAndFirstRow();
+                }).show();
+        });
+
+        friendsList.setOnItemClickListener((adapterView, view, i, l) -> {
+            new FriendInfoDialog(getActivity(), friends.get(i + 1), () -> {
+                //on delete
+                FriendRepo.Remove(friends.get(i + 1).id);
+                SetupListsAndFirstRow();
+            }).show();
+        });
     }
 
     private void SetupExpandCollapse() {
@@ -267,7 +321,6 @@ public class WallFragment extends Fragment implements Backable {
 
     @Override
     public boolean onBack() {
-        Toast.makeText(ContextHolder.getAppContext(), "back detect on wall", Toast.LENGTH_SHORT).show();
-        return true;
+        return false;
     }
 }

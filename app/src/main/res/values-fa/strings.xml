@@ -61,6 +61,11 @@
     <string name="enter_current_week_number">الان هفته چندمه؟</string>
     <string name="enter_number">عدد وارد کنید</string>
     <string name="week">هفته</string>
+    <string name="coming_soon">به زودی…</string>
+    <string name="friend_info">جزییات دوست</string>
+    <string name="delete">حذف</string>
+    <string name="class_info">جزییات کلاس</string>
+    <string name="event_info">جزییات رویداد</string>
 
     <string-array name="nums">
         <item>۰</item>

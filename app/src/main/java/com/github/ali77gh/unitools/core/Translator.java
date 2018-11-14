@@ -62,6 +62,9 @@ public class Translator {
 
 
     public static String getWeekNumberString(int weekNumber) {
+        if (weekNumber>100){
+            return ContextHolder.getAppContext().getString(R.string.not_set);
+        }
         return ContextHolder.getAppContext().getResources().getString(R.string.week) + " " + NumToString(weekNumber);
     }
 }

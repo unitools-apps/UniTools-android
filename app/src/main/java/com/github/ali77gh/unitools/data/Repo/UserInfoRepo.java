@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.example.easyrepolib.abstracts.GRepo;
 import com.example.easyrepolib.repos.ObjectRepo;
+import com.github.ali77gh.unitools.core.ShortIdGenerator;
 import com.github.ali77gh.unitools.core.tools.DateTimeTools;
 import com.github.ali77gh.unitools.data.Model.UClass;
 import com.github.ali77gh.unitools.data.Model.UserInfo;
@@ -42,7 +43,7 @@ public class UserInfoRepo {
 
     public static void AddClass(UClass uClass) {
         UserInfo ui = getUserInfo();
-
+        uClass.id = ShortIdGenerator.Generate(5);
         ui.Classes.add(uClass);
         setUserInfo(ui);
     }

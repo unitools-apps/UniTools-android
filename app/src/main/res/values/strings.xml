@@ -63,6 +63,11 @@
     <string name="enter_current_week_number">enter current week number</string>
     <string name="enter_number">enter number :|</string>
     <string name="week">week</string>
+    <string name="coming_soon">coming soon…</string>
+    <string name="friend_info">friend info</string>
+    <string name="delete">delete</string>
+    <string name="class_info">class info</string>
+    <string name="event_info">event info</string>
 
     <string-array name="nums">
         <item>0</item>

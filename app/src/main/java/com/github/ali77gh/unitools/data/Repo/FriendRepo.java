@@ -3,6 +3,7 @@ package com.github.ali77gh.unitools.data.Repo;
 import android.content.Context;
 
 import com.example.easyrepolib.KeyValDb;
+import com.github.ali77gh.unitools.core.ShortIdGenerator;
 import com.github.ali77gh.unitools.data.Model.Friend;
 
 import java.util.ArrayList;
@@ -30,8 +31,8 @@ public class FriendRepo {
     }
 
     public static void insert(Friend newFriend) {
-
-        db.insert(UUID.randomUUID().toString(), newFriend);
+        newFriend.id = ShortIdGenerator.Generate(5);
+        db.insert(newFriend.id, newFriend);
     }
 
     public static Friend getById(String id) {

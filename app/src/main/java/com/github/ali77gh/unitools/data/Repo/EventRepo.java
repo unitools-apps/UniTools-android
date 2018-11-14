@@ -3,6 +3,7 @@ package com.github.ali77gh.unitools.data.Repo;
 import android.content.Context;
 
 import com.example.easyrepolib.KeyValDb;
+import com.github.ali77gh.unitools.core.ShortIdGenerator;
 import com.github.ali77gh.unitools.data.Model.Event;
 
 import java.util.ArrayList;
@@ -30,8 +31,8 @@ public class EventRepo {
     }
 
     public static void insert(Event newEvent) {
-
-        db.insert(UUID.randomUUID().toString(), newEvent);
+        newEvent.id = ShortIdGenerator.Generate(5);
+        db.insert(newEvent.id, newEvent);
     }
 
     public static Event getById(String id) {
