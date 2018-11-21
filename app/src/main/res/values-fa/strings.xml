@@ -39,6 +39,7 @@
     <string name="where_is_it">کجاست؟</string>
     <string name="lable">چیه؟</string>
     <string name="hour_or_min_is_not_valid">ساعت یا دقیفه درست نیست</string>
+    <string name="week_number_is_not_valid">شماره هفته درست نیست</string>
     <string name="fill_blanks">همه رو پر کنید</string>
     <string name="hour">ساعت</string>
     <string name="min">دقیقه</string>
@@ -66,6 +67,11 @@
     <string name="delete">حذف</string>
     <string name="class_info">جزییات کلاس</string>
     <string name="event_info">جزییات رویداد</string>
+    <string name="week_number">هفته چندم</string>
+    <string name="this_week">این هفته</string>
+    <string name="next_week">هفته بعد</string>
+    <string name="two_weeks_later">دو هفته بعد</string>
+    <string name="weeks_later">هفته بعد</string>
 
     <string-array name="nums">
         <item>۰</item>

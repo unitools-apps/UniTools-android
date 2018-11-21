@@ -11,7 +11,7 @@ import java.util.Date;
 public class DateTimeTools {
 
     public static int getCurrentDayOfWeek() {
-        return new Date().getDay();
+        return new Date().getDay() + 1;
     }
 
     /**

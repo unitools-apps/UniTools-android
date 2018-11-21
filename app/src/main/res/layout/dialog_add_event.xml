@@ -63,6 +63,7 @@
                 android:id="@+id/text_home_add_event_dialog_hour"
                 android:layout_width="0dp"
                 android:layout_weight="1"
+                android:inputType="number"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
                 android:hint="@string/hour"
@@ -81,6 +82,7 @@
             <EditText
                 android:id="@+id/text_home_add_event_dialog_min"
                 android:layout_width="0dp"
+                android:inputType="number"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:textColor="@color/white"
@@ -93,6 +95,32 @@
         </LinearLayout>
 
     </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginStart="16dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/all_calendar"
+            android:layout_gravity="center_vertical"
+            android:tint="@color/white"/>
+
+        <EditText
+            android:id="@+id/text_home_add_event_dialog_week_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:hint="@string/week_number"
+            android:inputType="number"
+            android:textColorHint="@color/gray_middle"
+            android:layout_margin="10dp"/>
+
+    </LinearLayout>
+
 
     <LinearLayout
         android:layout_width="match_parent"

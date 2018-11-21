@@ -1,9 +1,13 @@
 package com.github.ali77gh.unitools.core;
 
+import android.content.Context;
+
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.tools.DateTimeTools;
 import com.github.ali77gh.unitools.data.Model.Event;
 import com.github.ali77gh.unitools.data.Model.UClass;
+import com.github.ali77gh.unitools.data.Model.UserInfo;
+import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
 
 /**
  * Created by ali77gh on 10/12/18.
@@ -25,16 +29,28 @@ public class Translator {
     }
 
     public static String getEventReadable(Event event) {
+        Context context = ContextHolder.getAppContext();
         String day;
         if (DateTimeTools.getCurrentDayOfWeek() == event.time.dayOfWeek) {
-            day = ContextHolder.getAppContext().getString(R.string.today);
+            day = context.getString(R.string.today);
         } else if (DateTimeTools.getCurrentDayOfWeek() + 1 == event.time.dayOfWeek | (DateTimeTools.getCurrentDayOfWeek() == 6 & 0 == event.time.dayOfWeek)) {
-            day = ContextHolder.getAppContext().getString(R.string.tomorrow);
+            day = context.getString(R.string.tomorrow);
         } else {
             day = getDayString(event.time.dayOfWeek);
         }
 
-        return day + " " + NumToString(event.time.hour) + ":" + NumToString(event.time.min) + " " + event.what;
+        String week;
+        if (UserInfoRepo.getWeekNumber() == event.WeekNumber) {
+            week = context.getString(R.string.this_week);
+        } else if (UserInfoRepo.getWeekNumber() + 1 == event.WeekNumber) {
+            week = context.getString(R.string.next_week);
+        } else if (UserInfoRepo.getWeekNumber() + 2 == event.WeekNumber) {
+            week = context.getString(R.string.two_weeks_later);
+        } else {
+            week = event.WeekNumber + " " + context.getString(R.string.weeks_later);
+        }
+
+        return week + day + " " + NumToString(event.time.hour) + ":" + NumToString(event.time.min) + " " + event.what;
     }
 
 
@@ -62,7 +78,7 @@ public class Translator {
 
 
     public static String getWeekNumberString(int weekNumber) {
-        if (weekNumber>100){
+        if (weekNumber > 100) {
             return ContextHolder.getAppContext().getString(R.string.not_set);
         }
         return ContextHolder.getAppContext().getResources().getString(R.string.week) + " " + NumToString(weekNumber);

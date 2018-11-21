@@ -126,6 +126,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
                         android:layout_marginRight="16dp"
+                        android:layout_marginBottom="5dp"
                         android:text="@string/there_is_no_class_yet"
                         android:textColor="@color/white"
                         android:textSize="16sp" />
@@ -213,6 +214,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginRight="16dp"
                         android:text="@string/you_have_no_event_yet"
                         android:textColor="@color/white"
@@ -300,6 +302,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"
+                        android:layout_marginBottom="5dp"
                         android:layout_marginRight="16dp"
                         android:text="@string/you_have_no_friends_yet"
                         android:textColor="@color/white"

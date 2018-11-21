@@ -41,6 +41,7 @@
     <string name="where_is_it">where is it?</string>
     <string name="lable">what is it?</string>
     <string name="hour_or_min_is_not_valid">hour or min is not valid</string>
+    <string name="week_number_is_not_valid">week number is not valid</string>
     <string name="fill_blanks">fill blanks</string>
     <string name="hour">hour</string>
     <string name="min">min</string>
@@ -68,6 +69,11 @@
     <string name="delete">delete</string>
     <string name="class_info">class info</string>
     <string name="event_info">event info</string>
+    <string name="week_number">week number</string>
+    <string name="this_week">this week</string>
+    <string name="next_week">next week</string>
+    <string name="two_weeks_later">two weeks later</string>
+    <string name="weeks_later"> weeks later</string>
 
     <string-array name="nums">
         <item>0</item>

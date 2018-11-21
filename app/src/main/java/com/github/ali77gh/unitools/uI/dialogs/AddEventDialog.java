@@ -37,6 +37,7 @@ public class AddEventDialog extends Dialog {
         EditText what = findViewById(R.id.text_home_add_event_dialog_lable);
         EditText hour = findViewById(R.id.text_home_add_event_dialog_hour);
         EditText min = findViewById(R.id.text_home_add_event_dialog_min);
+        EditText week = findViewById(R.id.text_home_add_event_dialog_week_number);
 
         daySpinner = findViewById(R.id.spinner_home_add_event_day);
         SetupSpinners();
@@ -46,17 +47,25 @@ public class AddEventDialog extends Dialog {
 
         ok.setOnClickListener(view -> {
 
-            if (!IsInt(hour.getText().toString()) | !IsInt(min.getText().toString())){
+            if (!IsInt(hour.getText().toString()) |
+                    !IsInt(min.getText().toString())) {
                 Toast.makeText(context, getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if (!Time.Validator(Integer.valueOf(hour.getText().toString()),Integer.valueOf(min.getText().toString()))){
+            if (!Time.Validator(Integer.valueOf(hour.getText().toString()), Integer.valueOf(min.getText().toString()))) {
                 Toast.makeText(context, getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if (what.getText().toString().equals("")){
+            if (!IsInt(week.getText().toString()) |
+                    Integer.valueOf(week.getText().toString()) < 0 |
+                    Integer.valueOf(week.getText().toString()) > 32) {
+                Toast.makeText(context, getContext().getString(R.string.week_number_is_not_valid), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            if (what.getText().toString().equals("")) {
                 Toast.makeText(context, getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -64,38 +73,36 @@ public class AddEventDialog extends Dialog {
             Event event = new Event();
 
             event.what = what.getText().toString();
-            event.time = new Time(daySpinner.getSelectedItemPosition() , Integer.valueOf(hour.getText().toString()) , Integer.valueOf(min.getText().toString()));
-
+            event.time = new Time(daySpinner.getSelectedItemPosition(), Integer.valueOf(hour.getText().toString()), Integer.valueOf(min.getText().toString()));
+            event.WeekNumber = Integer.valueOf(week.getText().toString());
 
             listener.onNewEvent(event);
             dismiss();
         });
 
-        cancel.setOnClickListener(view -> {
-            dismiss();
-        });
+        cancel.setOnClickListener(view -> dismiss());
     }
 
-    private void SetupSpinners(){
+    private void SetupSpinners() {
         String modes[] = getContext().getResources().getStringArray(R.array.weekDays);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.item_spinner, modes);
         daySpinner.setAdapter(adapter);
     }
 
-    public void setListener(EventDialogListener listener){
+    public void setListener(EventDialogListener listener) {
         this.listener = listener;
     }
 
-    public interface EventDialogListener{
+    public interface EventDialogListener {
         void onNewEvent(Event event);
     }
 
-    private boolean IsInt(String s){
+    private boolean IsInt(String s) {
         try {
             int a = Integer.valueOf(s);
             return true;
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }

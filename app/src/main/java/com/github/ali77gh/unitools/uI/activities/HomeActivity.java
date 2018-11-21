@@ -1,11 +1,14 @@
 package com.github.ali77gh.unitools.uI.activities;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -23,6 +26,8 @@ import com.github.ali77gh.unitools.uI.fragments.SettingsFragment;
 import com.github.ali77gh.unitools.uI.fragments.WallFragment;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
+
+import java.util.Locale;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -128,7 +133,24 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SetupLang();
+    }
 
+    private void SetupLang() {
+
+        String lang = UserInfoRepo.getUserInfo().LangId;
+
+        Resources res = getResources();
+        // Change locale settings in the app.
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(lang)); // API 17+ only.
+        // Use conf.locale = new Locale(...) if targeting lower versions
+        res.updateConfiguration(conf, dm);
+    }
 
     @Override
     public void onBackPressed() {

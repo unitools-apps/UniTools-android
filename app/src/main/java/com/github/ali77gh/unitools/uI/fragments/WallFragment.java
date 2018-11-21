@@ -2,7 +2,6 @@ package com.github.ali77gh.unitools.uI.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.style.UpdateLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +13,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.ContextHolder;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.core.tools.Sort;
 import com.github.ali77gh.unitools.data.Model.Event;

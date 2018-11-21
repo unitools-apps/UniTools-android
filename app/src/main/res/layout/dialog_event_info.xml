@@ -18,8 +18,8 @@
         android:id="@+id/txt_home_event_info_dialog_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        android:layout_marginTop="10dp"
+        android:textSize="16sp"
+        android:layout_marginTop="16dp"
         android:textColor="@color/white"
         android:layout_marginStart="16dp"/>
 
