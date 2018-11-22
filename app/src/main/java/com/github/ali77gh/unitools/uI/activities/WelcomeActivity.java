@@ -41,6 +41,7 @@ public class WelcomeActivity extends AppCompatActivity {
             userInfo.DarkTheme = true;
             userInfo.Classes = new ArrayList<>();
             userInfo.FirstDayOfUni = 0;
+            userInfo.reminderInMins = 50;
             UserInfoRepo.setUserInfo(userInfo);
         }).start();
     }

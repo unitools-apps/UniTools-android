@@ -74,6 +74,7 @@
     <string name="next_week">next week</string>
     <string name="two_weeks_later">two weeks later</string>
     <string name="weeks_later"> weeks later</string>
+    <string name="next_class_is_close"> next class is close</string>
 
     <string-array name="nums">
         <item>0</item>

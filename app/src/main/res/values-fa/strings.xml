@@ -72,6 +72,7 @@
     <string name="next_week">هفته بعد</string>
     <string name="two_weeks_later">دو هفته بعد</string>
     <string name="weeks_later">هفته بعد</string>
+    <string name="next_class_is_close"> کلاس بعدی نزدیک است</string>
 
     <string-array name="nums">
         <item>۰</item>
