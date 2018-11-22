@@ -20,7 +20,8 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginBottom="16dp"
-        android:textColor="@color/white"/>
+        android:textColor="@color/white"
+        android:inputType="number"/>
 
     <LinearLayout
         android:layout_width="match_parent"

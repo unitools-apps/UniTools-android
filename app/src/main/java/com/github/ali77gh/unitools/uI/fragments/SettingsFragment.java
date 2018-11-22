@@ -20,6 +20,7 @@ import android.widget.TextView;
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.data.Model.UserInfo;
 import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
+import com.github.ali77gh.unitools.uI.dialogs.SettingsAlarmConfigDialog;
 
 import java.util.Locale;
 
@@ -30,8 +31,6 @@ import java.util.Locale;
 public class SettingsFragment extends Fragment implements Backable {
 
     private Spinner languageSpinner;
-    private Spinner notificationSpinner;
-    private ImageView notifiState;
     private LinearLayout aboutUsBtn;
     private FrameLayout aboutUs;
 
@@ -50,13 +49,13 @@ public class SettingsFragment extends Fragment implements Backable {
         View cView = inflater.inflate(R.layout.fragment_settings, container, false);
 
         languageSpinner = cView.findViewById(R.id.spinner_settings_language);
-        notificationSpinner = cView.findViewById(R.id.spinner_settings_notification);
-        notifiState = cView.findViewById(R.id.image_settings_notification_state);
         aboutUsBtn = cView.findViewById(R.id.linear_settings_about_us);
         aboutUs = cView.findViewById(R.id.layout_settings_about);
+        LinearLayout reminder = cView.findViewById(R.id.linear_settings_reminder);
+
+        reminder.setOnClickListener(view -> new SettingsAlarmConfigDialog(getActivity()).show());
 
         SetupLanguage();
-        SetupNotification();
         LoadCurrentSettings();
         SetupAboutUs();
 
@@ -75,23 +74,6 @@ public class SettingsFragment extends Fragment implements Backable {
                 break;
             default:
                 throw new IllegalArgumentException("invalid language: " + ui.LangId);
-        }
-
-        switch (ui.NotificationMode) {
-            case UserInfo.NOTIFICATION_WITH_SOUND:
-                notificationSpinner.setSelection(0);
-                notifiState.setImageDrawable(getResources().getDrawable(R.drawable.settings_notifi_sound));
-                break;
-            case UserInfo.NOTIFICATION_JUST_NOTIFI:
-                notificationSpinner.setSelection(1);
-                notifiState.setImageDrawable(getResources().getDrawable(R.drawable.settings_notifi));
-                break;
-            case UserInfo.NOTIFICATION_NOTHING:
-                notificationSpinner.setSelection(2);
-                notifiState.setImageDrawable(getResources().getDrawable(R.drawable.settings_notifi_mute));
-                break;
-            default:
-                throw new IllegalArgumentException("invalid Notification mode: " + ui.NotificationMode);
         }
     }
 
@@ -119,46 +101,6 @@ public class SettingsFragment extends Fragment implements Backable {
                     default:
                         throw new IllegalArgumentException("invalid language: " + ((TextView) view).getText().toString());
                 }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-    }
-
-    private void SetupNotification() {
-
-        String modes[] = getResources().getStringArray(R.array.notification_modes);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, modes);
-        notificationSpinner.setAdapter(adapter);
-
-        ((View) notificationSpinner.getParent()).setOnClickListener(view -> {
-            notificationSpinner.performClick();
-        });
-
-        notificationSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                UserInfo ui = UserInfoRepo.getUserInfo();
-                switch (i) {
-                    case 0:
-                        ui.NotificationMode = UserInfo.NOTIFICATION_WITH_SOUND;
-                        notifiState.setImageDrawable(getResources().getDrawable(R.drawable.settings_notifi_sound));
-                        break;
-                    case 1:
-                        ui.NotificationMode = UserInfo.NOTIFICATION_JUST_NOTIFI;
-                        notifiState.setImageDrawable(getResources().getDrawable(R.drawable.settings_notifi));
-                        break;
-                    case 2:
-                        ui.NotificationMode = UserInfo.NOTIFICATION_NOTHING;
-                        notifiState.setImageDrawable(getResources().getDrawable(R.drawable.settings_notifi_mute));
-                        break;
-                }
-                UserInfoRepo.setUserInfo(ui);
             }
 
             @Override

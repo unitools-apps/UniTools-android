@@ -90,6 +90,7 @@
 
             <!--notification-->
             <LinearLayout
+                android:id="@+id/linear_settings_reminder"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal">
@@ -110,21 +111,6 @@
                     android:layout_marginStart="20dp"
                     android:text="@string/reminder"
                     android:textColor="@color/white" />
-
-                <Space
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_weight="1"/>
-
-                <Spinner
-                    android:id="@+id/spinner_settings_notification"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginEnd="20dp"
-                    android:background="@null"
-                    android:gravity="end"
-                    android:spinnerMode="dropdown" />
 
             </LinearLayout>
 

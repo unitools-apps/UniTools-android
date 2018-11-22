@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.Button;
@@ -21,6 +22,8 @@ import com.google.gson.Gson;
 
 public class ShareClassesDialog extends Dialog {
 
+    private Friend me;
+    private BitmapProvider listener;
 
     public ShareClassesDialog(@NonNull Context context) {
         super(context);
@@ -35,10 +38,13 @@ public class ShareClassesDialog extends Dialog {
         Button cancel = findViewById(R.id.btn_share_classes_dialog_cancel);
         Button copy = findViewById(R.id.btn_share_classes_dialog_copy);
 
-        Friend me = new Friend();
+        me = new Friend();
         me.classList = UserInfoRepo.getUserInfo().Classes;
         me.name = "";
-        qrCode.setImageBitmap(QrCodeTools.Generate(me));
+
+        listener = bitmap -> copy.post(() -> qrCode.setImageBitmap(bitmap));
+
+        thread.start();
 
         cancel.setOnClickListener(view -> dismiss());
 
@@ -48,5 +54,18 @@ public class ShareClassesDialog extends Dialog {
             dismiss();
         });
 
+    }
+
+    private Thread thread = new Thread() {
+        @Override
+        public void run() {
+            listener.onBitmapReady(QrCodeTools.Generate(me));
+
+            super.run();
+        }
+    };
+
+    private interface BitmapProvider {
+        void onBitmapReady(Bitmap bitmap);
     }
 }

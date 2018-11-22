@@ -73,6 +73,8 @@
     <string name="two_weeks_later">دو هفته بعد</string>
     <string name="weeks_later">هفته بعد</string>
     <string name="next_class_is_close"> کلاس بعدی نزدیک است</string>
+    <string name="how_match_before_class_start_time">چقدر قبلش؟</string>
+    <string name="notification_type">نوع اعلان</string>
 
     <string-array name="nums">
         <item>۰</item>
@@ -97,7 +99,7 @@
         <item>جمعه</item>
     </string-array>
 
-    <string-array name="notofication_modes">
+    <string-array name="notification_modes">
         <item>نوتیفیکیشن + صدا</item>
         <item>فقط نوتیفیکیشن</item>
         <item>هیچی</item>

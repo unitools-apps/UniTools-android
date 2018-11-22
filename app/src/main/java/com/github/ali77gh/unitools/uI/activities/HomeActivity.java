@@ -1,6 +1,5 @@
 package com.github.ali77gh.unitools.uI.activities;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -9,19 +8,15 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
-import com.github.ali77gh.unitools.data.Repo.EventRepo;
-import com.github.ali77gh.unitools.data.Repo.FileRepo;
-import com.github.ali77gh.unitools.data.Repo.FriendRepo;
 import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
 import com.github.ali77gh.unitools.uI.fragments.Backable;
-import com.github.ali77gh.unitools.uI.fragments.BayganiFragment;
-import com.github.ali77gh.unitools.uI.fragments.JozveFragment;
+import com.github.ali77gh.unitools.uI.fragments.StorageFragment;
+import com.github.ali77gh.unitools.uI.fragments.DocsFragment;
 import com.github.ali77gh.unitools.uI.fragments.SettingsFragment;
 import com.github.ali77gh.unitools.uI.fragments.WallFragment;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -53,12 +48,12 @@ public class HomeActivity extends AppCompatActivity {
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         WallFragment wallFragment = new WallFragment();
-        BayganiFragment bayganiFragment = new BayganiFragment();
-        JozveFragment jozveFragment = new JozveFragment();
+        StorageFragment storageFragment = new StorageFragment();
+        DocsFragment docsFragment = new DocsFragment();
         SettingsFragment settingsFragment = new SettingsFragment();
         viewPagerAdapter.AddFragment(wallFragment);
-        viewPagerAdapter.AddFragment(bayganiFragment);
-        viewPagerAdapter.AddFragment(jozveFragment);
+        viewPagerAdapter.AddFragment(storageFragment);
+        viewPagerAdapter.AddFragment(docsFragment);
         viewPagerAdapter.AddFragment(settingsFragment);
         currentFrag = wallFragment;
         viewpager.setAdapter(viewPagerAdapter);
