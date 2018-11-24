@@ -35,10 +35,8 @@ public class Sort {
 
         //todo find better way to add two lists
         classes.clear();
-        for (UClass u : past)
-            classes.add(u);
-        for (UClass u : pre)
-            classes.add(u);
+        classes.addAll(past);
+        classes.addAll(pre);
     }
 
     public static void SortFriend(List<Friend> friends) {
@@ -84,15 +82,15 @@ public class Sort {
         }
     }
 
-    private static void ExchangeSortEvent(List<Event> uClasses) {
+    private static void ExchangeSortEvent(List<Event> events) {
         int i, j;
         Event temp;
-        for (i = 0; i < uClasses.size() - 1; i++) {
-            for (j = i + 1; j < uClasses.size(); j++) {
-                if (uClasses.get(i).time.getMins() > uClasses.get(j).time.getMins()) {
-                    temp = uClasses.get(i);
-                    uClasses.set(i, uClasses.get(j));
-                    uClasses.set(j, temp);
+        for (i = 0; i < events.size() - 1; i++) {
+            for (j = i + 1; j < events.size(); j++) {
+                if (events.get(i).WeekNumber > events.get(j).WeekNumber | events.get(i).time.getMins() > events.get(j).time.getMins()) {
+                    temp = events.get(i);
+                    events.set(i, events.get(j));
+                    events.set(j, temp);
                 }
             }
         }

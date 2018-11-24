@@ -38,6 +38,7 @@ public class ShowNextClassWidget extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+        ContextHolder.initStatics(context);
         SetupLang(context);
 
         final int count = appWidgetIds.length;
