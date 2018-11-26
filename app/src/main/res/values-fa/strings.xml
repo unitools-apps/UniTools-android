@@ -73,6 +73,7 @@
     <string name="next_class_is_close"> کلاس بعدی نزدیک است</string>
     <string name="how_match_before_class_start_time">چقدر قبلش؟</string>
     <string name="notification_type">نوع اعلان</string>
+    <string name="teacher">اساتید</string>
 
     <string-array name="nums">
         <item>۰</item>

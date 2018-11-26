@@ -6,7 +6,7 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="home_fragment">home fragment</string>
 
-    <string name="app_version">version 0.0.1 beta</string>
+    <string name="app_version">version 0.0.2 beta</string>
 
     <string name="about_text">felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar </string>
     <string name="language">language</string>
@@ -77,6 +77,7 @@
     <string name="next_class_is_close"> next class is close</string>
     <string name="how_match_before_class_start_time">how match before class start time?</string>
     <string name="notification_type">notification type</string>
+    <string name="teacher">teacher</string>
 
     <string-array name="nums">
         <item>0</item>

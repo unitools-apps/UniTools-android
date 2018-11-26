@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -38,7 +39,6 @@ import java.util.List;
 
 public class WallFragment extends Fragment implements Backable {
 
-    private ImageView setWeekCounter;
     private LinearLayout weekNummberParent;
 
     private ImageView expandClassesBtn;
@@ -75,7 +75,6 @@ public class WallFragment extends Fragment implements Backable {
         // Inflate the layout for this fragment
         View cView = inflater.inflate(R.layout.fragment_wall, container, false);
 
-        setWeekCounter = cView.findViewById(R.id.btn_wall_setup_week_counter);
         weekNummberParent = cView.findViewById(R.id.linear_wall_week_number_parent);
 
         addClassBtn = cView.findViewById(R.id.btn_wall_add_class);
@@ -104,7 +103,7 @@ public class WallFragment extends Fragment implements Backable {
     }
 
     private void SetupWeekCounter() {
-        setWeekCounter.setOnClickListener(view -> {
+        weekNummberParent.setOnClickListener(view -> {
             SetupWeekCounterDialog dialog = new SetupWeekCounterDialog(getActivity());
             dialog.show();
             dialog.setOnDismissListener(dialogInterface -> {

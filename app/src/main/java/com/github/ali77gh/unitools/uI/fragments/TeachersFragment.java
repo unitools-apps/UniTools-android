@@ -12,10 +12,9 @@ import com.github.ali77gh.unitools.R;
  * Created by ali on 10/3/18.
  */
 
-public class ToolsFragment extends Fragment implements Backable {
+public class TeachersFragment extends Fragment implements Backable {
 
-
-    public ToolsFragment() {
+    public TeachersFragment() {
         // Required empty public constructor
     }
 
@@ -29,7 +28,7 @@ public class ToolsFragment extends Fragment implements Backable {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tools, container, false);
+        return inflater.inflate(R.layout.fragment_teachers, container, false);
     }
 
     @Override

@@ -18,6 +18,7 @@ import com.github.ali77gh.unitools.uI.fragments.Backable;
 import com.github.ali77gh.unitools.uI.fragments.StorageFragment;
 import com.github.ali77gh.unitools.uI.fragments.DocsFragment;
 import com.github.ali77gh.unitools.uI.fragments.SettingsFragment;
+import com.github.ali77gh.unitools.uI.fragments.TeachersFragment;
 import com.github.ali77gh.unitools.uI.fragments.WallFragment;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
@@ -51,31 +52,41 @@ public class HomeActivity extends AppCompatActivity {
         StorageFragment storageFragment = new StorageFragment();
         DocsFragment docsFragment = new DocsFragment();
         SettingsFragment settingsFragment = new SettingsFragment();
+        TeachersFragment teachersFragment = new TeachersFragment();
+
+        viewPagerAdapter.AddFragment(teachersFragment);
+        viewPagerAdapter.AddFragment(docsFragment);
         viewPagerAdapter.AddFragment(wallFragment);
         viewPagerAdapter.AddFragment(storageFragment);
-        viewPagerAdapter.AddFragment(docsFragment);
         viewPagerAdapter.AddFragment(settingsFragment);
+
+        viewpager.post(() -> viewpager.setCurrentItem(2,false));
+
         currentFrag = wallFragment;
         viewpager.setAdapter(viewPagerAdapter);
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = item -> {
         switch (item.getItemId()) {
-            case R.id.navigation_home:
+            case R.id.navigation_teacher:
                 viewpager.setCurrentItem(0, true);
                 currentFrag = (Backable) viewPagerAdapter.getItem(0);
                 return true;
-            case R.id.navigation_storage:
+            case R.id.navigation_docs:
                 viewpager.setCurrentItem(1, true);
                 currentFrag = (Backable) viewPagerAdapter.getItem(1);
                 return true;
-            case R.id.navigation_docs:
+            case R.id.navigation_home:
                 viewpager.setCurrentItem(2, true);
                 currentFrag = (Backable) viewPagerAdapter.getItem(2);
                 return true;
-            case R.id.navigation_settings:
+            case R.id.navigation_storage:
                 viewpager.setCurrentItem(3, true);
                 currentFrag = (Backable) viewPagerAdapter.getItem(3);
+                return true;
+            case R.id.navigation_settings:
+                viewpager.setCurrentItem(4, true);
+                currentFrag = (Backable) viewPagerAdapter.getItem(4);
                 return true;
         }
 
@@ -91,15 +102,18 @@ public class HomeActivity extends AppCompatActivity {
         public void onPageSelected(int i) {
             switch (i) {
                 case 0:
-                    navigation.setSelectedItemId(R.id.navigation_home);
+                    navigation.setSelectedItemId(R.id.navigation_teacher);
                     break;
                 case 1:
-                    navigation.setSelectedItemId(R.id.navigation_storage);
-                    break;
-                case 2:
                     navigation.setSelectedItemId(R.id.navigation_docs);
                     break;
+                case 2:
+                    navigation.setSelectedItemId(R.id.navigation_home);
+                    break;
                 case 3:
+                    navigation.setSelectedItemId(R.id.navigation_storage);
+                    break;
+                case 4:
                     navigation.setSelectedItemId(R.id.navigation_settings);
                     break;
                 default:
@@ -150,6 +164,11 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     public void onBackPressed() {
         if (!currentFrag.onBack()) {
+
+            if (viewpager.getCurrentItem()!=2){
+                viewpager.setCurrentItem(2,true);
+                return;
+            }
             super.onBackPressed();
         }
     }
