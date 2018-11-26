@@ -13,8 +13,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.data.Model.UserInfo;
-import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
+import com.github.ali77gh.unitools.data.model.UserInfo;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 /**
  * Created by ali77gh on 11/23/18.
@@ -50,7 +50,7 @@ public class SettingsAlarmConfigDialog extends Dialog {
                 return;
             }
             UserInfo ui = UserInfoRepo.getUserInfo();
-            ui.reminderInMins = (Integer.valueOf(hour.getText().toString()) * 60) + Integer.valueOf(min.getText().toString());
+            ui.ReminderInMins = (Integer.valueOf(hour.getText().toString()) * 60) + Integer.valueOf(min.getText().toString());
             ui.NotificationMode = selectedNotifiType;
             UserInfoRepo.setUserInfo(ui);
             dismiss();
@@ -96,8 +96,8 @@ public class SettingsAlarmConfigDialog extends Dialog {
         });
 
         UserInfo ui = UserInfoRepo.getUserInfo();
-        hour.setText(String.valueOf ((int) ui.reminderInMins/60));
-        min.setText(String.valueOf ( ui.reminderInMins%60));
+        hour.setText(String.valueOf ((int) ui.ReminderInMins /60));
+        min.setText(String.valueOf ( ui.ReminderInMins %60));
         switch (ui.NotificationMode) {
             case UserInfo.NOTIFICATION_WITH_SOUND:
                 notificationSpinner.setSelection(0);

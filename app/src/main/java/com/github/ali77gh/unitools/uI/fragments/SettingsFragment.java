@@ -12,14 +12,15 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.data.Model.UserInfo;
-import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
+import com.github.ali77gh.unitools.data.model.UserInfo;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.dialogs.SettingsAlarmConfigDialog;
 
 import java.util.Locale;
@@ -32,6 +33,8 @@ public class SettingsFragment extends Fragment implements Backable {
 
     private Spinner languageSpinner;
     private LinearLayout aboutUsBtn;
+    private LinearLayout autoSilentBtn;
+    private Switch autoSilentSwitch;
     private FrameLayout aboutUs;
 
     public SettingsFragment() {
@@ -44,16 +47,27 @@ public class SettingsFragment extends Fragment implements Backable {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(LayoutInflater inflater,
+                             ViewGroup container,
                              Bundle savedInstanceState) {
         View cView = inflater.inflate(R.layout.fragment_settings, container, false);
 
         languageSpinner = cView.findViewById(R.id.spinner_settings_language);
+        autoSilentBtn = cView.findViewById(R.id.linear_settings_auto_silent);
+        autoSilentSwitch = (Switch) autoSilentBtn.getChildAt(3);
         aboutUsBtn = cView.findViewById(R.id.linear_settings_about_us);
         aboutUs = cView.findViewById(R.id.layout_settings_about);
         LinearLayout reminder = cView.findViewById(R.id.linear_settings_reminder);
 
         reminder.setOnClickListener(view -> new SettingsAlarmConfigDialog(getActivity()).show());
+
+        autoSilentBtn.setOnClickListener(view -> autoSilentSwitch.toggle());
+        autoSilentSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
+            UserInfo ui = UserInfoRepo.getUserInfo();
+            ui.AutoSilent = b;
+            UserInfoRepo.setUserInfo(ui);
+        });
+
 
         SetupLanguage();
         LoadCurrentSettings();
@@ -75,6 +89,8 @@ public class SettingsFragment extends Fragment implements Backable {
             default:
                 throw new IllegalArgumentException("invalid language: " + ui.LangId);
         }
+
+        autoSilentSwitch.setChecked(ui.AutoSilent);
     }
 
     private void SetupLanguage() {

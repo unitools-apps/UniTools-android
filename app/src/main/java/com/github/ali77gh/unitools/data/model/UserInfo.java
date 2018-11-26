@@ -1,4 +1,4 @@
-package com.github.ali77gh.unitools.data.Model;
+package com.github.ali77gh.unitools.data.model;
 
 import java.util.List;
 
@@ -13,7 +13,8 @@ public class UserInfo {
     public List<UClass> Classes;
     public int NotificationMode;
     public int FirstDayOfUni;
-    public int reminderInMins;
+    public int ReminderInMins;
+    public boolean AutoSilent;
 
     public final static int NOTIFICATION_WITH_SOUND = 0;
     public final static int NOTIFICATION_JUST_NOTIFI = 1;

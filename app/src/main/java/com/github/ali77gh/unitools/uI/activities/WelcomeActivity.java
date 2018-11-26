@@ -7,11 +7,8 @@ import android.widget.Button;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
-import com.github.ali77gh.unitools.data.Model.UserInfo;
-import com.github.ali77gh.unitools.data.Repo.EventRepo;
-import com.github.ali77gh.unitools.data.Repo.FileRepo;
-import com.github.ali77gh.unitools.data.Repo.FriendRepo;
-import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
+import com.github.ali77gh.unitools.data.model.UserInfo;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 import java.util.ArrayList;
 
@@ -35,13 +32,14 @@ public class WelcomeActivity extends AppCompatActivity {
 
         // init account
         new Thread(() -> {
+            //defaults
             UserInfo userInfo = new UserInfo();
-            userInfo.LangId = getString(R.string.LangID);
+            userInfo.LangId = "fa";
             userInfo.NotificationMode = UserInfo.NOTIFICATION_NOTHING;
             userInfo.DarkTheme = true;
             userInfo.Classes = new ArrayList<>();
             userInfo.FirstDayOfUni = 0;
-            userInfo.reminderInMins = 50;
+            userInfo.ReminderInMins = 50;
             UserInfoRepo.setUserInfo(userInfo);
         }).start();
     }

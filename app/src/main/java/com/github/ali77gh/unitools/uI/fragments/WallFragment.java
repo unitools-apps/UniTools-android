@@ -15,12 +15,12 @@ import android.widget.Toast;
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.core.tools.Sort;
-import com.github.ali77gh.unitools.data.Model.Event;
-import com.github.ali77gh.unitools.data.Model.Friend;
-import com.github.ali77gh.unitools.data.Model.UClass;
-import com.github.ali77gh.unitools.data.Repo.EventRepo;
-import com.github.ali77gh.unitools.data.Repo.FriendRepo;
-import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
+import com.github.ali77gh.unitools.data.model.Event;
+import com.github.ali77gh.unitools.data.model.Friend;
+import com.github.ali77gh.unitools.data.model.UClass;
+import com.github.ali77gh.unitools.data.repo.EventRepo;
+import com.github.ali77gh.unitools.data.repo.FriendRepo;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.animation.ExpandAndCollapse;
 import com.github.ali77gh.unitools.uI.dialogs.AddClassDialog;
 import com.github.ali77gh.unitools.uI.dialogs.AddEventDialog;
@@ -158,6 +158,7 @@ public class WallFragment extends Fragment implements Backable {
         eventsFirstRow.setText(getString(R.string.you_have_no_event_yet));
         List<String> eventsString = new ArrayList<>();
         List<Event> events = EventRepo.getAll();
+        Sort.SortEvent(events);
         for (Event event : events) {
             if (events.indexOf(event) == 0)
                 eventsFirstRow.setText(getResources().getString(R.string.next) + " " + Translator.getEventReadable(event));

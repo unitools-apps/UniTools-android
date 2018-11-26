@@ -38,7 +38,7 @@
                         android:layout_gravity="center_horizontal|bottom"
                         android:layout_marginBottom="10dp"
                         android:text="MIT licenses"
-                        android:textColor="@color/background"
+                        android:textColor="@color/white"
                         android:textSize="20sp" />
 
                 </FrameLayout>
@@ -57,7 +57,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/background_darker"
-                    android:padding="10dp"
+                    android:padding="16dp"
                     android:text="@string/about_text"
                     android:textColor="@color/white" />
             </android.support.v7.widget.CardView>

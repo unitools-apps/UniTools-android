@@ -16,8 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.QrCode.QrCodeTools;
-import com.github.ali77gh.unitools.data.Model.Friend;
+import com.github.ali77gh.unitools.core.qrCode.QrCodeTools;
+import com.github.ali77gh.unitools.data.model.Friend;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 

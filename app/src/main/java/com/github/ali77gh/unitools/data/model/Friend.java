@@ -1,4 +1,4 @@
-package com.github.ali77gh.unitools.data.Model;
+package com.github.ali77gh.unitools.data.model;
 
 import java.util.List;
 

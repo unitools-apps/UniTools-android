@@ -12,7 +12,7 @@ import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
-import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
 import com.github.ali77gh.unitools.uI.fragments.Backable;
 import com.github.ali77gh.unitools.uI.fragments.StorageFragment;

@@ -2,10 +2,10 @@ package com.github.ali77gh.unitools.core;
 
 import android.content.Context;
 
-import com.github.ali77gh.unitools.data.Repo.EventRepo;
-import com.github.ali77gh.unitools.data.Repo.FileRepo;
-import com.github.ali77gh.unitools.data.Repo.FriendRepo;
-import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
+import com.github.ali77gh.unitools.data.repo.EventRepo;
+import com.github.ali77gh.unitools.data.repo.FileRepo;
+import com.github.ali77gh.unitools.data.repo.FriendRepo;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 /**
  * Created by ali77gh on 10/12/18.

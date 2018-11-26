@@ -1,4 +1,4 @@
-package com.github.ali77gh.unitools.data.Model;
+package com.github.ali77gh.unitools.data.model;
 
 /**
  * Created by ali on 10/10/18.

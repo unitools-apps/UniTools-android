@@ -4,10 +4,9 @@ import android.content.Context;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.tools.DateTimeTools;
-import com.github.ali77gh.unitools.data.Model.Event;
-import com.github.ali77gh.unitools.data.Model.UClass;
-import com.github.ali77gh.unitools.data.Model.UserInfo;
-import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
+import com.github.ali77gh.unitools.data.model.Event;
+import com.github.ali77gh.unitools.data.model.UClass;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 /**
  * Created by ali77gh on 10/12/18.
@@ -50,7 +49,7 @@ public class Translator {
             week = event.WeekNumber + " " + context.getString(R.string.weeks_later);
         }
 
-        return week + day + " " + NumToString(event.time.hour) + ":" + NumToString(event.time.min) + " " + event.what;
+        return week + " " + day + " " + NumToString(event.time.hour) + ":" + NumToString(event.time.min) + " " + event.what;
     }
 
 

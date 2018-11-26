@@ -9,7 +9,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 /**
  * Created by ali77gh on 10/27/18.
@@ -34,6 +34,8 @@ public class SetupWeekCounterDialog extends Dialog {
         Button ok = findViewById(R.id.btn_setup_week_counter_dialog_ok);
 
         cancel.setOnClickListener(view -> dismiss());
+
+        input.setText(String.valueOf(UserInfoRepo.getWeekNumber()) );
 
         ok.setOnClickListener(view -> {
             if (!IsInt(input.getText().toString())) {

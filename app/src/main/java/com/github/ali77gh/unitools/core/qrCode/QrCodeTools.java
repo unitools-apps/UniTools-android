@@ -1,11 +1,11 @@
-package com.github.ali77gh.unitools.core.QrCode;
+package com.github.ali77gh.unitools.core.qrCode;
 
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.app.Fragment;
 import android.graphics.Color;
 
-import com.github.ali77gh.unitools.data.Model.Friend;
+import com.github.ali77gh.unitools.data.model.Friend;
 import com.google.gson.Gson;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;

@@ -1,7 +1,6 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
 import android.app.Dialog;
-import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Bitmap;
@@ -11,9 +10,9 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.QrCode.QrCodeTools;
-import com.github.ali77gh.unitools.data.Model.Friend;
-import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
+import com.github.ali77gh.unitools.core.qrCode.QrCodeTools;
+import com.github.ali77gh.unitools.data.model.Friend;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.google.gson.Gson;
 
 /**

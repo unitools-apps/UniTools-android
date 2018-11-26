@@ -1,13 +1,7 @@
 package com.github.ali77gh.unitools;
 
-import android.util.Log;
+import com.github.ali77gh.unitools.data.model.UClass;
 
-import com.github.ali77gh.unitools.core.tools.DateTimeTools;
-import com.github.ali77gh.unitools.data.Model.UClass;
-
-import org.junit.Test;
-
-import java.util.Date;
 import java.util.List;
 
 /**

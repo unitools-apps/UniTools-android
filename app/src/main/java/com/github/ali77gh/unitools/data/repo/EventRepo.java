@@ -1,14 +1,13 @@
-package com.github.ali77gh.unitools.data.Repo;
+package com.github.ali77gh.unitools.data.repo;
 
 import android.content.Context;
 
 import com.example.easyrepolib.KeyValDb;
 import com.github.ali77gh.unitools.core.ShortIdGenerator;
-import com.github.ali77gh.unitools.data.Model.Event;
+import com.github.ali77gh.unitools.data.model.Event;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Created by ali on 10/10/18.

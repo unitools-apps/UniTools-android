@@ -1,6 +1,6 @@
 package com.github.ali77gh.unitools.core.tools;
 
-import com.github.ali77gh.unitools.data.Model.Time;
+import com.github.ali77gh.unitools.data.model.Time;
 
 import java.util.Date;
 

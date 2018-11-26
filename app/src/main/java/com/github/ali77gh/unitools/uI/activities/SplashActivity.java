@@ -8,11 +8,7 @@ import android.util.DisplayMetrics;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
-import com.github.ali77gh.unitools.core.Translator;
-import com.github.ali77gh.unitools.data.Repo.EventRepo;
-import com.github.ali77gh.unitools.data.Repo.FileRepo;
-import com.github.ali77gh.unitools.data.Repo.FriendRepo;
-import com.github.ali77gh.unitools.data.Repo.UserInfoRepo;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 import java.util.Locale;
 

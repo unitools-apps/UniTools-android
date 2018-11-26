@@ -1,9 +1,9 @@
 package com.github.ali77gh.unitools.core.tools;
 
-import com.github.ali77gh.unitools.data.Model.Event;
-import com.github.ali77gh.unitools.data.Model.Friend;
-import com.github.ali77gh.unitools.data.Model.Time;
-import com.github.ali77gh.unitools.data.Model.UClass;
+import com.github.ali77gh.unitools.data.model.Event;
+import com.github.ali77gh.unitools.data.model.Friend;
+import com.github.ali77gh.unitools.data.model.Time;
+import com.github.ali77gh.unitools.data.model.UClass;
 
 import java.util.ArrayList;
 import java.util.List;

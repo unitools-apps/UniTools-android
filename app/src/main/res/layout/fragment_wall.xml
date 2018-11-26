@@ -99,16 +99,6 @@
                             android:layout_weight="1" />
 
                         <ImageView
-                            android:id="@+id/btn_wall_add_class"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="16dp"
-                            android:padding="5dp"
-                            android:src="@drawable/all_add"
-                            android:tint="@color/white" />
-
-                        <ImageView
                             android:id="@+id/btn_wall_share_class"
                             android:layout_width="30dp"
                             android:layout_height="30dp"
@@ -116,6 +106,16 @@
                             android:layout_marginEnd="16dp"
                             android:padding="5dp"
                             android:src="@drawable/all_share"
+                            android:tint="@color/white" />
+
+                        <ImageView
+                            android:id="@+id/btn_wall_add_class"
+                            android:layout_width="30dp"
+                            android:layout_height="30dp"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginEnd="16dp"
+                            android:padding="5dp"
+                            android:src="@drawable/all_add"
                             android:tint="@color/white" />
                     </LinearLayout>
 
@@ -129,7 +129,7 @@
                         android:layout_marginBottom="5dp"
                         android:text="@string/there_is_no_class_yet"
                         android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
 
                     <!--need parent for fix expand collapse effect-->
                     <LinearLayout
@@ -199,14 +199,6 @@
                             android:src="@drawable/all_add"
                             android:tint="@color/white" />
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="16dp"
-                            android:padding="5dp"
-                            android:src="@drawable/all_3dot"
-                            android:tint="@color/white" />
                     </LinearLayout>
 
                     <TextView
@@ -218,7 +210,7 @@
                         android:layout_marginRight="16dp"
                         android:text="@string/you_have_no_event_yet"
                         android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
 
                     <!--need parent for fix expand collapse effect-->
                     <LinearLayout
@@ -287,14 +279,6 @@
                             android:src="@drawable/all_add"
                             android:tint="@color/white" />
 
-                        <ImageView
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="16dp"
-                            android:padding="5dp"
-                            android:src="@drawable/all_3dot"
-                            android:tint="@color/white" />
                     </LinearLayout>
 
                     <TextView
@@ -306,7 +290,7 @@
                         android:layout_marginRight="16dp"
                         android:text="@string/you_have_no_friends_yet"
                         android:textColor="@color/white"
-                        android:textSize="16sp" />
+                        android:textSize="14sp" />
 
                     <!--need parent for fix expand collapse effect-->
                     <LinearLayout

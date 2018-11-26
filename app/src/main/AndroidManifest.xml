@@ -7,6 +7,12 @@
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.STORAGE" />
 
+    <!--for make phone silent-->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+
+    <!-- Permission to start Alarm on device reboot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+
     <!--todo lock screen rotation-->
 
     <application
@@ -17,7 +23,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
@@ -61,6 +66,8 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/show_next_class_widget_info"/>
         </receiver>
+
+        <receiver android:name=".core.alarm.Alarm15MinRepeat" />
 
     </application>
 

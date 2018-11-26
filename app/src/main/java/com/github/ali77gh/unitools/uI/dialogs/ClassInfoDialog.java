@@ -9,7 +9,7 @@ import android.widget.TextView;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.Translator;
-import com.github.ali77gh.unitools.data.Model.UClass;
+import com.github.ali77gh.unitools.data.model.UClass;
 
 /**
  * Created by ali77gh on 11/14/18.

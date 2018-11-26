@@ -11,8 +11,8 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.data.Model.Event;
-import com.github.ali77gh.unitools.data.Model.Time;
+import com.github.ali77gh.unitools.data.model.Event;
+import com.github.ali77gh.unitools.data.model.Time;
 
 /**
  * Created by ali77gh on 10/17/18.

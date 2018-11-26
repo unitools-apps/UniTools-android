@@ -1,4 +1,4 @@
-package com.github.ali77gh.unitools.data.Repo;
+package com.github.ali77gh.unitools.data.repo;
 
 import android.content.Context;
 
@@ -6,8 +6,8 @@ import com.example.easyrepolib.abstracts.GRepo;
 import com.example.easyrepolib.repos.ObjectRepo;
 import com.github.ali77gh.unitools.core.ShortIdGenerator;
 import com.github.ali77gh.unitools.core.tools.DateTimeTools;
-import com.github.ali77gh.unitools.data.Model.UClass;
-import com.github.ali77gh.unitools.data.Model.UserInfo;
+import com.github.ali77gh.unitools.data.model.UClass;
+import com.github.ali77gh.unitools.data.model.UserInfo;
 
 import java.util.ArrayList;
 

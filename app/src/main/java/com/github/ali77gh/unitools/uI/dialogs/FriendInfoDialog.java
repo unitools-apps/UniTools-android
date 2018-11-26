@@ -13,8 +13,8 @@ import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.core.tools.Sort;
-import com.github.ali77gh.unitools.data.Model.Friend;
-import com.github.ali77gh.unitools.data.Model.UClass;
+import com.github.ali77gh.unitools.data.model.Friend;
+import com.github.ali77gh.unitools.data.model.UClass;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -60,6 +60,7 @@
 
             <!--theme-->
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal">
@@ -83,6 +84,7 @@
             </LinearLayout>
 
             <View
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:alpha=".5"
@@ -122,6 +124,7 @@
 
             <!--silent-->
             <LinearLayout
+                android:id="@+id/linear_settings_auto_silent"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal">
@@ -156,6 +159,7 @@
             </LinearLayout>
 
             <View
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:alpha=".5"
@@ -163,6 +167,7 @@
 
             <!--clear-->
             <LinearLayout
+                android:visibility="gone"
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
                 android:orientation="horizontal">
