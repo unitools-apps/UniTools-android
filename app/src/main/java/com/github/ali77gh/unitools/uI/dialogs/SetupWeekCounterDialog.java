@@ -34,12 +34,13 @@ public class SetupWeekCounterDialog extends Dialog {
         Button ok = findViewById(R.id.btn_setup_week_counter_dialog_ok);
 
         cancel.setOnClickListener(view -> dismiss());
-
-        input.setText(String.valueOf(UserInfoRepo.getWeekNumber()) );
+        int current = UserInfoRepo.getWeekNumber();
+        if (current < 50)
+            input.setText(String.valueOf(current));
 
         ok.setOnClickListener(view -> {
             if (!IsInt(input.getText().toString())) {
-                Toast.makeText(mContext, "enter number :|", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mContext, getContext().getString(R.string.enter_number), Toast.LENGTH_SHORT).show();
                 return;
             }
             UserInfoRepo.setWeekNumber(Integer.valueOf(input.getText().toString()));

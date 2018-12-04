@@ -78,7 +78,6 @@
     <string name="how_match_before_class_start_time">how match before class start time?</string>
     <string name="notification_type">notification type</string>
     <string name="teacher">teacher</string>
-
     <string-array name="nums">
         <item>0</item>
         <item>1</item>

@@ -1,1 +1,1 @@
-adb connect 192.168.0.102
+adb connect 192.168.0.101

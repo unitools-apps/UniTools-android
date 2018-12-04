@@ -58,8 +58,8 @@ public class AddEventDialog extends Dialog {
                 return;
             }
 
-            if (!IsInt(week.getText().toString()) |
-                    Integer.valueOf(week.getText().toString()) < 0 |
+            if (!IsInt(week.getText().toString()) ||
+                    Integer.valueOf(week.getText().toString()) < 0 ||
                     Integer.valueOf(week.getText().toString()) > 32) {
                 Toast.makeText(context, getContext().getString(R.string.week_number_is_not_valid), Toast.LENGTH_SHORT).show();
                 return;

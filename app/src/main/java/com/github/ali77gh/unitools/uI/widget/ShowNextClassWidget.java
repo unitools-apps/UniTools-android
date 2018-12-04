@@ -1,4 +1,4 @@
-package com.github.ali77gh.unitools.widget;
+package com.github.ali77gh.unitools.uI.widget;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.widget.RemoteViews;
+import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
@@ -32,12 +33,17 @@ public class ShowNextClassWidget extends AppWidgetProvider {
         ContextHolder.initStatics(context);
         SetupLang(context);
 
+        Update(context,appWidgetManager,appWidgetIds);
+    }
+
+    public static void Update(Context context,AppWidgetManager appWidgetManager, int[] appWidgetIds){
         final int count = appWidgetIds.length;
 
         for (int i = 0; i < count; i++) {
             int widgetId = appWidgetIds[i];
 
             List<UClass> classes = UserInfoRepo.getUserInfo().Classes;
+            if (classes.size()==0) return;
             Sort.SortClass(classes);
 
             String number = context.getString(R.string.next_class) + " : " + Translator.getUClassReadable(classes.get(0));

@@ -8,7 +8,7 @@
         android:id="@+id/tv_widget_next_class"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="کلاس بعدی فلان"
+        android:text="کلاسی وجود ندارد"
         android:textColor="@color/white"
         android:layout_margin="20dp"
         android:layout_gravity="center"

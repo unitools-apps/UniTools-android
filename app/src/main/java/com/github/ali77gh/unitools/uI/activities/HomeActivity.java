@@ -1,5 +1,7 @@
 package com.github.ali77gh.unitools.uI.activities;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
@@ -8,6 +10,7 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.widget.RemoteViews;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
@@ -15,11 +18,12 @@ import com.github.ali77gh.unitools.core.ContextHolder;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
 import com.github.ali77gh.unitools.uI.fragments.Backable;
-import com.github.ali77gh.unitools.uI.fragments.StorageFragment;
 import com.github.ali77gh.unitools.uI.fragments.DocsFragment;
 import com.github.ali77gh.unitools.uI.fragments.SettingsFragment;
+import com.github.ali77gh.unitools.uI.fragments.StorageFragment;
 import com.github.ali77gh.unitools.uI.fragments.TeachersFragment;
 import com.github.ali77gh.unitools.uI.fragments.WallFragment;
+import com.github.ali77gh.unitools.uI.widget.ShowNextClassWidget;
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
@@ -61,6 +65,7 @@ public class HomeActivity extends AppCompatActivity {
         viewPagerAdapter.AddFragment(settingsFragment);
 
         viewpager.post(() -> viewpager.setCurrentItem(2,false));
+        navigation.setSelectedItemId(R.id.navigation_home);
 
         currentFrag = wallFragment;
         viewpager.setAdapter(viewPagerAdapter);
@@ -152,6 +157,8 @@ public class HomeActivity extends AppCompatActivity {
 
         String lang = UserInfoRepo.getUserInfo().LangId;
 
+        if (lang.equals(getString(R.string.LangID))) return;
+
         Resources res = getResources();
         // Change locale settings in the app.
         DisplayMetrics dm = res.getDisplayMetrics();
@@ -159,6 +166,7 @@ public class HomeActivity extends AppCompatActivity {
         conf.setLocale(new Locale(lang)); // API 17+ only.
         // Use conf.locale = new Locale(...) if targeting lower versions
         res.updateConfiguration(conf, dm);
+        recreate();
     }
 
     @Override
@@ -169,7 +177,20 @@ public class HomeActivity extends AppCompatActivity {
                 viewpager.setCurrentItem(2,true);
                 return;
             }
+
+            updateWidgets();// because classes may changed
             super.onBackPressed();
         }
     }
+
+    protected void updateWidgets(){
+        RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.widget_show_next_class);
+        ComponentName thisWidget = new ComponentName(this, ShowNextClassWidget.class);
+        AppWidgetManager manager = AppWidgetManager.getInstance(this);
+        int[] appWidgetIds = manager.getAppWidgetIds(thisWidget);
+        manager.partiallyUpdateAppWidget(appWidgetIds, remoteViews);
+
+       ShowNextClassWidget.Update(this,manager,appWidgetIds);
+    }
+
 }

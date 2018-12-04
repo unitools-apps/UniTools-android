@@ -107,6 +107,7 @@ public class SettingsFragment extends Fragment implements Backable {
         languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (view == null) return;
                 switch (((TextView) view).getText().toString()) {
                     case "فارسی":
                         SetLang("fa");

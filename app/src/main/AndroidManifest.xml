@@ -57,7 +57,7 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".widget.ShowNextClassWidget">
+        <receiver android:name=".uI.widget.ShowNextClassWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
