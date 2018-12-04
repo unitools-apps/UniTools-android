@@ -71,7 +71,8 @@
                 android:textColorHint="@color/gray_middle"
                 android:layout_margin="10dp"
                 android:maxLines="1"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:maxLength="2"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -91,7 +92,8 @@
                 android:textColorHint="@color/gray_middle"
                 android:layout_margin="10dp"
                 android:maxLines="1"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:maxLength="2"/>
 
         </LinearLayout>
 

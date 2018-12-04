@@ -4,6 +4,8 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,6 +41,24 @@ public class AddClassDialog extends Dialog {
         EditText where = findViewById(R.id.text_home_add_class_dialog_where);
         EditText hour = findViewById(R.id.text_home_add_class_dialog_hour);
         EditText min = findViewById(R.id.text_home_add_class_dialog_min);
+
+        hour.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int count) {
+                if (hour.getText().toString().length() == 2)
+                    min.requestFocus();
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+
+            }
+        });
 
         daySpinner = findViewById(R.id.spinner_home_add_class_day);
         SetupSpinners();

@@ -11,10 +11,12 @@ public class Event {
     public String id;
     public int WeekNumber;
 
-    public Event(String what , Time time){
+    public Event(String what, Time time, int weekNumber) {
         this.what = what;
         this.time = time;
+        this.WeekNumber = weekNumber;
     }
 
-    public Event(){}
+    public Event() {
+    }
 }

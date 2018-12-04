@@ -283,6 +283,7 @@ public class WallFragment extends Fragment implements Backable {
                 SetupListsAndFirstRow();
             });
             addFriendDialog.show();
+            Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
         });
 
         shareClassesBtn.setOnClickListener(view -> {
@@ -298,6 +299,7 @@ public class WallFragment extends Fragment implements Backable {
                 SetupListsAndFirstRow();
             });
             addEventDialog.show();
+            Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
         });
 
         //friends

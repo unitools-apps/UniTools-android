@@ -74,6 +74,8 @@
     <string name="how_match_before_class_start_time">چقدر قبلش؟</string>
     <string name="notification_type">نوع اعلان</string>
     <string name="teacher">اساتید</string>
+    <string name="passed">گذشته</string>
+    <string name="enter_time_in_24_system">ساعت را با سیستم ۲۴ ساعتی وارد کنید</string>
 
     <string-array name="nums">
         <item>۰</item>

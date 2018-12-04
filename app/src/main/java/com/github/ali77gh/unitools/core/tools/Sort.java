@@ -4,6 +4,8 @@ import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.model.Friend;
 import com.github.ali77gh.unitools.data.model.Time;
 import com.github.ali77gh.unitools.data.model.UClass;
+import com.github.ali77gh.unitools.data.model.UserInfo;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,7 +35,6 @@ public class Sort {
         List<UClass> pre = new ArrayList<>(classes.subList(0, nextClassIndex));
         List<UClass> past = new ArrayList<>(classes.subList(nextClassIndex, classes.size()));
 
-        //todo find better way to add two lists
         classes.clear();
         classes.addAll(past);
         classes.addAll(pre);
@@ -46,26 +47,25 @@ public class Sort {
     public static void SortEvent(List<Event> events) {
 
         Time now = DateTimeTools.getCurrentTime();
+        int currentWeek = UserInfoRepo.getWeekNumber();
 
         ExchangeSortEvent(events);
 
         //shift
         int nextClassIndex = 0;
         for (Event u : events) {
-            if (u.time.getMins() > now.getMins()) {
+            if (u.WeekNumber > currentWeek |
+                    (u.WeekNumber == currentWeek &
+                            u.time.getMins() > now.getMins())) {
                 nextClassIndex = events.indexOf(u);
                 break;
             }
         }
         List<Event> pre = new ArrayList<>(events.subList(0, nextClassIndex));
         List<Event> past = new ArrayList<>(events.subList(nextClassIndex, events.size()));
-
-        //todo find better way to add two lists
         events.clear();
-        for (Event u : past)
-            events.add(u);
-        for (Event u : pre)
-            events.add(u);
+        events.addAll(past);
+        events.addAll(pre);
     }
 
     private static void ExchangeSortClass(List<UClass> uClasses) {
@@ -87,7 +87,9 @@ public class Sort {
         Event temp;
         for (i = 0; i < events.size() - 1; i++) {
             for (j = i + 1; j < events.size(); j++) {
-                if (events.get(i).WeekNumber > events.get(j).WeekNumber | events.get(i).time.getMins() > events.get(j).time.getMins()) {
+                if (events.get(i).WeekNumber > events.get(j).WeekNumber |
+                        (events.get(i).WeekNumber == events.get(j).WeekNumber &
+                                events.get(i).time.getMins() > events.get(j).time.getMins())){
                     temp = events.get(i);
                     events.set(i, events.get(j));
                     events.set(j, temp);

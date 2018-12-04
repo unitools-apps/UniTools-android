@@ -32,4 +32,13 @@ public class Time {
         if (min < 0) return false;
         return true;
     }
+
+    public String toString() {
+        String hour = String.valueOf(this.hour);
+        String min = String.valueOf(this.min);
+
+        if (hour.length() == 1) hour = "0" + hour;
+        if (min.length() == 1) min = "0" + min;
+        return hour + ":" + min;
+    }
 }

@@ -70,7 +70,8 @@
                 android:textColorHint="@color/gray_middle"
                 android:layout_margin="10dp"
                 android:singleLine="true"
-                android:maxLines="1"/>
+                android:maxLines="1"
+                android:maxLength="2"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -90,7 +91,8 @@
                 android:textColorHint="@color/gray_middle"
                 android:layout_margin="10dp"
                 android:maxLines="1"
-                android:singleLine="true"/>
+                android:singleLine="true"
+                android:maxLength="2"/>
 
         </LinearLayout>
 
@@ -117,7 +119,8 @@
             android:hint="@string/week_number"
             android:inputType="number"
             android:textColorHint="@color/gray_middle"
-            android:layout_margin="10dp"/>
+            android:layout_margin="10dp"
+            android:maxLength="2"/>
 
     </LinearLayout>
 

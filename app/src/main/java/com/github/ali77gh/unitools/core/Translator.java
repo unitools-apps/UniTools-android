@@ -24,32 +24,40 @@ public class Translator {
             day = getDayString(uClass.time.dayOfWeek);
         }
 
-        return day + " " + NumToString(uClass.time.hour) + ":" + NumToString(uClass.time.min) + " " + uClass.what + " " + uClass.where;
+        return day + " " + uClass.time.toString() + " " + uClass.what + " " + uClass.where;
     }
 
     public static String getEventReadable(Event event) {
         Context context = ContextHolder.getAppContext();
+        int currentDayOfWeek = DateTimeTools.getCurrentDayOfWeek();
+        int currentWeek = UserInfoRepo.getWeekNumber();
+
         String day;
-        if (DateTimeTools.getCurrentDayOfWeek() == event.time.dayOfWeek) {
+        if (currentDayOfWeek == event.time.dayOfWeek) {
             day = context.getString(R.string.today);
-        } else if (DateTimeTools.getCurrentDayOfWeek() + 1 == event.time.dayOfWeek | (DateTimeTools.getCurrentDayOfWeek() == 6 & 0 == event.time.dayOfWeek)) {
+        } else if (currentDayOfWeek + 1 == event.time.dayOfWeek |
+                (currentDayOfWeek == 6 & 0 == event.time.dayOfWeek)) {
             day = context.getString(R.string.tomorrow);
         } else {
             day = getDayString(event.time.dayOfWeek);
         }
 
         String week;
-        if (UserInfoRepo.getWeekNumber() == event.WeekNumber) {
+        if (currentWeek == event.WeekNumber) {
             week = context.getString(R.string.this_week);
-        } else if (UserInfoRepo.getWeekNumber() + 1 == event.WeekNumber) {
+        } else if (currentWeek + 1 == event.WeekNumber) {
             week = context.getString(R.string.next_week);
-        } else if (UserInfoRepo.getWeekNumber() + 2 == event.WeekNumber) {
+        } else if (currentWeek + 2 == event.WeekNumber) {
             week = context.getString(R.string.two_weeks_later);
+        } else if (event.WeekNumber > currentWeek) {
+            week = (event.WeekNumber - currentWeek) + " " + context.getString(R.string.weeks_later);
+        } else if (event.WeekNumber < currentWeek) {
+            week = context.getString(R.string.passed) + " : " + context.getString(R.string.week) + " " + String.valueOf(event.WeekNumber);
         } else {
-            week = event.WeekNumber + " " + context.getString(R.string.weeks_later);
+            throw new RuntimeException("un excepted week number");
         }
 
-        return week + " " + day + " " + NumToString(event.time.hour) + ":" + NumToString(event.time.min) + " " + event.what;
+        return week + " " + day + " " + event.time.toString() + " " + event.what;
     }
 
 
@@ -72,7 +80,7 @@ public class Translator {
     }
 
     public static String NumToString(Number s) {
-        return NumToString(s.toString());
+        return NumToString(String.valueOf(s));
     }
 
 

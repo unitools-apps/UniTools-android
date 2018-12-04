@@ -64,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         viewPagerAdapter.AddFragment(storageFragment);
         viewPagerAdapter.AddFragment(settingsFragment);
 
-        viewpager.post(() -> viewpager.setCurrentItem(2,false));
+        viewpager.post(() -> viewpager.setCurrentItem(2, false));
         navigation.setSelectedItemId(R.id.navigation_home);
 
         currentFrag = wallFragment;
@@ -136,12 +136,10 @@ public class HomeActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         IntentResult result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data);
         if (result != null) {
-            if (result.getContents() == null) {
-                Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-            } else {
+            if (result.getContents() != null)
                 if (currentFrag instanceof WallFragment)
                     ((WallFragment) currentFrag).OnBarcodeReaded(result.getContents());
-            }
+
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }
@@ -173,8 +171,8 @@ public class HomeActivity extends AppCompatActivity {
     public void onBackPressed() {
         if (!currentFrag.onBack()) {
 
-            if (viewpager.getCurrentItem()!=2){
-                viewpager.setCurrentItem(2,true);
+            if (viewpager.getCurrentItem() != 2) {
+                viewpager.setCurrentItem(2, true);
                 return;
             }
 
@@ -183,14 +181,14 @@ public class HomeActivity extends AppCompatActivity {
         }
     }
 
-    protected void updateWidgets(){
+    protected void updateWidgets() {
         RemoteViews remoteViews = new RemoteViews(getPackageName(), R.layout.widget_show_next_class);
         ComponentName thisWidget = new ComponentName(this, ShowNextClassWidget.class);
         AppWidgetManager manager = AppWidgetManager.getInstance(this);
         int[] appWidgetIds = manager.getAppWidgetIds(thisWidget);
         manager.partiallyUpdateAppWidget(appWidgetIds, remoteViews);
 
-       ShowNextClassWidget.Update(this,manager,appWidgetIds);
+        ShowNextClassWidget.Update(this, manager, appWidgetIds);
     }
 
 }
