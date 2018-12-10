@@ -168,11 +168,11 @@ public class WallFragment extends Fragment implements Backable {
 
         eventsFirstRow.setOnClickListener(view -> {
             if (events.size() > 0)
-            new EventInfoDialog(getActivity(), events.get(0), () -> {
-                //on delete
-                EventRepo.Remove(events.get(0).id);
-                SetupListsAndFirstRow();
-            }).show();
+                new EventInfoDialog(getActivity(), events.get(0), () -> {
+                    //on delete
+                    EventRepo.Remove(events.get(0).id);
+                    SetupListsAndFirstRow();
+                }).show();
         });
 
         //list
@@ -287,6 +287,10 @@ public class WallFragment extends Fragment implements Backable {
         });
 
         shareClassesBtn.setOnClickListener(view -> {
+            if (UserInfoRepo.getUserInfo().Classes.size() == 0) {
+                Toast.makeText(getActivity(), getString(R.string.you_have_no_more_classes), Toast.LENGTH_SHORT).show();
+                return;
+            }
             new ShareClassesDialog(getActivity()).show();
         });
 

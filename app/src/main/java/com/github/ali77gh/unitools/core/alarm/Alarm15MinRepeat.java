@@ -27,9 +27,8 @@ public class Alarm15MinRepeat extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
 //        //this part runs every 15 min
-//        CloseToClassAlert.on15Min(context);
-//        Silent.on15Min(context);
-        TestNotifi(context); // debug
+        CloseToClassAlert.on15Min(context);
+        Silent.on15Min(context);
 //
     }
 

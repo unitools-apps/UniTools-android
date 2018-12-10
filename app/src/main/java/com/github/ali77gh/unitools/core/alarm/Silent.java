@@ -20,11 +20,11 @@ public class Silent {
 
     private static int classCount = 120; // 2 hours
 
-    static void on15Min(Context context){
+    static void on15Min(Context context) {
         ContextHolder.initStatics(context);
         List<UClass> classes = UserInfoRepo.getUserInfo().Classes;
         Sort.SortClass(classes);
-        silent(context,classes.get(0));
+        silent(context, classes.get(0));
     }
 
     private static void silent(Context context, UClass nextClass) {

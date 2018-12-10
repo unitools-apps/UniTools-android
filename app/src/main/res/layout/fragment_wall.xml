@@ -1,312 +1,310 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView
+
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.github.ali77gh.unitools.uI.fragments.WallFragment">
+    android:layout_height="match_parent">
 
-    <ScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-        <LinearLayout
+        <!--week number-->
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp">
 
-            <!--week number-->
-            <android.support.v7.widget.CardView
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="16dp">
-
-                <FrameLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <LinearLayout
-                        android:id="@+id/linear_wall_week_number_parent"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="@color/background_darker"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:id="@+id/text_wall_week_number"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center"
-                            android:layout_margin="16dp"
-                            android:text="@string/week_number_5"
-                            android:textColor="@color/white" />
-
-                        <ProgressBar
-                            android:id="@+id/progress_login"
-                            style="?android:attr/progressBarStyleHorizontal"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="-8dp"
-                            android:layout_marginStart="10dp"
-                            android:layout_marginEnd="10dp"
-                            android:progress="30"
-                            android:visibility="visible" />
-
-                    </LinearLayout>
-                </FrameLayout>
-
-
-            </android.support.v7.widget.CardView>
-
-            <!--classes fast review-->
-            <android.support.v7.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp">
+                android:layout_height="wrap_content">
 
                 <LinearLayout
+                    android:id="@+id/linear_wall_week_number_parent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@color/background_darker"
                     android:orientation="vertical">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
-                            android:text="@string/classes"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <Space
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/btn_wall_share_class"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="16dp"
-                            android:padding="5dp"
-                            android:src="@drawable/all_share"
-                            android:tint="@color/white" />
-
-                        <ImageView
-                            android:id="@+id/btn_wall_add_class"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="16dp"
-                            android:padding="5dp"
-                            android:src="@drawable/all_add"
-                            android:tint="@color/white" />
-                    </LinearLayout>
-
-
                     <TextView
-                        android:id="@+id/text_classes_first_row"
+                        android:id="@+id/text_wall_week_number"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_margin="16dp"
+                        android:text="@string/week_number_5"
+                        android:textColor="@color/white" />
+
+                    <ProgressBar
+                        android:id="@+id/progress_login"
+                        style="?android:attr/progressBarStyleHorizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginRight="16dp"
-                        android:layout_marginBottom="5dp"
-                        android:text="@string/there_is_no_class_yet"
-                        android:textColor="@color/white"
-                        android:textSize="14sp" />
-
-                    <!--need parent for fix expand collapse effect-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="0dp"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <com.github.ali77gh.unitools.uI.view.NonScrollListView
-                            android:id="@+id/listview_home_classes_expandble"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp" />
-                    </LinearLayout>
-
-
-                    <ImageView
-                        android:id="@+id/image_wall_expand_classes"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:src="@drawable/wall_arrow_down"
-                        android:tint="@color/white"
-                        android:padding="7dp"/>
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="-8dp"
+                        android:progress="30"
+                        android:visibility="visible" />
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
+            </FrameLayout>
 
-            <!--events-->
-            <android.support.v7.widget.CardView
+
+        </android.support.v7.widget.CardView>
+
+        <!--classes fast review-->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:background="@color/background">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp">
+                android:layout_height="match_parent"
+                android:background="@color/background_darker"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/background_darker"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
-                            android:text="@string/events"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <Space
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/btn_wall_add_event"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="16dp"
-                            android:padding="5dp"
-                            android:src="@drawable/all_add"
-                            android:tint="@color/white" />
-
-                    </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/text_event_first_row"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="16dp"
-                        android:text="@string/you_have_no_event_yet"
+                        android:layout_margin="16dp"
+                        android:text="@string/classes"
                         android:textColor="@color/white"
-                        android:textSize="14sp" />
+                        android:textSize="18sp" />
 
-                    <!--need parent for fix expand collapse effect-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <Space
+                        android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <com.github.ali77gh.unitools.uI.view.NonScrollListView
-                            android:id="@+id/listview_home_events_expandble"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp" />
-                    </LinearLayout>
+                        android:layout_weight="1" />
 
                     <ImageView
-                        android:id="@+id/image_wall_expand_events"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:src="@drawable/wall_arrow_down"
-                        android:tint="@color/white"
-                        android:padding="7dp"/>
+                        android:id="@+id/btn_wall_share_class"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="11dp"
+                        android:padding="8dp"
+                        android:src="@drawable/wall_qr_code"
+                        android:tint="@color/white" />
 
+                    <ImageView
+                        android:id="@+id/btn_wall_add_class"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp"
+                        android:padding="5dp"
+                        android:src="@drawable/all_add"
+                        android:tint="@color/white" />
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
 
-            <!--available friends-->
-            <android.support.v7.widget.CardView
+
+                <TextView
+                    android:id="@+id/text_classes_first_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/there_is_no_class_yet"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <!--need parent for fix expand collapse effect-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <com.github.ali77gh.unitools.uI.view.NonScrollListView
+                        android:id="@+id/listview_home_classes_expandble"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp" />
+                </LinearLayout>
+
+
+                <ImageView
+                    android:id="@+id/image_wall_expand_classes"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:padding="7dp"
+                    android:src="@drawable/wall_arrow_down"
+                    android:tint="@color/white" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--events-->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp">
+                android:layout_height="match_parent"
+                android:background="@color/background_darker"
+                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@color/background_darker"
-                    android:orientation="vertical">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
-                            android:text="@string/friends"
-                            android:textColor="@color/white"
-                            android:textSize="18sp" />
-
-                        <Space
-                            android:layout_width="0dp"
-                            android:layout_height="0dp"
-                            android:layout_weight="1" />
-
-                        <ImageView
-                            android:id="@+id/btn_wall_add_friend"
-                            android:layout_width="30dp"
-                            android:layout_height="30dp"
-                            android:layout_gravity="center_vertical"
-                            android:layout_marginEnd="16dp"
-                            android:padding="5dp"
-                            android:src="@drawable/all_add"
-                            android:tint="@color/white" />
-
-                    </LinearLayout>
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/text_friends_first_row"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginLeft="16dp"
-                        android:layout_marginBottom="5dp"
-                        android:layout_marginRight="16dp"
-                        android:text="@string/you_have_no_friends_yet"
+                        android:layout_margin="16dp"
+                        android:text="@string/events"
                         android:textColor="@color/white"
-                        android:textSize="14sp" />
+                        android:textSize="18sp" />
 
-                    <!--need parent for fix expand collapse effect-->
-                    <LinearLayout
-                        android:layout_width="match_parent"
+                    <Space
+                        android:layout_width="0dp"
                         android:layout_height="0dp"
-                        android:orientation="vertical"
-                        android:visibility="gone">
-
-                        <com.github.ali77gh.unitools.uI.view.NonScrollListView
-                            android:id="@+id/listview_home_friends_expandble"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="10dp" />
-                    </LinearLayout>
+                        android:layout_weight="1" />
 
                     <ImageView
-                        android:id="@+id/image_wall_expand_friends"
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:src="@drawable/wall_arrow_down"
-                        android:tint="@color/white"
-                        android:padding="7dp"/>
+                        android:id="@+id/btn_wall_add_event"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp"
+                        android:padding="5dp"
+                        android:src="@drawable/all_add"
+                        android:tint="@color/white" />
 
                 </LinearLayout>
-            </android.support.v7.widget.CardView>
 
-        </LinearLayout>
+                <TextView
+                    android:id="@+id/text_event_first_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/you_have_no_event_yet"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
 
-    </ScrollView>
-</FrameLayout>
+                <!--need parent for fix expand collapse effect-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <com.github.ali77gh.unitools.uI.view.NonScrollListView
+                        android:id="@+id/listview_home_events_expandble"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/image_wall_expand_events"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:padding="7dp"
+                    android:src="@drawable/wall_arrow_down"
+                    android:tint="@color/white" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+        <!--available friends-->
+        <android.support.v7.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/background_darker"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:text="@string/friends"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                    <Space
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_weight="1" />
+
+                    <ImageView
+                        android:id="@+id/btn_wall_add_friend"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp"
+                        android:padding="5dp"
+                        android:src="@drawable/all_add"
+                        android:tint="@color/white" />
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/text_friends_first_row"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="5dp"
+                    android:layout_marginLeft="16dp"
+                    android:layout_marginRight="16dp"
+                    android:text="@string/you_have_no_friends_yet"
+                    android:textColor="@color/white"
+                    android:textSize="14sp" />
+
+                <!--need parent for fix expand collapse effect-->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:orientation="vertical"
+                    android:visibility="gone">
+
+                    <com.github.ali77gh.unitools.uI.view.NonScrollListView
+                        android:id="@+id/listview_home_friends_expandble"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp" />
+                </LinearLayout>
+
+                <ImageView
+                    android:id="@+id/image_wall_expand_friends"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:padding="7dp"
+                    android:src="@drawable/wall_arrow_down"
+                    android:tint="@color/white" />
+
+            </LinearLayout>
+        </android.support.v7.widget.CardView>
+
+    </LinearLayout>
+
+</ScrollView>
+

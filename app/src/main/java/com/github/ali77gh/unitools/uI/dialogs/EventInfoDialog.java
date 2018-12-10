@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -30,7 +31,7 @@ public class EventInfoDialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_event_info);
         TextView name = findViewById(R.id.txt_home_event_info_dialog_name);
         Button cancel = findViewById(R.id.btn_home_event_info_dialog_cancel);

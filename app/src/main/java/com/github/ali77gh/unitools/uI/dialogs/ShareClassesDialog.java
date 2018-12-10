@@ -6,6 +6,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -31,6 +32,7 @@ public class ShareClassesDialog extends Dialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_share_classes);
 
         ImageView qrCode = findViewById(R.id.image_share_classes_dialog_qr);

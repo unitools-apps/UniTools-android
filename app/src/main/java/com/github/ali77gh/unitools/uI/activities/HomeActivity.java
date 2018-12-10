@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
+import com.github.ali77gh.unitools.core.alarm.Alarm15MinRepeat;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
 import com.github.ali77gh.unitools.uI.fragments.Backable;
@@ -42,6 +43,7 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ContextHolder.initStatics(this);
         SetupNav();
+        SetupAlarms();
     }
 
     private void SetupNav() {
@@ -175,10 +177,14 @@ public class HomeActivity extends AppCompatActivity {
                 viewpager.setCurrentItem(2, true);
                 return;
             }
-
-            updateWidgets();// because classes may changed
             super.onBackPressed();
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        updateWidgets();// because classes may changed
+        super.onDestroy();
     }
 
     protected void updateWidgets() {
@@ -189,6 +195,11 @@ public class HomeActivity extends AppCompatActivity {
         manager.partiallyUpdateAppWidget(appWidgetIds, remoteViews);
 
         ShowNextClassWidget.Update(this, manager, appWidgetIds);
+    }
+
+    private void SetupAlarms(){
+        Alarm15MinRepeat alarm = new Alarm15MinRepeat();
+        alarm.start(this);
     }
 
 }

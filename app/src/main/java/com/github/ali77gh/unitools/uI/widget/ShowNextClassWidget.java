@@ -37,13 +37,10 @@ public class ShowNextClassWidget extends AppWidgetProvider {
     }
 
     public static void Update(Context context,AppWidgetManager appWidgetManager, int[] appWidgetIds){
-        final int count = appWidgetIds.length;
 
-        for (int i = 0; i < count; i++) {
-            int widgetId = appWidgetIds[i];
-
+        for (int widgetId : appWidgetIds) {
             List<UClass> classes = UserInfoRepo.getUserInfo().Classes;
-            if (classes.size()==0) return;
+            if (classes.size() == 0) return;
             Sort.SortClass(classes);
 
             String number = context.getString(R.string.next_class) + " : " + Translator.getUClassReadable(classes.get(0));
