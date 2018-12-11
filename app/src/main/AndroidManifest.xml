@@ -8,12 +8,14 @@
     <uses-permission android:name="android.permission.STORAGE" />
 
     <!--for make phone silent-->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
 
     <!-- Permission to start Alarm on device reboot -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
 
-    <!--todo lock screen rotation-->
+    <!--storage part-->
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:allowBackup="true"
@@ -23,6 +25,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <!--QR scanner activity -> for setting screen orientation-->
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
@@ -49,17 +53,16 @@
         <activity
             android:name=".TestActivity"
             android:label="uni test"
-            android:screenOrientation="portrait">
-        </activity>
+            android:screenOrientation="portrait"/>
 
         <receiver android:name=".uI.widget.ShowNextClassWidget">
             <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>
 
             <meta-data
                 android:name="android.appwidget.provider"
-                android:resource="@xml/show_next_class_widget_info"/>
+                android:resource="@xml/show_next_class_widget_info" />
         </receiver>
 
         <receiver android:name=".core.alarm.Alarm15MinRepeat" />

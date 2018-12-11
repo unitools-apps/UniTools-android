@@ -76,6 +76,7 @@
     <string name="teacher">اساتید</string>
     <string name="passed">گذشته</string>
     <string name="enter_time_in_24_system">ساعت را با سیستم ۲۴ ساعتی وارد کنید</string>
+    <string name="you_should_allow_access_to_files">ابتدا دسترسی های لازم را بدهید</string>
 
     <string-array name="nums">
         <item>۰</item>

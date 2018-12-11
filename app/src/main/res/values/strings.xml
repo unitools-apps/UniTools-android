@@ -80,6 +80,7 @@
     <string name="teacher">teacher</string>
     <string name="passed">passed</string>
     <string name="enter_time_in_24_system">enter time in 24 system</string>
+    <string name="you_should_allow_access_to_files">you should first allow access to files</string>
 
     <string-array name="nums">
         <item>0</item>

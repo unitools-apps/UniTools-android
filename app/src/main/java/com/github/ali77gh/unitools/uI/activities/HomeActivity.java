@@ -1,12 +1,15 @@
 package com.github.ali77gh.unitools.uI.activities;
 
+import android.Manifest;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
@@ -148,6 +151,13 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
+    public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        if (currentFrag instanceof StorageFragment) {
+            ((StorageFragment) currentFrag).CheckPermission();
+        }
+    }
+
+    @Override
     protected void onResume() {
         super.onResume();
         SetupLang();
@@ -197,7 +207,7 @@ public class HomeActivity extends AppCompatActivity {
         ShowNextClassWidget.Update(this, manager, appWidgetIds);
     }
 
-    private void SetupAlarms(){
+    private void SetupAlarms() {
         Alarm15MinRepeat alarm = new Alarm15MinRepeat();
         alarm.start(this);
     }
