@@ -81,6 +81,15 @@
     <string name="passed">passed</string>
     <string name="enter_time_in_24_system">enter time in 24 system</string>
     <string name="you_should_allow_access_to_files">you should first allow access to files</string>
+    <string name="buy_me_a_coffee">buy me a coffee</string>
+    <string name="send_feedback">send feedback</string>
+    <string name="enter_your_feedback">enter your feedback</string>
+    <string name="send">send</string>
+    <string name="feedback_recorded">feedback recorded</string>
+    <string name="thank_you">thank you</string>
+    <string name="add_doc">add doc</string>
+    <string name="select_some_things">select some things</string>
+    <string name="new_doc_name">new doc name</string>
 
     <string-array name="nums">
         <item>0</item>

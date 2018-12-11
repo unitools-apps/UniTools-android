@@ -7,24 +7,24 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.data.model.StoragePack;
+import com.github.ali77gh.unitools.data.model.FilePack;
 
 import java.util.List;
 
 public class StoragePacksListViewAdapter extends BaseAdapter {
 
     private Activity _activity;
-    private List<StoragePack> storagePacks;
+    private List<FilePack> filePacks;
 
-    public StoragePacksListViewAdapter(Activity activity, List<StoragePack> storagePacks) {
+    public StoragePacksListViewAdapter(Activity activity, List<FilePack> filePacks) {
 
         this._activity = activity;
-        this.storagePacks = storagePacks;
+        this.filePacks = filePacks;
     }
 
     @Override
     public int getCount() {
-        return storagePacks.size();
+        return filePacks.size();
     }
 
     @Override
@@ -39,22 +39,17 @@ public class StoragePacksListViewAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        View cview;
-        if (view != null) {
-            cview = view;
-        } else {
-            cview = _activity.getLayoutInflater().inflate(R.layout.item_storage_pack, null);
-        }
 
-        StoragePack storagePack = storagePacks.get(i);
+        View cview = _activity.getLayoutInflater().inflate(R.layout.item_storage_pack, null);
+        FilePack filePack = filePacks.get(i);
 
         TextView packName = cview.findViewById(R.id.text_storage_item_name);
         TextView picCount = cview.findViewById(R.id.text_storage_item_pic_count);
         TextView voiceCount = cview.findViewById(R.id.text_storage_item_voice_count);
 
-        packName.setText(storagePack.getName());
-        picCount.setText(String.valueOf(storagePack.getPicCount()) );
-        voiceCount.setText(String.valueOf(storagePack.getVoiceCount()));
+        packName.setText(filePack.getName());
+        picCount.setText(String.valueOf(filePack.getPicCount()));
+        voiceCount.setText(String.valueOf(filePack.getVoiceCount()));
 
         return cview;
     }

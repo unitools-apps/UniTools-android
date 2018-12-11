@@ -8,6 +8,7 @@ import android.media.RingtoneManager;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
+import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.core.tools.DateTimeTools;
 import com.github.ali77gh.unitools.core.tools.Sort;
 import com.github.ali77gh.unitools.data.model.UClass;
@@ -39,7 +40,7 @@ public class CloseToClassAlert {
         if (def > defConfig || def < 0) return;
 
         String title = context.getString(R.string.next_class_is_close);
-        String body = nextClass.what + " " + nextClass.time.hour + ":" + nextClass.time.min;
+        String body = Translator.getUClassReadable(nextClass);
         int icon = R.mipmap.ic_launcher;
 
         NotificationManager NM = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);

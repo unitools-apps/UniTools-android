@@ -77,6 +77,15 @@
     <string name="passed">گذشته</string>
     <string name="enter_time_in_24_system">ساعت را با سیستم ۲۴ ساعتی وارد کنید</string>
     <string name="you_should_allow_access_to_files">ابتدا دسترسی های لازم را بدهید</string>
+    <string name="buy_me_a_coffee">برام یه چایی بخر</string>
+    <string name="send_feedback">ارسال بازخورد</string>
+    <string name="enter_your_feedback">بازخورد خود را وارد کنید</string>
+    <string name="send">ارسال</string>
+    <string name="feedback_recorded">بازخورد ثبت شد</string>
+    <string name="thank_you">مرسی</string>
+    <string name="add_doc">اضافه کردن جزوه</string>
+    <string name="select_some_things">حداقل یکی را انتخاب کنید</string>
+    <string name="new_doc_name">نام</string>
 
     <string-array name="nums">
         <item>۰</item>

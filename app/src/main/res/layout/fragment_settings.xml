@@ -58,7 +58,7 @@
                 android:alpha=".5"
                 android:background="@color/white" />
 
-            <!--theme-->
+            <!--theme (not visible)-->
             <LinearLayout
                 android:visibility="gone"
                 android:layout_width="match_parent"
@@ -159,38 +159,6 @@
             </LinearLayout>
 
             <View
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="1px"
-                android:alpha=".5"
-                android:background="@color/white" />
-
-            <!--clear-->
-            <LinearLayout
-                android:visibility="gone"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/settings_clear"
-                    android:tint="@color/white" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="20dp"
-                    android:text="@string/clear"
-                    android:textColor="@color/white" />
-
-            </LinearLayout>
-
-            <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:alpha=".5"
@@ -226,6 +194,37 @@
                 android:alpha=".5"
                 android:background="@color/white" />
 
+            <!--send feedback-->
+            <LinearLayout
+                android:id="@+id/linear_settings_feedback"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/settings_feedback"
+                    android:tint="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/send_feedback"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:alpha=".5"
+                android:background="@color/white" />
+
             <!--about us-->
             <LinearLayout
                 android:id="@+id/linear_settings_about_us"
@@ -247,6 +246,37 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="20dp"
                     android:text="@string/about_us"
+                    android:textColor="@color/white" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:alpha=".5"
+                android:background="@color/white" />
+
+            <!--donate us-->
+            <LinearLayout
+                android:id="@+id/linear_settings_donate_us"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/settings_coffee"
+                    android:tint="@color/white" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/buy_me_a_coffee"
                     android:textColor="@color/white" />
 
             </LinearLayout>

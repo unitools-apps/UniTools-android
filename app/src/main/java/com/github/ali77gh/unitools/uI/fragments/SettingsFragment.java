@@ -21,6 +21,8 @@ import android.widget.Toast;
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.data.model.UserInfo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
+import com.github.ali77gh.unitools.uI.dialogs.DonateUsDialog;
+import com.github.ali77gh.unitools.uI.dialogs.SendFeedbackDialog;
 import com.github.ali77gh.unitools.uI.dialogs.SettingsAlarmConfigDialog;
 
 import java.util.Locale;
@@ -58,6 +60,8 @@ public class SettingsFragment extends Fragment implements Backable {
         aboutUsBtn = cView.findViewById(R.id.linear_settings_about_us);
         aboutUs = cView.findViewById(R.id.layout_settings_about);
         LinearLayout reminder = cView.findViewById(R.id.linear_settings_reminder);
+        LinearLayout donateUs = cView.findViewById(R.id.linear_settings_donate_us);
+        LinearLayout sendFeedback = cView.findViewById(R.id.linear_settings_feedback);
 
         reminder.setOnClickListener(view -> new SettingsAlarmConfigDialog(getActivity()).show());
 
@@ -67,6 +71,10 @@ public class SettingsFragment extends Fragment implements Backable {
             ui.AutoSilent = b;
             UserInfoRepo.setUserInfo(ui);
         });
+
+        donateUs.setOnClickListener(view -> new DonateUsDialog(getActivity()).show());
+
+        sendFeedback.setOnClickListener(view -> new SendFeedbackDialog(getActivity()).show());
 
 
         SetupLanguage();
