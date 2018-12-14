@@ -18,6 +18,8 @@
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
+        android:largeHeap="true"
+        android:fullBackupContent="true"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -53,6 +55,10 @@
         <activity
             android:name=".TestActivity"
             android:label="uni test"
+            android:screenOrientation="portrait"/>
+
+        <activity
+            android:name=".uI.activities.FilePackActivity"
             android:screenOrientation="portrait"/>
 
         <receiver android:name=".uI.widget.ShowNextClassWidget">

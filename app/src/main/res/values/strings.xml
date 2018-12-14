@@ -91,6 +91,12 @@
     <string name="select_some_things">select some things</string>
     <string name="new_doc_name">new doc name</string>
 
+    <string name="pics">pics</string>
+    <string name="voices">voices</string>
+    <string name="note">note</string>
+    <string name="write_here">write here</string>
+    <string name="there_is_nothing_to_show">there is nothing to show</string>
+
     <string-array name="nums">
         <item>0</item>
         <item>1</item>

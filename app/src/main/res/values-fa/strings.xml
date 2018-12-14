@@ -87,6 +87,12 @@
     <string name="select_some_things">حداقل یکی را انتخاب کنید</string>
     <string name="new_doc_name">نام</string>
 
+    <string name="pics">دوربین</string>
+    <string name="voices">ضبط صوت</string>
+    <string name="note">یادداشت</string>
+    <string name="write_here">این جا بنویسید</string>
+    <string name="there_is_nothing_to_show">چیزی برای نمایش وجود ندارد</string>
+
     <string-array name="nums">
         <item>۰</item>
         <item>۱</item>

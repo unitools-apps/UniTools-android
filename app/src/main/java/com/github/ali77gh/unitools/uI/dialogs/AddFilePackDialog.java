@@ -3,7 +3,6 @@ package com.github.ali77gh.unitools.uI.dialogs;
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -18,6 +17,7 @@ import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.onlineapi.Promise;
+import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.data.model.UClass;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
@@ -52,8 +52,13 @@ public class AddFilePackDialog extends Dialog {
         Button addAll = findViewById(R.id.btn_add_file_pack_dialog_add_all);
 
 
-        //todo dont add if exist
-        for (UClass uClass : UserInfoRepo.getUserInfo().Classes) {
+
+        List<UClass> allClasses = UserInfoRepo.getUserInfo().Classes;
+        List<String> filePacks = FilePackProvider.getFilePacksNames();
+        for (UClass s : new ArrayList<>(allClasses))
+            if (filePacks.contains(s.what)) allClasses.remove(s);
+
+        for (UClass uClass : allClasses) {
             ViewGroup item = (ViewGroup) context.getLayoutInflater().inflate(R.layout.item_add_file_pack_dialog, null);
             TextView name = (TextView) item.getChildAt(1);
             name.setText(uClass.what);

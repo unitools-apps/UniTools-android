@@ -1,6 +1,7 @@
 package com.github.ali77gh.unitools.uI.fragments;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -12,13 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.onlineapi.Promise;
+import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.data.model.FilePack;
+import com.github.ali77gh.unitools.uI.activities.FilePackActivity;
 import com.github.ali77gh.unitools.uI.adapter.StoragePacksListViewAdapter;
 import com.github.ali77gh.unitools.uI.dialogs.AddFilePackDialog;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +35,7 @@ import java.util.List;
 public class StorageFragment extends Fragment implements Backable {
 
     private ConstraintLayout youHaveNoAccess;
+    private ListView listView;
 
 
     public StorageFragment() {
@@ -47,7 +54,7 @@ public class StorageFragment extends Fragment implements Backable {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_storage, container, false);
 
-        ListView listView = view.findViewById(R.id.list_storage_main);
+        listView = view.findViewById(R.id.list_storage_main);
         FloatingActionButton fab = view.findViewById(R.id.fab_storage);
         youHaveNoAccess = view.findViewById(R.id.cons_storage_have_no_access);
         Button showPermissions = view.findViewById(R.id.btn_storage_grant_permission);
@@ -64,30 +71,47 @@ public class StorageFragment extends Fragment implements Backable {
 
         CheckPermission();
 
-        //test
-        List<FilePack> lst = new ArrayList<>();
-        lst.add(new FilePack("ممد", 20, 6));
-        lst.add(new FilePack("جعفری", 32, 2));
-        lst.add(new FilePack("پایگاه داده", 18, 16));
-        lst.add(new FilePack("فیلان", 103, 3));
-        lst.add(new FilePack("بیسار", 2, 1));
+        listView.setOnItemClickListener((adapterView, view1, i, l) -> {
+            Intent intent = new Intent(getActivity(), FilePackActivity.class);
+            String folderName = ((TextView) view1.findViewById(R.id.text_storage_item_name)).getText().toString();
+            intent.putExtra("path", FilePackProvider.getPathOfPack(folderName));
+            startActivity(intent);
+        });
+        listView.setEmptyView(view.findViewById(R.id.text_storage_nothing_to_show));
 
-        listView.setAdapter(new StoragePacksListViewAdapter(getActivity(), lst));
+        RefreshList();
 
         fab.setOnClickListener(view1 -> {
             new AddFilePackDialog(getActivity(), new Promise<List<String>>() {
                 @Override
                 public void onFailed(String msg) {
-
+                    //have no failed
                 }
 
                 @Override
                 public void onSuccess(List<String> output) {
-
+                    for (String s : output) {
+                        FilePackProvider.CreateFilePack(s);
+                    }
+                    RefreshList();
                 }
             }).show();
         });
         return view;
+    }
+
+    private void RefreshList() {
+        List<FilePack> filePacks = FilePackProvider.getFilePacks();
+        if (filePacks != null)
+            listView.setAdapter(new StoragePacksListViewAdapter(getActivity(), filePacks));
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        //when coming back from a file pack : so we should update file counts
+        FilePackProvider.Init();
+        RefreshList();
     }
 
     @Override
@@ -101,6 +125,7 @@ public class StorageFragment extends Fragment implements Backable {
         if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.M) {
             youHaveNoAccess.animate().alpha(0).setDuration(200).start();
             youHaveNoAccess.postDelayed(() -> youHaveNoAccess.setVisibility(View.GONE), 200);
+            FilePackProvider.Init();
             return;
         }
 
@@ -113,6 +138,7 @@ public class StorageFragment extends Fragment implements Backable {
         if (storageR && storageW && camera && mic) {
             youHaveNoAccess.animate().alpha(0).setDuration(200).start();
             youHaveNoAccess.postDelayed(() -> youHaveNoAccess.setVisibility(View.GONE), 200);
+            FilePackProvider.Init();
         }
     }
 

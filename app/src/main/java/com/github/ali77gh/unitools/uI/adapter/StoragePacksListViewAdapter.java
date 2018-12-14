@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.data.model.FilePack;
+import com.github.ali77gh.unitools.uI.tools;
 
 import java.util.List;
 
@@ -50,6 +51,11 @@ public class StoragePacksListViewAdapter extends BaseAdapter {
         packName.setText(filePack.getName());
         picCount.setText(String.valueOf(filePack.getPicCount()));
         voiceCount.setText(String.valueOf(filePack.getVoiceCount()));
+
+        //last item
+        if (i == filePacks.size() - 1) {
+            cview.setPadding(0, 0, 0, tools.DpToPixel(90));
+        }
 
         return cview;
     }
