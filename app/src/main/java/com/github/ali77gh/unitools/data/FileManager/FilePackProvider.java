@@ -2,7 +2,6 @@ package com.github.ali77gh.unitools.data.FileManager;
 
 import android.os.Environment;
 
-import com.github.ali77gh.unitools.core.tools.Sort;
 import com.github.ali77gh.unitools.data.model.FilePack;
 
 import java.io.File;
@@ -17,7 +16,7 @@ public class FilePackProvider {
 
     public static final String VOICE_PATH_NAME = "voices";
     public static final String IMAGE_PATH_NAME = "images";
-    public static final String TEXT_PATH_NAME = "notes";
+    public static final String NOTES_PATH_NAME = "notes";
 
     private static List<FilePack> _filePacks;
     private static final String _appPath = Environment.getExternalStorageDirectory() + File.separator + "UniTools";
@@ -79,7 +78,7 @@ public class FilePackProvider {
         File rootDir = new File(_appPath + File.separator + name);
         File voiceDir = new File(_appPath + File.separator + name + File.separator + VOICE_PATH_NAME);
         File imageDir = new File(_appPath + File.separator + name + File.separator + IMAGE_PATH_NAME);
-        File notesDir = new File(_appPath + File.separator + name + File.separator + TEXT_PATH_NAME);
+        File notesDir = new File(_appPath + File.separator + name + File.separator + NOTES_PATH_NAME);
 
         rootDir.mkdir();
         voiceDir.mkdir();

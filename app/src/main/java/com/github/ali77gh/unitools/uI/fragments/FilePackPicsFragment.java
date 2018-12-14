@@ -24,8 +24,8 @@ import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.IMAG
 
 public class FilePackPicsFragment extends Fragment {
 
-    private ListView listView;
     private StoragePacksPicksListViewAdapter adapter;
+
 
     public FilePackPicsFragment() {
 
@@ -42,15 +42,15 @@ public class FilePackPicsFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_filepack_pics, null);
 
-        listView = view.findViewById(R.id.list_file_pack_pic);
+        ListView listView = view.findViewById(R.id.list_file_pack_pic);
+        View nothingToShow = view.findViewById(R.id.text_storage_nothing_to_show);
 
         File[] images = new File(FilePackActivity.Path + File.separator + IMAGE_PATH_NAME).listFiles();
-
         Sort(images);
 
         adapter = new StoragePacksPicksListViewAdapter(getActivity(), images);
         listView.setAdapter(adapter);
-        listView.setEmptyView(view.findViewById(R.id.text_storage_nothing_to_show));
+        listView.setEmptyView(nothingToShow);
 
         return view;
     }

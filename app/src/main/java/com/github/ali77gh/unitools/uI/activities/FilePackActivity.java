@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ShortIdGenerator;
+import com.github.ali77gh.unitools.core.audio.VoiceRecorder;
 import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
 import com.github.ali77gh.unitools.uI.fragments.FilePackNotesFragment;
@@ -37,6 +38,10 @@ import java.io.OutputStream;
 public class FilePackActivity extends AppCompatActivity {
 
     public static String Path;
+    public static VoiceRecorder _voiceRecorder = new VoiceRecorder();
+
+    private FilePackVoicesFragment filePackVoicesFragment;
+    private FilePackNotesFragment filePackNoteFragment;
 
     private final int CAMERA_REQUEST_CODE = 0;
     private final int GALLERY_REQUEST_CODE = 1;
@@ -67,33 +72,36 @@ public class FilePackActivity extends AppCompatActivity {
         rfab = findViewById(R.id.right_fab_file_pack_activity);
         lfab = findViewById(R.id.left_fab_file_pack_activity);
 
+        rfab.setOnClickListener(view -> ShowMenu()); //same for all pages
+
         switch (_currentPage) {
             case PICS:
                 cfab.setOnClickListener(view -> OpenCamera());
                 lfab.setOnClickListener(view -> OpenGallery());
-                rfab.setOnClickListener(view -> ShowMenu());
                 break;
+
             case VOICES:
                 cfab.setOnClickListener(view -> {
-
+                    if (_voiceRecorder.isRecording()) {
+                        _voiceRecorder.Stop();
+                        filePackVoicesFragment.RefreshList();
+                        cfab.setImageDrawable(getDrawable(R.drawable.storage_mic));
+                    } else {
+                        _voiceRecorder.Record(Path + File.separator + FilePackProvider.VOICE_PATH_NAME + File.separator + ShortIdGenerator.Generate(6));
+                        cfab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
+                    }
                 });
                 lfab.setOnClickListener(view -> {
-
-                });
-                rfab.setOnClickListener(view -> {
-
+                    //dont delete this
                 });
                 break;
 
             case NOTE:
                 cfab.setOnClickListener(view -> {
-
+                    filePackNoteFragment.Save();
                 });
                 lfab.setOnClickListener(view -> {
-
-                });
-                rfab.setOnClickListener(view -> {
-
+                    //dont delete this
                 });
                 break;
         }
@@ -118,7 +126,7 @@ public class FilePackActivity extends AppCompatActivity {
     }
 
     private void ShowMenu() {
-        //todo open dialog for -> 1.rename 2.
+        //todo open dialog for -> 1.rename 2.delete 3.export pdf ,...
     }
 
 
@@ -130,9 +138,12 @@ public class FilePackActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         FilePackPicsFragment filePackPicsFragment = new FilePackPicsFragment();
+        filePackVoicesFragment = new FilePackVoicesFragment();
+        filePackNoteFragment = new FilePackNotesFragment();
+
         adapter.AddFragment(filePackPicsFragment, getString(R.string.pics));
-        adapter.AddFragment(new FilePackVoicesFragment(), getString(R.string.voices));
-        adapter.AddFragment(new FilePackNotesFragment(), getString(R.string.note));
+        adapter.AddFragment(filePackVoicesFragment, getString(R.string.voices));
+        adapter.AddFragment(filePackNoteFragment, getString(R.string.note));
 
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -153,7 +164,10 @@ public class FilePackActivity extends AppCompatActivity {
                         SetupFabs();
                         break;
                     case VOICES:
-                        cfab.setImageDrawable(getDrawable(R.drawable.storage_mic));
+                        if (_voiceRecorder.isRecording())
+                            cfab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
+                        else
+                            cfab.setImageDrawable(getDrawable(R.drawable.storage_mic));
                         cfab.show();
                         lfab.hide();
                         rfab.show();

@@ -1,6 +1,5 @@
 package com.github.ali77gh.unitools.core.audio;
 
-import android.app.Activity;
 import android.media.MediaPlayer;
 
 import java.io.IOException;
@@ -12,19 +11,12 @@ import java.io.IOException;
 public class VoicePlayer {
 
     private MediaPlayer mediaPlayer;
-    private Activity mActivity;
 
-    public VoicePlayer(Activity activity) {
-        mActivity = activity;
-    }
-
-    public void play(String name) {
-
-        String AudioPath = mActivity.getFilesDir() + "/" + name ;
+    public void Play(String path) {
 
         mediaPlayer = new MediaPlayer();
         try {
-            mediaPlayer.setDataSource(AudioPath);
+            mediaPlayer.setDataSource(path);
             mediaPlayer.prepare();
         } catch (IOException e) {
             throw new RuntimeException(e.getMessage());
@@ -33,11 +25,17 @@ public class VoicePlayer {
         mediaPlayer.start();
     }
 
+    public boolean IsPlaying() {
+        if (mediaPlayer == null) return false;
+        return mediaPlayer.isPlaying();
+    }
+
     public void Stop() {
 
         if (mediaPlayer != null) {
             mediaPlayer.stop();
             mediaPlayer.release();
+            mediaPlayer = null;
         }
     }
 }
