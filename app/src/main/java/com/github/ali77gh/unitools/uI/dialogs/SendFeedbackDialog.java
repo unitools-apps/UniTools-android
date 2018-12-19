@@ -5,8 +5,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
@@ -25,6 +27,9 @@ public class SendFeedbackDialog extends Dialog {
     public SendFeedbackDialog(@NonNull Context context) {
         super(context);
         this.activity = (Activity) context;
+        try {
+            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
+        }catch (NullPointerException ignored) {}
     }
 
     @Override
@@ -37,6 +42,8 @@ public class SendFeedbackDialog extends Dialog {
         Button cancel = findViewById(R.id.btn_settings_feedback_dialog_cancel);
         Button send = findViewById(R.id.btn_settings_feedback_dialog_send);
 
+        ProgressBar progressBar = findViewById(R.id.progress_settings_feedback_dialog);
+
 
         cancel.setOnClickListener(view -> dismiss());
 
@@ -47,6 +54,7 @@ public class SendFeedbackDialog extends Dialog {
                 return;
             }
 
+            progressBar.setVisibility(View.VISIBLE);
             send.setEnabled(false);
             send.setAlpha((float) 0.5);
 
@@ -54,6 +62,7 @@ public class SendFeedbackDialog extends Dialog {
                 @Override
                 public void onFailed(String msg) {
                     Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+                    progressBar.setVisibility(View.GONE);
                     send.setEnabled(true);
                     send.setAlpha(1);
                 }

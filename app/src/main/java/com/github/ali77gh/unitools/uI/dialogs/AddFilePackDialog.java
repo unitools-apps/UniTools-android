@@ -37,6 +37,9 @@ public class AddFilePackDialog extends Dialog {
         super(context);
         this.context = (Activity) context;
         this.callback = callback;
+        try {
+            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
+        }catch (NullPointerException ignored) {}
     }
 
     @Override

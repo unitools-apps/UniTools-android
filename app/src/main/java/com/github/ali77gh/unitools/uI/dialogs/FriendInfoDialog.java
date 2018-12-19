@@ -33,6 +33,9 @@ public class FriendInfoDialog extends Dialog {
         super(context);
         this.friend = friend;
         this.listener = listener;
+        try {
+            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
+        }catch (NullPointerException ignored) {}
     }
 
     @Override

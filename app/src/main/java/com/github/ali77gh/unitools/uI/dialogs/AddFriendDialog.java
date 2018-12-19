@@ -40,6 +40,9 @@ public class AddFriendDialog extends Dialog {
         super(activity);
         mActivity = activity;
         mFragment = fragment;
+        try {
+            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
+        }catch (NullPointerException ignored) {}
     }
 
     @Override

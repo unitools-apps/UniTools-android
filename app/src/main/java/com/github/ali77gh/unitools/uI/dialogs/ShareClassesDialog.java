@@ -27,6 +27,9 @@ public class ShareClassesDialog extends Dialog {
 
     public ShareClassesDialog(@NonNull Context context) {
         super(context);
+        try {
+            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
+        }catch (NullPointerException ignored) {}
     }
 
     @Override

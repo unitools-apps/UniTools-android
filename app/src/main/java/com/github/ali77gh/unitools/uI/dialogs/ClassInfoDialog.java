@@ -30,6 +30,9 @@ public class ClassInfoDialog extends Dialog {
         super(context);
         this.uClass = uClass;
         this.listener = listener;
+        try {
+            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
+        }catch (NullPointerException ignored) {}
     }
 
     @Override

@@ -23,6 +23,9 @@ public class SetupWeekCounterDialog extends Dialog {
     public SetupWeekCounterDialog(@NonNull Context context) {
         super(context);
         mContext = context;
+        try {
+            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
+        }catch (NullPointerException ignored) {}
     }
 
     @Override

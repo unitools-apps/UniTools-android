@@ -26,6 +26,9 @@ public class EventInfoDialog extends Dialog {
         super(context);
         this.event = event;
         this.listener = listener;
+        try {
+            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
+        }catch (NullPointerException ignored) {}
     }
 
     @Override

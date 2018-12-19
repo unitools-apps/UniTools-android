@@ -30,6 +30,9 @@ public class AddClassDialog extends Dialog {
     public AddClassDialog(@NonNull Context context) {
         super(context);
         this.context = context;
+        try {
+            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
+        }catch (NullPointerException ignored) {}
     }
 
     @Override

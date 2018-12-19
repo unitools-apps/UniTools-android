@@ -97,6 +97,10 @@
     <string name="write_here">write here</string>
     <string name="there_is_nothing_to_show">there is nothing to show</string>
     <string name="apcents">apcents</string>
+    <string name="pay">pay</string>
+    <string name="how_match_to_pay">how match to pay</string>
+    <string name="donate_programmer_of_this_app_to_improve_app_and_add_more_features">donate programmer of this app to improve app and add more features</string>
+    <string name="coffee">coffee</string>
 
     <string-array name="nums">
         <item>0</item>

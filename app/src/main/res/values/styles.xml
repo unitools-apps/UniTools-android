@@ -12,5 +12,10 @@
 
         <item name="android:fontFamily">@font/dirooz</item>
     </style>
+    
+    <style name="DialogAnim">
+        <item name="android:windowEnterAnimation">@anim/dialog_anim_in</item>
+        <item name="android:windowExitAnimation">@anim/dialog_anim_out</item>
+    </style>
 
 </resources>

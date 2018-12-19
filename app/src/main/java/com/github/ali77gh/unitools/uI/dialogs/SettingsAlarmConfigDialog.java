@@ -30,6 +30,9 @@ public class SettingsAlarmConfigDialog extends Dialog {
 
     public SettingsAlarmConfigDialog(@NonNull Context context) {
         super(context);
+        try {
+            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
+        }catch (NullPointerException ignored) {}
     }
 
     @Override
