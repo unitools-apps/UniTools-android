@@ -10,4 +10,5 @@ public class UClass {
     public String where;
     public String what;
     public Time time;
+    public int apcent;
 }

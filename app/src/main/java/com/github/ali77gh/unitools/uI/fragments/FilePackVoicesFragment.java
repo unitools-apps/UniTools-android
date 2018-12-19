@@ -1,5 +1,7 @@
 package com.github.ali77gh.unitools.uI.fragments;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -63,16 +65,10 @@ public class FilePackVoicesFragment extends Fragment {
         listView.setEmptyView(nothingToShow);
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
-            if (voicePlayer.IsPlaying()){
-                voicePlayer.Stop();
-                if (adapter.nowPlayingPos != i) {
-                    voicePlayer.Play(voices[i].getPath());
-                    adapter.nowPlayingPos =i;
-                }
-            }else {
-                voicePlayer.Play(voices[i].getPath());
-                adapter.nowPlayingPos =i;
-            }
+            Intent intent = new Intent();
+            intent.setAction(android.content.Intent.ACTION_VIEW);
+            intent.setDataAndType(Uri.parse(voices[i].getPath()), "audio/*");
+            startActivity(intent);
         });
     }
 

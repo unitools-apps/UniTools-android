@@ -26,6 +26,54 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp"
+        android:layout_margin="15dp"
+        android:background="@color/background">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/apcents"
+            android:textColor="@color/white"
+            android:layout_marginStart="10dp"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <ImageView
+            android:id="@+id/image_home_class_info_dialog_plus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/all_add"
+            android:tint="@color/white"
+            android:padding="5dp"
+            android:layout_marginEnd="5dp"/>
+
+        <TextView
+            android:id="@+id/text_home_class_info_dialog_absent_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/white"
+            android:text="0"
+            android:paddingTop="2dp"/>
+
+        <ImageView
+            android:id="@+id/image_home_class_info_dialog_minus"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/all_remove"
+            android:tint="@color/white"
+            android:padding="5dp"
+            android:layout_marginStart="5dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="end"
         android:orientation="horizontal">

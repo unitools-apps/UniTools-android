@@ -10,6 +10,7 @@ import com.github.ali77gh.unitools.data.model.UClass;
 import com.github.ali77gh.unitools.data.model.UserInfo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ali on 10/4/18.
@@ -61,6 +62,18 @@ public class UserInfoRepo {
         //remove
         ui.Classes.remove(index);
         setUserInfo(ui);
+    }
+
+    public static void UpdateClass(UClass uClass){
+        UserInfo userInfo = getUserInfo();
+        List<UClass> uClasses =userInfo.Classes;
+        for (UClass i : uClasses){
+            if (i.id .equals(uClass.id)){
+                uClasses.set(uClasses.indexOf(i),uClass);
+                break;
+            }
+        }
+        setUserInfo(userInfo);
     }
 
     public static void RemoveAllClasses() {

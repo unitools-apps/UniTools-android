@@ -96,6 +96,7 @@
     <string name="note">note</string>
     <string name="write_here">write here</string>
     <string name="there_is_nothing_to_show">there is nothing to show</string>
+    <string name="apcents">apcents</string>
 
     <string-array name="nums">
         <item>0</item>

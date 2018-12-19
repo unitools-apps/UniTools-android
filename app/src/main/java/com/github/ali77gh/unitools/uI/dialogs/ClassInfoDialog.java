@@ -6,11 +6,15 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.Window;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.ContextHolder;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.data.model.UClass;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 /**
  * Created by ali77gh on 11/14/18.
@@ -37,6 +41,32 @@ public class ClassInfoDialog extends Dialog {
         Button cancel = findViewById(R.id.btn_home_class_info_dialog_cancel);
         Button delete = findViewById(R.id.btn_home_class_info_dialog_delete);
 
+        ImageView absentPlus = findViewById(R.id.image_home_class_info_dialog_plus);
+        ImageView absentMinus = findViewById(R.id.image_home_class_info_dialog_minus);
+        TextView absentCount = findViewById(R.id.text_home_class_info_dialog_absent_count);
+
+        absentCount.setText(String.valueOf(uClass.apcent));
+        if (uClass.apcent >= 3)
+            absentCount.setTextColor(ContextHolder.getAppContext().getResources().getColor(R.color.red));
+
+        absentPlus.setOnClickListener(view -> {
+            uClass.apcent++;
+            absentCount.setText(String.valueOf(uClass.apcent));
+            UserInfoRepo.UpdateClass(uClass);
+            if (uClass.apcent >= 3)
+                absentCount.setTextColor(ContextHolder.getAppContext().getResources().getColor(R.color.red));
+        });
+
+        absentMinus.setOnClickListener(view -> {
+            if (uClass.apcent == 0) return;
+
+            uClass.apcent--;
+            absentCount.setText(String.valueOf(uClass.apcent));
+            UserInfoRepo.UpdateClass(uClass);
+            if (uClass.apcent < 3)
+                absentCount.setTextColor(ContextHolder.getAppContext().getResources().getColor(R.color.white));
+        });
+
         //load info
         name.setText(Translator.getUClassReadable(uClass));
 
@@ -47,6 +77,5 @@ public class ClassInfoDialog extends Dialog {
         });
 
         cancel.setOnClickListener(view -> dismiss());
-
     }
 }
