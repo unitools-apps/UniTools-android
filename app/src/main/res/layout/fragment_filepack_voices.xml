@@ -7,7 +7,9 @@
     <ListView
         android:id="@+id/list_file_pack_voice"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:dividerHeight="0dp"
+        android:divider="@null"/>
 
     <TextView
         android:id="@+id/text_storage_nothing_to_show"

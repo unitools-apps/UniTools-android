@@ -3,6 +3,7 @@ package com.github.ali77gh.unitools.uI.adapter;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -21,11 +22,15 @@ public class StoragePacksPicksListViewAdapter extends BaseAdapter {
 
     private Activity _activity;
     private File[] files;
+    private int screenWidth;
 
     public StoragePacksPicksListViewAdapter(Activity activity, File[] filePacks) {
 
         this._activity = activity;
         this.files = filePacks;
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        screenWidth = displayMetrics.widthPixels;
     }
 
     @Override
@@ -83,7 +88,7 @@ public class StoragePacksPicksListViewAdapter extends BaseAdapter {
             if (bitmapCache.containsKey(file)) {
                 bitmap = bitmapCache.get(file);
             }else {
-                bitmap = decodeFile(file, 100, 100);
+                bitmap = decodeFile(file, screenWidth, screenWidth);
                 bitmapCache.put(file,bitmap);
             }
 

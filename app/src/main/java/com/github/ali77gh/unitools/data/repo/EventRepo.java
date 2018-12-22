@@ -38,6 +38,9 @@ public class EventRepo {
         return (Event) db.Read(id, Event.class);
     }
 
+    public static void Update(Event event){
+        db.Update(event.id,event);
+    }
 
     public static boolean IsEmpty() {
         return db.IsEmpty();

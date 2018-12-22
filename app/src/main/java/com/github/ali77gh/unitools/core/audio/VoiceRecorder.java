@@ -26,13 +26,14 @@ public class VoiceRecorder {
             throw new RuntimeException(e.getMessage());
         }
         mediaRecorder.start();
-        isRecording=true;
+        isRecording = true;
 
     }
 
     public void Stop() {
         mediaRecorder.stop();
-        isRecording =false;
+        mediaRecorder.release();
+        isRecording = false;
     }
 
 
@@ -40,8 +41,8 @@ public class VoiceRecorder {
     private void MediaRecorderReady(String path) {
         mediaRecorder = new MediaRecorder();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP);
-        mediaRecorder.setAudioEncoder(MediaRecorder.OutputFormat.AMR_NB);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
         mediaRecorder.setOutputFile(path);
     }
 }

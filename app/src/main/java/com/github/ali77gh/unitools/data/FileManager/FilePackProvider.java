@@ -3,6 +3,7 @@ package com.github.ali77gh.unitools.data.FileManager;
 import android.os.Environment;
 
 import com.github.ali77gh.unitools.data.model.FilePack;
+import com.google.zxing.pdf417.PDF417Writer;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -17,6 +18,7 @@ public class FilePackProvider {
     public static final String VOICE_PATH_NAME = "voices";
     public static final String IMAGE_PATH_NAME = "images";
     public static final String NOTES_PATH_NAME = "notes";
+    public static final String PDF_PATH_NAME = "pdf";
 
     private static List<FilePack> _filePacks;
     private static final String _appPath = Environment.getExternalStorageDirectory() + File.separator + "UniTools";
@@ -79,11 +81,13 @@ public class FilePackProvider {
         File voiceDir = new File(_appPath + File.separator + name + File.separator + VOICE_PATH_NAME);
         File imageDir = new File(_appPath + File.separator + name + File.separator + IMAGE_PATH_NAME);
         File notesDir = new File(_appPath + File.separator + name + File.separator + NOTES_PATH_NAME);
+        File pdfDir = new File(_appPath + File.separator + name + File.separator + PDF_PATH_NAME);
 
         rootDir.mkdir();
         voiceDir.mkdir();
         imageDir.mkdir();
         notesDir.mkdir();
+        pdfDir.mkdir();
         Init();
     }
 }

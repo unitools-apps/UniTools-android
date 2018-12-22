@@ -9,11 +9,11 @@ import java.util.Random;
 public class ShortIdGenerator {
 
     public static String Generate(int count) {
-        String Id = "";
+        StringBuilder Id = new StringBuilder();
         for (int i = 0; i < count; i++) {
-            Id = Id + getChar();
+            Id.append(getChar());
         }
-        return Id;
+        return Id.toString();
     }
 
     private static char getChar() {

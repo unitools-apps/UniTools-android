@@ -24,7 +24,7 @@ public class DonateUsDialog extends Dialog {
 
     private Context context;
 
-    private int ONE_COFFEE_PRICE = 4000;
+    private int ONE_COFFEE_PRICE = 1000;
 
     public DonateUsDialog(@NonNull Context context) {
         super(context);

@@ -81,22 +81,19 @@ public class StorageFragment extends Fragment implements Backable {
 
         RefreshList();
 
-        fab.setOnClickListener(view1 -> {
-            new AddFilePackDialog(getActivity(), new Promise<List<String>>() {
-                @Override
-                public void onFailed(String msg) {
-                    //have no failed
-                }
+        fab.setOnClickListener(view1 -> new AddFilePackDialog(getActivity(),
+                new Promise<String>() {
+            @Override
+            public void onFailed(String msg) {
+                //have no failed
+            }
 
-                @Override
-                public void onSuccess(List<String> output) {
-                    for (String s : output) {
-                        FilePackProvider.CreateFilePack(s);
-                    }
-                    RefreshList();
-                }
-            }).show();
-        });
+            @Override
+            public void onSuccess(String output) {
+                FilePackProvider.CreateFilePack(output);
+                RefreshList();
+            }
+        }).show());
         return view;
     }
 

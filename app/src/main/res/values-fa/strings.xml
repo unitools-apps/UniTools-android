@@ -97,6 +97,9 @@
     <string name="how_match_to_pay">مبلغ (تومن)</string>
     <string name="donate_programmer_of_this_app_to_improve_app_and_add_more_features">به برنامه نویس این اپ کمک کنید تا شاهد ویژگی های جدید در نسخه های بعدی باشید</string>
     <string name="coffee">لیوان چایی</string>
+    <string name="write_describe">جزییات را وارد کنید</string>
+    <string name="enter_storage_name">نام جزوه</string>
+    <string name="exists">تکراری است</string>
 
     <string-array name="nums">
         <item>۰</item>

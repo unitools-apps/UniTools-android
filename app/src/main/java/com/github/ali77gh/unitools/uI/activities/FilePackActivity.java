@@ -87,7 +87,7 @@ public class FilePackActivity extends AppCompatActivity {
                         filePackVoicesFragment.RefreshList();
                         cfab.setImageDrawable(getDrawable(R.drawable.storage_mic));
                     } else {
-                        _voiceRecorder.Record(Path + File.separator + FilePackProvider.VOICE_PATH_NAME + File.separator + ShortIdGenerator.Generate(6)+".3gp");
+                        _voiceRecorder.Record(Path + File.separator + FilePackProvider.VOICE_PATH_NAME + File.separator + ShortIdGenerator.Generate(6)+".mp3");
                         cfab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
                     }
                 });

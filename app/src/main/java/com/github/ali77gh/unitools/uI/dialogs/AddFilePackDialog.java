@@ -5,13 +5,18 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.MultiAutoCompleteTextView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -30,85 +35,82 @@ import java.util.List;
 
 public class AddFilePackDialog extends Dialog {
 
-    private Activity context;
-    private Promise<List<String>> callback;
+    private final Promise<String> listener;
+    private Activity activity;
 
-    public AddFilePackDialog(@NonNull Context context, Promise<List<String>> callback) {
-        super(context);
-        this.context = (Activity) context;
-        this.callback = callback;
-        try {
-            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
-        }catch (NullPointerException ignored) {}
+    public AddFilePackDialog(Activity activity, Promise<String> listener) {
+        super(activity);
+        this.listener = listener;
+        this.activity = activity;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.dialog_add_file_pack);
 
-        LinearLayout lst = findViewById(R.id.linear_add_file_pack_dialog_lst_parent);
-        ImageView add = findViewById(R.id.btn_add_file_pack_dialog_add);
-        EditText addText = findViewById(R.id.text_add_file_pack_dialog_add);
+        AutoCompleteTextView input = findViewById(R.id.text_add_file_pack_dialog_input);
+        Button done = findViewById(R.id.btn_add_file_pack_dialog_add_all);
         Button cancel = findViewById(R.id.btn_add_file_pack_dialog_cancel);
-        Button addAll = findViewById(R.id.btn_add_file_pack_dialog_add_all);
 
-
-
-        List<UClass> allClasses = UserInfoRepo.getUserInfo().Classes;
+        List<String> autoCompleteValues = getNamesOfClasses(UserInfoRepo.getUserInfo().Classes);
         List<String> filePacks = FilePackProvider.getFilePacksNames();
-        for (UClass s : new ArrayList<>(allClasses))
-            if (filePacks.contains(s.what)) allClasses.remove(s);
 
-        for (UClass uClass : allClasses) {
-            ViewGroup item = (ViewGroup) context.getLayoutInflater().inflate(R.layout.item_add_file_pack_dialog, null);
-            TextView name = (TextView) item.getChildAt(1);
-            name.setText(uClass.what);
-            lst.addView(item);
+        for (String filePackName:filePacks){
+            if (autoCompleteValues.indexOf(filePackName)!=-1){
+                autoCompleteValues.remove(filePackName);
+            }
         }
 
-        add.setOnClickListener(view -> {
-            if (addText.getVisibility() == View.GONE) {
-                addText.setVisibility(View.VISIBLE);
-            } else {
-                if (addText.getText().toString().equals("")){
-                    Toast.makeText(context, context.getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
-                    return;
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.item_spinner, autoCompleteValues);
+        input.setAdapter(adapter);
+
+        done.setEnabled(false);
+        input.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                if (input.getText().toString().equals("")) {
+                    done.setEnabled(false);
+                } else {
+                    done.setEnabled(true);
                 }
-                ViewGroup item = (ViewGroup) context.getLayoutInflater().inflate(R.layout.item_add_file_pack_dialog, null);
-                TextView name = (TextView) item.getChildAt(1);
-                CheckBox checkBox = (CheckBox) item.getChildAt(0);
-                checkBox.setChecked(true);
-                name.setText(addText.getText().toString());
-                lst.addView(item);
-                addText.setText("");
-                addText.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
             }
         });
 
-        addAll.setOnClickListener(view -> {
-            List<String> selected = new ArrayList<>();
+        cancel.setOnClickListener(v -> dismiss());
 
-            for (int i = 0; i < lst.getChildCount(); i++) {
-                ViewGroup item = (ViewGroup) lst.getChildAt(i);
-                CheckBox checkBox = (CheckBox) item.getChildAt(0);
-                if (checkBox.isChecked()) {
-                    TextView name = (TextView) item.getChildAt(1);
-                    selected.add(name.getText().toString());
-                }
-            }
+        done.setOnClickListener(v -> {
 
-            if (selected.size() == 0) {
-                Toast.makeText(context, context.getString(R.string.select_some_things), Toast.LENGTH_SHORT).show();
+            if (filePacks.indexOf(input.getText().toString().replace(" ",""))!=-1){
+                //exist
+                Toast.makeText(activity, activity.getResources().getString(R.string.exists), Toast.LENGTH_SHORT).show();
                 return;
             }
-            callback.onSuccess(selected);
+
+            listener.onSuccess(input.getText().toString().replace(" ",""));
             dismiss();
         });
+    }
 
+    public List<String> getNamesOfClasses(List<UClass> uClasses){
+        List<String> names = new ArrayList<>();
+        for (UClass uClass:uClasses)
+            names.add(uClass.what);
+        return names;
+    }
 
-        cancel.setOnClickListener(view -> dismiss());
-
+    public interface OnDoneClick {
+        void onDone(String[] input);
     }
 }

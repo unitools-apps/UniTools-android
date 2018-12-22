@@ -23,6 +23,20 @@
         android:textColor="@color/white"
         android:layout_marginStart="16dp"/>
 
+    <EditText
+        android:id="@+id/text_home_event_info_dialog_describe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/background"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        android:hint="@string/write_describe"
+        android:textColorHint="@color/gray_middle"
+        android:textSize="15sp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
