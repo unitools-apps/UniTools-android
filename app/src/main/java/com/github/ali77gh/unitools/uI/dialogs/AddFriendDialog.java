@@ -1,7 +1,6 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.PorterDuff;
@@ -26,23 +25,16 @@ import com.google.gson.JsonParseException;
  * Created by ali on 10/10/18.
  */
 
-public class AddFriendDialog extends Dialog {
+public class AddFriendDialog extends BaseDialog {
 
     private AddFriendDialogListener listener;
-    private Activity mActivity;
-    private Fragment mFragment;
     private Friend mFriend;
 
     private ImageView statusIcon;
     private TextView statusText;
 
-    public AddFriendDialog(@NonNull Activity activity, Fragment fragment) {
+    public AddFriendDialog(@NonNull Activity activity) {
         super(activity);
-        mActivity = activity;
-        mFragment = fragment;
-        try {
-            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
-        }catch (NullPointerException ignored) {}
     }
 
     @Override
@@ -62,12 +54,12 @@ public class AddFriendDialog extends Dialog {
 
         ok.setOnClickListener(view -> {
             if (name.getText().toString().equals("")){
-                Toast.makeText(mActivity, getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (mFriend == null){
-                Toast.makeText(mActivity,getContext().getString(R.string.first_set_friend),Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity(),getContext().getString(R.string.first_set_friend),Toast.LENGTH_LONG).show();
                 return;
             }
 
@@ -83,7 +75,7 @@ public class AddFriendDialog extends Dialog {
         });
 
         qrCodeBtn.setOnClickListener(view -> {
-            QrCodeTools.LaunchCameraFromActivity(mActivity);
+            QrCodeTools.LaunchCameraFromActivity(getActivity());
             // result will come in onFriendStringReady()
         });
 

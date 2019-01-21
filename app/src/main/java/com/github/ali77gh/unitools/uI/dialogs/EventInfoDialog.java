@@ -1,5 +1,6 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -18,19 +19,16 @@ import com.github.ali77gh.unitools.data.repo.EventRepo;
  * Created by ali77gh on 11/14/18.
  */
 
-public class EventInfoDialog extends Dialog {
+public class EventInfoDialog extends BaseDialog {
 
 
     private Event event;
     private OnDeleteListener listener;
 
-    public EventInfoDialog(@NonNull Context context, Event event, OnDeleteListener listener) {
-        super(context);
+    public EventInfoDialog(@NonNull Activity activity, Event event, OnDeleteListener listener) {
+        super(activity);
         this.event = event;
         this.listener = listener;
-        try {
-            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
-        }catch (NullPointerException ignored) {}
     }
 
     @Override

@@ -19,17 +19,10 @@ import com.github.ali77gh.unitools.core.onlineapi.SendFeedbackApi;
  * Created by ali77gh on 12/11/18.
  */
 
-public class SendFeedbackDialog extends Dialog {
+public class SendFeedbackDialog extends BaseDialog {
 
-
-    private Activity activity;
-
-    public SendFeedbackDialog(@NonNull Context context) {
-        super(context);
-        this.activity = (Activity) context;
-        try {
-            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
-        }catch (NullPointerException ignored) {}
+    public SendFeedbackDialog(@NonNull Activity activity) {
+        super(activity);
     }
 
     @Override
@@ -50,7 +43,7 @@ public class SendFeedbackDialog extends Dialog {
         send.setOnClickListener(view -> {
 
             if (input.getText().toString().equals("")){
-                Toast.makeText(activity, activity.getString(R.string.enter_your_feedback), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getActivity().getString(R.string.enter_your_feedback), Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -58,10 +51,10 @@ public class SendFeedbackDialog extends Dialog {
             send.setEnabled(false);
             send.setAlpha((float) 0.5);
 
-            SendFeedbackApi.Send(activity, input.getText().toString(), new Promise<String>() {
+            SendFeedbackApi.Send(getActivity(), input.getText().toString(), new Promise<String>() {
                 @Override
                 public void onFailed(String msg) {
-                    Toast.makeText(activity, msg, Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
                     progressBar.setVisibility(View.GONE);
                     send.setEnabled(true);
                     send.setAlpha(1);
@@ -69,8 +62,8 @@ public class SendFeedbackDialog extends Dialog {
 
                 @Override
                 public void onSuccess(String output) {
-                    Toast.makeText(activity, activity.getString(R.string.feedback_recorded), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(activity, activity.getString(R.string.thank_you), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getActivity().getString(R.string.feedback_recorded), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getActivity(), getActivity().getString(R.string.thank_you), Toast.LENGTH_SHORT).show();
                     dismiss();
                 }
             });

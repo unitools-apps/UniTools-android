@@ -1,23 +1,12 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.MultiAutoCompleteTextView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
@@ -33,15 +22,13 @@ import java.util.List;
  * Created by ali77gh on 12/11/18.
  */
 
-public class AddFilePackDialog extends Dialog {
+public class AddFilePackDialog extends BaseDialog {
 
     private final Promise<String> listener;
-    private Activity activity;
 
     public AddFilePackDialog(Activity activity, Promise<String> listener) {
         super(activity);
         this.listener = listener;
-        this.activity = activity;
     }
 
     @Override
@@ -56,12 +43,11 @@ public class AddFilePackDialog extends Dialog {
         List<String> autoCompleteValues = getNamesOfClasses(UserInfoRepo.getUserInfo().Classes);
         List<String> filePacks = FilePackProvider.getFilePacksNames();
 
-        for (String filePackName:filePacks){
-            if (autoCompleteValues.indexOf(filePackName)!=-1){
+        for (String filePackName : filePacks) {
+            if (autoCompleteValues.indexOf(filePackName) != -1) {
                 autoCompleteValues.remove(filePackName);
             }
         }
-
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.item_spinner, autoCompleteValues);
         input.setAdapter(adapter);
@@ -92,20 +78,20 @@ public class AddFilePackDialog extends Dialog {
 
         done.setOnClickListener(v -> {
 
-            if (filePacks.indexOf(input.getText().toString().replace(" ",""))!=-1){
+            if (filePacks.indexOf(input.getText().toString().replace(" ", "")) != -1) {
                 //exist
-                Toast.makeText(activity, activity.getResources().getString(R.string.exists), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.exists), Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            listener.onSuccess(input.getText().toString().replace(" ",""));
+            listener.onSuccess(input.getText().toString());
             dismiss();
         });
     }
 
-    public List<String> getNamesOfClasses(List<UClass> uClasses){
+    private List<String> getNamesOfClasses(List<UClass> uClasses) {
         List<String> names = new ArrayList<>();
-        for (UClass uClass:uClasses)
+        for (UClass uClass : uClasses)
             names.add(uClass.what);
         return names;
     }

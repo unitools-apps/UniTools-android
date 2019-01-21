@@ -23,6 +23,8 @@
         app:itemBackground="@color/primary"
         app:itemIconTint="@android:color/white"
         app:itemTextColor="@android:color/white"
+        app:itemHorizontalTranslationEnabled="false"
+        app:labelVisibilityMode="selected"
         app:menu="@menu/home_navigation" />
 
 </LinearLayout>

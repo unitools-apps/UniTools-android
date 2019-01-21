@@ -1,5 +1,6 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -20,16 +21,13 @@ import com.google.gson.Gson;
  * Created by ali77gh on 10/27/18.
  */
 
-public class ShareClassesDialog extends Dialog {
+public class ShareClassesDialog extends BaseDialog {
 
     private Friend me;
     private BitmapProvider listener;
 
-    public ShareClassesDialog(@NonNull Context context) {
-        super(context);
-        try {
-            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
-        }catch (NullPointerException ignored) {}
+    public ShareClassesDialog(@NonNull Activity activity) {
+        super(activity);
     }
 
     @Override

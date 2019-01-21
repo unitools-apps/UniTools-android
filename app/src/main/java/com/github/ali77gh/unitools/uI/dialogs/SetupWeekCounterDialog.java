@@ -1,5 +1,6 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -16,16 +17,10 @@ import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
  * Created by ali77gh on 10/27/18.
  */
 
-public class SetupWeekCounterDialog extends Dialog {
+public class SetupWeekCounterDialog extends BaseDialog {
 
-    private Context mContext;
-
-    public SetupWeekCounterDialog(@NonNull Context context) {
-        super(context);
-        mContext = context;
-        try {
-            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
-        }catch (NullPointerException ignored) {}
+    public SetupWeekCounterDialog(@NonNull Activity activity) {
+        super(activity);
     }
 
     @Override
@@ -45,7 +40,7 @@ public class SetupWeekCounterDialog extends Dialog {
 
         ok.setOnClickListener(view -> {
             if (!IsInt(input.getText().toString())) {
-                Toast.makeText(mContext, getContext().getString(R.string.enter_number), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getActivity().getString(R.string.enter_number), Toast.LENGTH_SHORT).show();
                 return;
             }
             UserInfoRepo.setWeekNumber(Integer.valueOf(input.getText().toString()));

@@ -1,5 +1,6 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -20,18 +21,13 @@ import com.github.ali77gh.unitools.core.onlineapi.DonateUsApi;
  * Created by ali77gh on 12/11/18.
  */
 
-public class DonateUsDialog extends Dialog {
+public class DonateUsDialog extends BaseDialog {
 
-    private Context context;
 
     private int ONE_COFFEE_PRICE = 1000;
 
-    public DonateUsDialog(@NonNull Context context) {
-        super(context);
-        this.context = context;
-        try {
-            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
-        }catch (NullPointerException ignored) {}
+    public DonateUsDialog(@NonNull Activity activity) {
+        super(activity);
     }
 
     @Override
@@ -55,13 +51,13 @@ public class DonateUsDialog extends Dialog {
             public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
                 String inputStr = input.getText().toString();
 
-                if (inputStr.equals(""))coffeeCalc.setVisibility(View.GONE);
+                if (inputStr.equals("")) coffeeCalc.setVisibility(View.GONE);
                 else {
                     coffeeCalc.setVisibility(View.VISIBLE);
-                    if (IsInt(inputStr)){
+                    if (IsInt(inputStr)) {
                         int cost = Integer.valueOf(inputStr);
                         int coffeeCount = cost / ONE_COFFEE_PRICE;
-                        coffeeCalc.setText(String.valueOf(coffeeCount) +" "+ context.getResources().getString(R.string.coffee));
+                        coffeeCalc.setText(String.valueOf(coffeeCount) + " " + getActivity().getResources().getString(R.string.coffee));
                     }
                 }
             }
@@ -77,15 +73,15 @@ public class DonateUsDialog extends Dialog {
         });
 
         donateBtn.setOnClickListener(view -> {
-            if (!IsInt(input.getText().toString()) || input.getText().toString().equals("")){
-                Toast.makeText(context,
-                        context.getResources().getString(R.string.enter_number),
+            if (!IsInt(input.getText().toString()) || input.getText().toString().equals("")) {
+                Toast.makeText(getActivity(),
+                        getActivity().getResources().getString(R.string.enter_number),
                         Toast.LENGTH_SHORT)
                         .show();
                 return;
             }
 
-            DonateUsApi.OpenDonationGate(context,Integer.valueOf(input.getText().toString()));
+            DonateUsApi.OpenDonationGate(getActivity(), Integer.valueOf(input.getText().toString()));
         });
     }
 

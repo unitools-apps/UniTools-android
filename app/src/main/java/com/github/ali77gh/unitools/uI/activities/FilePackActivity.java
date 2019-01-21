@@ -1,6 +1,7 @@
 package com.github.ali77gh.unitools.uI.activities;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,6 +12,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
@@ -19,6 +21,7 @@ import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ShortIdGenerator;
 import com.github.ali77gh.unitools.core.audio.VoiceRecorder;
 import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
 import com.github.ali77gh.unitools.uI.fragments.FilePackNotesFragment;
 import com.github.ali77gh.unitools.uI.fragments.FilePackPicsFragment;
@@ -30,6 +33,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.Locale;
 
 /**
  * Created by ali77gh on 12/13/18.
@@ -255,5 +259,27 @@ public class FilePackActivity extends AppCompatActivity {
                 os.write(buffer, 0, length);
             }
         }
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        SetupLang();
+    }
+
+    private void SetupLang() {
+
+        String lang = UserInfoRepo.getUserInfo().LangId;
+
+        if (lang.equals(getString(R.string.LangID))) return;
+
+        Resources res = getResources();
+        // Change locale settings in the app.
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(lang)); // API 17+ only.
+        // Use conf.locale = new Locale(...) if targeting lower versions
+        res.updateConfiguration(conf, dm);
+        recreate();
     }
 }

@@ -1,5 +1,6 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -20,19 +21,15 @@ import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
  * Created by ali77gh on 11/14/18.
  */
 
-public class ClassInfoDialog extends Dialog {
-
+public class ClassInfoDialog extends BaseDialog {
 
     private UClass uClass;
     private OnDeleteListener listener;
 
-    public ClassInfoDialog(@NonNull Context context, UClass uClass, OnDeleteListener listener) {
-        super(context);
+    public ClassInfoDialog(@NonNull Activity activity, UClass uClass, OnDeleteListener listener) {
+        super(activity);
         this.uClass = uClass;
         this.listener = listener;
-        try {
-            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
-        }catch (NullPointerException ignored) {}
     }
 
     @Override

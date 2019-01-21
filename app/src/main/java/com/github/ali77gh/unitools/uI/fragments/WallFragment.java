@@ -309,7 +309,7 @@ public class WallFragment extends Fragment implements Backable {
         //friends
 
         addFriendBtn.setOnClickListener(view -> {
-            addFriendDialog = new AddFriendDialog(getActivity(), this);
+            addFriendDialog = new AddFriendDialog(getActivity());
             addFriendDialog.setListener(friend -> {
                 FriendRepo.insert(friend);
                 SetupListsAndFirstRow();

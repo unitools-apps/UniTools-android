@@ -1,6 +1,6 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
-import android.app.Dialog;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,18 +21,13 @@ import com.github.ali77gh.unitools.data.model.Time;
  * Created by ali77gh on 10/17/18.
  */
 
-public class AddEventDialog extends Dialog {
+public class AddEventDialog extends BaseDialog {
 
     private Spinner daySpinner;
     private EventDialogListener listener;
-    private Context context;
 
-    public AddEventDialog(@NonNull Context context) {
-        super(context);
-        this.context = context;
-        try {
-            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
-        }catch (NullPointerException ignored) {}
+    public AddEventDialog(@NonNull Activity activity) {
+        super(activity);
     }
 
     @Override
@@ -74,24 +69,24 @@ public class AddEventDialog extends Dialog {
 
             if (!IsInt(hour.getText().toString()) |
                     !IsInt(min.getText().toString())) {
-                Toast.makeText(context, getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (!Time.Validator(Integer.valueOf(hour.getText().toString()), Integer.valueOf(min.getText().toString()))) {
-                Toast.makeText(context, getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (!IsInt(week.getText().toString()) ||
                     Integer.valueOf(week.getText().toString()) < 0 ||
                     Integer.valueOf(week.getText().toString()) > 32) {
-                Toast.makeText(context, getContext().getString(R.string.week_number_is_not_valid), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getContext().getString(R.string.week_number_is_not_valid), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (what.getText().toString().equals("")) {
-                Toast.makeText(context, getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
                 return;
             }
 

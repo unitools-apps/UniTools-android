@@ -1,5 +1,6 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
@@ -24,18 +25,15 @@ import java.util.List;
  * Created by ali77gh on 11/10/18.
  */
 
-public class FriendInfoDialog extends Dialog {
+public class FriendInfoDialog extends BaseDialog {
 
     private Friend friend;
     private OnDeleteListener listener;
 
-    public FriendInfoDialog(@NonNull Context context, Friend friend,OnDeleteListener listener) {
-        super(context);
+    public FriendInfoDialog(@NonNull Activity activity, Friend friend, OnDeleteListener listener) {
+        super(activity);
         this.friend = friend;
         this.listener = listener;
-        try {
-            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
-        }catch (NullPointerException ignored) {}
     }
 
     @Override

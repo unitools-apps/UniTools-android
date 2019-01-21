@@ -1,6 +1,6 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
-import android.app.Dialog;
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -21,18 +21,13 @@ import com.github.ali77gh.unitools.data.model.UClass;
  * Created by ali77gh on 10/12/18.
  */
 
-public class AddClassDialog extends Dialog {
+public class AddClassDialog extends BaseDialog {
 
     private AddClassDialogListener listener;
     private Spinner daySpinner;
-    private Context context;
 
-    public AddClassDialog(@NonNull Context context) {
-        super(context);
-        this.context = context;
-        try {
-            getWindow().getAttributes().windowAnimations = R.style.DialogAnim;
-        }catch (NullPointerException ignored) {}
+    public AddClassDialog(@NonNull Activity activity) {
+        super(activity);
     }
 
     @Override
@@ -74,17 +69,17 @@ public class AddClassDialog extends Dialog {
         ok.setOnClickListener(view -> {
 
             if (!IsInt(hour.getText().toString()) | !IsInt(min.getText().toString())){
-                Toast.makeText(context, getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (!Time.Validator(Integer.valueOf(hour.getText().toString()),Integer.valueOf(min.getText().toString()))){
-                Toast.makeText(context, getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (lable.getText().toString().equals("") | where.getText().toString().equals("") ){
-                Toast.makeText(context, getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -120,7 +115,7 @@ public class AddClassDialog extends Dialog {
 
     private boolean IsInt(String s){
         try {
-            int a = Integer.valueOf(s);
+            Integer.valueOf(s);
             return true;
         }catch (NumberFormatException e){
             return false;
