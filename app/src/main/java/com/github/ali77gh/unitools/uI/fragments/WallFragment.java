@@ -5,6 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -122,7 +123,8 @@ public class WallFragment extends Fragment implements Backable {
 
     private void SetupListsAndFirstRow() {
 
-        //classes
+        //-------------------------classes-------------------------
+        // load to list
         classesFirstRow.setText(getString(R.string.there_is_no_class_yet));
         List<String> classesString = new ArrayList<>();
         List<UClass> uClasses = UserInfoRepo.getUserInfo().Classes;
@@ -132,9 +134,10 @@ public class WallFragment extends Fragment implements Backable {
                 classesFirstRow.setText(getResources().getString(R.string.next) + " " + Translator.getUClassReadable(uClass));
             else classesString.add(Translator.getUClassReadable(uClass));
         }
-        ArrayAdapter<String> classesStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, classesString);
+        ArrayAdapter<String> classesStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_home_global, classesString);
         classesList.setAdapter(classesStringAdapter);
 
+        // first row click
         classesFirstRow.setOnClickListener(view -> {
             if (uClasses.size() > 0)
                 new ClassInfoDialog(getActivity(), uClasses.get(0), () -> {
@@ -144,16 +147,49 @@ public class WallFragment extends Fragment implements Backable {
                 }).show();
         });
 
+        // on list click
         classesList.setOnItemClickListener((adapterView, view, i, l) -> {
-            new ClassInfoDialog(getActivity(), uClasses.get(i + 1), () -> {
+            ClassInfoDialog infoDialog= new ClassInfoDialog(getActivity(), uClasses.get(i + 1), () -> {
                 //on delete
                 UserInfoRepo.RemoveClass(uClasses.get(i + 1).id);
                 SetupListsAndFirstRow();
-            }).show();
+            });
+            infoDialog.setEditListener(uClass -> {
+                uClass.id = uClasses.get(i+1).id;
+                UserInfoRepo.UpdateClass(uClass);
+                SetupListsAndFirstRow();
+            });
+            infoDialog.show();
+        });
+
+        classesFirstRow.setOnLongClickListener(view -> {
+            AddClassDialog addFriendDialog = new AddClassDialog(getActivity(), uClasses.get(0));
+            addFriendDialog.setListener(uClass -> {
+                uClass.id = uClasses.get(0).id;
+                UserInfoRepo.UpdateClass(uClass);
+                SetupListsAndFirstRow();
+            });
+            addFriendDialog.show();
+            Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
+            return true;
+        });
+
+        // on list long click (edit)
+        classesList.setOnItemLongClickListener((adapterView, view, i, l) -> {
+
+            AddClassDialog addFriendDialog = new AddClassDialog(getActivity(), uClasses.get(i+1));
+            addFriendDialog.setListener(uClass -> {
+                uClass.id = uClasses.get(i+1).id;
+                UserInfoRepo.UpdateClass(uClass);
+                SetupListsAndFirstRow();
+            });
+            addFriendDialog.show();
+            Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
+            return true;
         });
 
 
-        //events
+        //-----------------------------events------------------------
         eventsFirstRow.setText(getString(R.string.you_have_no_event_yet));
         List<String> eventsString = new ArrayList<>();
         List<Event> events = EventRepo.getAll();
@@ -163,7 +199,7 @@ public class WallFragment extends Fragment implements Backable {
                 eventsFirstRow.setText(getResources().getString(R.string.next) + " " + Translator.getEventReadable(event));
             else eventsString.add(Translator.getEventReadable(event));
         }
-        ArrayAdapter<String> eventsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, new ArrayList<>(eventsString));
+        ArrayAdapter<String> eventsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_home_global, new ArrayList<>(eventsString));
         eventsList.setAdapter(eventsStringAdapter);
 
         eventsFirstRow.setOnClickListener(view -> {
@@ -184,16 +220,16 @@ public class WallFragment extends Fragment implements Backable {
             }).show();
         });
 
-        //friends
+        //------------------------------------friends-------------------------------------
         friendsFirstRow.setText(getString(R.string.you_have_no_friends_yet));
         List<String> friendsString = new ArrayList<>();
         List<Friend> friends = FriendRepo.getAll();
-        // todo sort friends with time
+
         for (Friend friend : friends) {
             if (friends.indexOf(friend) == 0) friendsFirstRow.setText(friend.name);
             else friendsString.add(friend.name);
         }
-        ArrayAdapter<String> friendsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, new ArrayList<>(friendsString));
+        ArrayAdapter<String> friendsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_home_global, new ArrayList<>(friendsString));
         friendsList.setAdapter(friendsStringAdapter);
 
         friendsFirstRow.setOnClickListener(view -> {
@@ -277,7 +313,7 @@ public class WallFragment extends Fragment implements Backable {
         //classes
 
         addClassBtn.setOnClickListener(view -> {
-            AddClassDialog addFriendDialog = new AddClassDialog(getActivity());
+            AddClassDialog addFriendDialog = new AddClassDialog(getActivity(), null);
             addFriendDialog.setListener(uClass -> {
                 UserInfoRepo.AddClass(uClass);
                 SetupListsAndFirstRow();

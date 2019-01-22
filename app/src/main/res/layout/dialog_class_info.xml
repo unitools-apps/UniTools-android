@@ -6,13 +6,29 @@
     android:orientation="vertical"
     android:background="@color/background_darker">
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/class_info"
-        android:textColor="@color/white"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:text="@string/class_info"
+            android:textColor="@color/white" />
+
+        <ImageView
+            android:id="@+id/image_home_class_info_dialog_edit"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_gravity="end|center_vertical"
+            android:src="@drawable/all_edit"
+            android:tint="@color/white"
+            android:padding="6dp"
+            android:layout_marginEnd="10dp"/>
+    </FrameLayout>
+
 
     <TextView
         android:id="@+id/txt_home_class_info_dialog_name"
@@ -21,7 +37,8 @@
         android:textSize="16sp"
         android:layout_marginTop="16dp"
         android:textColor="@color/white"
-        android:layout_marginStart="16dp"/>
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

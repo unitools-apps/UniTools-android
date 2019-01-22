@@ -14,7 +14,7 @@
     <string name="about_us">درباره ی ما</string>
     <string name="home">خانه</string>
     <string name="doc_founder">جزوه یاب</string>
-    <string name="storage">بایگانی</string>
+    <string name="storage">جزوه</string>
     <string name="transfer">رفت و آمد</string>
     <string name="friends">دوستان</string>
     <string name="next_class">کلاس بعدی</string>
@@ -43,6 +43,7 @@
     <string name="min">دقیقه</string>
     <string name="add_new_event">اضافه کردن رویداد</string>
     <string name="add_new_class">اضافه کردن کلاس</string>
+    <string name="edit_new_class">ویرایش کردن کلاس</string>
     <string name="whats_is_he_she_name">اسمش چیه؟</string>
     <string name="not_set">انتخاب نشده</string>
     <string name="ready_to_add">آماده اضافه کردن</string>

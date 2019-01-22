@@ -37,6 +37,7 @@
         <activity
             android:name=".uI.activities.HomeActivity"
             android:screenOrientation="portrait" />
+
         <activity
             android:name=".uI.activities.SplashActivity"
             android:label="uni tools"
@@ -52,10 +53,6 @@
             android:name=".uI.activities.WelcomeActivity"
             android:noHistory="true"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".TestActivity"
-            android:label="uni test"
-            android:screenOrientation="portrait"/>
 
         <activity
             android:name=".uI.activities.FilePackActivity"

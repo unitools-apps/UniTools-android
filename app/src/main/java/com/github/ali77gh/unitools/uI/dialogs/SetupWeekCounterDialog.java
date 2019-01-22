@@ -26,7 +26,7 @@ public class SetupWeekCounterDialog extends BaseDialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.dialog_setup_week_counter);
 
         EditText input = findViewById(R.id.edt_txt_setup_week_counter_dialog);

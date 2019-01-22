@@ -20,8 +20,9 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textColor="@color/white"
-        android:text="richard"
-        android:layout_marginStart="16dp"/>
+        android:text="محمد"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"/>
 
     <ListView
         android:id="@+id/list_home_friend_info_dialog"

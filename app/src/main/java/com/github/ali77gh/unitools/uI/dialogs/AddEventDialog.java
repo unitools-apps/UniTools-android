@@ -14,8 +14,10 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.model.Time;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 /**
  * Created by ali77gh on 10/17/18.
@@ -33,7 +35,7 @@ public class AddEventDialog extends BaseDialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.dialog_add_event);
 
         EditText what = findViewById(R.id.text_home_add_event_dialog_lable);
@@ -43,6 +45,8 @@ public class AddEventDialog extends BaseDialog {
 
         daySpinner = findViewById(R.id.spinner_home_add_event_day);
         SetupSpinners();
+
+        week.setHint(week.getHint() + " (" + String.valueOf(UserInfoRepo.getWeekNumber()) + ") ");
 
         hour.addTextChangedListener(new TextWatcher() {
             @Override
@@ -120,7 +124,7 @@ public class AddEventDialog extends BaseDialog {
 
     private boolean IsInt(String s) {
         try {
-            int a = Integer.valueOf(s);
+            Integer.valueOf(s);
             return true;
         } catch (NumberFormatException e) {
             return false;

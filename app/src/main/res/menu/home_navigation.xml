@@ -1,16 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <!--<item-->
-        <!--android:id="@+id/navigation_teacher"-->
-        <!--android:icon="@drawable/home_nav_teacher"-->
-        <!--android:title="@string/teacher" />-->
-
-    <!--<item-->
-        <!--android:id="@+id/navigation_docs"-->
-        <!--android:icon="@drawable/home_nav_docs"-->
-        <!--android:title="@string/doc_founder" />-->
-
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/home_nav_wall"

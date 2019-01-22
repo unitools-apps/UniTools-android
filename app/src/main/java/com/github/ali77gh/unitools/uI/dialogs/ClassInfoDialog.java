@@ -1,11 +1,8 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -24,19 +21,22 @@ import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 public class ClassInfoDialog extends BaseDialog {
 
     private UClass uClass;
-    private OnDeleteListener listener;
+    private OnDeleteListener deleteListener;
+    private AddClassDialog.AddClassDialogListener editListener;
 
-    public ClassInfoDialog(@NonNull Activity activity, UClass uClass, OnDeleteListener listener) {
+    public ClassInfoDialog(@NonNull Activity activity, UClass uClass, OnDeleteListener deleteListener) {
         super(activity);
         this.uClass = uClass;
-        this.listener = listener;
+        this.deleteListener = deleteListener;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_class_info);
+
+        ImageView edit = findViewById(R.id.image_home_class_info_dialog_edit);
+
         TextView name = findViewById(R.id.txt_home_class_info_dialog_name);
         Button cancel = findViewById(R.id.btn_home_class_info_dialog_cancel);
         Button delete = findViewById(R.id.btn_home_class_info_dialog_delete);
@@ -72,10 +72,25 @@ public class ClassInfoDialog extends BaseDialog {
 
         //setup events
         delete.setOnClickListener(view -> {
-            listener.onDelete();
+            deleteListener.onDelete();
             dismiss();
         });
 
         cancel.setOnClickListener(view -> dismiss());
+
+        edit.setOnClickListener(view -> {
+            AddClassDialog addFriendDialog = new AddClassDialog(getActivity(), uClass);
+            addFriendDialog.setListener(uClass2 -> {
+                uClass2.id = uClass.id;
+                editListener.onNewClass(uClass2);
+                name.setText(Translator.getUClassReadable(uClass2));
+            });
+            addFriendDialog.show();
+            Toast.makeText(getActivity(), getActivity().getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
+        });
+    }
+
+    public void setEditListener(AddClassDialog.AddClassDialogListener editListener) {
+        this.editListener = editListener;
     }
 }

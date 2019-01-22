@@ -40,7 +40,7 @@ public class AddFriendDialog extends BaseDialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.dialog_add_friend);
 
         EditText name = findViewById(R.id.text_home_add_friend_dialog_name);
@@ -89,7 +89,7 @@ public class AddFriendDialog extends BaseDialog {
 
     public void onFriendStringReady(String friendString){
         try {
-            mFriend = new Gson().fromJson(friendString, Friend.class);
+            mFriend = Friend.MinimalToFull(new Gson().fromJson(friendString, Friend.MinimalFriend.class));
             statusText.setText(getContext().getString(R.string.ready_to_add));
             statusIcon.setImageDrawable(getContext().getResources().getDrawable(R.drawable.all_check));
             statusIcon.setColorFilter(getContext().getResources().getColor(R.color.green), PorterDuff.Mode.SRC_IN);

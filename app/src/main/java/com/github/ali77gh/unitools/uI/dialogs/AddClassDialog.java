@@ -1,9 +1,9 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Window;
@@ -11,6 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
@@ -25,22 +26,35 @@ public class AddClassDialog extends BaseDialog {
 
     private AddClassDialogListener listener;
     private Spinner daySpinner;
+    private UClass uClass;
 
-    public AddClassDialog(@NonNull Activity activity) {
+    public AddClassDialog(@NonNull Activity activity, @Nullable UClass uClass) {
         super(activity);
+        this.uClass = uClass;
     }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.dialog_add_class);
 
+        TextView title = findViewById(R.id.text_home_add_class_dialog_title);
+        daySpinner = findViewById(R.id.spinner_home_add_class_day);
         EditText lable = findViewById(R.id.text_home_add_class_dialog_lable);
         EditText where = findViewById(R.id.text_home_add_class_dialog_where);
         EditText hour = findViewById(R.id.text_home_add_class_dialog_hour);
         EditText min = findViewById(R.id.text_home_add_class_dialog_min);
+
+        // fill fields if edit mode
+        if (uClass != null) {
+            daySpinner.post(() -> daySpinner.setSelection(uClass.time.dayOfWeek));
+            title.setText(getActivity().getResources().getString(R.string.edit_new_class));
+            lable.setText(uClass.what);
+            where.setText(uClass.where);
+            hour.setText(String.valueOf(uClass.time.hour) );
+            min.setText(String.valueOf(uClass.time.min) );
+        }
 
         hour.addTextChangedListener(new TextWatcher() {
             @Override
@@ -60,7 +74,6 @@ public class AddClassDialog extends BaseDialog {
             }
         });
 
-        daySpinner = findViewById(R.id.spinner_home_add_class_day);
         SetupSpinners();
 
         Button cancel = findViewById(R.id.btn_home_add_class_dialog_cancel);
@@ -68,17 +81,17 @@ public class AddClassDialog extends BaseDialog {
 
         ok.setOnClickListener(view -> {
 
-            if (!IsInt(hour.getText().toString()) | !IsInt(min.getText().toString())){
+            if (!IsInt(hour.getText().toString()) | !IsInt(min.getText().toString())) {
                 Toast.makeText(getActivity(), getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if (!Time.Validator(Integer.valueOf(hour.getText().toString()),Integer.valueOf(min.getText().toString()))){
+            if (!Time.Validator(Integer.valueOf(hour.getText().toString()), Integer.valueOf(min.getText().toString()))) {
                 Toast.makeText(getActivity(), getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if (lable.getText().toString().equals("") | where.getText().toString().equals("") ){
+            if (lable.getText().toString().equals("") | where.getText().toString().equals("")) {
                 Toast.makeText(getActivity(), getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -87,7 +100,7 @@ public class AddClassDialog extends BaseDialog {
 
             uClass.where = where.getText().toString();
             uClass.what = lable.getText().toString();
-            uClass.time = new Time(daySpinner.getSelectedItemPosition(),Integer.valueOf(hour.getText().toString()),Integer.valueOf(min.getText().toString()));
+            uClass.time = new Time(daySpinner.getSelectedItemPosition(), Integer.valueOf(hour.getText().toString()), Integer.valueOf(min.getText().toString()));
 
             listener.onNewClass(uClass);
             dismiss();
@@ -102,7 +115,7 @@ public class AddClassDialog extends BaseDialog {
         this.listener = listener;
     }
 
-    private void SetupSpinners(){
+    private void SetupSpinners() {
         String modes[] = getContext().getResources().getStringArray(R.array.weekDays);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.item_spinner, modes);
@@ -113,11 +126,11 @@ public class AddClassDialog extends BaseDialog {
         void onNewClass(UClass uClass);
     }
 
-    private boolean IsInt(String s){
+    private boolean IsInt(String s) {
         try {
             Integer.valueOf(s);
             return true;
-        }catch (NumberFormatException e){
+        } catch (NumberFormatException e) {
             return false;
         }
     }

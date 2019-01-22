@@ -8,12 +8,13 @@
     android:background="@color/background_darker">
 
     <TextView
+        android:id="@+id/text_home_add_class_dialog_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/add_new_class"
         android:textColor="@color/white"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="10dp" />
 
     <LinearLayout
         android:layout_width="match_parent"

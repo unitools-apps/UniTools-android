@@ -1,9 +1,6 @@
 package com.github.ali77gh.unitools.uI.adapter;
 
 import android.app.Activity;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.media.AudioFormat;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.view.View;
@@ -13,14 +10,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.uI.tools;
-
-import org.w3c.dom.Text;
+import com.github.ali77gh.unitools.uI.Tools;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.util.HashMap;
 
 public class StoragePacksVoicesListViewAdapter extends BaseAdapter {
 
@@ -69,7 +61,7 @@ public class StoragePacksVoicesListViewAdapter extends BaseAdapter {
         }
 
         if (i == files.length - 1) {
-            cview.setPadding(0, 0, 0, tools.DpToPixel(100));
+            cview.setPadding(0, 0, 0, Tools.DpToPixel(100));
         }
 
         return cview;

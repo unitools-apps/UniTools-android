@@ -7,7 +7,7 @@ import android.util.DisplayMetrics;
  * Created by ali77gh on 12/14/18.
  */
 
-public class tools {
+public class Tools {
 
     public static int PixelsToDp(float px) {
         DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();

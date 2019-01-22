@@ -36,7 +36,7 @@ public class SettingsAlarmConfigDialog extends BaseDialog {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.dialog_settings_reminder_config);
 
         hour = findViewById(R.id.text_settings_reminder_dialog_hour);

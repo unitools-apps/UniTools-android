@@ -31,7 +31,7 @@ public class QrCodeTools {
 
         QRCodeWriter writer = new QRCodeWriter();
         try {
-            BitMatrix bitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, 512, 512,hints);
+            BitMatrix bitMatrix = writer.encode(content, BarcodeFormat.QR_CODE, 512, 512, hints);
             int width = bitMatrix.getWidth();
             int height = bitMatrix.getHeight();
             Bitmap bmp = Bitmap.createBitmap(width, height, Bitmap.Config.RGB_565);
@@ -49,7 +49,7 @@ public class QrCodeTools {
     }
 
     public static Bitmap Generate(Friend friend) {
-        return Generate(new Gson().toJson(friend));
+        return Generate(new Gson().toJson(friend.getMinimal()));
     }
 
     // from QrCode
