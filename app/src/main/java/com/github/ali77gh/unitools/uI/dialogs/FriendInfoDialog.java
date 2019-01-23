@@ -28,12 +28,13 @@ import java.util.List;
 public class FriendInfoDialog extends BaseDialog {
 
     private Friend friend;
-    private OnDeleteListener listener;
+    private OnDeleteListener deleteListener;
+    private AddClassDialog.AddClassDialogListener editListener;
 
     public FriendInfoDialog(@NonNull Activity activity, Friend friend, OnDeleteListener listener) {
         super(activity);
         this.friend = friend;
-        this.listener = listener;
+        this.deleteListener = listener;
     }
 
     @Override
@@ -64,11 +65,15 @@ public class FriendInfoDialog extends BaseDialog {
 
         //setup events
         delete.setOnClickListener(view -> {
-            listener.onDelete();
+            deleteListener.onDelete();
             dismiss();
         });
 
         cancel.setOnClickListener(view -> dismiss());
 
+    }
+
+    public void setEditListener(AddClassDialog.AddClassDialogListener editListener) {
+        this.editListener = editListener;
     }
 }

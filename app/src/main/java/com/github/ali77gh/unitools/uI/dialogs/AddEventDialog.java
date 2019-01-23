@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Window;
@@ -11,12 +12,14 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.model.Time;
+import com.github.ali77gh.unitools.data.model.UClass;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 /**
@@ -27,9 +30,11 @@ public class AddEventDialog extends BaseDialog {
 
     private Spinner daySpinner;
     private EventDialogListener listener;
+    private Event event;
 
-    public AddEventDialog(@NonNull Activity activity) {
+    public AddEventDialog(@NonNull Activity activity, @Nullable Event event) {
         super(activity);
+        this.event = event;
     }
 
     @Override
@@ -38,12 +43,24 @@ public class AddEventDialog extends BaseDialog {
 
         setContentView(R.layout.dialog_add_event);
 
+        TextView title = findViewById(R.id.text_home_add_event_title);
+        daySpinner = findViewById(R.id.spinner_home_add_event_day);
         EditText what = findViewById(R.id.text_home_add_event_dialog_lable);
         EditText hour = findViewById(R.id.text_home_add_event_dialog_hour);
         EditText min = findViewById(R.id.text_home_add_event_dialog_min);
         EditText week = findViewById(R.id.text_home_add_event_dialog_week_number);
 
-        daySpinner = findViewById(R.id.spinner_home_add_event_day);
+        // fill fields if edit mode
+        if (event != null) {
+            daySpinner.post(() -> daySpinner.setSelection(event.time.dayOfWeek));
+            title.setText(getActivity().getResources().getString(R.string.edit_new_event));
+            what.setText(event.what);
+            week.setText(String.valueOf(event.WeekNumber));
+            hour.setText(String.valueOf(event.time.hour));
+            min.setText(String.valueOf(event.time.min));
+        }
+
+
         SetupSpinners();
 
         week.setHint(week.getHint() + " (" + String.valueOf(UserInfoRepo.getWeekNumber()) + ") ");
@@ -94,7 +111,7 @@ public class AddEventDialog extends BaseDialog {
                 return;
             }
 
-            Event event = new Event();
+            if (event == null) event = new Event();
 
             event.what = what.getText().toString();
             event.time = new Time(daySpinner.getSelectedItemPosition(), Integer.valueOf(hour.getText().toString()), Integer.valueOf(min.getText().toString()));

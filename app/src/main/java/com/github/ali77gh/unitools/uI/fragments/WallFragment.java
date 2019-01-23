@@ -5,9 +5,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -40,7 +38,7 @@ import java.util.List;
 
 public class WallFragment extends Fragment implements Backable {
 
-    private LinearLayout weekNummberParent;
+    private LinearLayout weekNumberParent;
 
     private ImageView expandClassesBtn;
     private ImageView shareClassesBtn;
@@ -67,7 +65,6 @@ public class WallFragment extends Fragment implements Backable {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
     }
 
     @Override
@@ -76,7 +73,7 @@ public class WallFragment extends Fragment implements Backable {
         // Inflate the layout for this fragment
         View cView = inflater.inflate(R.layout.fragment_wall, container, false);
 
-        weekNummberParent = cView.findViewById(R.id.linear_wall_week_number_parent);
+        weekNumberParent = cView.findViewById(R.id.linear_wall_week_number_parent);
 
         addClassBtn = cView.findViewById(R.id.btn_wall_add_class);
         shareClassesBtn = cView.findViewById(R.id.btn_wall_share_class);
@@ -96,7 +93,11 @@ public class WallFragment extends Fragment implements Backable {
 
 
         SetupWeekCounter();
-        SetupListsAndFirstRow();
+
+        SetupClassesList();
+        SetupEventsList();
+        SetupFriendsList();
+
         SetupExpandCollapse();
         SetupAddAndShare();
 
@@ -104,7 +105,7 @@ public class WallFragment extends Fragment implements Backable {
     }
 
     private void SetupWeekCounter() {
-        weekNummberParent.setOnClickListener(view -> {
+        weekNumberParent.setOnClickListener(view -> {
             SetupWeekCounterDialog dialog = new SetupWeekCounterDialog(getActivity());
             dialog.show();
             dialog.setOnDismissListener(dialogInterface -> {
@@ -112,8 +113,8 @@ public class WallFragment extends Fragment implements Backable {
             });
         });
 
-        TextView text = (TextView) weekNummberParent.getChildAt(0);
-        ProgressBar progress = (ProgressBar) weekNummberParent.getChildAt(1);
+        TextView text = (TextView) weekNumberParent.getChildAt(0);
+        ProgressBar progress = (ProgressBar) weekNumberParent.getChildAt(1);
 
         int currentWeek = UserInfoRepo.getWeekNumber();
 
@@ -121,9 +122,8 @@ public class WallFragment extends Fragment implements Backable {
         progress.setProgress((int) (((float) currentWeek / 16) * 100));
     }
 
-    private void SetupListsAndFirstRow() {
+    private void SetupClassesList() {
 
-        //-------------------------classes-------------------------
         // load to list
         classesFirstRow.setText(getString(R.string.there_is_no_class_yet));
         List<String> classesString = new ArrayList<>();
@@ -139,35 +139,41 @@ public class WallFragment extends Fragment implements Backable {
 
         // first row click
         classesFirstRow.setOnClickListener(view -> {
-            if (uClasses.size() > 0)
-                new ClassInfoDialog(getActivity(), uClasses.get(0), () -> {
-                    //on delete
-                    UserInfoRepo.RemoveClass(uClasses.get(0).id);
-                    SetupListsAndFirstRow();
-                }).show();
-        });
-
-        // on list click
-        classesList.setOnItemClickListener((adapterView, view, i, l) -> {
-            ClassInfoDialog infoDialog= new ClassInfoDialog(getActivity(), uClasses.get(i + 1), () -> {
+            ClassInfoDialog infoDialog = new ClassInfoDialog(getActivity(), uClasses.get(0), () -> {
                 //on delete
-                UserInfoRepo.RemoveClass(uClasses.get(i + 1).id);
-                SetupListsAndFirstRow();
+                UserInfoRepo.RemoveClass(uClasses.get(0).id);
+                SetupClassesList();
             });
             infoDialog.setEditListener(uClass -> {
-                uClass.id = uClasses.get(i+1).id;
+                uClass.id = uClasses.get(0).id;
                 UserInfoRepo.UpdateClass(uClass);
-                SetupListsAndFirstRow();
+                SetupClassesList();
             });
             infoDialog.show();
         });
 
+        // on list click
+        classesList.setOnItemClickListener((adapterView, view, i, l) -> {
+            ClassInfoDialog infoDialog = new ClassInfoDialog(getActivity(), uClasses.get(i + 1), () -> {
+                //on delete
+                UserInfoRepo.RemoveClass(uClasses.get(i + 1).id);
+                SetupClassesList();
+            });
+            infoDialog.setEditListener(uClass -> {
+                uClass.id = uClasses.get(i + 1).id;
+                UserInfoRepo.UpdateClass(uClass);
+                SetupClassesList();
+            });
+            infoDialog.show();
+        });
+
+        // on first row long click
         classesFirstRow.setOnLongClickListener(view -> {
             AddClassDialog addFriendDialog = new AddClassDialog(getActivity(), uClasses.get(0));
             addFriendDialog.setListener(uClass -> {
                 uClass.id = uClasses.get(0).id;
                 UserInfoRepo.UpdateClass(uClass);
-                SetupListsAndFirstRow();
+                SetupClassesList();
             });
             addFriendDialog.show();
             Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
@@ -176,20 +182,21 @@ public class WallFragment extends Fragment implements Backable {
 
         // on list long click (edit)
         classesList.setOnItemLongClickListener((adapterView, view, i, l) -> {
-
-            AddClassDialog addFriendDialog = new AddClassDialog(getActivity(), uClasses.get(i+1));
-            addFriendDialog.setListener(uClass -> {
-                uClass.id = uClasses.get(i+1).id;
+            AddClassDialog addClassDialog = new AddClassDialog(getActivity(), uClasses.get(i + 1));
+            addClassDialog.setListener(uClass -> {
+                uClass.id = uClasses.get(i + 1).id;
                 UserInfoRepo.UpdateClass(uClass);
-                SetupListsAndFirstRow();
+                SetupClassesList();
             });
-            addFriendDialog.show();
+            addClassDialog.show();
             Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
             return true;
         });
+    }
 
+    private void SetupEventsList() {
 
-        //-----------------------------events------------------------
+        //load to list
         eventsFirstRow.setText(getString(R.string.you_have_no_event_yet));
         List<String> eventsString = new ArrayList<>();
         List<Event> events = EventRepo.getAll();
@@ -202,25 +209,64 @@ public class WallFragment extends Fragment implements Backable {
         ArrayAdapter<String> eventsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_home_global, new ArrayList<>(eventsString));
         eventsList.setAdapter(eventsStringAdapter);
 
+        //first row click
         eventsFirstRow.setOnClickListener(view -> {
-            if (events.size() > 0)
-                new EventInfoDialog(getActivity(), events.get(0), () -> {
-                    //on delete
-                    EventRepo.Remove(events.get(0).id);
-                    SetupListsAndFirstRow();
-                }).show();
-        });
-
-        //list
-        eventsList.setOnItemClickListener((adapterView, view, i, l) -> {
-            new EventInfoDialog(getActivity(), events.get(i + 1), () -> {
+            EventInfoDialog infoDialog = new EventInfoDialog(getActivity(), events.get(0), () -> {
                 //on delete
-                EventRepo.Remove(events.get(i + 1).id);
-                SetupListsAndFirstRow();
-            }).show();
+                EventRepo.Remove(events.get(0).id);
+                SetupEventsList();
+            });
+            infoDialog.setEditListener(event -> {
+                event.id = events.get(0).id;
+                EventRepo.Update(event);
+                SetupEventsList();
+            });
+            infoDialog.show();
         });
 
-        //------------------------------------friends-------------------------------------
+        // on list click
+        eventsList.setOnItemClickListener((adapterView, view, i, l) -> {
+            EventInfoDialog infoDialog = new EventInfoDialog(getActivity(), events.get(i+1), () -> {
+                //on delete
+                EventRepo.Remove(events.get(i+1).id);
+                SetupEventsList();
+            });
+            infoDialog.setEditListener(event -> {
+                event.id = events.get(i+1).id;
+                EventRepo.Update(event);
+                SetupEventsList();
+            });
+            infoDialog.show();
+        });
+
+        // on first row long click
+        eventsFirstRow.setOnLongClickListener(view -> {
+            AddEventDialog addClassDialog = new AddEventDialog(getActivity(), events.get(0));
+            addClassDialog.setListener(event -> {
+                event.id = events.get(0).id;
+                EventRepo.Update(event);
+                SetupEventsList();
+            });
+            addClassDialog.show();
+            Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
+            return true;
+        });
+
+        // on list long click (edit)
+        eventsList.setOnItemLongClickListener((adapterView, view, i, l) -> {
+            AddEventDialog addClassDialog = new AddEventDialog(getActivity(), events.get(0));
+            addClassDialog.setListener(event -> {
+                event.id = events.get(0).id;
+                EventRepo.Update(event);
+                SetupEventsList();
+            });
+            addClassDialog.show();
+            Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
+            return true;
+        });
+    }
+
+    private void SetupFriendsList() {
         friendsFirstRow.setText(getString(R.string.you_have_no_friends_yet));
         List<String> friendsString = new ArrayList<>();
         List<Friend> friends = FriendRepo.getAll();
@@ -237,7 +283,7 @@ public class WallFragment extends Fragment implements Backable {
                 new FriendInfoDialog(getActivity(), friends.get(0), () -> {
                     //on delete
                     FriendRepo.Remove(friends.get(0).id);
-                    SetupListsAndFirstRow();
+                    SetupFriendsList();
                 }).show();
         });
 
@@ -245,7 +291,7 @@ public class WallFragment extends Fragment implements Backable {
             new FriendInfoDialog(getActivity(), friends.get(i + 1), () -> {
                 //on delete
                 FriendRepo.Remove(friends.get(i + 1).id);
-                SetupListsAndFirstRow();
+                SetupFriendsList();
             }).show();
         });
     }
@@ -316,7 +362,7 @@ public class WallFragment extends Fragment implements Backable {
             AddClassDialog addFriendDialog = new AddClassDialog(getActivity(), null);
             addFriendDialog.setListener(uClass -> {
                 UserInfoRepo.AddClass(uClass);
-                SetupListsAndFirstRow();
+                SetupClassesList();
             });
             addFriendDialog.show();
             Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
@@ -333,10 +379,10 @@ public class WallFragment extends Fragment implements Backable {
         //events
 
         addEventBtn.setOnClickListener(view -> {
-            AddEventDialog addEventDialog = new AddEventDialog(getActivity());
+            AddEventDialog addEventDialog = new AddEventDialog(getActivity(), null);
             addEventDialog.setListener(event -> {
                 EventRepo.insert(event);
-                SetupListsAndFirstRow();
+                SetupEventsList();
             });
             addEventDialog.show();
             Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
@@ -348,7 +394,7 @@ public class WallFragment extends Fragment implements Backable {
             addFriendDialog = new AddFriendDialog(getActivity());
             addFriendDialog.setListener(friend -> {
                 FriendRepo.insert(friend);
-                SetupListsAndFirstRow();
+                SetupFriendsList();
             });
             addFriendDialog.show();
         });

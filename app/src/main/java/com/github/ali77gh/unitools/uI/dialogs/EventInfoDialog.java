@@ -8,7 +8,9 @@ import android.support.annotation.NonNull;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.Translator;
@@ -23,12 +25,13 @@ public class EventInfoDialog extends BaseDialog {
 
 
     private Event event;
-    private OnDeleteListener listener;
+    private OnDeleteListener deleteListener;
+    private AddEventDialog.EventDialogListener editListener;
 
     public EventInfoDialog(@NonNull Activity activity, Event event, OnDeleteListener listener) {
         super(activity);
         this.event = event;
-        this.listener = listener;
+        this.deleteListener = listener;
     }
 
     @Override
@@ -36,6 +39,7 @@ public class EventInfoDialog extends BaseDialog {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.dialog_event_info);
+        ImageView edit = findViewById(R.id.image_home_event_info_dialog_edit);
         TextView name = findViewById(R.id.txt_home_event_info_dialog_name);
         Button cancel = findViewById(R.id.btn_home_event_info_dialog_cancel);
         Button delete = findViewById(R.id.btn_home_event_info_dialog_delete);
@@ -47,7 +51,7 @@ public class EventInfoDialog extends BaseDialog {
 
         //setup events
         delete.setOnClickListener(view -> {
-            listener.onDelete();
+            deleteListener.onDelete();
             dismiss();
         });
 
@@ -59,5 +63,20 @@ public class EventInfoDialog extends BaseDialog {
             dismiss();
         });
 
+        edit.setOnClickListener(view -> {
+            AddEventDialog addFriendDialog = new AddEventDialog(getActivity(), event);
+            addFriendDialog.setListener(event2 -> {
+                event2.id = event.id;
+                editListener.onNewEvent(event2);
+                name.setText(Translator.getEventReadable(event2));
+            });
+            addFriendDialog.show();
+            Toast.makeText(getActivity(), getActivity().getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
+        });
+
+    }
+
+    public void setEditListener(AddEventDialog.EventDialogListener editListener) {
+        this.editListener = editListener;
     }
 }

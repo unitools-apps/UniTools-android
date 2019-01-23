@@ -41,7 +41,7 @@ public class AddClassDialog extends BaseDialog {
 
         TextView title = findViewById(R.id.text_home_add_class_dialog_title);
         daySpinner = findViewById(R.id.spinner_home_add_class_day);
-        EditText lable = findViewById(R.id.text_home_add_class_dialog_lable);
+        EditText label = findViewById(R.id.text_home_add_class_dialog_lable);
         EditText where = findViewById(R.id.text_home_add_class_dialog_where);
         EditText hour = findViewById(R.id.text_home_add_class_dialog_hour);
         EditText min = findViewById(R.id.text_home_add_class_dialog_min);
@@ -50,10 +50,10 @@ public class AddClassDialog extends BaseDialog {
         if (uClass != null) {
             daySpinner.post(() -> daySpinner.setSelection(uClass.time.dayOfWeek));
             title.setText(getActivity().getResources().getString(R.string.edit_new_class));
-            lable.setText(uClass.what);
+            label.setText(uClass.what);
             where.setText(uClass.where);
-            hour.setText(String.valueOf(uClass.time.hour) );
-            min.setText(String.valueOf(uClass.time.min) );
+            hour.setText(String.valueOf(uClass.time.hour));
+            min.setText(String.valueOf(uClass.time.min));
         }
 
         hour.addTextChangedListener(new TextWatcher() {
@@ -91,15 +91,15 @@ public class AddClassDialog extends BaseDialog {
                 return;
             }
 
-            if (lable.getText().toString().equals("") | where.getText().toString().equals("")) {
+            if (label.getText().toString().equals("") | where.getText().toString().equals("")) {
                 Toast.makeText(getActivity(), getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            UClass uClass = new UClass();
+            if (uClass == null) uClass = new UClass();
 
             uClass.where = where.getText().toString();
-            uClass.what = lable.getText().toString();
+            uClass.what = label.getText().toString();
             uClass.time = new Time(daySpinner.getSelectedItemPosition(), Integer.valueOf(hour.getText().toString()), Integer.valueOf(min.getText().toString()));
 
             listener.onNewClass(uClass);

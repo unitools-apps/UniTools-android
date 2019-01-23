@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="primary">#fd840b</color>
-    <color name="primary_dark">#ba5100</color>
-    <color name="primary_light">#CFD8DC</color>
-    <color name="accent">#83fff1</color>
-    <color name="background">#303030</color>
-    <color name="background_darker">#202020</color>
+    <color name="primary">#b71f38</color>
+    <color name="primary_dark">#811627</color>
+    <color name="accent">#b71f38</color>
+    <color name="background">#f1f1f1</color>
+    <color name="background_darker">#ffffff</color>
     <color name="black">#000000</color>
-    <color name="white">#FFF</color>
+    <color name="white">#2b2b2b</color>
     <color name="gray_middle">#949494</color>
     <color name="red">#d90000</color>
     <color name="green">#00b600</color>
