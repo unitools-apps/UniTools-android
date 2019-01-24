@@ -43,7 +43,7 @@ public class ShowNextClassWidget extends AppWidgetProvider {
             if (classes.size() == 0) return;
             Sort.SortClass(classes);
 
-            String number = context.getString(R.string.next_class) + " : " + Translator.getUClassReadable(classes.get(0));
+            String number = context.getString(R.string.next_class) + " : " + Translator.getUClassReadable(classes.get(0),true);
 
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_show_next_class);
             remoteViews.setTextViewText(R.id.tv_widget_next_class, number);

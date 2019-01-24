@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/background">
@@ -113,7 +112,8 @@
                         <ImageView
                             android:layout_width="20dp"
                             android:layout_height="20dp"
-                            android:src="@drawable/about_github_logo" />
+                            android:src="@drawable/about_github_logo"
+                            android:tint="@color/black"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -177,14 +177,15 @@
                         android:layout_gravity="center"
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/about_github_logo" />
+                        android:src="@drawable/about_github_logo"
+                        android:tint="@color/black"/>
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginBottom="10dp"
-                        android:text="open on github"
+                        android:text="@string/open_on_github"
                         android:textColor="@color/white"
                         android:textSize="20dp" />
                 </LinearLayout>
@@ -219,10 +220,29 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginBottom="10dp"
-                        android:text="open on play store"
+                        android:text="@string/open_on_play_store"
                         android:textColor="@color/white"
                         android:textSize="20dp" />
                 </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+           <!--thanks-->
+            <android.support.v7.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:background="@color/background_darker"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/background_darker"
+                    android:padding="16dp"
+                    android:text="@string/thanks"
+                    android:textColor="@color/white" />
             </android.support.v7.widget.CardView>
 
             <!--version-->

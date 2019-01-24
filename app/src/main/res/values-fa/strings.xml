@@ -5,6 +5,7 @@
     <string name="LangID">"fa</string>
 
     <string name="about_text"> این نرم افزار به صورت آزاد و کاملا رایگان در اختیار دانشجویان قرار گرفته تا کار های روزانه ی دانشجویان را راحت تر کند. این اپلیکیشن را به دوستان خود معرفی کنید و اگر انتقاد یا پیشنهاد یا در خواست قابلیت خاصی را دارید حتما با من در میان بگذارید. (ایمیلم همین پایین هست) شما میتوانید با اپلود کردن جزوات خود و نظر دادن در مورد اساتید به دانشجویان دیگر کمک کنید. </string>
+    <string name="thanks">با تشکر از : \n ناهید قهرمانی  \n صبیح فرهنگی  \n سعید زبده  \n و هومن میرشفیی \n و....   </string>
     <string name="language">زبان</string>
     <string name="theme">تم</string>
     <string name="notification">نوتیفیکیشن</string>
@@ -102,6 +103,11 @@
     <string name="write_describe">جزییات را وارد کنید</string>
     <string name="enter_storage_name">نام جزوه</string>
     <string name="exists">تکراری است</string>
+    <string name="open_on_github">باز کردن گیت هاب</string>
+    <string name="open_on_play_store">باز کردن گوگل پلی</string>
+    <string name="share_classes">اشتراک گذاری کلاس ها</string>
+    <string name="started">شروع شده</string>
+    <string name="minute_later">دقیقه دیگر</string>
 
     <string-array name="nums">
         <item>۰</item>

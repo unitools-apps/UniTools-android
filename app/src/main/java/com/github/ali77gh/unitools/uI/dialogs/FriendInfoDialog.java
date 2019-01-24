@@ -8,6 +8,7 @@ import android.support.annotation.NonNull;
 import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
@@ -29,7 +30,6 @@ public class FriendInfoDialog extends BaseDialog {
 
     private Friend friend;
     private OnDeleteListener deleteListener;
-    private AddClassDialog.AddClassDialogListener editListener;
 
     public FriendInfoDialog(@NonNull Activity activity, Friend friend, OnDeleteListener listener) {
         super(activity);
@@ -42,11 +42,11 @@ public class FriendInfoDialog extends BaseDialog {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.dialog_friend_info);
+        ImageView share = findViewById(R.id.image_home_friend_info_dialog_share);
         TextView name = findViewById(R.id.txt_home_friend_info_dialog_name);
         ListView listView = findViewById(R.id.list_home_friend_info_dialog);
         Button cancel = findViewById(R.id.btn_home_friend_info_dialog_cancel);
         Button delete = findViewById(R.id.btn_home_friend_info_dialog_delete);
-
 
         //load info
         name.setText(friend.name);
@@ -54,7 +54,6 @@ public class FriendInfoDialog extends BaseDialog {
         //classes
         List<String> classesString = new ArrayList<>();
         List<UClass> uClasses = friend.classList;
-        // todo test sort classes with time
         Sort.SortClass(uClasses);
         for (UClass uClass : uClasses) {
             classesString.add(Translator.getUClassReadable(uClass));
@@ -71,9 +70,6 @@ public class FriendInfoDialog extends BaseDialog {
 
         cancel.setOnClickListener(view -> dismiss());
 
-    }
-
-    public void setEditListener(AddClassDialog.AddClassDialogListener editListener) {
-        this.editListener = editListener;
+        share.setOnClickListener(view -> new ShareClassesDialog(getActivity(), friend).show());
     }
 }

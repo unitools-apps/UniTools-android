@@ -28,8 +28,8 @@
         android:layout_height="wrap_content"
         app:fabSize="normal"
         android:layout_margin="25dp"
-        app:rippleColor="@color/white"
-        app:backgroundTint="@color/accent"
+        android:tint="@color/background"
+        app:backgroundTint="@color/primary"
         android:src="@drawable/all_add"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>
@@ -45,7 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/background_darker"
-            android:alpha=".95"
+            android:alpha=".9"
             android:clickable="true"/>
 
         <TextView

@@ -20,14 +20,14 @@ public class Sort {
     public static void SortClass(List<UClass> classes) {
 
 
-        Time now = DateTimeTools.getCurrentTime();
+        int now = DateTimeTools.getCurrentTime().getMins() - 60; // make 1 hour delay
 
         ExchangeSortClass(classes);
 
         //shift
         int nextClassIndex = 0;
         for (UClass u : classes) {
-            if (u.time.getMins() > now.getMins()) {
+            if (u.time.getMins() > now) {
                 nextClassIndex = classes.indexOf(u);
                 break;
             }

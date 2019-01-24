@@ -32,7 +32,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginBottom="25dp"
         android:src="@drawable/storage_camera"
-        app:backgroundTint="@color/accent"/>
+        app:backgroundTint="@color/accent"
+        android:tint="@color/background"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/left_fab_file_pack_activity"
@@ -45,7 +46,8 @@
         android:layout_marginBottom="30dp"
         android:layout_marginStart="120dp"
         android:src="@drawable/file_pack_gallery"
-        app:backgroundTint="@color/accent"/>
+        app:backgroundTint="@color/accent"
+        android:tint="@color/background"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/right_fab_file_pack_activity"
@@ -58,6 +60,7 @@
         android:layout_marginBottom="30dp"
         android:layout_marginEnd="120dp"
         android:src="@drawable/all_3dot"
-        app:backgroundTint="@color/accent"/>
+        app:backgroundTint="@color/accent"
+        android:tint="@color/background"/>
 
 </android.support.constraint.ConstraintLayout>

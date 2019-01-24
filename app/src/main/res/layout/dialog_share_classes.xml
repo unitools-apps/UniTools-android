@@ -6,6 +6,14 @@
     android:layout_gravity="center"
     android:background="@color/background_darker">
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/share_classes"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"/>
+
     <FrameLayout
         android:layout_gravity="center"
         android:layout_width="wrap_content"
@@ -19,8 +27,8 @@
 
         <ImageView
             android:id="@+id/image_share_classes_dialog_qr"
-            android:layout_width="270dp"
-            android:layout_height="270dp"
+            android:layout_width="300dp"
+            android:layout_height="300dp"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="15dp"/>
     </FrameLayout>

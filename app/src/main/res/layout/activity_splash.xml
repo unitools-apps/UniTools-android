@@ -5,13 +5,18 @@
     android:layout_height="match_parent"
     tools:context="com.github.ali77gh.unitools.uI.activities.SplashActivity">
 
+    <ImageView
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:src="@mipmap/ic_launcher_foreground"/>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="Uni tools"
-        android:textSize="40dp"
-        android:textColor="@color/white"/>
+        android:layout_marginTop="60dp"/>
 
     <TextView
         android:layout_width="wrap_content"

@@ -30,6 +30,11 @@ public class ShareClassesDialog extends BaseDialog {
         super(activity);
     }
 
+    public ShareClassesDialog(@NonNull Activity activity, @NonNull Friend friend) {
+        super(activity);
+        this.me = friend;
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,9 +45,10 @@ public class ShareClassesDialog extends BaseDialog {
         Button cancel = findViewById(R.id.btn_share_classes_dialog_cancel);
         Button copy = findViewById(R.id.btn_share_classes_dialog_copy);
 
-        me = new Friend();
-        me.classList = UserInfoRepo.getUserInfo().Classes;
-        me.name = "";
+        if (me == null) {
+            me = new Friend();
+            me.classList = UserInfoRepo.getUserInfo().Classes;
+        }
 
         listener = bitmap -> copy.post(() -> qrCode.setImageBitmap(bitmap));
 

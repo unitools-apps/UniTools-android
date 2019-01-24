@@ -18,7 +18,6 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.ShortIdGenerator;
 import com.github.ali77gh.unitools.core.audio.VoiceRecorder;
 import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
@@ -34,6 +33,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Locale;
+import java.util.UUID;
 
 /**
  * Created by ali77gh on 12/13/18.
@@ -91,7 +91,7 @@ public class FilePackActivity extends AppCompatActivity {
                         filePackVoicesFragment.RefreshList();
                         cfab.setImageDrawable(getDrawable(R.drawable.storage_mic));
                     } else {
-                        _voiceRecorder.Record(Path + File.separator + FilePackProvider.VOICE_PATH_NAME + File.separator + ShortIdGenerator.Generate(6)+".mp3");
+                        _voiceRecorder.Record(Path + File.separator + FilePackProvider.VOICE_PATH_NAME + File.separator + UUID.randomUUID().toString()+".mp3");
                         cfab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
                     }
                 });
@@ -114,7 +114,7 @@ public class FilePackActivity extends AppCompatActivity {
     private void OpenCamera() {
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        File photo = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + ShortIdGenerator.Generate(6));
+        File photo = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + UUID.randomUUID().toString());
         Uri imageUri = Uri.fromFile(photo);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(intent, CAMERA_REQUEST_CODE);
@@ -210,7 +210,7 @@ public class FilePackActivity extends AppCompatActivity {
             Uri uri = data.getData();
             File from = new File(getRealPathFromURI(uri));
             Log.d("uri", uri.getPath());
-            File to = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + ShortIdGenerator.Generate(6));
+            File to = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + UUID.randomUUID().toString());
             try {
                 copyFileUsingStream(from, to);
             } catch (IOException e) {
@@ -220,6 +220,7 @@ public class FilePackActivity extends AppCompatActivity {
             SetupViewPager();
         } else if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK) {
             //camera
+
             SetupViewPager();
         }
     }

@@ -3,11 +3,11 @@ package com.github.ali77gh.unitools.data.repo;
 import android.content.Context;
 
 import com.example.easyrepolib.KeyValDb;
-import com.github.ali77gh.unitools.core.ShortIdGenerator;
 import com.github.ali77gh.unitools.data.model.Friend;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by ali on 10/4/18.
@@ -30,7 +30,7 @@ public class FriendRepo {
     }
 
     public static void insert(Friend newFriend) {
-        newFriend.id = ShortIdGenerator.Generate(5);
+        newFriend.id = UUID.randomUUID().toString();
         db.insert(newFriend.id, newFriend);
     }
 

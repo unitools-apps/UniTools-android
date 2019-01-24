@@ -4,13 +4,13 @@ import android.content.Context;
 
 import com.example.easyrepolib.abstracts.GRepo;
 import com.example.easyrepolib.repos.ObjectRepo;
-import com.github.ali77gh.unitools.core.ShortIdGenerator;
 import com.github.ali77gh.unitools.core.tools.DateTimeTools;
 import com.github.ali77gh.unitools.data.model.UClass;
 import com.github.ali77gh.unitools.data.model.UserInfo;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 /**
  * Created by ali on 10/4/18.
@@ -44,7 +44,7 @@ public class UserInfoRepo {
 
     public static void AddClass(UClass uClass) {
         UserInfo ui = getUserInfo();
-        uClass.id = ShortIdGenerator.Generate(5);
+        uClass.id = UUID.randomUUID().toString();
         ui.Classes.add(uClass);
         setUserInfo(ui);
     }

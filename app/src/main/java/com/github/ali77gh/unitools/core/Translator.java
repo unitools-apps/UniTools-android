@@ -14,17 +14,31 @@ import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 public class Translator {
 
-    public static String getUClassReadable(UClass uClass) {
-        String day;
+    public static String getUClassReadable(UClass uClass){
+        return getUClassReadable(uClass,false);
+    }
+
+    public static String getUClassReadable(UClass uClass, boolean widget) {
+        String day = "";
+        String toClass = "";
         if (DateTimeTools.getCurrentDayOfWeek() == uClass.time.dayOfWeek) {
-            day = ContextHolder.getAppContext().getString(R.string.today);
+
+            int diff = DateTimeTools.getCurrentTime().getMins() - uClass.time.getMins();
+            if (diff > 0 & diff < 60) {
+                toClass = "(" + ContextHolder.getAppContext().getString(R.string.started) + ")";
+            } else if (diff < 0) {
+                toClass = "(" + String.valueOf(uClass.time.getMins() - DateTimeTools.getCurrentTime().getMins()) + " " + ContextHolder.getAppContext().getString(R.string.minute_later) + " )";
+            } else day = ContextHolder.getAppContext().getString(R.string.today);
         } else if (DateTimeTools.getCurrentDayOfWeek() + 1 == uClass.time.dayOfWeek | (DateTimeTools.getCurrentDayOfWeek() == 6 & 0 == uClass.time.dayOfWeek)) {
             day = ContextHolder.getAppContext().getString(R.string.tomorrow);
         } else {
             day = getDayString(uClass.time.dayOfWeek);
         }
 
-        return day + " " + uClass.time.toString() + " " + uClass.what + " " + uClass.where;
+        if (widget)
+            return day + " " + uClass.time.toString() + " " + uClass.what + " " + uClass.where;
+        else
+            return day + " " + uClass.time.toString() + " " + uClass.what + " " + uClass.where + " " + toClass;
     }
 
     public static String getEventReadable(Event event) {

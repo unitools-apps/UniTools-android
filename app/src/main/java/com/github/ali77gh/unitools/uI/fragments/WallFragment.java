@@ -2,6 +2,7 @@ package com.github.ali77gh.unitools.uI.fragments;
 
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -34,6 +35,8 @@ import com.github.ali77gh.unitools.uI.view.NonScrollListView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
 
 public class WallFragment extends Fragment implements Backable {
@@ -57,6 +60,7 @@ public class WallFragment extends Fragment implements Backable {
     private TextView friendsFirstRow;
     private AddFriendDialog addFriendDialog;
 
+    Timer timer = new Timer();
 
     public WallFragment() {
         // Required empty public constructor
@@ -100,6 +104,7 @@ public class WallFragment extends Fragment implements Backable {
 
         SetupExpandCollapse();
         SetupAddAndShare();
+        SetupRefreshLoop();
 
         return cView;
     }
@@ -131,7 +136,7 @@ public class WallFragment extends Fragment implements Backable {
         Sort.SortClass(uClasses);
         for (UClass uClass : uClasses) {
             if (uClasses.indexOf(uClass) == 0)
-                classesFirstRow.setText(getResources().getString(R.string.next) + " " + Translator.getUClassReadable(uClass));
+                classesFirstRow.setText(Translator.getUClassReadable(uClass));
             else classesString.add(Translator.getUClassReadable(uClass));
         }
         ArrayAdapter<String> classesStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_home_global, classesString);
@@ -403,6 +408,26 @@ public class WallFragment extends Fragment implements Backable {
 
     public void OnBarcodeReaded(String text) {
         addFriendDialog.onFriendStringReady(text);
+    }
+
+    private void SetupRefreshLoop(){
+       timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                try {
+                    getActivity().runOnUiThread(() -> SetupClassesList());
+                }catch (RuntimeException e){
+                    Log.e("internal",e.getMessage()+"at wallFragment.SetupRefreshLoop()");
+                }
+
+            }
+        }, 0, 60000 );
+    }
+
+    @Override
+    public void onDestroy() {
+        timer.cancel();
+        super.onDestroy();
     }
 
     @Override
