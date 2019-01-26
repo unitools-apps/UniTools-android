@@ -18,6 +18,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.ContextHolder;
 import com.github.ali77gh.unitools.core.audio.VoiceRecorder;
 import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
@@ -62,6 +63,8 @@ public class FilePackActivity extends AppCompatActivity {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ContextHolder.initStatics(this);
         setContentView(R.layout.activity_file_pack);
 
         Path = getIntent().getStringExtra("path");
@@ -91,7 +94,7 @@ public class FilePackActivity extends AppCompatActivity {
                         filePackVoicesFragment.RefreshList();
                         cfab.setImageDrawable(getDrawable(R.drawable.storage_mic));
                     } else {
-                        _voiceRecorder.Record(Path + File.separator + FilePackProvider.VOICE_PATH_NAME + File.separator + UUID.randomUUID().toString()+".mp3");
+                        _voiceRecorder.Record(Path + File.separator + FilePackProvider.VOICE_PATH_NAME + File.separator + UUID.randomUUID().toString() + ".mp3");
                         cfab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
                     }
                 });

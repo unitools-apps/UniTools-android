@@ -33,21 +33,23 @@ public class ShowNextClassWidget extends AppWidgetProvider {
         ContextHolder.initStatics(context);
         SetupLang(context);
 
-        Update(context,appWidgetManager,appWidgetIds);
+        Update(context, appWidgetManager, appWidgetIds);
     }
 
-    public static void Update(Context context,AppWidgetManager appWidgetManager, int[] appWidgetIds){
+    public static void Update(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
+
 
         for (int widgetId : appWidgetIds) {
-            List<UClass> classes = UserInfoRepo.getUserInfo().Classes;
-            if (classes.size() == 0) return;
-            Sort.SortClass(classes);
-
-            String number = context.getString(R.string.next_class) + " : " + Translator.getUClassReadable(classes.get(0),true);
-
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_show_next_class);
-            remoteViews.setTextViewText(R.id.tv_widget_next_class, number);
+            List<UClass> classes = UserInfoRepo.getUserInfo().Classes;
 
+            if (classes.size() == 0) {
+                remoteViews.setTextViewText(R.id.tv_widget_next_class, ContextHolder.getAppContext().getString(R.string.there_is_no_class));
+            } else {
+                Sort.SortClass(classes);
+                String text = context.getString(R.string.next_class) + " : " + Translator.getUClassReadable(classes.get(0), true);
+                remoteViews.setTextViewText(R.id.tv_widget_next_class, text);
+            }
             Intent intent = new Intent(context, SplashActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 

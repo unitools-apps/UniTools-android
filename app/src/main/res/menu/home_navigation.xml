@@ -10,7 +10,7 @@
     <item
         android:id="@+id/navigation_storage"
         android:icon="@drawable/home_nav_storage"
-        android:title="@string/storage" />
+        android:title="@string/docs" />
 
 
     <item

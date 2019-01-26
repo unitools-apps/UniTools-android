@@ -8,7 +8,7 @@
         android:id="@+id/tv_widget_next_class"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="کلاسی وجود ندارد"
+        android:text="@string/there_is_no_class"
         android:textColor="@color/white"
         android:layout_margin="20dp"
         android:layout_gravity="center"

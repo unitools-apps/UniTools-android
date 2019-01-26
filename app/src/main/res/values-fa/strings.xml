@@ -15,7 +15,7 @@
     <string name="about_us">درباره ی ما</string>
     <string name="home">خانه</string>
     <string name="doc_founder">جزوه یاب</string>
-    <string name="storage">جزوه</string>
+    <string name="docs">جزوه</string>
     <string name="transfer">رفت و آمد</string>
     <string name="friends">دوستان</string>
     <string name="next_class">کلاس بعدی</string>
@@ -108,6 +108,7 @@
     <string name="share_classes">اشتراک گذاری کلاس ها</string>
     <string name="started">شروع شده</string>
     <string name="minute_later">دقیقه دیگر</string>
+    <string name="there_is_no_class">کلاسی وجور ندارد</string>
 
     <string-array name="nums">
         <item>۰</item>

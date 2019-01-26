@@ -18,7 +18,7 @@
     <string name="about_us">about us</string>
     <string name="home">home</string>
     <string name="doc_founder">doc founder</string>
-    <string name="storage">storage</string>
+    <string name="docs">docs</string>
     <string name="transfer">transfer</string>
     <string name="friends">friends</string>
     <string name="next_class">next class</string>
@@ -111,6 +111,7 @@
     <string name="share_classes">share classes</string>
     <string name="started">started</string>
     <string name="minute_later">minute later</string>
+    <string name="there_is_no_class">there is no class</string>
 
     <string-array name="nums">
         <item>0</item>

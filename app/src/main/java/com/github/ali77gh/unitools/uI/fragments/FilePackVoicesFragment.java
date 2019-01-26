@@ -65,9 +65,9 @@ public class FilePackVoicesFragment extends Fragment {
         listView.setEmptyView(nothingToShow);
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
-            Intent intent = new Intent();
-            intent.setAction(android.content.Intent.ACTION_VIEW);
-            intent.setDataAndType(Uri.parse(voices[i].getPath()), "audio/*");
+            Intent intent = new Intent(Intent.ACTION_VIEW);
+            Uri data = Uri.parse("file:///" + voices[i].getPath());
+            intent.setDataAndType(data, "audio/mp3");
             startActivity(intent);
         });
     }

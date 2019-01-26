@@ -144,6 +144,9 @@ public class WallFragment extends Fragment implements Backable {
 
         // first row click
         classesFirstRow.setOnClickListener(view -> {
+
+            if (uClasses.size() == 0) return;
+
             ClassInfoDialog infoDialog = new ClassInfoDialog(getActivity(), uClasses.get(0), () -> {
                 //on delete
                 UserInfoRepo.RemoveClass(uClasses.get(0).id);
@@ -174,6 +177,9 @@ public class WallFragment extends Fragment implements Backable {
 
         // on first row long click
         classesFirstRow.setOnLongClickListener(view -> {
+
+            if (uClasses.size() == 0) return true;
+
             AddClassDialog addFriendDialog = new AddClassDialog(getActivity(), uClasses.get(0));
             addFriendDialog.setListener(uClass -> {
                 uClass.id = uClasses.get(0).id;
@@ -216,6 +222,9 @@ public class WallFragment extends Fragment implements Backable {
 
         //first row click
         eventsFirstRow.setOnClickListener(view -> {
+
+            if (events.size() == 0) return;
+
             EventInfoDialog infoDialog = new EventInfoDialog(getActivity(), events.get(0), () -> {
                 //on delete
                 EventRepo.Remove(events.get(0).id);
@@ -231,13 +240,13 @@ public class WallFragment extends Fragment implements Backable {
 
         // on list click
         eventsList.setOnItemClickListener((adapterView, view, i, l) -> {
-            EventInfoDialog infoDialog = new EventInfoDialog(getActivity(), events.get(i+1), () -> {
+            EventInfoDialog infoDialog = new EventInfoDialog(getActivity(), events.get(i + 1), () -> {
                 //on delete
-                EventRepo.Remove(events.get(i+1).id);
+                EventRepo.Remove(events.get(i + 1).id);
                 SetupEventsList();
             });
             infoDialog.setEditListener(event -> {
-                event.id = events.get(i+1).id;
+                event.id = events.get(i + 1).id;
                 EventRepo.Update(event);
                 SetupEventsList();
             });
@@ -246,6 +255,9 @@ public class WallFragment extends Fragment implements Backable {
 
         // on first row long click
         eventsFirstRow.setOnLongClickListener(view -> {
+
+            if (events.size() == 0) return true;
+
             AddEventDialog addClassDialog = new AddEventDialog(getActivity(), events.get(0));
             addClassDialog.setListener(event -> {
                 event.id = events.get(0).id;
@@ -284,6 +296,9 @@ public class WallFragment extends Fragment implements Backable {
         friendsList.setAdapter(friendsStringAdapter);
 
         friendsFirstRow.setOnClickListener(view -> {
+
+            if (friends.size() == 0) return;
+
             if (friends.size() > 0)
                 new FriendInfoDialog(getActivity(), friends.get(0), () -> {
                     //on delete
@@ -410,18 +425,18 @@ public class WallFragment extends Fragment implements Backable {
         addFriendDialog.onFriendStringReady(text);
     }
 
-    private void SetupRefreshLoop(){
-       timer.scheduleAtFixedRate(new TimerTask() {
+    private void SetupRefreshLoop() {
+        timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 try {
                     getActivity().runOnUiThread(() -> SetupClassesList());
-                }catch (RuntimeException e){
-                    Log.e("internal",e.getMessage()+"at wallFragment.SetupRefreshLoop()");
+                } catch (RuntimeException e) {
+                    Log.e("internal", e.getMessage() + "at wallFragment.SetupRefreshLoop()");
                 }
 
             }
-        }, 0, 60000 );
+        }, 0, 60000);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.github.ali77gh.unitools.core.audio;
 
 import android.media.MediaRecorder;
 
+import java.io.File;
 import java.io.IOException;
 
 /**
@@ -41,8 +42,8 @@ public class VoiceRecorder {
     private void MediaRecorderReady(String path) {
         mediaRecorder = new MediaRecorder();
         mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.DEFAULT);
-        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         mediaRecorder.setOutputFile(path);
+        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
     }
 }

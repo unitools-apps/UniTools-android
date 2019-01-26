@@ -15,9 +15,6 @@ public class ContextHolder {
 
     private static Context AppContext;
 
-    public static void init(Context context){
-        AppContext = context;
-    }
 
     public static Context getAppContext(){
         return AppContext;
@@ -28,6 +25,6 @@ public class ContextHolder {
         FileRepo.init(context);
         FriendRepo.init(context);
         UserInfoRepo.init(context);
-        init(context);
+        AppContext = context;
     }
 }
