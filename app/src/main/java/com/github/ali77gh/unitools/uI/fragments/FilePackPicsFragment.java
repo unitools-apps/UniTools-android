@@ -26,6 +26,7 @@ public class FilePackPicsFragment extends Fragment {
 
     private StoragePacksPicksListViewAdapter adapter;
 
+    private OnZoomableRequest onZoomableRequest;
 
     public FilePackPicsFragment() {
 
@@ -52,6 +53,10 @@ public class FilePackPicsFragment extends Fragment {
         listView.setAdapter(adapter);
         listView.setEmptyView(nothingToShow);
 
+        listView.setOnItemClickListener((adapterView, view1, i, l) -> {
+            onZoomableRequest.onRequest(images[i].getPath());
+        });
+
         return view;
     }
 
@@ -74,5 +79,13 @@ public class FilePackPicsFragment extends Fragment {
                 }
             }
         }
+    }
+
+    public void setOnZoomableRequest(OnZoomableRequest onZoomableRequest) {
+        this.onZoomableRequest = onZoomableRequest;
+    }
+
+    public interface OnZoomableRequest{
+        void onRequest(String path);
     }
 }

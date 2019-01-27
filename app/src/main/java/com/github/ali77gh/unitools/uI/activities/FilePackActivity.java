@@ -15,8 +15,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
 import com.github.ali77gh.unitools.core.audio.VoiceRecorder;
@@ -56,9 +60,11 @@ public class FilePackActivity extends AppCompatActivity {
     private final int NOTE = 2;
     private int _currentPage = PICS;//first page
 
-    private FloatingActionButton cfab;
-    private FloatingActionButton rfab;
-    private FloatingActionButton lfab;
+    private FloatingActionButton cFab;
+    private FloatingActionButton rFab;
+    private FloatingActionButton lFab;
+
+    private FrameLayout zoomableParent;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -66,6 +72,8 @@ public class FilePackActivity extends AppCompatActivity {
 
         ContextHolder.initStatics(this);
         setContentView(R.layout.activity_file_pack);
+
+        zoomableParent = findViewById(R.id.zoomview_file_pack_activity);
 
         Path = getIntent().getStringExtra("path");
 
@@ -75,39 +83,39 @@ public class FilePackActivity extends AppCompatActivity {
 
     private void SetupFabs() {
 
-        cfab = findViewById(R.id.center_fab_file_pack_activity);
-        rfab = findViewById(R.id.right_fab_file_pack_activity);
-        lfab = findViewById(R.id.left_fab_file_pack_activity);
+        cFab = findViewById(R.id.center_fab_file_pack_activity);
+        rFab = findViewById(R.id.right_fab_file_pack_activity);
+        lFab = findViewById(R.id.left_fab_file_pack_activity);
 
-        rfab.setOnClickListener(view -> ShowMenu()); //same for all pages
+        rFab.setOnClickListener(view -> ShowMenu()); //same for all pages
 
         switch (_currentPage) {
             case PICS:
-                cfab.setOnClickListener(view -> OpenCamera());
-                lfab.setOnClickListener(view -> OpenGallery());
+                cFab.setOnClickListener(view -> OpenCamera());
+                lFab.setOnClickListener(view -> OpenGallery());
                 break;
 
             case VOICES:
-                cfab.setOnClickListener(view -> {
+                cFab.setOnClickListener(view -> {
                     if (_voiceRecorder.isRecording()) {
                         _voiceRecorder.Stop();
                         filePackVoicesFragment.RefreshList();
-                        cfab.setImageDrawable(getDrawable(R.drawable.storage_mic));
+                        cFab.setImageDrawable(getDrawable(R.drawable.storage_mic));
                     } else {
                         _voiceRecorder.Record(Path + File.separator + FilePackProvider.VOICE_PATH_NAME + File.separator + UUID.randomUUID().toString() + ".mp3");
-                        cfab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
+                        cFab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
                     }
                 });
-                lfab.setOnClickListener(view -> {
+                lFab.setOnClickListener(view -> {
                     //dont delete this
                 });
                 break;
 
             case NOTE:
-                cfab.setOnClickListener(view -> {
+                cFab.setOnClickListener(view -> {
                     filePackNoteFragment.Save();
                 });
-                lfab.setOnClickListener(view -> {
+                lFab.setOnClickListener(view -> {
                     //dont delete this
                 });
                 break;
@@ -145,6 +153,9 @@ public class FilePackActivity extends AppCompatActivity {
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
         FilePackPicsFragment filePackPicsFragment = new FilePackPicsFragment();
+
+        filePackPicsFragment.setOnZoomableRequest(path -> ShowZommable(path));
+
         filePackVoicesFragment = new FilePackVoicesFragment();
         filePackNoteFragment = new FilePackNotesFragment();
 
@@ -163,29 +174,29 @@ public class FilePackActivity extends AppCompatActivity {
             public void onPageSelected(int i) {
                 switch (i) {
                     case PICS:
-                        cfab.setImageDrawable(getDrawable(R.drawable.storage_camera));
-                        cfab.show();
-                        lfab.show();
-                        rfab.show();
+                        cFab.setImageDrawable(getDrawable(R.drawable.storage_camera));
+                        cFab.show();
+                        lFab.show();
+                        rFab.show();
                         _currentPage = PICS;
                         SetupFabs();
                         break;
                     case VOICES:
                         if (_voiceRecorder.isRecording())
-                            cfab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
+                            cFab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
                         else
-                            cfab.setImageDrawable(getDrawable(R.drawable.storage_mic));
-                        cfab.show();
-                        lfab.hide();
-                        rfab.show();
+                            cFab.setImageDrawable(getDrawable(R.drawable.storage_mic));
+                        cFab.show();
+                        lFab.hide();
+                        rFab.show();
                         _currentPage = VOICES;
                         SetupFabs();
                         break;
                     case NOTE:
-                        cfab.setImageDrawable(getDrawable(R.drawable.note_save));
-                        cfab.show();
-                        lfab.hide();
-                        rfab.show();
+                        cFab.setImageDrawable(getDrawable(R.drawable.note_save));
+                        cFab.show();
+                        lFab.hide();
+                        rFab.show();
                         _currentPage = NOTE;
                         SetupFabs();
                         break;
@@ -285,5 +296,30 @@ public class FilePackActivity extends AppCompatActivity {
         // Use conf.locale = new Locale(...) if targeting lower versions
         res.updateConfiguration(conf, dm);
         recreate();
+    }
+
+    private void ShowZommable(String path) {
+
+
+        SubsamplingScaleImageView imageZomable = (SubsamplingScaleImageView) zoomableParent.getChildAt(1);
+        ImageView back = (ImageView) zoomableParent.getChildAt(2);
+
+        imageZomable.setImage(ImageSource.uri(path));
+
+        zoomableParent.setVisibility(View.VISIBLE);
+
+        back.setOnClickListener(view -> {
+            zoomableParent.setVisibility(View.GONE);
+            imageZomable.recycle(); // this will releases all resources the view is using
+        });
+    }
+
+    @Override
+    public void onBackPressed() {
+        if (zoomableParent.getVisibility() == View.VISIBLE) {
+            zoomableParent.setVisibility(View.GONE);
+            return;
+        }
+        super.onBackPressed();
     }
 }

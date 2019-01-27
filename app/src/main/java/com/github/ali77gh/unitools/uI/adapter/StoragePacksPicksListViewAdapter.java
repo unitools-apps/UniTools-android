@@ -10,6 +10,8 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.davemorrissey.labs.subscaleview.ImageSource;
+import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.uI.Tools;
 
@@ -57,7 +59,7 @@ public class StoragePacksPicksListViewAdapter extends BaseAdapter {
         ImageView preview = (ImageView) cview.getChildAt(0);
         TextView name = (TextView) cview.getChildAt(1);
 
-        name.setText(file.getName());
+        name.setText(String.valueOf(i));
 
         new BitmapLoader(file, preview).start();
 

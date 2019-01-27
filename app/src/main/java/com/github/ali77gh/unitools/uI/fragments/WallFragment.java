@@ -436,7 +436,7 @@ public class WallFragment extends Fragment implements Backable {
                 }
 
             }
-        }, 0, 60000);
+        }, 60000, 60000);
     }
 
     @Override
