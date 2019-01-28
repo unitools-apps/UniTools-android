@@ -2,8 +2,8 @@ package com.github.ali77gh.unitools.uI.activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 
 import com.github.ali77gh.unitools.R;
@@ -26,7 +26,7 @@ public class SplashActivity extends AppCompatActivity {
     private void Next() {
         findViewById(android.R.id.content).postDelayed(() -> {
             if (UserInfoRepo.getUserInfo() == null) {
-                startActivity(new Intent(this, WelcomeActivity.class));
+                startActivity(new Intent(this, SelectLangActivity.class));
                 overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out);
             } else {
                 SetupLang();

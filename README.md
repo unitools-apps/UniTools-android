@@ -7,9 +7,23 @@ under heavy development :)
 <br>
 # screen shots
 <p float="left">
-  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/friend.png" height=500 />
-  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/share_classes.png" height=500 />
-  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/home_screen_shot.png" height=500 />
+  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/1.png" height=500 />
+  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/2.png" height=500 />
+  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/3.png" height=500 />
+</p>
+
+<br>
+
+<p float="left">
+  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/4.png" height=500 />
+  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/5.png" height=500 />
+  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/6.png" height=500 />
+</p>
+
+<br>
+
+<p float="left">
+  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/7.png" height=500 />
 </p>
 
 # امکانات

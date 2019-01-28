@@ -5,39 +5,31 @@
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.STORAGE" />
-
-    <!--for make phone silent-->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-
-    <!-- Permission to start Alarm on device reboot -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-
-    <!--storage part-->
+    <uses-permission android:name="android.permission.STORAGE" /> <!-- for make phone silent -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" /> <!-- Permission to start Alarm on device reboot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- storage part -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
-        android:largeHeap="true"
-        android:fullBackupContent="true"
         android:allowBackup="true"
+        android:fullBackupContent="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
-        <!--QR scanner activity -> for setting screen orientation-->
+        <activity android:name=".uI.activities.GuideActivity"></activity>
+        <!-- QR scanner activity -> for setting screen orientation -->
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
             tools:replace="screenOrientation" />
-
         <activity
             android:name=".uI.activities.HomeActivity"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".uI.activities.SplashActivity"
             android:label="uni tools"
@@ -50,13 +42,12 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".uI.activities.WelcomeActivity"
+            android:name=".uI.activities.SelectLangActivity"
             android:noHistory="true"
             android:screenOrientation="portrait" />
-
         <activity
             android:name=".uI.activities.FilePackActivity"
-            android:screenOrientation="portrait"/>
+            android:screenOrientation="portrait" />
 
         <receiver android:name=".uI.widget.ShowNextClassWidget">
             <intent-filter>
@@ -67,9 +58,7 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/show_next_class_widget_info" />
         </receiver>
-
         <receiver android:name=".core.alarm.Alarm15MinRepeat" />
-
     </application>
 
 </manifest>

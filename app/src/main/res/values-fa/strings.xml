@@ -109,6 +109,8 @@
     <string name="started">شروع شده</string>
     <string name="minute_later">دقیقه دیگر</string>
     <string name="there_is_no_class">کلاسی وجور ندارد</string>
+    <string name="select_language">زبان را انتخاب کنید</string>
+    <string name="skip">بلدم</string>
 
     <string-array name="nums">
         <item>۰</item>
@@ -143,4 +145,15 @@
         <item>english</item>
         <item>فارسی</item>
     </string-array>
+
+    <string-array name="guid">
+        <item>در این بخش میتونید کلاسا رویداد های خود را مدیریت کنید</item>
+        <item>به وسیله ی این بارکد میتوانید لیست کلاس های خود را با دوستان خود به اشتراک بزارید</item>
+        <item>در این بخش میتونید با اسکن کردن بارکد از گوشی دوست خود لیست کلاس های او را داشته با شید. (این بخش به اینترنت نیاز ندارد)</item>
+        <item>با اضافه کردن ویجت میتونید بدون باز کردن برنامه از زمان و مکان کلاس بعدی خود مطلع شوید</item>
+        <item>این بخش برای مدیریت عکس هایی که از تخته و جزوه ی دوستاتون میگیرید طراحی شده</item>
+        <item>این بخش هم برای مدیریت صدا هایی است که سر کلاس ها ضبط میکنید</item>
+        <item>در این جا هم میتونید یادداشت هایی در مورد هر کلاس بنویسید</item>
+    </string-array>
+
 </resources>

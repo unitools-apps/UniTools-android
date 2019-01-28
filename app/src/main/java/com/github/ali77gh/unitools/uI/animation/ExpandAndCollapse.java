@@ -14,6 +14,10 @@ public class ExpandAndCollapse {
     private static final int duration = 200;
 
     public static void expand(final View v) {
+        expand(v,true);
+    }
+
+    public static void expand(final View v,boolean fade) {
         v.measure(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         final int targetHeight = v.getMeasuredHeight();
 
@@ -37,12 +41,17 @@ public class ExpandAndCollapse {
         v.startAnimation(a);
 
         //alpha
-        v.setAlpha(0);
-        v.animate().alpha(1).setDuration(duration).start();
-
+        if (fade){
+            v.setAlpha(0);
+            v.animate().alpha(1).setDuration(duration).start();
+        }
     }
 
     public static void collapse(final View v) {
+        collapse(v,true);
+    }
+
+    public static void collapse(final View v,boolean fade) {
         final int initialHeight = v.getMeasuredHeight();
 
         Animation a = new Animation() {
@@ -65,7 +74,10 @@ public class ExpandAndCollapse {
         v.startAnimation(a);
 
         //alpha
-        v.setAlpha(1);
-        v.animate().alpha(0).setDuration(duration).start();
+        if (fade){
+            v.setAlpha(1);
+            v.animate().alpha(0).setDuration(duration).start();
+        }
+
     }
 }
