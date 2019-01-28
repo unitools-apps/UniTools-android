@@ -20,12 +20,6 @@ under heavy development :)
   <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/6.png" height=500 />
 </p>
 
-<br>
-
-<p float="left">
-  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/7.png" height=500 />
-</p>
-
 # امکانات
 <br>
 مدیریت کلاس ها
