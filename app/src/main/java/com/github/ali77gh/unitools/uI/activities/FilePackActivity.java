@@ -27,6 +27,7 @@ import com.github.ali77gh.unitools.core.audio.VoiceRecorder;
 import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
+import com.github.ali77gh.unitools.uI.dialogs.EditDocDialog;
 import com.github.ali77gh.unitools.uI.fragments.FilePackNotesFragment;
 import com.github.ali77gh.unitools.uI.fragments.FilePackPicsFragment;
 import com.github.ali77gh.unitools.uI.fragments.FilePackVoicesFragment;
@@ -47,6 +48,7 @@ import java.util.UUID;
 public class FilePackActivity extends AppCompatActivity {
 
     public static String Path;
+    public String docName;
     public static VoiceRecorder _voiceRecorder = new VoiceRecorder();
 
     private FilePackVoicesFragment filePackVoicesFragment;
@@ -76,6 +78,7 @@ public class FilePackActivity extends AppCompatActivity {
         zoomableParent = findViewById(R.id.zoomview_file_pack_activity);
 
         Path = getIntent().getStringExtra("path");
+        docName = getIntent().getStringExtra("docName");
 
         SetupViewPager();
         SetupFabs();
@@ -141,9 +144,10 @@ public class FilePackActivity extends AppCompatActivity {
     }
 
     private void ShowMenu() {
-        //todo open dialog for -> 1.rename 2.delete 3.export pdf ,...
+        EditDocDialog editDocDialog = new EditDocDialog(this,docName);
+        editDocDialog.show();
+        editDocDialog.setOnDismissListener(dialogInterface -> finish());
     }
-
 
     private void SetupViewPager() {
 
@@ -154,7 +158,7 @@ public class FilePackActivity extends AppCompatActivity {
 
         FilePackPicsFragment filePackPicsFragment = new FilePackPicsFragment();
 
-        filePackPicsFragment.setOnZoomableRequest(path -> ShowZommable(path));
+        filePackPicsFragment.setOnZoomableRequest(path -> ShowZoomable(path));
 
         filePackVoicesFragment = new FilePackVoicesFragment();
         filePackNoteFragment = new FilePackNotesFragment();
@@ -298,7 +302,7 @@ public class FilePackActivity extends AppCompatActivity {
         recreate();
     }
 
-    private void ShowZommable(String path) {
+    private void ShowZoomable(String path) {
 
 
         SubsamplingScaleImageView imageZomable = (SubsamplingScaleImageView) zoomableParent.getChildAt(1);

@@ -6,7 +6,7 @@ package com.github.ali77gh.unitools.data.model;
 
 public class FilePack {
 
-    private String Name;
+    public String Name;
     private int PicCount;
     private int VoiceCount;
 

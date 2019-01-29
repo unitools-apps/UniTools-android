@@ -3,18 +3,17 @@ package com.github.ali77gh.unitools.uI.fragments;
 import android.Manifest;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.os.Bundle;
 import android.support.constraint.ConstraintLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.onlineapi.Promise;
@@ -23,22 +22,21 @@ import com.github.ali77gh.unitools.data.model.FilePack;
 import com.github.ali77gh.unitools.uI.activities.FilePackActivity;
 import com.github.ali77gh.unitools.uI.adapter.StoragePacksListViewAdapter;
 import com.github.ali77gh.unitools.uI.dialogs.AddFilePackDialog;
+import com.github.ali77gh.unitools.uI.dialogs.EditDocDialog;
 
-import java.io.File;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
  * Created by ali on 10/3/18.
  */
 
-public class StorageFragment extends Fragment implements Backable {
+public class DocsFragment extends Fragment implements Backable {
 
     private ConstraintLayout youHaveNoAccess;
     private ListView listView;
 
 
-    public StorageFragment() {
+    public DocsFragment() {
         // Required empty public constructor
     }
 
@@ -52,7 +50,7 @@ public class StorageFragment extends Fragment implements Backable {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_storage, container, false);
+        View view = inflater.inflate(R.layout.fragment_docs, container, false);
 
         listView = view.findViewById(R.id.list_storage_main);
         FloatingActionButton fab = view.findViewById(R.id.fab_storage);
@@ -75,8 +73,17 @@ public class StorageFragment extends Fragment implements Backable {
             Intent intent = new Intent(getActivity(), FilePackActivity.class);
             String folderName = ((TextView) view1.findViewById(R.id.text_storage_item_name)).getText().toString();
             intent.putExtra("path", FilePackProvider.getPathOfPack(folderName));
+            intent.putExtra("docName", folderName);
             startActivity(intent);
         });
+
+        listView.setOnItemLongClickListener((adapterView, view1, i, l) -> {
+            EditDocDialog editDocDialog = new EditDocDialog(getActivity(),FilePackProvider.getFilePacks().get(i).getName());
+            editDocDialog.show();
+            editDocDialog.setOnDismissListener(dialogInterface -> RefreshList());
+            return true;
+        });
+
         listView.setEmptyView(view.findViewById(R.id.text_storage_nothing_to_show));
 
         RefreshList();

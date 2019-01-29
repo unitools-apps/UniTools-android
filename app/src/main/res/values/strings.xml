@@ -115,6 +115,10 @@
     <string name="there_is_no_class">there is no class</string>
     <string name="select_language">select language</string>
     <string name="skip">skip</string>
+    <string name="confirm_delete">confirm delete</string>
+    <string name="are_you_sure_this_will_never_undo">are you sure? this will never undo</string>
+    <string name="edit_doc">edit doc</string>
+    <string name="rename">rename</string>
 
     <string-array name="nums">
         <item>0</item>

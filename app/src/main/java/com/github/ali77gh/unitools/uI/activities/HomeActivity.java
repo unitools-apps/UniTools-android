@@ -19,8 +19,8 @@ import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.NavToViewPagerBinder;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
 import com.github.ali77gh.unitools.uI.fragments.Backable;
+import com.github.ali77gh.unitools.uI.fragments.DocsFragment;
 import com.github.ali77gh.unitools.uI.fragments.SettingsFragment;
-import com.github.ali77gh.unitools.uI.fragments.StorageFragment;
 import com.github.ali77gh.unitools.uI.fragments.WallFragment;
 import com.github.ali77gh.unitools.uI.widget.ShowNextClassWidget;
 import com.google.zxing.integration.android.IntentIntegrator;
@@ -51,12 +51,12 @@ public class HomeActivity extends AppCompatActivity {
         navigation = findViewById(R.id.navigation_home);
 
         WallFragment wallFragment = new WallFragment();
-        StorageFragment storageFragment = new StorageFragment();
+        DocsFragment docsFragment = new DocsFragment();
         SettingsFragment settingsFragment = new SettingsFragment();
 
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
         viewPagerAdapter.AddFragment(wallFragment);
-        viewPagerAdapter.AddFragment(storageFragment);
+        viewPagerAdapter.AddFragment(docsFragment);
         viewPagerAdapter.AddFragment(settingsFragment);
 
         NavToViewPagerBinder.Bind(navigation, viewpager,viewPagerAdapter);
@@ -83,8 +83,8 @@ public class HomeActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
-        if (currentFrag instanceof StorageFragment) {
-            ((StorageFragment) currentFrag).CheckPermission();
+        if (currentFrag instanceof DocsFragment) {
+            ((DocsFragment) currentFrag).CheckPermission();
         }
     }
 

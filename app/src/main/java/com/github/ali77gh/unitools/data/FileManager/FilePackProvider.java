@@ -3,7 +3,6 @@ package com.github.ali77gh.unitools.data.FileManager;
 import android.os.Environment;
 
 import com.github.ali77gh.unitools.data.model.FilePack;
-import com.google.zxing.pdf417.PDF417Writer;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -21,11 +20,11 @@ public class FilePackProvider {
     public static final String PDF_PATH_NAME = "pdf";
 
     private static List<FilePack> _filePacks;
-    private static final String _appPath = Environment.getExternalStorageDirectory() + File.separator + "UniTools";
+    public static final String AppPath = Environment.getExternalStorageDirectory() + File.separator + "UniTools";
 
     public static void Init() {
 
-        File dir = new File(_appPath);
+        File dir = new File(AppPath);
         if (!dir.exists())
             dir.mkdir();
 
@@ -61,7 +60,7 @@ public class FilePackProvider {
     }
 
     public static String getPathOfPack(String name) {
-        return _appPath + File.separator + name;
+        return AppPath + File.separator + name;
     }
 
     public static List<FilePack> getFilePacks() {
@@ -77,11 +76,11 @@ public class FilePackProvider {
     }
 
     public static void CreateFilePack(String name) {
-        File rootDir = new File(_appPath + File.separator + name);
-        File voiceDir = new File(_appPath + File.separator + name + File.separator + VOICE_PATH_NAME);
-        File imageDir = new File(_appPath + File.separator + name + File.separator + IMAGE_PATH_NAME);
-        File notesDir = new File(_appPath + File.separator + name + File.separator + NOTES_PATH_NAME);
-        File pdfDir = new File(_appPath + File.separator + name + File.separator + PDF_PATH_NAME);
+        File rootDir = new File(AppPath + File.separator + name);
+        File voiceDir = new File(AppPath + File.separator + name + File.separator + VOICE_PATH_NAME);
+        File imageDir = new File(AppPath + File.separator + name + File.separator + IMAGE_PATH_NAME);
+        File notesDir = new File(AppPath + File.separator + name + File.separator + NOTES_PATH_NAME);
+        File pdfDir = new File(AppPath + File.separator + name + File.separator + PDF_PATH_NAME);
 
         rootDir.mkdir();
         voiceDir.mkdir();
@@ -89,5 +88,43 @@ public class FilePackProvider {
         notesDir.mkdir();
         pdfDir.mkdir();
         Init();
+    }
+
+    public static void RenameFilePack(String from, String to) {
+        File dirFrom = new File(AppPath + File.separator + from);
+        File dirTo = new File(AppPath + File.separator + to);
+        dirFrom.renameTo(dirTo);
+
+        for (FilePack i : _filePacks) {
+            if (i.getName().equals(from)) {
+                i.Name = to;
+                break;
+            }
+        }
+    }
+
+    public static void DeleteFilePack(String name) {
+        File rootDir = new File(AppPath + File.separator + name);
+        DeleteDir(rootDir);
+
+        for (FilePack i:_filePacks){
+            if (i.getName().equals(name)) {
+                _filePacks.remove(i);
+                break;
+            }
+        }
+    }
+
+    private static void DeleteDir(File file)  {
+
+        for (File childFile : file.listFiles()) {
+
+            if (childFile.isDirectory()) {
+                DeleteDir(childFile);
+            } else {
+                childFile.delete();
+            }
+        }
+        file.delete();
     }
 }

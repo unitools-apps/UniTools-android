@@ -10,8 +10,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.davemorrissey.labs.subscaleview.ImageSource;
-import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.uI.Tools;
 
@@ -59,7 +57,7 @@ public class StoragePacksPicksListViewAdapter extends BaseAdapter {
         ImageView preview = (ImageView) cview.getChildAt(0);
         TextView name = (TextView) cview.getChildAt(1);
 
-        name.setText(String.valueOf(i));
+        name.setText(String.valueOf(i + 1));
 
         new BitmapLoader(file, preview).start();
 
@@ -89,9 +87,9 @@ public class StoragePacksPicksListViewAdapter extends BaseAdapter {
             Bitmap bitmap;
             if (bitmapCache.containsKey(file)) {
                 bitmap = bitmapCache.get(file);
-            }else {
+            } else {
                 bitmap = decodeFile(file, screenWidth, screenWidth);
-                bitmapCache.put(file,bitmap);
+                bitmapCache.put(file, bitmap);
             }
 
             imageView.post(() -> imageView.setImageBitmap(bitmap));
@@ -122,7 +120,7 @@ public class StoragePacksPicksListViewAdapter extends BaseAdapter {
         }
     }
 
-    public void onLowMemory(){
+    public void onLowMemory() {
         bitmapCache.clear();
     }
 }

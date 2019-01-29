@@ -111,6 +111,9 @@
     <string name="there_is_no_class">کلاسی وجور ندارد</string>
     <string name="select_language">زبان را انتخاب کنید</string>
     <string name="skip">بلدم</string>
+    <string name="confirm_delete">تایید حذف</string>
+    <string name="are_you_sure_this_will_never_undo">مطمعنی؟ این عملیات بازگشت پذیر نیست.</string>
+    <string name="rename">تغییر نام</string>
 
     <string-array name="nums">
         <item>۰</item>

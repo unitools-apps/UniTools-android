@@ -1,13 +1,11 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
 import android.app.Activity;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -16,10 +14,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.model.Time;
-import com.github.ali77gh.unitools.data.model.UClass;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 /**
@@ -63,7 +59,12 @@ public class AddEventDialog extends BaseDialog {
 
         SetupSpinners();
 
-        week.setHint(week.getHint() + " (" + String.valueOf(UserInfoRepo.getWeekNumber()) + ") ");
+        if (UserInfoRepo.getWeekNumber() > 100) {
+            week.setHint(week.getHint());
+        } else {
+            week.setHint(week.getHint() + " (" + String.valueOf(UserInfoRepo.getWeekNumber()) + ") ");
+        }
+
 
         hour.addTextChangedListener(new TextWatcher() {
             @Override
