@@ -1,58 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.github.ali77gh.unitools.uI.activities.SelectLangActivity">
 
-
     <ImageView
         android:id="@+id/image_select_lang_logo"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="320dp"
+        android:layout_height="320dp"
         android:elevation="13dp"
-        android:src="@mipmap/ic_launcher_foreground"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
-        android:text="@string/select_language"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:src="@drawable/set_lang_logo"
+        android:layout_marginRight="39dp"
+        android:layout_marginTop="18dp"
+        android:layout_gravity="center"/>
 
     <Button
         android:id="@+id/btn_select_lang_en"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:layout_marginRight="100dp"
+        android:layout_marginTop="120dp"
+        android:layout_marginRight="50dp"
         android:text="English"
-        android:textAllCaps="false"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:background="@drawable/shape_primary_btn"
+        android:layout_gravity="center"
+        android:textColor="@color/background_darker"
+        android:textAllCaps="false" />
 
     <Button
         android:id="@+id/btn_select_lang_fa"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="100dp"
-        android:layout_marginTop="300dp"
-        android:text="فارسی"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:layout_marginTop="120dp"
+        android:layout_marginLeft="50dp"
+        android:background="@drawable/shape_primary_btn"
+        android:layout_gravity="center"
+        android:textColor="@color/background_darker"
+        android:text="فارسی" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -73,4 +57,4 @@
             android:backgroundTint="@color/primary" />
     </LinearLayout>
 
-</android.support.constraint.ConstraintLayout>
+</FrameLayout>

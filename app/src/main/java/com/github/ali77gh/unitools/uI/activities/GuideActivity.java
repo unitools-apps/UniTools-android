@@ -48,7 +48,7 @@ public class GuideActivity extends AppCompatActivity {
         dots.attachToViewPager(slider);
         info.post(() -> info.setText(getResources().getStringArray(R.array.guid)[0]));
 
-        title.postDelayed(() -> title.animate().alpha(1).setDuration(300).start(),700);
+        title.postDelayed(() -> title.animate().alpha(1).setDuration(300).start(),1500);
 
         slider.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override

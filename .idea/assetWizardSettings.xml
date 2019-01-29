@@ -51,7 +51,7 @@
                                             <option name="values">
                                               <map>
                                                 <entry key="color" value="000000" />
-                                                <entry key="scalingPercent" value="91" />
+                                                <entry key="scalingPercent" value="68" />
                                               </map>
                                             </option>
                                           </PersistentState>
@@ -63,7 +63,7 @@
                                     <map>
                                       <entry key="backgroundAssetType" value="COLOR" />
                                       <entry key="backgroundColor" value="b7212d" />
-                                      <entry key="foregroundImage" value="$PROJECT_DIR$/../Unitools-g/logo3.png" />
+                                      <entry key="foregroundImage" value="$PROJECT_DIR$/../Unitools-g/logo/logo-icon.png" />
                                       <entry key="legacyIconShape" value="CIRCLE" />
                                       <entry key="webIconShape" value="CIRCLE" />
                                     </map>

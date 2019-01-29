@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
@@ -26,21 +25,18 @@ public class SelectLangActivity extends AppCompatActivity {
         setContentView(R.layout.activity_select_lang);
         ContextHolder.initStatics(this);
 
-        ImageView logo = findViewById(R.id.image_select_lang_logo);
         Button fa = findViewById(R.id.btn_select_lang_fa);
         Button en = findViewById(R.id.btn_select_lang_en);
         View cicleAnim = findViewById(R.id.view_select_lang_circle_anim);
 
         en.setOnClickListener(view -> {
             InitConfig("en");
-            logo.animate().rotation(360).setDuration(250).start();
-            logo.postDelayed(this::ShowGuid, 260);
+            ShowGuid();
         });
 
         fa.setOnClickListener(view -> {
             InitConfig("fa");
-            logo.animate().rotation(360).setDuration(250).start();
-            logo.postDelayed(this::ShowGuid, 260);
+            ShowGuid();
         });
 
         cicleAnim.postDelayed(() -> SelectLanguageCollapse.collapse(cicleAnim), 500);
