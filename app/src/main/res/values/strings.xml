@@ -1,12 +1,8 @@
 <resources>
     <string name="app_name">UniTools</string>
+    <string name="app_version">1.0.0</string>
 
     <string name="LangID">"en</string>
-
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="home_fragment">home fragment</string>
-
-    <string name="app_version">version 0.0.2 beta</string>
 
     <string name="about_text">felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar </string>
     <string name="thanks">با تشکر از : \n ناهید قهرمانی  \n صبیح فرهنگی  \n سعید زبده  \n و هومن میرشفیی \n و....   </string>
@@ -108,7 +104,7 @@
     <string name="enter_storage_name">enter storage name</string>
     <string name="exists">already exist</string>
     <string name="open_on_github">open on github</string>
-    <string name="open_on_play_store">open on play store</string>
+    <string name="open_on_website">open website</string>
     <string name="share_classes">share classes</string>
     <string name="started">started</string>
     <string name="minute_later">minute later</string>

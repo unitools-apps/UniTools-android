@@ -225,6 +225,37 @@
                 android:alpha=".5"
                 android:background="@color/black" />
 
+            <!--send feedback-->
+            <LinearLayout
+                android:id="@+id/linear_settings_guide"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/setting_guid"
+                    android:tint="@color/black" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/guide"
+                    android:textColor="@color/black" />
+
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:alpha=".5"
+                android:background="@color/black" />
+
             <!--about us-->
             <LinearLayout
                 android:id="@+id/linear_settings_about_us"

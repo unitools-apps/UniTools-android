@@ -201,26 +201,26 @@
                 android:background="@color/white">
 
                 <LinearLayout
-                    android:id="@+id/linear_about_play_store"
+                    android:id="@+id/linear_about_website"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:background="@color/white"
                     android:orientation="vertical">
 
                     <ImageView
-                        android:layout_width="120px"
-                        android:layout_height="120px"
+                        android:layout_width="200dp"
+                        android:layout_height="200dp"
                         android:layout_gravity="center"
                         android:layout_marginBottom="10dp"
                         android:layout_marginTop="10dp"
-                        android:src="@drawable/about_play_store_logo" />
+                        android:src="@drawable/website_qr" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_marginBottom="10dp"
-                        android:text="@string/open_on_play_store"
+                        android:text="@string/open_on_website"
                         android:textColor="@color/black"
                         android:textSize="20dp" />
                 </LinearLayout>

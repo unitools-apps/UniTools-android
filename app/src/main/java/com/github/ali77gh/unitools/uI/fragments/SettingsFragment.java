@@ -16,11 +16,11 @@ import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.data.model.UserInfo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
+import com.github.ali77gh.unitools.uI.activities.GuideActivity;
 import com.github.ali77gh.unitools.uI.dialogs.DonateUsDialog;
 import com.github.ali77gh.unitools.uI.dialogs.SendFeedbackDialog;
 import com.github.ali77gh.unitools.uI.dialogs.SettingsAlarmConfigDialog;
@@ -60,6 +60,7 @@ public class SettingsFragment extends Fragment implements Backable {
         aboutUsBtn = cView.findViewById(R.id.linear_settings_about_us);
         aboutUs = cView.findViewById(R.id.layout_settings_about);
         LinearLayout reminder = cView.findViewById(R.id.linear_settings_reminder);
+        LinearLayout guide = cView.findViewById(R.id.linear_settings_guide);
         LinearLayout donateUs = cView.findViewById(R.id.linear_settings_donate_us);
         LinearLayout sendFeedback = cView.findViewById(R.id.linear_settings_feedback);
 
@@ -70,6 +71,11 @@ public class SettingsFragment extends Fragment implements Backable {
             UserInfo ui = UserInfoRepo.getUserInfo();
             ui.AutoSilent = b;
             UserInfoRepo.setUserInfo(ui);
+        });
+
+        guide.setOnClickListener(v -> {
+            startActivity(new Intent(getActivity(), GuideActivity.class));
+            getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
         });
 
         donateUs.setOnClickListener(view -> new DonateUsDialog(getActivity()).show());
@@ -138,9 +144,9 @@ public class SettingsFragment extends Fragment implements Backable {
     private void SetupAboutUs() {
 
         LinearLayout github = aboutUs.findViewById(R.id.linear_about_github);
-        LinearLayout playStore = aboutUs.findViewById(R.id.linear_about_play_store);
+        LinearLayout website = aboutUs.findViewById(R.id.linear_about_website);
         github.setOnClickListener(view -> OpenGithub());
-        playStore.setOnClickListener(view -> OpenPlayStore());
+        website.setOnClickListener(view -> OpenWebsite());
         aboutUsBtn.setOnClickListener(view -> {
             aboutUs.setAlpha(0);
             aboutUs.setVisibility(View.VISIBLE);
@@ -185,8 +191,8 @@ public class SettingsFragment extends Fragment implements Backable {
         startActivity(browserIntent);
     }
 
-    private void OpenPlayStore() {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://todoPlayStoreLinkHere"));
+    private void OpenWebsite() {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://unitools-apps.github.io/Website/"));
         startActivity(browserIntent);
     }
 

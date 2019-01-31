@@ -15,6 +15,7 @@ import android.widget.RemoteViews;
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
 import com.github.ali77gh.unitools.core.alarm.Alarm15MinRepeat;
+import com.github.ali77gh.unitools.core.onlineapi.CheckForUpdate;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.NavToViewPagerBinder;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
@@ -43,6 +44,7 @@ public class HomeActivity extends AppCompatActivity {
         ContextHolder.initStatics(this);
         SetupNav();
         SetupAlarms();
+        CheckForUpdate.Check();
     }
 
     private void SetupNav() {
