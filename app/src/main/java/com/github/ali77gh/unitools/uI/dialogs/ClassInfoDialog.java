@@ -64,7 +64,7 @@ public class ClassInfoDialog extends BaseDialog {
             absentCount.setText(String.valueOf(uClass.apcent));
             UserInfoRepo.UpdateClass(uClass);
             if (uClass.apcent < 3)
-                absentCount.setTextColor(ContextHolder.getAppContext().getResources().getColor(R.color.white));
+                absentCount.setTextColor(ContextHolder.getAppContext().getResources().getColor(R.color.black));
         });
 
         //load info

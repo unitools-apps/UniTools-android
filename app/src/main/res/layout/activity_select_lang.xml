@@ -24,7 +24,7 @@
         android:text="English"
         android:background="@drawable/shape_primary_btn"
         android:layout_gravity="center"
-        android:textColor="@color/background_darker"
+        android:textColor="@color/white"
         android:textAllCaps="false" />
 
     <Button
@@ -35,7 +35,7 @@
         android:layout_marginLeft="50dp"
         android:background="@drawable/shape_primary_btn"
         android:layout_gravity="center"
-        android:textColor="@color/background_darker"
+        android:textColor="@color/white"
         android:text="فارسی" />
 
     <LinearLayout

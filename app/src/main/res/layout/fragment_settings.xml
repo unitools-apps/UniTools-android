@@ -25,7 +25,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:src="@drawable/settings_language"
-                    android:tint="@color/white" />
+                    android:tint="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -33,7 +33,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="20dp"
                     android:text="@string/language"
-                    android:textColor="@color/white"/>
+                    android:textColor="@color/black"/>
 
                 <Space
                     android:layout_width="0dp"
@@ -56,7 +56,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:alpha=".5"
-                android:background="@color/white" />
+                android:background="@color/black" />
 
             <!--theme (not visible)-->
             <LinearLayout
@@ -71,7 +71,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:src="@drawable/settings_theme"
-                    android:tint="@color/white" />
+                    android:tint="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -79,7 +79,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="20dp"
                     android:text="@string/theme"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -88,7 +88,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:alpha=".5"
-                android:background="@color/white" />
+                android:background="@color/black" />
 
             <!--notification-->
             <LinearLayout
@@ -104,7 +104,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:src="@drawable/settings_notifi"
-                    android:tint="@color/white" />
+                    android:tint="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -112,7 +112,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="20dp"
                     android:text="@string/reminder"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -120,7 +120,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:alpha=".5"
-                android:background="@color/white" />
+                android:background="@color/black" />
 
             <!--silent-->
             <LinearLayout
@@ -135,7 +135,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:src="@drawable/settings_auto_silent"
-                    android:tint="@color/white" />
+                    android:tint="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -143,7 +143,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="20dp"
                     android:text="@string/auto_silent"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
                 <Space
                     android:layout_width="0dp"
@@ -162,7 +162,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:alpha=".5"
-                android:background="@color/white" />
+                android:background="@color/black" />
 
             <!--backup-->
             <LinearLayout
@@ -176,7 +176,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:src="@drawable/settings_backup"
-                    android:tint="@color/white" />
+                    android:tint="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -184,7 +184,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="20dp"
                     android:text="@string/backup"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -192,7 +192,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:alpha=".5"
-                android:background="@color/white" />
+                android:background="@color/black" />
 
             <!--send feedback-->
             <LinearLayout
@@ -207,7 +207,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:src="@drawable/settings_feedback"
-                    android:tint="@color/white" />
+                    android:tint="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -215,7 +215,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="20dp"
                     android:text="@string/send_feedback"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -223,7 +223,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:alpha=".5"
-                android:background="@color/white" />
+                android:background="@color/black" />
 
             <!--about us-->
             <LinearLayout
@@ -238,7 +238,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:src="@drawable/settings_info"
-                    android:tint="@color/white" />
+                    android:tint="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -246,7 +246,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="20dp"
                     android:text="@string/about_us"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -254,7 +254,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:alpha=".5"
-                android:background="@color/white" />
+                android:background="@color/black" />
 
             <!--donate us-->
             <LinearLayout
@@ -269,7 +269,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="16dp"
                     android:src="@drawable/settings_coffee"
-                    android:tint="@color/white" />
+                    android:tint="@color/black" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -277,7 +277,7 @@
                     android:layout_gravity="center_vertical"
                     android:layout_marginStart="20dp"
                     android:text="@string/buy_me_a_coffee"
-                    android:textColor="@color/white" />
+                    android:textColor="@color/black" />
 
             </LinearLayout>
 
@@ -285,7 +285,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="1px"
                 android:alpha=".5"
-                android:background="@color/white" />
+                android:background="@color/black" />
 
         </LinearLayout>
     </ScrollView>

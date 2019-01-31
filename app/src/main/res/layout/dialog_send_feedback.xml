@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:background="@color/background_darker">
+    android:background="@color/white">
 
 
     <LinearLayout
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:text="@string/send_feedback"
-            android:textColor="@color/white"/>
+            android:textColor="@color/black"/>
 
         <ProgressBar
             android:id="@+id/progress_settings_feedback_dialog"
@@ -41,13 +41,13 @@
             android:layout_height="25dp"
             android:src="@drawable/settings_feedback"
             android:layout_gravity="center_vertical"
-            android:tint="@color/white"/>
+            android:tint="@color/black"/>
 
         <EditText
             android:id="@+id/text_settings_feedback_dialog_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:hint="@string/enter_your_feedback"
             android:textColorHint="@color/gray_middle"
             android:layout_margin="10dp"/>
@@ -68,7 +68,7 @@
             android:background="@null"
             android:text="@string/cancel"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/btn_settings_feedback_dialog_send"
@@ -77,7 +77,7 @@
             android:background="@null"
             android:text="@string/send"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
     </LinearLayout>
 

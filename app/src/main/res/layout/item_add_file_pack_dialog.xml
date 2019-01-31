@@ -10,14 +10,14 @@
         android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:buttonTint="@color/white"/>
+        android:buttonTint="@color/black"/>
 
     <TextView
         app:layout_constraintStart_toEndOf="@id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="filan"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_marginStart="10dp"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"/>

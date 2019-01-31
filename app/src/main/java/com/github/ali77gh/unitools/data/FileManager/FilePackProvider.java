@@ -46,7 +46,7 @@ public class FilePackProvider {
         }
     }
 
-    private static void Sort(File[] files) {
+    public static void Sort(File[] files) {
         File temp;
         for (int i = 0; i < files.length - 1; i++) {
             for (int j = i + 1; j < files.length; j++) {
@@ -107,7 +107,7 @@ public class FilePackProvider {
         File rootDir = new File(AppPath + File.separator + name);
         DeleteDir(rootDir);
 
-        for (FilePack i:_filePacks){
+        for (FilePack i : _filePacks) {
             if (i.getName().equals(name)) {
                 _filePacks.remove(i);
                 break;
@@ -115,7 +115,7 @@ public class FilePackProvider {
         }
     }
 
-    private static void DeleteDir(File file)  {
+    private static void DeleteDir(File file) {
 
         for (File childFile : file.listFiles()) {
 
@@ -126,5 +126,31 @@ public class FilePackProvider {
             }
         }
         file.delete();
+    }
+
+    public static String getMaxPicCode(final String path) {
+        File picsDir = new File(path + File.separator + FilePackProvider.IMAGE_PATH_NAME);
+
+        if (!picsDir.isDirectory()) throw new RuntimeException("is not dir");
+
+        String max = "0";
+        for (File f : picsDir.listFiles()) {
+            if (Integer.valueOf(f.getName().substring(0,f.getName().indexOf("."))) > Integer.valueOf(max))
+                max = f.getName().substring(0,f.getName().indexOf("."));
+        }
+        return String.valueOf(Integer.valueOf(max) + 1);
+    }
+
+    public static String getMaxVoiceCode(final String path) {
+        File picsDir = new File(path + File.separator + FilePackProvider.VOICE_PATH_NAME);
+
+        if (!picsDir.isDirectory()) throw new RuntimeException("is not dir");
+
+        String max = "0";
+        for (File f : picsDir.listFiles()) {
+            if (Integer.valueOf(f.getName().substring(0,f.getName().indexOf("."))) > Integer.valueOf(max))
+                max = f.getName().substring(0,f.getName().indexOf("."));
+        }
+        return String.valueOf(Integer.valueOf(max) + 1);
     }
 }

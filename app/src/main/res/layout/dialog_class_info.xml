@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:background="@color/background_darker">
+    android:background="@color/white">
 
 
     <FrameLayout
@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/class_info"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <ImageView
             android:id="@+id/image_home_class_info_dialog_edit"
@@ -24,7 +24,7 @@
             android:layout_height="30dp"
             android:layout_gravity="end|center_vertical"
             android:src="@drawable/all_edit"
-            android:tint="@color/white"
+            android:tint="@color/black"
             android:padding="6dp"
             android:layout_marginEnd="10dp"/>
     </FrameLayout>
@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:layout_marginTop="16dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"/>
 
@@ -52,7 +52,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/apcents"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:layout_marginStart="10dp"/>
 
         <Space
@@ -65,7 +65,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/all_add"
-            android:tint="@color/white"
+            android:tint="@color/black"
             android:padding="5dp"
             android:layout_marginEnd="5dp"/>
 
@@ -73,7 +73,7 @@
             android:id="@+id/text_home_class_info_dialog_absent_count"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:text="0"
             android:paddingTop="2dp"/>
 
@@ -82,7 +82,7 @@
             android:layout_width="30dp"
             android:layout_height="30dp"
             android:src="@drawable/all_remove"
-            android:tint="@color/white"
+            android:tint="@color/black"
             android:padding="5dp"
             android:layout_marginStart="5dp"/>
 
@@ -102,7 +102,7 @@
             android:background="@null"
             android:text="@string/cancel"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/btn_home_class_info_dialog_delete"

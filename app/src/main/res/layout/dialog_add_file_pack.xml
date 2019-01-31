@@ -3,7 +3,7 @@
     android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
-    android:background="@color/background_darker"
+    android:background="@color/white"
     android:orientation="vertical">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="10dp"
         android:text="@string/add_doc"
-        android:textColor="@color/white" />
+        android:textColor="@color/black" />
 
    <AutoCompleteTextView
        android:id="@+id/text_add_file_pack_dialog_input"
@@ -22,7 +22,7 @@
        android:hint="@string/enter_storage_name"
        android:singleLine="true"
        android:lines="1"
-       android:textColor="@color/white"
+       android:textColor="@color/black"
        android:textColorHint="@color/gray_middle"/>
 
 
@@ -40,7 +40,7 @@
             android:background="@null"
             android:text="@string/cancel"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/btn_add_file_pack_dialog_add_all"
@@ -49,7 +49,7 @@
             android:background="@null"
             android:text="@string/add"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
     </LinearLayout>
 

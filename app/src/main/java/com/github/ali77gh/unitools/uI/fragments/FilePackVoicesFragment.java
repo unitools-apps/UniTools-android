@@ -13,13 +13,14 @@ import android.widget.ListView;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.audio.VoicePlayer;
+import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.uI.activities.FilePackActivity;
-import com.github.ali77gh.unitools.uI.adapter.StoragePacksPicksListViewAdapter;
 import com.github.ali77gh.unitools.uI.adapter.StoragePacksVoicesListViewAdapter;
+import com.github.ali77gh.unitools.uI.dialogs.FileActionDialog;
 
 import java.io.File;
+import java.net.URLConnection;
 
-import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.IMAGE_PATH_NAME;
 import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.VOICE_PATH_NAME;
 
 /**
@@ -58,7 +59,7 @@ public class FilePackVoicesFragment extends Fragment {
     public void RefreshList() {
         File[] voices = new File(FilePackActivity.Path + File.separator + VOICE_PATH_NAME).listFiles();
 
-        Sort(voices);
+        FilePackProvider.Sort(voices);
 
         StoragePacksVoicesListViewAdapter adapter = new StoragePacksVoicesListViewAdapter(getActivity(), voices);
         listView.setAdapter(adapter);
@@ -70,19 +71,34 @@ public class FilePackVoicesFragment extends Fragment {
             intent.setDataAndType(data, "audio/mp3");
             startActivity(intent);
         });
+
+        listView.setOnItemLongClickListener((parent, view, position, id) -> {
+            new FileActionDialog(getActivity(), voices[position], new FileActionDialog.FileActionDialogListener() {
+                @Override
+                public void onDelete() {
+                    voices[position].delete();
+                    RefreshList();
+                }
+
+                @Override
+                public void onShare() {
+                    shareFile(voices[position]);
+                    RefreshList();
+                }
+            }).show();
+            return true;
+        });
     }
 
+    private void shareFile(File file) {
 
-    private void Sort(File[] files) {
-        File temp;
-        for (int i = 0; i < files.length - 1; i++) {
-            for (int j = i + 1; j < files.length; j++) {
-                if (files[i].lastModified() > files[j].lastModified()) {
-                    temp = files[i];
-                    files[i] = files[j];
-                    files[j] = temp;
-                }
-            }
-        }
+        Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+
+        intentShareFile.setType(URLConnection.guessContentTypeFromName(file.getName()));
+        intentShareFile.putExtra(Intent.EXTRA_STREAM,
+                Uri.parse("file://"+file.getAbsolutePath()));
+
+        startActivity(Intent.createChooser(intentShareFile, "Share File"));
+
     }
 }

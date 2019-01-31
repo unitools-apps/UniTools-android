@@ -23,7 +23,7 @@
                     android:id="@+id/linear_wall_week_number_parent"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/background_darker"
+                    android:background="@color/white"
                     android:orientation="vertical">
 
                     <TextView
@@ -33,7 +33,7 @@
                         android:layout_gravity="center"
                         android:layout_margin="16dp"
                         android:text="@string/week_number_5"
-                        android:textColor="@color/white" />
+                        android:textColor="@color/black" />
 
                     <ProgressBar
                         android:id="@+id/progress_login"
@@ -64,7 +64,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/background_darker"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -77,7 +77,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:text="@string/classes"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="18sp" />
 
                     <Space
@@ -93,7 +93,7 @@
                         android:layout_marginEnd="11dp"
                         android:padding="7dp"
                         android:src="@drawable/all_share"
-                        android:tint="@color/white" />
+                        android:tint="@color/black" />
 
                     <ImageView
                         android:id="@+id/btn_wall_add_class"
@@ -103,7 +103,7 @@
                         android:layout_marginEnd="16dp"
                         android:padding="5dp"
                         android:src="@drawable/all_add"
-                        android:tint="@color/white" />
+                        android:tint="@color/black" />
                 </LinearLayout>
 
 
@@ -115,7 +115,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:text="@string/there_is_no_class_yet"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <!--need parent for fix expand collapse effect-->
@@ -139,7 +139,7 @@
                     android:layout_height="40dp"
                     android:padding="7dp"
                     android:src="@drawable/wall_arrow_down"
-                    android:tint="@color/white" />
+                    android:tint="@color/black" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -155,7 +155,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/background_darker"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -168,7 +168,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:text="@string/events"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="18sp" />
 
                     <Space
@@ -184,7 +184,7 @@
                         android:layout_marginEnd="16dp"
                         android:padding="5dp"
                         android:src="@drawable/all_add"
-                        android:tint="@color/white" />
+                        android:tint="@color/black" />
 
                 </LinearLayout>
 
@@ -196,7 +196,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:text="@string/you_have_no_event_yet"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <!--need parent for fix expand collapse effect-->
@@ -219,7 +219,7 @@
                     android:layout_height="40dp"
                     android:padding="7dp"
                     android:src="@drawable/wall_arrow_down"
-                    android:tint="@color/white" />
+                    android:tint="@color/black" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>
@@ -235,7 +235,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@color/background_darker"
+                android:background="@color/white"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -248,7 +248,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="16dp"
                         android:text="@string/friends"
-                        android:textColor="@color/white"
+                        android:textColor="@color/black"
                         android:textSize="18sp" />
 
                     <Space
@@ -264,7 +264,7 @@
                         android:layout_marginEnd="16dp"
                         android:padding="5dp"
                         android:src="@drawable/all_add"
-                        android:tint="@color/white" />
+                        android:tint="@color/black" />
 
                 </LinearLayout>
 
@@ -276,7 +276,7 @@
                     android:layout_marginLeft="16dp"
                     android:layout_marginRight="16dp"
                     android:text="@string/you_have_no_friends_yet"
-                    android:textColor="@color/white"
+                    android:textColor="@color/black"
                     android:textSize="14sp" />
 
                 <!--need parent for fix expand collapse effect-->
@@ -299,7 +299,7 @@
                     android:layout_height="40dp"
                     android:padding="7dp"
                     android:src="@drawable/wall_arrow_down"
-                    android:tint="@color/white" />
+                    android:tint="@color/black" />
 
             </LinearLayout>
         </android.support.v7.widget.CardView>

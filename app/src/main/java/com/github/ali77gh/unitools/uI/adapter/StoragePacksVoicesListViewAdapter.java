@@ -51,7 +51,7 @@ public class StoragePacksVoicesListViewAdapter extends BaseAdapter {
         TextView name = (TextView) cview.getChildAt(1);
         TextView time = (TextView) cview.getChildAt(2);
 
-        name.setText(String.valueOf(i + 1));
+        name.setText(String.valueOf(voice.getName().substring(0,voice.getName().indexOf("."))));
         time.setText(getAudioFileTime(voice));
 
         if (i == nowPlayingPos) {

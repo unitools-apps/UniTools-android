@@ -27,7 +27,7 @@
         android:layout_marginStart="140dp"
         android:text="@string/guide"
         android:textSize="20sp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:alpha="0"/>
 
     

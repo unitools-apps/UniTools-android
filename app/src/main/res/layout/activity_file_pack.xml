@@ -12,7 +12,7 @@
         android:background="@color/primary"
         app:layout_constraintTop_toTopOf="parent"
         app:tabIndicatorColor="@color/background"
-        app:tabTextColor="@color/background_darker" />
+        app:tabTextColor="@color/white" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager_file_pack_activity"

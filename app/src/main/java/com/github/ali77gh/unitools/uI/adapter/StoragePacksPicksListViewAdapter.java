@@ -57,7 +57,7 @@ public class StoragePacksPicksListViewAdapter extends BaseAdapter {
         ImageView preview = (ImageView) cview.getChildAt(0);
         TextView name = (TextView) cview.getChildAt(1);
 
-        name.setText(String.valueOf(i + 1));
+        name.setText(String.valueOf(file.getName().substring(0,file.getName().indexOf("."))));
 
         new BitmapLoader(file, preview).start();
 

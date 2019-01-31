@@ -4,7 +4,7 @@
     android:layout_height="wrap_content"
     android:layout_gravity="center"
     android:orientation="vertical"
-    android:background="@color/background_darker">
+    android:background="@color/white">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -15,7 +15,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:text="@string/event_info"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <ImageView
             android:id="@+id/image_home_event_info_dialog_edit"
@@ -23,7 +23,7 @@
             android:layout_height="30dp"
             android:layout_gravity="end|center_vertical"
             android:src="@drawable/all_edit"
-            android:tint="@color/white"
+            android:tint="@color/black"
             android:padding="6dp"
             android:layout_marginEnd="10dp"/>
     </FrameLayout>
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:textSize="16sp"
         android:layout_marginTop="16dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"/>
 
@@ -46,7 +46,7 @@
         android:layout_marginTop="10dp"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        android:textColor="@color/white"
+        android:textColor="@color/black"
         android:padding="10dp"
         android:hint="@string/write_describe"
         android:textColorHint="@color/gray_middle"
@@ -66,7 +66,7 @@
             android:background="@null"
             android:text="@string/cancel"
             android:textAllCaps="false"
-            android:textColor="@color/white" />
+            android:textColor="@color/black" />
 
         <Button
             android:id="@+id/btn_home_event_info_dialog_delete"

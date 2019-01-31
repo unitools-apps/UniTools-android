@@ -39,7 +39,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Locale;
-import java.util.UUID;
 
 /**
  * Created by ali77gh on 12/13/18.
@@ -105,7 +104,7 @@ public class FilePackActivity extends AppCompatActivity {
                         filePackVoicesFragment.RefreshList();
                         cFab.setImageDrawable(getDrawable(R.drawable.storage_mic));
                     } else {
-                        _voiceRecorder.Record(Path + File.separator + FilePackProvider.VOICE_PATH_NAME + File.separator + UUID.randomUUID().toString() + ".mp3");
+                        _voiceRecorder.Record(Path + File.separator + FilePackProvider.VOICE_PATH_NAME + File.separator + FilePackProvider.getMaxVoiceCode(Path) + ".mp3");
                         cFab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
                     }
                 });
@@ -128,7 +127,7 @@ public class FilePackActivity extends AppCompatActivity {
     private void OpenCamera() {
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        File photo = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + UUID.randomUUID().toString());
+        File photo = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".bmp");
         Uri imageUri = Uri.fromFile(photo);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(intent, CAMERA_REQUEST_CODE);
@@ -144,7 +143,7 @@ public class FilePackActivity extends AppCompatActivity {
     }
 
     private void ShowMenu() {
-        EditDocDialog editDocDialog = new EditDocDialog(this,docName);
+        EditDocDialog editDocDialog = new EditDocDialog(this, docName);
         editDocDialog.show();
         editDocDialog.setOnDismissListener(dialogInterface -> finish());
     }
@@ -228,7 +227,7 @@ public class FilePackActivity extends AppCompatActivity {
             Uri uri = data.getData();
             File from = new File(getRealPathFromURI(uri));
             Log.d("uri", uri.getPath());
-            File to = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + UUID.randomUUID().toString());
+            File to = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".bmp");
             try {
                 copyFileUsingStream(from, to);
             } catch (IOException e) {

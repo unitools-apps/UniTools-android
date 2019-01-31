@@ -20,7 +20,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         android:text="@string/there_is_nothing_to_show"
-        android:textColor="@color/white"/>
+        android:textColor="@color/black"/>
 
     <android.support.design.widget.FloatingActionButton
         android:id="@+id/fab_storage"
@@ -44,7 +44,7 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/background_darker"
+            android:background="@color/white"
             android:alpha=".9"
             android:clickable="true"/>
 
@@ -53,7 +53,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/you_should_allow_access_to_files"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintRight_toRightOf="parent"

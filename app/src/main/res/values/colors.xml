@@ -4,9 +4,9 @@
     <color name="primary_dark">#811627</color>
     <color name="accent">#b71f38</color>
     <color name="background">#f1f1f1</color>
-    <color name="background_darker">#ffffff</color>
-    <color name="black">#000000</color>
-    <color name="white">#2b2b2b</color>
+    <color name="white">#ffffff</color>
+    <color name="black_darker">#000000</color>
+    <color name="black">#2b2b2b</color>
     <color name="gray_middle">#949494</color>
     <color name="red">#d90000</color>
     <color name="green">#00b600</color>

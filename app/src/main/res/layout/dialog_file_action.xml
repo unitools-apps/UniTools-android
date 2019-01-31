@@ -7,20 +7,38 @@
     android:orientation="vertical">
 
     <TextView
+        android:id="@+id/txt_file_action_dialog_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="10dp"
-        android:text="@string/confirm_delete"
-        android:textColor="@color/black" />
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_gravity="center" />
 
-    <TextView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:gravity="center_horizontal"
-        android:text="@string/are_you_sure_this_will_never_undo"
-        android:textColor="@color/black" />
+        android:orientation="horizontal"
+        android:gravity="center">
+
+        <ImageView
+            android:id="@+id/btn_file_action_dialog_delete"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/all_delete"
+            android:padding="7dp"
+            android:layout_marginEnd="10dp"/>
+
+        <ImageView
+            android:id="@+id/btn_file_action_dialog_share"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:src="@drawable/all_share"
+            android:padding="7dp"/>
+
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -30,22 +48,13 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_settings_donate_dialog_cancel"
+            android:id="@+id/btn_file_action_dialog_back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@null"
             android:text="@string/cancel"
             android:textAllCaps="false"
             android:textColor="@color/black" />
-
-        <Button
-            android:id="@+id/btn_settings_donate_dialog_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:text="@string/delete"
-            android:textAllCaps="false"
-            android:textColor="@color/red" />
 
     </LinearLayout>
 

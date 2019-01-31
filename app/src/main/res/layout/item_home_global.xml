@@ -5,7 +5,7 @@
     android:layout_height="wrap_content"
     android:textSize="14sp"
     android:gravity="start"
-    android:textColor="@color/white"
+    android:textColor="@color/black"
     android:padding="15dp"
     android:ellipsize="end"
     android:singleLine="true"
