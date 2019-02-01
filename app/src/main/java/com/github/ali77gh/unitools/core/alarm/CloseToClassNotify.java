@@ -21,16 +21,16 @@ import java.util.List;
  * Created by ali77gh on 11/25/18.
  */
 
-public class CloseToClassAlert {
+class CloseToClassNotify {
 
     static void on15Min(Context context){
         ContextHolder.initStatics(context);
         List<UClass> classes = UserInfoRepo.getUserInfo().Classes;
         Sort.SortClass(classes);
-        PushNotifi(context,classes.get(0));
+        PushNotify(context,classes.get(0));
     }
 
-    private static void PushNotifi(Context context, UClass nextClass) {
+    private static void PushNotify(Context context, UClass nextClass) {
 
         UserInfo ui = UserInfoRepo.getUserInfo();
         if (ui.NotificationMode == UserInfo.NOTIFICATION_NOTHING) return;
@@ -41,12 +41,13 @@ public class CloseToClassAlert {
 
         String title = context.getString(R.string.next_class_is_close);
         String body = Translator.getUClassReadable(nextClass);
-        int icon = R.mipmap.ic_launcher;
 
         NotificationManager NM = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification notify = new Notification.Builder
-                (context).setContentTitle(title).setContentText(body).
-                setContentTitle(title).setSmallIcon(icon).build();
+        Notification notify = new Notification.Builder(context)
+                .setContentTitle(title)
+                .setContentText(body)
+                .setSmallIcon(R.drawable.notification_icon)
+                .build();
 
         if (ui.NotificationMode == UserInfo.NOTIFICATION_WITH_SOUND)
             notify.sound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);

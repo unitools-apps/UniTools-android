@@ -48,13 +48,13 @@
         android:elevation="10dp"
         android:gravity="center">
 
-        <View
+        <ImageView
             android:id="@+id/view_select_lang_circle_anim"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="center"
-            android:background="@drawable/all_circle"
-            android:backgroundTint="@color/primary" />
+            android:src="@drawable/all_circle"
+            android:tint="@color/primary" />
     </LinearLayout>
 
 </FrameLayout>

@@ -46,7 +46,7 @@ public class GuideActivity extends AppCompatActivity {
         slider.setAdapter(new ImageAdapter(this, images));
 
         dots.attachToViewPager(slider);
-        info.post(() -> info.setText(getResources().getStringArray(R.array.guid)[0]));
+        info.post(() -> info.setText(getResources().getStringArray(R.array.guide)[0]));
 
         title.postDelayed(() -> title.animate().alpha(1).setDuration(300).start(),1500);
 
@@ -58,7 +58,7 @@ public class GuideActivity extends AppCompatActivity {
 
             @Override
             public void onPageSelected(int i) {
-                info.postDelayed(() -> info.setText(getResources().getStringArray(R.array.guid)[i]),300);
+                info.postDelayed(() -> info.setText(getResources().getStringArray(R.array.guide)[i]),300);
             }
 
             @Override

@@ -55,8 +55,8 @@
     <string name="qr_code">QR code</string>
     <string name="paste">paste</string>
     <string name="week_number_5">week number 5</string>
-    <string name="reminder">reminder</string>
-    <string name="auto_silent">auto silent</string>
+    <string name="reminder">reminder (beta)</string>
+    <string name="auto_silent">auto silent (beta)</string>
     <string name="copy">Copy</string>
     <string name="classes">classes</string>
     <string name="next">next: </string>
@@ -150,7 +150,7 @@
         <item>فارسی</item>
     </string-array>
 
-    <string-array name="guid">
+    <string-array name="guide">
         <item>this part is for ...............</item>
         <item>this part is for ...........................</item>
         <item>this part is for ....................</item>

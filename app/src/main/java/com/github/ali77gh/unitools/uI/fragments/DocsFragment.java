@@ -118,11 +118,6 @@ public class DocsFragment extends Fragment implements Backable {
         RefreshList();
     }
 
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        //todo destroy
-    }
 
     public void CheckPermission() {
 

@@ -21,8 +21,6 @@ import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.data.model.UserInfo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.activities.GuideActivity;
-import com.github.ali77gh.unitools.uI.dialogs.DonateUsDialog;
-import com.github.ali77gh.unitools.uI.dialogs.SendFeedbackDialog;
 import com.github.ali77gh.unitools.uI.dialogs.SettingsAlarmConfigDialog;
 
 import java.util.Locale;
@@ -61,8 +59,8 @@ public class SettingsFragment extends Fragment implements Backable {
         aboutUs = cView.findViewById(R.id.layout_settings_about);
         LinearLayout reminder = cView.findViewById(R.id.linear_settings_reminder);
         LinearLayout guide = cView.findViewById(R.id.linear_settings_guide);
-        LinearLayout donateUs = cView.findViewById(R.id.linear_settings_donate_us);
-        LinearLayout sendFeedback = cView.findViewById(R.id.linear_settings_feedback);
+//        LinearLayout donateUs = cView.findViewById(R.id.linear_settings_donate_us);
+//        LinearLayout sendFeedback = cView.findViewById(R.id.linear_settings_feedback);
 
         reminder.setOnClickListener(view -> new SettingsAlarmConfigDialog(getActivity()).show());
 
@@ -78,9 +76,9 @@ public class SettingsFragment extends Fragment implements Backable {
             getActivity().overridePendingTransition(android.R.anim.fade_in,android.R.anim.fade_out);
         });
 
-        donateUs.setOnClickListener(view -> new DonateUsDialog(getActivity()).show());
-
-        sendFeedback.setOnClickListener(view -> new SendFeedbackDialog(getActivity()).show());
+//        donateUs.setOnClickListener(view -> new DonateUsDialog(getActivity()).show());
+//
+//        sendFeedback.setOnClickListener(view -> new SendFeedbackDialog(getActivity()).show());
 
 
         SetupLanguage();
@@ -153,13 +151,6 @@ public class SettingsFragment extends Fragment implements Backable {
             aboutUs.animate().alpha(1).start();
         });
     }
-
-    @Override
-    public void onDetach() {
-        super.onDetach();
-        //todo destroy
-    }
-
 
     private boolean IsFirstTimeL = false;
 

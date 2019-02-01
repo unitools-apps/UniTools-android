@@ -2,10 +2,9 @@ package com.github.ali77gh.unitools.uI.activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.DocumentsContract;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -13,11 +12,9 @@ import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
@@ -32,11 +29,10 @@ import com.github.ali77gh.unitools.uI.fragments.FilePackNotesFragment;
 import com.github.ali77gh.unitools.uI.fragments.FilePackPicsFragment;
 import com.github.ali77gh.unitools.uI.fragments.FilePackVoicesFragment;
 
+import java.io.BufferedOutputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.Locale;
 
@@ -225,59 +221,23 @@ public class FilePackActivity extends AppCompatActivity {
 
             //gallery
             Uri uri = data.getData();
-            File from = new File(getRealPathFromURI(uri));
-            Log.d("uri", uri.getPath());
-            File to = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".bmp");
             try {
-                copyFileUsingStream(from, to);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
+                File file = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".bmp");
+                OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
+                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
+                os.close();
             } catch (IOException e) {
-                Toast.makeText(this, "error while copy file", Toast.LENGTH_LONG).show();
-                throw new RuntimeException("err while copy file -> IOException:" + e.getMessage());
+                e.printStackTrace();
             }
             SetupViewPager();
         } else if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK) {
             //camera
-
             SetupViewPager();
         }
     }
 
-    public String getRealPathFromURI(Uri uri) {
 
-        String filePath = "";
-        String wholeID = DocumentsContract.getDocumentId(uri);
-
-        // Split at colon, use second item in the array
-        String id = wholeID.split(":")[1];
-
-        String[] column = {MediaStore.Images.Media.DATA};
-
-        // where id is equal to
-        String sel = MediaStore.Images.Media._ID + "=?";
-
-        Cursor cursor = getContentResolver().query(MediaStore.Images.Media.EXTERNAL_CONTENT_URI,
-                column, sel, new String[]{id}, null);
-
-        int columnIndex = cursor.getColumnIndex(column[0]);
-
-        if (cursor.moveToFirst()) {
-            filePath = cursor.getString(columnIndex);
-        }
-        cursor.close();
-        return filePath;
-
-
-    }
-
-    private static void copyFileUsingStream(File source, File dest) throws IOException {
-        try (InputStream is = new FileInputStream(source); OutputStream os = new FileOutputStream(dest)) {
-            byte[] buffer = new byte[1024];
-            int length;
-            while ((length = is.read(buffer)) > 0) {
-                os.write(buffer, 0, length);
-            }
-        }
-    }
 
     @Override
     protected void onResume() {

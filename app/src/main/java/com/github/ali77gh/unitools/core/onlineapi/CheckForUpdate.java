@@ -16,7 +16,6 @@ import java.net.URL;
 
 public class CheckForUpdate {
 
-
     public static void Check() {
 
         new Thread(() -> {
@@ -33,7 +32,7 @@ public class CheckForUpdate {
 
                 in.close();
                 if (!ContextHolder.getAppContext().getString(R.string.app_version).equals(page.toString()))
-                    PushNotifi();
+                    PushNotify();
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -41,14 +40,14 @@ public class CheckForUpdate {
         }).start();
     }
 
-    private static void PushNotifi() {
+    private static void PushNotify() {
 
         NotificationManager NM = (NotificationManager) ContextHolder.getAppContext().getSystemService(Context.NOTIFICATION_SERVICE);
         Notification notify = new Notification.Builder
                 (ContextHolder.getAppContext())
                 .setContentTitle("UniTools update available")
                 .setContentText("click to open website")
-                .setSmallIcon(R.drawable.logo_icon).build();
+                .setSmallIcon(R.drawable.notification_icon).build();
 
         //put link on notification click
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://unitools-apps.github.io/Website/"));

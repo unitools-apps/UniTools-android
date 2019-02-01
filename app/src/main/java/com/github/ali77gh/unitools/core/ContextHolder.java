@@ -3,7 +3,6 @@ package com.github.ali77gh.unitools.core;
 import android.content.Context;
 
 import com.github.ali77gh.unitools.data.repo.EventRepo;
-import com.github.ali77gh.unitools.data.repo.FileRepo;
 import com.github.ali77gh.unitools.data.repo.FriendRepo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
@@ -22,7 +21,6 @@ public class ContextHolder {
 
     public static void initStatics(Context context) {
         EventRepo.init(context);
-        FileRepo.init(context);
         FriendRepo.init(context);
         UserInfoRepo.init(context);
         AppContext = context;

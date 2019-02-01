@@ -1,13 +1,11 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.ClipboardManager;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 
@@ -58,7 +56,7 @@ public class ShareClassesDialog extends BaseDialog {
 
         copy.setOnClickListener(view -> {
             ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-            clipboardManager.setText(new Gson().toJson(me));//todo replace with setPrimaryClip()
+            clipboardManager.setText(new Gson().toJson(me));
             dismiss();
         });
 

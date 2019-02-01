@@ -16,7 +16,7 @@ import java.util.List;
  * Created by ali77gh on 11/25/18.
  */
 
-public class Silent {
+class Silent {
 
     private static int classCount = 120; // 2 hours
 
@@ -33,8 +33,7 @@ public class Silent {
         if (!ui.AutoSilent) return;
 
         int def = nextClass.time.getMins() - DateTimeTools.getCurrentTime().getMins();
-        int defConfig = classCount; // 2 hours
-        if (def > defConfig || def < 0) { // todo
+        if (def > classCount || def < 0) {
             SilentManager.Silent(context);
         } else {
             SilentManager.Normal(context);
