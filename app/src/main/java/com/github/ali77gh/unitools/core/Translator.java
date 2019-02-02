@@ -46,16 +46,6 @@ public class Translator {
         int currentDayOfWeek = DateTimeTools.getCurrentDayOfWeek();
         int currentWeek = UserInfoRepo.getWeekNumber();
 
-        String day;
-        if (currentDayOfWeek == event.time.dayOfWeek) {
-            day = context.getString(R.string.today);
-        } else if (currentDayOfWeek + 1 == event.time.dayOfWeek |
-                (currentDayOfWeek == 6 & 0 == event.time.dayOfWeek)) {
-            day = context.getString(R.string.tomorrow);
-        } else {
-            day = getDayString(event.time.dayOfWeek);
-        }
-
         String week;
         if (currentWeek == event.WeekNumber) {
             week = context.getString(R.string.this_week);
@@ -69,6 +59,20 @@ public class Translator {
             week = context.getString(R.string.passed) + " : " + context.getString(R.string.week) + " " + String.valueOf(event.WeekNumber);
         } else {
             throw new RuntimeException("un excepted week number");
+        }
+
+        String day;
+        if (currentWeek == event.WeekNumber){
+            if (currentDayOfWeek == event.time.dayOfWeek) {
+                day = context.getString(R.string.today);
+            } else if (currentDayOfWeek + 1 == event.time.dayOfWeek |
+                    (currentDayOfWeek == 6 & 0 == event.time.dayOfWeek)) {
+                day = context.getString(R.string.tomorrow);
+            } else {
+                day = getDayString(event.time.dayOfWeek);
+            }
+        } else {
+            day = getDayString(event.time.dayOfWeek);
         }
 
         return week + " " + day + " " + event.time.toString() + " " + event.what;

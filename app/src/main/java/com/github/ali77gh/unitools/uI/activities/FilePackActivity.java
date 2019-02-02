@@ -4,7 +4,9 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
@@ -34,6 +36,7 @@ import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.util.Locale;
 
 /**
@@ -121,6 +124,16 @@ public class FilePackActivity extends AppCompatActivity {
     }
 
     private void OpenCamera() {
+
+        //to fix android 7+ crash
+        if(Build.VERSION.SDK_INT>=24){
+            try{
+                Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
+                m.invoke(null);
+            }catch(Exception e){
+                e.printStackTrace();
+            }
+        }
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         File photo = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".bmp");

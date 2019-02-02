@@ -97,7 +97,7 @@
     <string name="note">یادداشت</string>
     <string name="write_here">این جا بنویسید</string>
     <string name="there_is_nothing_to_show">چیزی برای نمایش وجود ندارد</string>
-    <string name="apcents">غیبت ها</string>
+    <string name="absents">غیبت ها</string>
     <string name="pay">پرداخت</string>
     <string name="how_match_to_pay">مبلغ (تومن)</string>
     <string name="donate_programmer_of_this_app_to_improve_app_and_add_more_features">به برنامه نویس این اپ کمک کنید تا شاهد ویژگی های جدید در نسخه های بعدی باشید</string>
@@ -116,6 +116,8 @@
     <string name="confirm_delete">تایید حذف</string>
     <string name="are_you_sure_this_will_never_undo">مطمعنی؟ این عملیات بازگشت پذیر نیست.</string>
     <string name="rename">تغییر نام</string>
+    <string name="edit_doc">ویرایش جزوه</string>
+    <string name="open_app_again_reverse">open app again</string>  <!--this should be english-->
 
     <string-array name="nums">
         <item>۰</item>

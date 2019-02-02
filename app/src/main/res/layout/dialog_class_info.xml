@@ -51,7 +51,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/apcents"
+            android:text="@string/absents"
             android:textColor="@color/black"
             android:layout_marginStart="10dp"/>
 

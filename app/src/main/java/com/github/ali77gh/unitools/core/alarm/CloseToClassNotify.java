@@ -26,6 +26,7 @@ class CloseToClassNotify {
     static void on15Min(Context context){
         ContextHolder.initStatics(context);
         List<UClass> classes = UserInfoRepo.getUserInfo().Classes;
+        if(classes.size()==0) return;
         Sort.SortClass(classes);
         PushNotify(context,classes.get(0));
     }

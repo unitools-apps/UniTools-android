@@ -95,7 +95,7 @@
     <string name="note">note</string>
     <string name="write_here">write here</string>
     <string name="there_is_nothing_to_show">there is nothing to show</string>
-    <string name="apcents">apcents</string>
+    <string name="absents">absents</string>
     <string name="pay">pay</string>
     <string name="how_match_to_pay">how match to pay</string>
     <string name="donate_programmer_of_this_app_to_improve_app_and_add_more_features">donate programmer of this app to improve app and add more features</string>
@@ -115,6 +115,7 @@
     <string name="are_you_sure_this_will_never_undo">are you sure? this will never undo</string>
     <string name="edit_doc">edit doc</string>
     <string name="rename">rename</string>
+    <string name="open_app_again_reverse">اپلیکیشن را دوباره باز کنید</string> <!--this should be persian-->
 
     <string-array name="nums">
         <item>0</item>
@@ -151,13 +152,13 @@
     </string-array>
 
     <string-array name="guide">
-        <item>this part is for ...............</item>
-        <item>this part is for ...........................</item>
-        <item>this part is for ....................</item>
-        <item>this part is for ........................</item>
-        <item>this part is for ...........................</item>
-        <item>this part is for ......................</item>
-        <item>this part is for .................................</item>
+        <item>in this part you can manage your classes and events.</item>
+        <item>you can share your classes list via qr code.</item>
+        <item>in this part you can get your friend classes via scanning qr code. (this part do not need internet connection)</item>
+        <item>you can use widget to see your next class.</item>
+        <item>this part designed for manage your pictures that you take from whiteboard and your friends pamphlets.</item>
+        <item>this part designed for manage your voices that you record in class.</item>
+        <item>in this part you can write note about your class</item>
     </string-array>
 
 </resources>
