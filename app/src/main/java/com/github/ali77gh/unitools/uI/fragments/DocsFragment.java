@@ -78,9 +78,7 @@ public class DocsFragment extends Fragment implements Backable {
         });
 
         listView.setOnItemLongClickListener((adapterView, view1, i, l) -> {
-            EditDocDialog editDocDialog = new EditDocDialog(getActivity(),FilePackProvider.getFilePacks().get(i).getName());
-            editDocDialog.show();
-            editDocDialog.setOnDismissListener(dialogInterface -> RefreshList());
+            new EditDocDialog(getActivity(),FilePackProvider.getFilePacks().get(i).getName(),() -> RefreshList()).show();
             return true;
         });
 

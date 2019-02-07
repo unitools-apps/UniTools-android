@@ -5,16 +5,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.uI.activities.FilePackActivity;
-import com.github.ali77gh.unitools.uI.adapter.StoragePacksPicksListViewAdapter;
+import com.github.ali77gh.unitools.uI.adapter.StoragePacksPicksViewAdapter;
 import com.github.ali77gh.unitools.uI.dialogs.FileActionDialog;
 
 import java.io.File;
@@ -28,11 +31,12 @@ import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.IMAG
 
 public class FilePackPicsFragment extends Fragment {
 
-    private StoragePacksPicksListViewAdapter adapter;
+    private StoragePacksPicksViewAdapter adapter;
 
     private OnZoomableRequest onZoomableRequest;
 
     private ListView listView;
+    private GridView gridView;
     private View nothingToShow;
 
 
@@ -52,26 +56,36 @@ public class FilePackPicsFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_filepack_pics, null);
 
         listView = view.findViewById(R.id.list_file_pack_pic);
+        gridView = view.findViewById(R.id.grid_file_pack_pic);
         nothingToShow = view.findViewById(R.id.text_storage_nothing_to_show);
+        FloatingActionButton switchViewModeFab = view.findViewById(R.id.fab_switch_list_grid_mode);
+
+        switchViewModeFab.setOnClickListener(v -> {
+
+            if (listView.getVisibility()==View.VISIBLE){
+                listView.setVisibility(View.GONE);
+                gridView.setVisibility(View.VISIBLE);
+                switchViewModeFab.setImageDrawable(getActivity().getDrawable(R.drawable.docs_view_option_list));
+            }else {
+                listView.setVisibility(View.VISIBLE);
+                gridView.setVisibility(View.GONE);
+                switchViewModeFab.setImageDrawable(getActivity().getDrawable(R.drawable.docs_view_option_grid));
+            }
+            RefreshList();
+        });
 
         RefreshList();
 
         return view;
     }
 
-    private void RefreshList(){
+    private void RefreshList() {
         File[] images = new File(FilePackActivity.Path + File.separator + IMAGE_PATH_NAME).listFiles();
         FilePackProvider.Sort(images);
 
-        adapter = new StoragePacksPicksListViewAdapter(getActivity(), images);
-        listView.setAdapter(adapter);
-        listView.setEmptyView(nothingToShow);
+        AdapterView.OnItemClickListener onItemClickListener = (parent, view, position, id) -> onZoomableRequest.onRequest(images[position].getPath());
 
-        listView.setOnItemClickListener((adapterView, view1, i, l) -> {
-            onZoomableRequest.onRequest(images[i].getPath());
-        });
-
-        listView.setOnItemLongClickListener((parent, view, position, id) -> {
+        AdapterView.OnItemLongClickListener onItemLongClickListener = (parent, view, position, id) -> {
             new FileActionDialog(getActivity(), images[position], new FileActionDialog.FileActionDialogListener() {
                 @Override
                 public void onDelete() {
@@ -86,7 +100,38 @@ public class FilePackPicsFragment extends Fragment {
                 }
             }).show();
             return true;
-        });
+        };
+
+        if (listView.getVisibility() == View.VISIBLE && gridView.getVisibility() == View.GONE) {
+
+            //clear grid
+            gridView.setAdapter(null);
+
+            //setup list
+
+            adapter = new StoragePacksPicksViewAdapter(getActivity(), images,StoragePacksPicksViewAdapter.List);
+            listView.setAdapter(adapter);
+            listView.setEmptyView(nothingToShow);
+            listView.setOnItemClickListener(onItemClickListener);
+            listView.setOnItemLongClickListener(onItemLongClickListener);
+        } else if (listView.getVisibility() == View.GONE && gridView.getVisibility() == View.VISIBLE) {
+
+            //clear list
+            listView.setAdapter(null);
+
+            //setup list
+
+            adapter = new StoragePacksPicksViewAdapter(getActivity(), images,StoragePacksPicksViewAdapter.Grid);
+            gridView.setAdapter(adapter);
+            gridView.setEmptyView(nothingToShow);
+            gridView.setOnItemClickListener(onItemClickListener);
+            gridView.setOnItemLongClickListener(onItemLongClickListener);
+
+        } else {
+            throw new RuntimeException("invalid view mode");
+        }
+
+
     }
 
     private void shareFile(File file) {
@@ -95,7 +140,7 @@ public class FilePackPicsFragment extends Fragment {
 
         intentShareFile.setType(URLConnection.guessContentTypeFromName(file.getName()));
         intentShareFile.putExtra(Intent.EXTRA_STREAM,
-                Uri.parse("file://"+file.getAbsolutePath()));
+                Uri.parse("file://" + file.getAbsolutePath()));
 
         startActivity(Intent.createChooser(intentShareFile, "Share File"));
     }
@@ -103,7 +148,7 @@ public class FilePackPicsFragment extends Fragment {
     @Override
     public void onLowMemory() {
         super.onLowMemory();
-        if (adapter!=null){
+        if (adapter != null) {
             adapter.onLowMemory();
         }
     }
@@ -112,7 +157,7 @@ public class FilePackPicsFragment extends Fragment {
         this.onZoomableRequest = onZoomableRequest;
     }
 
-    public interface OnZoomableRequest{
+    public interface OnZoomableRequest {
         void onRequest(String path);
     }
 }

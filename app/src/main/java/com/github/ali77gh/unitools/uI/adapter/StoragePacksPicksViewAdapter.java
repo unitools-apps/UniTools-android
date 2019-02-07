@@ -18,16 +18,21 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.util.HashMap;
 
-public class StoragePacksPicksListViewAdapter extends BaseAdapter {
+public class StoragePacksPicksViewAdapter extends BaseAdapter {
 
+    public static final int List = 0;
+    public static final int Grid = 1;
+
+    private int mode;
     private Activity _activity;
     private File[] files;
     private int screenWidth;
 
-    public StoragePacksPicksListViewAdapter(Activity activity, File[] filePacks) {
-
+    public StoragePacksPicksViewAdapter(Activity activity, File[] filePacks,int mode) {
         this._activity = activity;
         this.files = filePacks;
+        this.mode = mode;
+
         DisplayMetrics displayMetrics = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
         screenWidth = displayMetrics.widthPixels;
@@ -51,7 +56,10 @@ public class StoragePacksPicksListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
-        ViewGroup cview = (ViewGroup) _activity.getLayoutInflater().inflate(R.layout.item_file_pack_pics, null);
+        ViewGroup cview;
+        if (mode==List) cview = (ViewGroup) _activity.getLayoutInflater().inflate(R.layout.item_file_pack_pics_list, null);
+        else if (mode==Grid) cview = (ViewGroup) _activity.getLayoutInflater().inflate(R.layout.item_file_pack_pics_grid, null);
+        else throw new RuntimeException("invalid mode");
         File file = files[i];
 
         ImageView preview = (ImageView) cview.getChildAt(0);
@@ -88,7 +96,11 @@ public class StoragePacksPicksListViewAdapter extends BaseAdapter {
             if (bitmapCache.containsKey(file)) {
                 bitmap = bitmapCache.get(file);
             } else {
-                bitmap = decodeFile(file, screenWidth, screenWidth);
+                if (mode == List)
+                    bitmap = decodeFile(file, screenWidth, screenWidth);
+                else if (mode==Grid)
+                    bitmap = decodeFile(file, Tools.DpToPixel(90), Tools.DpToPixel(90));
+                else throw new RuntimeException("invalid mode");
                 bitmapCache.put(file, bitmap);
             }
 

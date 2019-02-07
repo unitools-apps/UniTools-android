@@ -9,7 +9,20 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:dividerHeight="0dp"
-        android:divider="@null"/>
+        android:divider="@null" />
+
+    <GridView xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/grid_file_pack_pic"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:columnWidth="90dp"
+        android:padding="10dp"
+        android:numColumns="auto_fit"
+        android:verticalSpacing="10dp"
+        android:horizontalSpacing="10dp"
+        android:stretchMode="columnWidth"
+        android:gravity="center"
+        android:visibility="gone"/>
 
     <TextView
         android:id="@+id/text_storage_nothing_to_show"
@@ -21,4 +34,15 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+    
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab_switch_list_grid_mode"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_margin="25dp"
+        android:tint="@color/background"
+        android:src="@drawable/docs_view_option_grid"
+        app:fabSize="mini"/>
 </android.support.constraint.ConstraintLayout>

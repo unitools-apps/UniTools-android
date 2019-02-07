@@ -152,9 +152,7 @@ public class FilePackActivity extends AppCompatActivity {
     }
 
     private void ShowMenu() {
-        EditDocDialog editDocDialog = new EditDocDialog(this, docName);
-        editDocDialog.show();
-        editDocDialog.setOnDismissListener(dialogInterface -> finish());
+        new EditDocDialog(this, docName,() -> finish()).show();
     }
 
     private void SetupViewPager() {

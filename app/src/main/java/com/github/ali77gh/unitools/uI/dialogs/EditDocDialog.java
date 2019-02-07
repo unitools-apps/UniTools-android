@@ -13,10 +13,12 @@ import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 public class EditDocDialog extends BaseDialog {
 
     private String name;
+    private OnSomethingChanged onSomethingChanged;
 
-    public EditDocDialog(@NonNull Activity activity, String name) {
+    public EditDocDialog(@NonNull Activity activity, String name,OnSomethingChanged onSomethingChanged) {
         super(activity);
         this.name = name;
+        this.onSomethingChanged = onSomethingChanged;
     }
 
     @Override
@@ -36,14 +38,20 @@ public class EditDocDialog extends BaseDialog {
         delete.setOnClickListener(view -> {
             new ConfirmDeleteDialog(getActivity(), () -> {
                 FilePackProvider.DeleteFilePack(name);
+                onSomethingChanged.onSomethingChanged();
                 dismiss();
             }).show();
         });
 
         rename.setOnClickListener(view -> {
             FilePackProvider.RenameFilePack(name, newName.getText().toString());
+            onSomethingChanged.onSomethingChanged();
             dismiss();
         });
+    }
+
+    public interface OnSomethingChanged{
+        void onSomethingChanged();
     }
 
 }
