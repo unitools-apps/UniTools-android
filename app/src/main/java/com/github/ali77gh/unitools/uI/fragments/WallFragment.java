@@ -22,6 +22,7 @@ import com.github.ali77gh.unitools.data.model.UClass;
 import com.github.ali77gh.unitools.data.repo.EventRepo;
 import com.github.ali77gh.unitools.data.repo.FriendRepo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
+import com.github.ali77gh.unitools.uI.adapter.WallFriendAdapter;
 import com.github.ali77gh.unitools.uI.animation.ExpandAndCollapse;
 import com.github.ali77gh.unitools.uI.dialogs.AddClassDialog;
 import com.github.ali77gh.unitools.uI.dialogs.AddEventDialog;
@@ -285,32 +286,16 @@ public class WallFragment extends Fragment implements Backable {
 
     private void SetupFriendsList() {
         friendsFirstRow.setText(getString(R.string.you_have_no_friends_yet));
-        List<String> friendsString = new ArrayList<>();
+
         List<Friend> friends = FriendRepo.getAll();
-
-        for (Friend friend : friends) {
-            if (friends.indexOf(friend) == 0) friendsFirstRow.setText(friend.name);
-            else friendsString.add(friend.name);
-        }
-        ArrayAdapter<String> friendsStringAdapter = new ArrayAdapter<>(getActivity(), R.layout.item_home_global, new ArrayList<>(friendsString));
-        friendsList.setAdapter(friendsStringAdapter);
-
-        friendsFirstRow.setOnClickListener(view -> {
-
-            if (friends.size() == 0) return;
-
-            if (friends.size() > 0)
-                new FriendInfoDialog(getActivity(), friends.get(0), () -> {
-                    //on delete
-                    FriendRepo.Remove(friends.get(0).id);
-                    SetupFriendsList();
-                }).show();
-        });
+        if (friends.size() == 0) return;
+        friendsFirstRow.setText("");
+        friendsList.setAdapter(new WallFriendAdapter(getActivity(), friends));
 
         friendsList.setOnItemClickListener((adapterView, view, i, l) -> {
-            new FriendInfoDialog(getActivity(), friends.get(i + 1), () -> {
+            new FriendInfoDialog(getActivity(), friends.get(i), () -> {
                 //on delete
-                FriendRepo.Remove(friends.get(i + 1).id);
+                FriendRepo.Remove(friends.get(i).id);
                 SetupFriendsList();
             }).show();
         });

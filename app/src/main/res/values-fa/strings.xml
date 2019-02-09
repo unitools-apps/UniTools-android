@@ -117,7 +117,8 @@
     <string name="are_you_sure_this_will_never_undo">مطمعنی؟ این عملیات بازگشت پذیر نیست.</string>
     <string name="rename">تغییر نام</string>
     <string name="edit_doc">ویرایش جزوه</string>
-    <string name="open_app_again_reverse">open app again</string>  <!--this should be english-->
+    <string name="open_app_again_reverse">open app again</string>
+    <string name="available_today">امروز هست</string>  <!--this should be english-->
 
     <string-array name="nums">
         <item>۰</item>

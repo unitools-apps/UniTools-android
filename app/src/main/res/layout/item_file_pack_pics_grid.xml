@@ -22,7 +22,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:background="@color/background"
-        android:alpha="0.6"
+        android:alpha="0.8"
         android:gravity="center"
         android:textColor="@color/black_darker" />
 

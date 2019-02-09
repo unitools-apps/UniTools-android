@@ -115,7 +115,8 @@
     <string name="are_you_sure_this_will_never_undo">are you sure? this will never undo</string>
     <string name="edit_doc">edit doc</string>
     <string name="rename">rename</string>
-    <string name="open_app_again_reverse">اپلیکیشن را دوباره باز کنید</string> <!--this should be persian-->
+    <string name="open_app_again_reverse">اپلیکیشن را دوباره باز کنید</string>
+    <string name="available_today">available today</string> <!--this should be persian-->
 
     <string-array name="nums">
         <item>0</item>
