@@ -117,6 +117,7 @@
     <string name="rename">rename</string>
     <string name="open_app_again_reverse">اپلیکیشن را دوباره باز کنید</string>
     <string name="available_today">available today</string> <!--this should be persian-->
+    <string name="pdf">pdf</string>
 
     <string-array name="nums">
         <item>0</item>

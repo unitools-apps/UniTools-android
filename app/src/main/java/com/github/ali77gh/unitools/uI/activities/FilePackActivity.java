@@ -2,18 +2,20 @@ package com.github.ali77gh.unitools.uI.activities;
 
 import android.content.Intent;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
+import android.database.Cursor;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.provider.MediaStore;
+import android.provider.OpenableColumns;
 import android.support.annotation.Nullable;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
@@ -28,13 +30,14 @@ import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
 import com.github.ali77gh.unitools.uI.dialogs.EditDocDialog;
 import com.github.ali77gh.unitools.uI.fragments.FilePackNotesFragment;
+import com.github.ali77gh.unitools.uI.fragments.FilePackPdfFragment;
 import com.github.ali77gh.unitools.uI.fragments.FilePackPicsFragment;
 import com.github.ali77gh.unitools.uI.fragments.FilePackVoicesFragment;
 
-import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.util.Locale;
@@ -49,15 +52,19 @@ public class FilePackActivity extends AppCompatActivity {
     public String docName;
     public static VoiceRecorder _voiceRecorder = new VoiceRecorder();
 
+    private FilePackPicsFragment filePackPicsFragment;
     private FilePackVoicesFragment filePackVoicesFragment;
     private FilePackNotesFragment filePackNoteFragment;
+    private FilePackPdfFragment filePackPdfFragment;
 
     private final int CAMERA_REQUEST_CODE = 0;
     private final int GALLERY_REQUEST_CODE = 1;
+    private final int PDF_REQUEST_CODE = 2;
 
     private final int PICS = 0;
     private final int VOICES = 1;
     private final int NOTE = 2;
+    private final int PDF = 3;
     private int _currentPage = PICS;//first page
 
     private FloatingActionButton cFab;
@@ -79,10 +86,10 @@ public class FilePackActivity extends AppCompatActivity {
         docName = getIntent().getStringExtra("docName");
 
         SetupViewPager();
-        SetupFabs();
+        SetupFabsClicks();
     }
 
-    private void SetupFabs() {
+    private void SetupFabsClicks() {
 
         cFab = findViewById(R.id.center_fab_file_pack_activity);
         rFab = findViewById(R.id.right_fab_file_pack_activity);
@@ -116,21 +123,25 @@ public class FilePackActivity extends AppCompatActivity {
                 cFab.setOnClickListener(view -> {
                     filePackNoteFragment.Save();
                 });
-                lFab.setOnClickListener(view -> {
-                    //dont delete this
+                break;
+
+            case PDF:
+                cFab.setOnClickListener(v -> {
+                    ImportPdf();
                 });
                 break;
+
         }
     }
 
     private void OpenCamera() {
 
         //to fix android 7+ crash
-        if(Build.VERSION.SDK_INT>=24){
-            try{
+        if (Build.VERSION.SDK_INT >= 24) {
+            try {
                 Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
                 m.invoke(null);
-            }catch(Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
         }
@@ -151,8 +162,27 @@ public class FilePackActivity extends AppCompatActivity {
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_REQUEST_CODE);
     }
 
+    private void ImportPdf() {
+        // ACTION_OPEN_DOCUMENT is the intent to choose a file via the system's file
+        // browser.
+        Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
+
+        // Filter to only show results that can be "opened", such as a
+        // file (as opposed to a list of contacts or timezones)
+        intent.addCategory(Intent.CATEGORY_OPENABLE);
+
+        // Filter to show only images, using the image MIME data type.
+        // If one wanted to search for ogg vorbis files, the type would be "audio/ogg".
+        // To search for all documents available via installed storage providers,
+        // it would be "*/*".
+        intent.setType("application/pdf");
+
+        startActivityForResult(intent, PDF_REQUEST_CODE);
+
+    }
+
     private void ShowMenu() {
-        new EditDocDialog(this, docName,() -> finish()).show();
+        new EditDocDialog(this, docName, () -> finish()).show();
     }
 
     private void SetupViewPager() {
@@ -162,16 +192,17 @@ public class FilePackActivity extends AppCompatActivity {
 
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
 
-        FilePackPicsFragment filePackPicsFragment = new FilePackPicsFragment();
-
-        filePackPicsFragment.setOnZoomableRequest(path -> ShowZoomable(path));
-
+        filePackPicsFragment = new FilePackPicsFragment();
         filePackVoicesFragment = new FilePackVoicesFragment();
         filePackNoteFragment = new FilePackNotesFragment();
+        filePackPdfFragment = new FilePackPdfFragment();
+
+        filePackPicsFragment.setOnZoomableRequest(path -> ShowZoomable(path));
 
         adapter.AddFragment(filePackPicsFragment, getString(R.string.pics));
         adapter.AddFragment(filePackVoicesFragment, getString(R.string.voices));
         adapter.AddFragment(filePackNoteFragment, getString(R.string.note));
+        adapter.AddFragment(filePackPdfFragment, getString(R.string.pdf));
 
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
@@ -189,7 +220,7 @@ public class FilePackActivity extends AppCompatActivity {
                         lFab.show();
                         rFab.show();
                         _currentPage = PICS;
-                        SetupFabs();
+                        SetupFabsClicks();
                         break;
                     case VOICES:
                         if (_voiceRecorder.isRecording())
@@ -200,7 +231,7 @@ public class FilePackActivity extends AppCompatActivity {
                         lFab.hide();
                         rFab.show();
                         _currentPage = VOICES;
-                        SetupFabs();
+                        SetupFabsClicks();
                         break;
                     case NOTE:
                         cFab.setImageDrawable(getDrawable(R.drawable.note_save));
@@ -208,7 +239,15 @@ public class FilePackActivity extends AppCompatActivity {
                         lFab.hide();
                         rFab.show();
                         _currentPage = NOTE;
-                        SetupFabs();
+                        SetupFabsClicks();
+                        break;
+                    case PDF:
+                        cFab.setImageDrawable(getDrawable(R.drawable.all_add));
+                        cFab.show();
+                        lFab.hide();
+                        rFab.show();
+                        _currentPage = PDF;
+                        SetupFabsClicks();
                         break;
                     default:
                         throw new RuntimeException("invalid tab");
@@ -228,27 +267,55 @@ public class FilePackActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if (requestCode == GALLERY_REQUEST_CODE && resultCode == RESULT_OK && data != null && data.getData() != null) {
+        if (resultCode != RESULT_OK) return;
 
-            //gallery
-            Uri uri = data.getData();
-            try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), uri);
-                File file = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".bmp");
-                OutputStream os = new BufferedOutputStream(new FileOutputStream(file));
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, os);
-                os.close();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            SetupViewPager();
-        } else if (requestCode == CAMERA_REQUEST_CODE && resultCode == RESULT_OK) {
-            //camera
-            SetupViewPager();
+        switch (requestCode) {
+            case GALLERY_REQUEST_CODE:
+                if (data == null || data.getData() == null) return;
+                Uri from = data.getData();
+                File to = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".bmp");
+                CopyFileUsingStream(from, to);
+                filePackPicsFragment.RefreshList();
+                break;
+            case CAMERA_REQUEST_CODE:
+                filePackPicsFragment.RefreshList();
+                break;
+            case PDF_REQUEST_CODE:
+                if (data == null || data.getData() == null) return;
+                Uri fromPdf = data.getData();
+                File toPdf = new File(Path + File.separator + FilePackProvider.PDF_PATH_NAME + File.separator + getFileName(fromPdf)); // already have .pdf
+                CopyFileUsingStream(fromPdf, toPdf);
+                filePackPdfFragment.RefreshList();
+                break;
+            default:
+                throw new RuntimeException("invalid code");
         }
     }
 
+    private String getFileName(Uri uri) {
+        Cursor cursor = getContentResolver().query(uri, null, null, null, null, null);
+        if (cursor != null && cursor.moveToFirst())
+            return cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
+        else return "unnamed";
+    }
 
+    private void CopyFileUsingStream(Uri source, File dest) {
+        InputStream is;
+        OutputStream os;
+        try {
+            is = getContentResolver().openInputStream(source);
+            os = new FileOutputStream(dest);
+            byte[] buffer = new byte[2048];
+            int length;
+            while ((length = is.read(buffer)) > 0) {
+                os.write(buffer, 0, length);
+            }
+            is.close();
+            os.close();
+        } catch (IOException e) {
+            Log.d("self", e.getMessage());
+        }
+    }
 
     @Override
     protected void onResume() {

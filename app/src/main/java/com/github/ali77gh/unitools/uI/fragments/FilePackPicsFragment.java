@@ -79,7 +79,7 @@ public class FilePackPicsFragment extends Fragment {
         return view;
     }
 
-    private void RefreshList() {
+    public void RefreshList() {
         File[] images = new File(FilePackActivity.Path + File.separator + IMAGE_PATH_NAME).listFiles();
         FilePackProvider.Sort(images);
 

@@ -119,6 +119,7 @@
     <string name="edit_doc">ویرایش جزوه</string>
     <string name="open_app_again_reverse">open app again</string>
     <string name="available_today">امروز هست</string>  <!--this should be english-->
+    <string name="pdf">پی دی اف</string>
 
     <string-array name="nums">
         <item>۰</item>
