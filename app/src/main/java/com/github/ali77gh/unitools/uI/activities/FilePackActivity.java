@@ -19,16 +19,20 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
 import com.github.ali77gh.unitools.core.audio.VoiceRecorder;
+import com.github.ali77gh.unitools.core.onlineapi.Promise;
+import com.github.ali77gh.unitools.core.pdf.PDFGen;
 import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
 import com.github.ali77gh.unitools.uI.dialogs.EditDocDialog;
+import com.github.ali77gh.unitools.uI.dialogs.ExportPdfDialog;
 import com.github.ali77gh.unitools.uI.fragments.FilePackNotesFragment;
 import com.github.ali77gh.unitools.uI.fragments.FilePackPdfFragment;
 import com.github.ali77gh.unitools.uI.fragments.FilePackPicsFragment;
@@ -41,6 +45,8 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.util.Locale;
+
+import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.PDF_PATH_NAME;
 
 /**
  * Created by ali77gh on 12/13/18.
@@ -114,9 +120,6 @@ public class FilePackActivity extends AppCompatActivity {
                         cFab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
                     }
                 });
-                lFab.setOnClickListener(view -> {
-                    //dont delete this
-                });
                 break;
 
             case NOTE:
@@ -128,6 +131,11 @@ public class FilePackActivity extends AppCompatActivity {
             case PDF:
                 cFab.setOnClickListener(v -> {
                     ImportPdf();
+                });
+                lFab.setOnClickListener(v -> {
+                    new ExportPdfDialog(this, (name, images) -> {
+                        GeneratePdf(images, name);
+                    }).show();
                 });
                 break;
 
@@ -179,6 +187,26 @@ public class FilePackActivity extends AppCompatActivity {
 
         startActivityForResult(intent, PDF_REQUEST_CODE);
 
+    }
+
+    private void GeneratePdf(File[] images, String name) {
+        File pdfPath = new File(FilePackActivity.Path + File.separator + PDF_PATH_NAME + File.separator + name + ".pdf");
+
+        Toast.makeText(this, getString(R.string.start_generate_pdf), Toast.LENGTH_SHORT).show();
+        PDFGen.Generate(images, pdfPath, new Promise() {
+            @Override
+            public void onFailed(String msg) {
+                runOnUiThread(() -> Toast.makeText(FilePackActivity.this, getString(R.string.pdf_generate_failed), Toast.LENGTH_SHORT).show());
+            }
+
+            @Override
+            public void onSuccess(Object ignore) {
+                runOnUiThread(() -> {
+                    Toast.makeText(FilePackActivity.this, getString(R.string.pdf_saved_to_pdf_list), Toast.LENGTH_SHORT).show();
+                    filePackPdfFragment.RefreshList();
+                });
+            }
+        });
     }
 
     private void ShowMenu() {
@@ -242,9 +270,10 @@ public class FilePackActivity extends AppCompatActivity {
                         SetupFabsClicks();
                         break;
                     case PDF:
-                        cFab.setImageDrawable(getDrawable(R.drawable.all_add));
+                        cFab.setImageDrawable(getDrawable(R.drawable.filepack_pdf_import));
+                        lFab.setImageDrawable(getDrawable(R.drawable.fiepack_pdf_generate));
                         cFab.show();
-                        lFab.hide();
+                        lFab.show();
                         rFab.show();
                         _currentPage = PDF;
                         SetupFabsClicks();

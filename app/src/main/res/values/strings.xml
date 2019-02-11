@@ -87,7 +87,7 @@
     <string name="feedback_recorded">feedback recorded</string>
     <string name="thank_you">thank you</string>
     <string name="add_doc">add doc</string>
-    <string name="select_some_things">select some things</string>
+    <string name="select_somethings">select somethings</string>
     <string name="new_doc_name">new doc name</string>
 
     <string name="pics">pics</string>
@@ -118,6 +118,12 @@
     <string name="open_app_again_reverse">اپلیکیشن را دوباره باز کنید</string>
     <string name="available_today">available today</string> <!--this should be persian-->
     <string name="pdf">pdf</string>
+    <string name="export">export</string>
+    <string name="generate_pdf_from_photos">generate pdf from photos</string>
+    <string name="start_generate_pdf">start generate pdf</string>
+    <string name="pdf_generate_failed">pdf generate failed</string>
+    <string name="pdf_saved_to_pdf_list">pdf saved to pdf list</string>
+    <string name="enter_name">enter name</string>
 
     <string-array name="nums">
         <item>0</item>

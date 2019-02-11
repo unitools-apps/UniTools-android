@@ -89,7 +89,7 @@
     <string name="feedback_recorded">بازخورد ثبت شد</string>
     <string name="thank_you">مرسی</string>
     <string name="add_doc">اضافه کردن جزوه</string>
-    <string name="select_some_things">حداقل یکی را انتخاب کنید</string>
+    <string name="select_somethings">حداقل یکی را انتخاب کنید</string>
     <string name="new_doc_name">نام</string>
 
     <string name="pics">دوربین</string>
@@ -120,6 +120,12 @@
     <string name="open_app_again_reverse">open app again</string>
     <string name="available_today">امروز هست</string>  <!--this should be english-->
     <string name="pdf">پی دی اف</string>
+    <string name="export"> خروجی گرفتن</string>
+    <string name="generate_pdf_from_photos">ساختن پی دی اف از عکس ها</string>
+    <string name="start_generate_pdf">در حال ساختن پی دی اف</string>
+    <string name="pdf_generate_failed">پی دی اف ساخته نشد</string>
+    <string name="pdf_saved_to_pdf_list">پی دی اف به لیست اضافه شد</string>
+    <string name="enter_name">نام را وارد کنید</string>
 
     <string-array name="nums">
         <item>۰</item>

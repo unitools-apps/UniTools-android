@@ -35,6 +35,8 @@ public class FilePackPicsFragment extends Fragment {
 
     private OnZoomableRequest onZoomableRequest;
 
+    private boolean isListView = true;
+
     private ListView listView;
     private GridView gridView;
     private View nothingToShow;
@@ -62,11 +64,13 @@ public class FilePackPicsFragment extends Fragment {
 
         switchViewModeFab.setOnClickListener(v -> {
 
-            if (listView.getVisibility()==View.VISIBLE){
+            if (listView.getVisibility() == View.VISIBLE) {
+                isListView = false;
                 listView.setVisibility(View.GONE);
                 gridView.setVisibility(View.VISIBLE);
                 switchViewModeFab.setImageDrawable(getActivity().getDrawable(R.drawable.docs_view_option_list));
-            }else {
+            } else {
+                isListView = true;
                 listView.setVisibility(View.VISIBLE);
                 gridView.setVisibility(View.GONE);
                 switchViewModeFab.setImageDrawable(getActivity().getDrawable(R.drawable.docs_view_option_grid));
@@ -101,37 +105,36 @@ public class FilePackPicsFragment extends Fragment {
             }).show();
             return true;
         };
-
-        if (listView.getVisibility() == View.VISIBLE && gridView.getVisibility() == View.GONE) {
+        if (isListView) {
 
             //clear grid
             gridView.setAdapter(null);
+            gridView.setVisibility(View.GONE);
 
             //setup list
+            listView.setVisibility(View.VISIBLE);
 
-            adapter = new StoragePacksPicksViewAdapter(getActivity(), images,StoragePacksPicksViewAdapter.List);
+            adapter = new StoragePacksPicksViewAdapter(getActivity(), images, StoragePacksPicksViewAdapter.List);
             listView.setAdapter(adapter);
             listView.setEmptyView(nothingToShow);
             listView.setOnItemClickListener(onItemClickListener);
             listView.setOnItemLongClickListener(onItemLongClickListener);
-        } else if (listView.getVisibility() == View.GONE && gridView.getVisibility() == View.VISIBLE) {
+        } else {
 
             //clear list
             listView.setAdapter(null);
+            listView.setVisibility(View.GONE);
 
-            //setup list
+            //setup grid
+            gridView.setVisibility(View.VISIBLE);
 
-            adapter = new StoragePacksPicksViewAdapter(getActivity(), images,StoragePacksPicksViewAdapter.Grid);
+            adapter = new StoragePacksPicksViewAdapter(getActivity(), images, StoragePacksPicksViewAdapter.Grid);
             gridView.setAdapter(adapter);
             gridView.setEmptyView(nothingToShow);
             gridView.setOnItemClickListener(onItemClickListener);
             gridView.setOnItemLongClickListener(onItemLongClickListener);
 
-        } else {
-            throw new RuntimeException("invalid view mode");
         }
-
-
     }
 
     private void shareFile(File file) {
