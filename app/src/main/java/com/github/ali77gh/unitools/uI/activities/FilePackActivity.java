@@ -243,38 +243,39 @@ public class FilePackActivity extends AppCompatActivity {
             public void onPageSelected(int i) {
                 switch (i) {
                     case PICS:
-                        cFab.setImageDrawable(getDrawable(R.drawable.storage_camera));
                         cFab.show();
                         lFab.show();
                         rFab.show();
+                        cFab.setImageDrawable(getDrawable(R.drawable.storage_camera));
+                        lFab.setImageDrawable(getDrawable(R.drawable.file_pack_gallery));
                         _currentPage = PICS;
                         SetupFabsClicks();
                         break;
                     case VOICES:
+                        cFab.show();
+                        lFab.hide();
+                        rFab.show();
                         if (_voiceRecorder.isRecording())
                             cFab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
                         else
                             cFab.setImageDrawable(getDrawable(R.drawable.storage_mic));
-                        cFab.show();
-                        lFab.hide();
-                        rFab.show();
                         _currentPage = VOICES;
                         SetupFabsClicks();
                         break;
                     case NOTE:
-                        cFab.setImageDrawable(getDrawable(R.drawable.note_save));
                         cFab.show();
                         lFab.hide();
                         rFab.show();
+                        cFab.setImageDrawable(getDrawable(R.drawable.note_save));
                         _currentPage = NOTE;
                         SetupFabsClicks();
                         break;
                     case PDF:
-                        cFab.setImageDrawable(getDrawable(R.drawable.filepack_pdf_import));
-                        lFab.setImageDrawable(getDrawable(R.drawable.fiepack_pdf_generate));
                         cFab.show();
                         lFab.show();
                         rFab.show();
+                        cFab.setImageDrawable(getDrawable(R.drawable.filepack_pdf_import));
+                        lFab.setImageDrawable(getDrawable(R.drawable.fiepack_pdf_generate));
                         _currentPage = PDF;
                         SetupFabsClicks();
                         break;

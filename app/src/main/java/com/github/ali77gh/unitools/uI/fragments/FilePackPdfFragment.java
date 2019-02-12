@@ -57,7 +57,11 @@ public class FilePackPdfFragment extends Fragment {
         ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.item_home_global, names);
         listView.setAdapter(adapter);
 
+        listView.addFooterView(getActivity().getLayoutInflater().inflate(R.layout.layout_list_footer, null));
+
         listView.setOnItemClickListener((parent, view, position, id) -> {
+            if (position == pdfs.length) return;//on footer click
+
             Intent intent = new Intent(Intent.ACTION_VIEW);
             Uri data = Uri.parse("file:///" + pdfs[position].getPath());
             intent.setDataAndType(data, "document/pdf");
@@ -65,6 +69,8 @@ public class FilePackPdfFragment extends Fragment {
         });
 
         listView.setOnItemLongClickListener((parent, view, position, id) -> {
+            if (position == pdfs.length) return false;//on footer click
+
             new FileActionDialog(getActivity(), pdfs[position], new FileActionDialog.FileActionDialogListener() {
                 @Override
                 public void onDelete() {

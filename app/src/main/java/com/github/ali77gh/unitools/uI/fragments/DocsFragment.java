@@ -69,15 +69,21 @@ public class DocsFragment extends Fragment implements Backable {
 
         CheckPermission();
 
+        listView.addFooterView(getActivity().getLayoutInflater().inflate(R.layout.layout_list_footer, null));
+
         listView.setOnItemClickListener((adapterView, view1, i, l) -> {
+            if (!(view1.findViewById(R.id.text_storage_item_name) instanceof TextView))
+                return; //on footer click
             Intent intent = new Intent(getActivity(), FilePackActivity.class);
             String folderName = ((TextView) view1.findViewById(R.id.text_storage_item_name)).getText().toString();
             intent.putExtra("path", FilePackProvider.getPathOfPack(folderName));
             intent.putExtra("docName", folderName);
             startActivity(intent);
+
         });
 
         listView.setOnItemLongClickListener((adapterView, view1, i, l) -> {
+            if (i == FilePackProvider.getFilePacks().size()) return true;
             new EditDocDialog(getActivity(),FilePackProvider.getFilePacks().get(i).getName(),() -> RefreshList()).show();
             return true;
         });

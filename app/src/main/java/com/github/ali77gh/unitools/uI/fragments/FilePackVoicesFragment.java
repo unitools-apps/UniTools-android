@@ -65,7 +65,10 @@ public class FilePackVoicesFragment extends Fragment {
         listView.setAdapter(adapter);
         listView.setEmptyView(nothingToShow);
 
+        listView.addFooterView(getActivity().getLayoutInflater().inflate(R.layout.layout_list_footer, null));
+
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
+            if (i == voices.length) return;
             Intent intent = new Intent(Intent.ACTION_VIEW);
             Uri data = Uri.parse("file:///" + voices[i].getPath());
             intent.setDataAndType(data, "audio/mp3");
@@ -73,6 +76,9 @@ public class FilePackVoicesFragment extends Fragment {
         });
 
         listView.setOnItemLongClickListener((parent, view, position, id) -> {
+
+            if (position == voices.length) return true;
+
             new FileActionDialog(getActivity(), voices[position], new FileActionDialog.FileActionDialogListener() {
                 @Override
                 public void onDelete() {

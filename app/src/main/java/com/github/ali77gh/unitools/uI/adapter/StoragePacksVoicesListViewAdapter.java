@@ -10,7 +10,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.uI.Tools;
 
 import java.io.File;
 
@@ -59,11 +58,6 @@ public class StoragePacksVoicesListViewAdapter extends BaseAdapter {
         } else {
             preview.setImageDrawable(_activity.getDrawable(R.drawable.storage_voices_play));
         }
-
-        if (i == files.length - 1) {
-            cview.setPadding(0, 0, 0, Tools.DpToPixel(100));
-        }
-
         return cview;
     }
 
