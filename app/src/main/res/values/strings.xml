@@ -124,6 +124,10 @@
     <string name="pdf_generate_failed">pdf generate failed</string>
     <string name="pdf_saved_to_pdf_list">pdf saved to pdf list</string>
     <string name="enter_name">enter name</string>
+    <string name="calendar">calendar</string>
+    <string name="chose_date">chose date</string>
+    <string name="first_select_date">first select date</string>
+    <string name="date_is_not_valid">date is not valid</string>
 
     <string-array name="nums">
         <item>0</item>
@@ -157,6 +161,11 @@
     <string-array name="languages">
         <item>english</item>
         <item>فارسی</item>
+    </string-array>
+
+    <string-array name="calendar">
+        <item>Gregorian</item>
+        <item>jalali</item>
     </string-array>
 
     <string-array name="guide">

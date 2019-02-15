@@ -36,26 +36,20 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:multidex:1.0.3'
     //some google
-
     implementation files('libs/easydataandroid.jar')
     //easyDataAndroid(data)
-
     implementation 'com.google.code.gson:gson:2.8.0'
     // json
-
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
     //Qr code reader
-
     implementation 'com.davemorrissey.labs:subsampling-scale-image-view:3.10.0'
     //zoomable image view
-
     implementation 'com.ryanjeffreybrooks:indefinitepagerindicator:1.0.10'
     // viewpager dots effect
-
     implementation 'com.squareup.okhttp3:okhttp:3.13.1'
     //http
-
     implementation 'com.itextpdf:itext-pdfa:5.5.10'
     implementation 'com.itextpdf:itextg:5.5.9'
     //pdf generator
+    implementation project(':uneversaldatetool')
 }

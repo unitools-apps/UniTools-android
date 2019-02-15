@@ -29,15 +29,13 @@
             android:layout_gravity="center_vertical"
             android:tint="@color/black"/>
 
-        <Spinner
-            android:id="@+id/spinner_home_add_event_day"
+        <TextView
+            android:id="@+id/text_home_add_event_dialog_date_picker"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
-            android:layout_marginEnd="20dp"
-            android:background="@null"
-            android:gravity="end"
-            android:spinnerMode="dropdown" />
+            android:layout_height="match_parent"
+            android:text="@string/chose_date"
+            android:layout_marginStart="10dp"
+            android:gravity="center_vertical" />
 
     </LinearLayout>
 
@@ -96,32 +94,6 @@
                 android:maxLength="2"/>
 
         </LinearLayout>
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-
-        <ImageView
-            android:layout_marginStart="16dp"
-            android:layout_width="25dp"
-            android:layout_height="25dp"
-            android:src="@drawable/all_calendar"
-            android:layout_gravity="center_vertical"
-            android:tint="@color/black"/>
-
-        <EditText
-            android:id="@+id/text_home_add_event_dialog_week_number"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:hint="@string/week_number"
-            android:inputType="number"
-            android:textColorHint="@color/gray_middle"
-            android:layout_margin="10dp"
-            android:maxLength="2"/>
 
     </LinearLayout>
 

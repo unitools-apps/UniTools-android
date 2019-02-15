@@ -29,6 +29,7 @@ import com.github.ali77gh.unitools.uI.dialogs.SettingsAlarmConfigDialog;
 public class SettingsFragment extends Fragment implements Backable {
 
     private Spinner languageSpinner;
+    private Spinner calendarSpinner;
     private LinearLayout aboutUsBtn;
     private LinearLayout autoSilentBtn;
     private Switch autoSilentSwitch;
@@ -50,6 +51,8 @@ public class SettingsFragment extends Fragment implements Backable {
         View cView = inflater.inflate(R.layout.fragment_settings, container, false);
 
         languageSpinner = cView.findViewById(R.id.spinner_settings_language);
+        calendarSpinner = cView.findViewById(R.id.spinner_settings_calendar);
+
         autoSilentBtn = cView.findViewById(R.id.linear_settings_auto_silent);
         autoSilentSwitch = (Switch) autoSilentBtn.getChildAt(3);
         aboutUsBtn = cView.findViewById(R.id.linear_settings_about_us);
@@ -78,7 +81,7 @@ public class SettingsFragment extends Fragment implements Backable {
 //        sendFeedback.setOnClickListener(view -> new SendFeedbackDialog(getActivity()).show());
 
 
-        SetupLanguage();
+        SetupLanguageAndCalendar();
         LoadCurrentSettings();
         SetupAboutUs();
 
@@ -99,20 +102,36 @@ public class SettingsFragment extends Fragment implements Backable {
                 throw new IllegalArgumentException("invalid language: " + ui.LangId);
         }
 
+        switch (ui.Calendar) {
+            case 'g': // Gregorian
+                calendarSpinner.setSelection(0);
+                break;
+            case 'j': // Jalali
+                calendarSpinner.setSelection(1);
+                break;
+            default: // default
+                SetCalendar('j');
+                calendarSpinner.setSelection(1);
+        }
+
         autoSilentSwitch.setChecked(ui.AutoSilent);
     }
 
-    private void SetupLanguage() {
+    private void SetupLanguageAndCalendar() {
 
+        //load lang
         String langs[] = getResources().getStringArray(R.array.languages);
+        languageSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.item_spinner, langs));
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.item_spinner, langs);
-        languageSpinner.setAdapter(adapter);
+        //load calendar
+        String calendars[] = getResources().getStringArray(R.array.calendar);
+        calendarSpinner.setAdapter(new ArrayAdapter<>(getActivity(), R.layout.item_spinner, calendars));
 
-        ((View) languageSpinner.getParent()).setOnClickListener(view -> {
-            languageSpinner.performClick();
-        });
+        //setup on prent click
+        ((View) languageSpinner.getParent()).setOnClickListener(view -> languageSpinner.performClick());
+        ((View) calendarSpinner.getParent()).setOnClickListener(view -> calendarSpinner.performClick());
 
+        // on settings changed
         languageSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
@@ -126,6 +145,28 @@ public class SettingsFragment extends Fragment implements Backable {
                         break;
                     default:
                         throw new IllegalArgumentException("invalid language: " + ((TextView) view).getText().toString());
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+        calendarSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+                if (view == null) return;
+                switch (i) {
+                    case 0:
+                        SetCalendar('g');
+                        break;
+                    case 1:
+                        SetCalendar('j');
+                        break;
+                    default:
+                        throw new IllegalArgumentException("invalid calendar");
                 }
             }
 
@@ -166,6 +207,12 @@ public class SettingsFragment extends Fragment implements Backable {
 
         Toast.makeText(getActivity(),getString(R.string.open_app_again_reverse),Toast.LENGTH_LONG).show();
         getActivity().finishAndRemoveTask();
+    }
+
+    private void SetCalendar(char calendarId) {
+        UserInfo ui = UserInfoRepo.getUserInfo();
+        ui.Calendar = calendarId;
+        UserInfoRepo.setUserInfo(ui);
     }
 
     private void OpenGithub() {

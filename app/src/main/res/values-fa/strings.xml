@@ -126,6 +126,10 @@
     <string name="pdf_generate_failed">پی دی اف ساخته نشد</string>
     <string name="pdf_saved_to_pdf_list">پی دی اف به لیست اضافه شد</string>
     <string name="enter_name">نام را وارد کنید</string>
+    <string name="calendar">تقویم</string>
+    <string name="chose_date">انتخاب تاریخ</string>
+    <string name="first_select_date">اول تاریخ را انتخاب کنید</string>
+    <string name="date_is_not_valid">تاریخ را درست انتخاب کنید</string>
 
     <string-array name="nums">
         <item>۰</item>
@@ -159,6 +163,11 @@
     <string-array name="languages">
         <item>english</item>
         <item>فارسی</item>
+    </string-array>
+
+    <string-array name="calendar">
+        <item>میلادی</item>
+        <item>شمسی</item>
     </string-array>
 
     <string-array name="guide">

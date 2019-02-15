@@ -4,19 +4,18 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.tools.DateTimeTools;
 import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.model.Time;
-import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 /**
  * Created by ali77gh on 10/17/18.
@@ -24,9 +23,10 @@ import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 public class AddEventDialog extends BaseDialog {
 
-    private Spinner daySpinner;
     private EventDialogListener listener;
     private Event event;
+    private int weekNumber = 10;
+    private int dayOfWeek = 10;
 
     public AddEventDialog(@NonNull Activity activity, @Nullable Event event) {
         super(activity);
@@ -40,29 +40,40 @@ public class AddEventDialog extends BaseDialog {
         setContentView(R.layout.dialog_add_event);
 
         TextView title = findViewById(R.id.text_home_add_event_title);
-        daySpinner = findViewById(R.id.spinner_home_add_event_day);
+        TextView openDatePicker = findViewById(R.id.text_home_add_event_dialog_date_picker);
         EditText what = findViewById(R.id.text_home_add_event_dialog_lable);
         EditText hour = findViewById(R.id.text_home_add_event_dialog_hour);
         EditText min = findViewById(R.id.text_home_add_event_dialog_min);
-        EditText week = findViewById(R.id.text_home_add_event_dialog_week_number);
+        Button cancel = findViewById(R.id.btn_home_add_event_dialog_cancel);
+        Button ok = findViewById(R.id.btn_home_add_event_dialog_ok);
+
+        openDatePicker.setOnClickListener(v -> {
+            DatePickerDialog datePickerDialog = new DatePickerDialog();
+            datePickerDialog.setListener((unixTime, date) -> {
+                int week = DateTimeTools.UnixTimeToWeek((int) unixTime);
+                if (week < 0) {
+                    Toast.makeText(getActivity(), getActivity().getString(R.string.date_is_not_valid), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                openDatePicker.setText(getActivity().getString(R.string.week) +
+                        " " +
+                        String.valueOf(week) +
+                        " " +
+                        getWeekString(date.getDayOfWeek().getValue())
+                );
+                weekNumber = DateTimeTools.UnixTimeToWeek((int) unixTime);
+                dayOfWeek = date.getDayOfWeek().getValue();
+            });
+            datePickerDialog.show(((AppCompatActivity) getActivity()).getSupportFragmentManager(), "");
+        });
 
         // fill fields if edit mode
         if (event != null) {
-            daySpinner.post(() -> daySpinner.setSelection(event.time.dayOfWeek));
+            openDatePicker.setText(getActivity().getString(R.string.week) + " " + event.WeekNumber + " " + getWeekString(event.time.dayOfWeek));
             title.setText(getActivity().getResources().getString(R.string.edit_new_event));
             what.setText(event.what);
-            week.setText(String.valueOf(event.WeekNumber));
             hour.setText(String.valueOf(event.time.hour));
             min.setText(String.valueOf(event.time.min));
-        }
-
-
-        SetupSpinners();
-
-        if (UserInfoRepo.getWeekNumber() > 100) {
-            week.setHint(week.getHint());
-        } else {
-            week.setHint(week.getHint() + " (" + String.valueOf(UserInfoRepo.getWeekNumber()) + ") ");
         }
 
 
@@ -84,9 +95,6 @@ public class AddEventDialog extends BaseDialog {
             }
         });
 
-        Button cancel = findViewById(R.id.btn_home_add_event_dialog_cancel);
-        Button ok = findViewById(R.id.btn_home_add_event_dialog_ok);
-
         ok.setOnClickListener(view -> {
 
             if (!IsInt(hour.getText().toString()) |
@@ -100,36 +108,26 @@ public class AddEventDialog extends BaseDialog {
                 return;
             }
 
-            if (!IsInt(week.getText().toString()) ||
-                    Integer.valueOf(week.getText().toString()) < 0 ||
-                    Integer.valueOf(week.getText().toString()) > 32) {
-                Toast.makeText(getActivity(), getContext().getString(R.string.week_number_is_not_valid), Toast.LENGTH_SHORT).show();
-                return;
-            }
-
             if (what.getText().toString().equals("")) {
                 Toast.makeText(getActivity(), getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if (event == null) event = new Event();
+            if (weekNumber == 10) {
+                Toast.makeText(getActivity(), getContext().getString(R.string.first_select_date), Toast.LENGTH_SHORT).show();
+                return;
+            }
 
+            if (event == null) event = new Event();
             event.what = what.getText().toString();
-            event.time = new Time(daySpinner.getSelectedItemPosition(), Integer.valueOf(hour.getText().toString()), Integer.valueOf(min.getText().toString()));
-            event.WeekNumber = Integer.valueOf(week.getText().toString());
+            event.time = new Time(dayOfWeek, Integer.valueOf(hour.getText().toString()), Integer.valueOf(min.getText().toString()));
+            event.WeekNumber = weekNumber;
 
             listener.onNewEvent(event);
             dismiss();
         });
 
         cancel.setOnClickListener(view -> dismiss());
-    }
-
-    private void SetupSpinners() {
-        String modes[] = getContext().getResources().getStringArray(R.array.weekDays);
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.item_spinner, modes);
-        daySpinner.setAdapter(adapter);
     }
 
     public void setListener(EventDialogListener listener) {
@@ -147,5 +145,9 @@ public class AddEventDialog extends BaseDialog {
         } catch (NumberFormatException e) {
             return false;
         }
+    }
+
+    private String getWeekString(int index) {
+        return getActivity().getResources().getStringArray(R.array.week_days)[index];
     }
 }

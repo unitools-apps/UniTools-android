@@ -27,7 +27,7 @@ public class SelectLangActivity extends AppCompatActivity {
 
         Button fa = findViewById(R.id.btn_select_lang_fa);
         Button en = findViewById(R.id.btn_select_lang_en);
-        View cicleAnim = findViewById(R.id.view_select_lang_circle_anim);
+        View circleAnim = findViewById(R.id.view_select_lang_circle_anim);
 
         en.setOnClickListener(view -> {
             InitConfig("en");
@@ -39,7 +39,7 @@ public class SelectLangActivity extends AppCompatActivity {
             ShowGuid();
         });
 
-        cicleAnim.postDelayed(() -> SelectLanguageCollapse.collapse(cicleAnim), 500);
+        circleAnim.postDelayed(() -> SelectLanguageCollapse.collapse(circleAnim), 500);
     }
 
     private void ShowGuid() {
@@ -58,6 +58,7 @@ public class SelectLangActivity extends AppCompatActivity {
         userInfo.Classes = new ArrayList<>();
         userInfo.FirstDayOfUni = 0;
         userInfo.ReminderInMins = 50;
+        userInfo.Calendar = lang.equals("fa") ? 'j' : 'g'; // default calendar for persian is jalali and for english is miladi
         UserInfoRepo.setUserInfo(userInfo);
     }
 }

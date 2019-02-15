@@ -1,6 +1,7 @@
 package com.github.ali77gh.unitools.core.tools;
 
 import com.github.ali77gh.unitools.data.model.Time;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 import java.util.Date;
 
@@ -16,18 +17,12 @@ public class DateTimeTools {
         return res ;
     }
 
-    /**
-     * like unix time but days
-     */
-    private static int getCurrentDays() {
-        long unixTime = new Date().getTime();
+    public static int UnixTimeToWeek(int unixTime) {
+        int unixTimeMin = unixTime / 60;
+        int days = unixTimeMin / (24 * 60);
+        int daysFromFirstDayOfUni = days - UserInfoRepo.getUserInfo().FirstDayOfUni;
 
-        unixTime = unixTime / 1000;
-
-        int unixTimeMin = (int) (unixTime / 60);
-
-        return unixTimeMin / (24 * 60);
-
+        return daysFromFirstDayOfUni / 7;
     }
 
     public static Time getCurrentTime() {
@@ -36,6 +31,20 @@ public class DateTimeTools {
     }
 
     public static class WeekTools {
+
+        /**
+         * like unix time but days
+         */
+        private static int getCurrentDays() {
+            long unixTime = new Date().getTime();
+
+            unixTime /= 1000;
+
+            int unixTimeMin = (int) (unixTime / 60);
+
+            return unixTimeMin / (24 * 60);
+
+        }
 
         /**
          * @param weekNumber current week number
@@ -49,7 +58,6 @@ public class DateTimeTools {
         }
 
         public static int getWeekNumber(int firstDay) {
-
             return (getCurrentDays() - firstDay) / 7;
         }
 

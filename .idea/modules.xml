@@ -5,6 +5,7 @@
       <module fileurl="file://$PROJECT_DIR$/UniTools.iml" filepath="$PROJECT_DIR$/UniTools.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
       <module fileurl="file://$PROJECT_DIR$/pdfwriter/pdfwriter.iml" filepath="$PROJECT_DIR$/pdfwriter/pdfwriter.iml" />
+      <module fileurl="file://$PROJECT_DIR$/uneversaldatetool/uneversaldatetool.iml" filepath="$PROJECT_DIR$/uneversaldatetool/uneversaldatetool.iml" />
     </modules>
   </component>
 </project>
