@@ -59,9 +59,10 @@ public class WallFragment extends Fragment implements Backable {
     private ImageView addFriendBtn;
     private NonScrollListView friendsList;
     private TextView friendsFirstRow;
-    private AddFriendDialog addFriendDialog;
 
-    Timer timer = new Timer();
+    private FriendInfoDialog friendInfoDialog;
+
+    private Timer timer = new Timer();
 
     public WallFragment() {
         // Required empty public constructor
@@ -181,13 +182,13 @@ public class WallFragment extends Fragment implements Backable {
 
             if (uClasses.size() == 0) return true;
 
-            AddClassDialog addFriendDialog = new AddClassDialog(getActivity(), uClasses.get(0));
-            addFriendDialog.setListener(uClass -> {
+            AddClassDialog addClassDialog = new AddClassDialog(getActivity(), uClasses.get(0));
+            addClassDialog.setListener(uClass -> {
                 uClass.id = uClasses.get(0).id;
                 UserInfoRepo.UpdateClass(uClass);
                 SetupClassesList();
             });
-            addFriendDialog.show();
+            addClassDialog.show();
             Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
             return true;
         });
@@ -293,11 +294,12 @@ public class WallFragment extends Fragment implements Backable {
         friendsList.setAdapter(new WallFriendAdapter(getActivity(), friends));
 
         friendsList.setOnItemClickListener((adapterView, view, i, l) -> {
-            new FriendInfoDialog(getActivity(), friends.get(i), () -> {
+            friendInfoDialog = new FriendInfoDialog(getActivity(), friends.get(i), () -> {
                 //on delete
                 FriendRepo.Remove(friends.get(i).id);
                 SetupFriendsList();
-            }).show();
+            });
+            friendInfoDialog.show();
         });
     }
 
@@ -343,20 +345,14 @@ public class WallFragment extends Fragment implements Backable {
             LinearLayout parent = (LinearLayout) friendsList.getParent();
             if (parent.getVisibility() != View.VISIBLE) {
                 // expand
-                if (FriendRepo.getAll().size() > 1) {
-                    ExpandAndCollapse.expand(parent);
-                    expandFriendsBtn.animate().rotation(180).setStartDelay(200).start();
-                } else
-                    Toast.makeText(getActivity(), getString(R.string.you_have_no_more_friends), Toast.LENGTH_LONG).show();
-
+                ExpandAndCollapse.expand(parent);
+                expandFriendsBtn.animate().rotation(180).setStartDelay(200).start();
             } else {
                 // collapse
                 ExpandAndCollapse.collapse(parent);
                 expandFriendsBtn.animate().rotation(0).setStartDelay(200).start();
             }
-
         });
-
     }
 
     private void SetupAddAndShare() {
@@ -364,12 +360,12 @@ public class WallFragment extends Fragment implements Backable {
         //classes
 
         addClassBtn.setOnClickListener(view -> {
-            AddClassDialog addFriendDialog = new AddClassDialog(getActivity(), null);
-            addFriendDialog.setListener(uClass -> {
+            AddClassDialog addClassDialog = new AddClassDialog(getActivity(), null);
+            addClassDialog.setListener(uClass -> {
                 UserInfoRepo.AddClass(uClass);
                 SetupClassesList();
             });
-            addFriendDialog.show();
+            addClassDialog.show();
             Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
         });
 
@@ -396,7 +392,7 @@ public class WallFragment extends Fragment implements Backable {
         //friends
 
         addFriendBtn.setOnClickListener(view -> {
-            addFriendDialog = new AddFriendDialog(getActivity());
+            AddFriendDialog addFriendDialog = new AddFriendDialog(getActivity());
             addFriendDialog.setListener(friend -> {
                 FriendRepo.insert(friend);
                 SetupFriendsList();
@@ -407,7 +403,7 @@ public class WallFragment extends Fragment implements Backable {
     }
 
     public void OnBarcodeReaded(String text) {
-        addFriendDialog.onFriendStringReady(text);
+        friendInfoDialog.OnFriendStringReady(text);
     }
 
     private void SetupRefreshLoop() {

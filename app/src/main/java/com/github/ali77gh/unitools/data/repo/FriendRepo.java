@@ -34,6 +34,10 @@ public class FriendRepo {
         db.insert(newFriend.id, newFriend);
     }
 
+    public static void Update(Friend friend) {
+        db.Update(friend.id, friend);
+    }
+
     public static Friend getById(String id) {
         return (Friend) db.Read(id, Friend.class);
     }

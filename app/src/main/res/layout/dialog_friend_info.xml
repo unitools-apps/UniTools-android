@@ -34,15 +34,40 @@
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textColor="@color/black"
-        android:text="محمد"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"/>
 
-    <ListView
-        android:id="@+id/list_home_friend_info_dialog"
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_margin="16dp"/>
+        android:layout_height="200dp">
+
+        <ListView
+            android:id="@+id/list_home_friend_info_dialog"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="16dp" />
+
+        <TextView
+            android:id="@+id/text_home_friend_info_dialog_nothing_to_show"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/there_is_nothing_to_show" />
+    </FrameLayout>
+
+    <ImageView
+        android:id="@+id/btn_home_friend_info_dialog_add_class"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/all_add"
+        android:layout_gravity="center_horizontal" />
+
+    <Button
+        android:id="@+id/btn_home_friend_info_dialog_scan"
+        android:text="@string/scan_qr_code"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal" />
 
     <LinearLayout
         android:layout_width="match_parent"
