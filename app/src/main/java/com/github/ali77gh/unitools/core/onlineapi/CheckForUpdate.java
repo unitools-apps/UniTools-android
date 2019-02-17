@@ -16,11 +16,14 @@ import java.net.URL;
 
 public class CheckForUpdate {
 
+    private static final String API_URL = "https://unitools-apps.github.io/Website/config/version.txt";
+    private static final String ON_CLICK = "https://unitools-apps.github.io/Website/";
+
     public static void Check() {
 
         new Thread(() -> {
             try {
-                URL url = new URL("https://unitools-apps.github.io/Website/config/version.txt");
+                URL url = new URL(API_URL);
                 BufferedReader in =
                         new BufferedReader(new InputStreamReader(url.openStream()));
                 StringBuilder page = new StringBuilder();
@@ -45,12 +48,12 @@ public class CheckForUpdate {
         NotificationManager NM = (NotificationManager) ContextHolder.getAppContext().getSystemService(Context.NOTIFICATION_SERVICE);
         Notification notify = new Notification.Builder
                 (ContextHolder.getAppContext())
-                .setContentTitle("UniTools update available")
-                .setContentText("click to open website")
+                .setContentTitle(ContextHolder.getAppContext().getString(R.string.update_available))
+                .setContentText(ContextHolder.getAppContext().getString(R.string.open_on_website))
                 .setSmallIcon(R.drawable.notification_icon).build();
 
         //put link on notification click
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://unitools-apps.github.io/Website/"));
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(ON_CLICK));
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         notify.contentIntent = PendingIntent.getActivity(ContextHolder.getAppContext(),1, intent, 0);
 

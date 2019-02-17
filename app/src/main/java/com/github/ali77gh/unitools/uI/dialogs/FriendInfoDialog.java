@@ -94,13 +94,12 @@ public class FriendInfoDialog extends BaseDialog {
         listView.setAdapter(classesStringAdapter);
         listView.setEmptyView(findViewById(R.id.text_home_friend_info_dialog_nothing_to_show));
 
-        listView.setOnItemLongClickListener((parent, view, position, id) -> {
+        listView.setOnItemClickListener((parent, view, position, id) -> {
             new ConfirmDeleteDialog(getActivity(), () -> {
                 friend.classList.remove(position);
                 FriendRepo.Update(friend);
                 RefreshList();
             }).show();
-            return false;
         });
     }
 

@@ -1,10 +1,10 @@
 <resources>
     <string name="app_name">UniTools</string>
-    <string name="app_version">1.0.0</string>
+    <string name="app_version">1.5.0</string>
 
     <string name="LangID">"en</string>
 
-    <string name="about_text">felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar felan va bisar </string>
+    <string name="about_text">this is a free and open source application for students. if you have any idea contact me with my email</string>
     <string name="thanks">با تشکر از : \n ناهید قهرمانی  \n صبیح فرهنگی  \n سعید زبده  \n و هومن میرشفیی \n و....   </string>
     <string name="language">language</string>
     <string name="theme">theme</string>
@@ -128,6 +128,11 @@
     <string name="first_select_date">first select date</string>
     <string name="date_is_not_valid">date is not valid</string>
     <string name="wrong_barcode">wrong_barcode</string>
+    <string name="link">link</string>
+    <string name="link_copied">link copied</string>
+    <string name="update_available">Update available</string>
+    <string name="cant_add_friend">can not add friend</string>
+    <string name="friend_added_successfully">friend added successfully</string>
 
     <string-array name="nums">
         <item>0</item>
@@ -143,13 +148,13 @@
     </string-array>
 
     <string-array name="weekDays">
-        <item>saturday</item>
-        <item>sunday</item>
-        <item>monday</item>
-        <item>tuesday</item>
-        <item>wednesday</item>
-        <item>thursday</item>
-        <item>friday</item>
+        <item>Saturday</item>
+        <item>Sunday</item>
+        <item>Monday</item>
+        <item>Tuesday</item>
+        <item>Wednesday</item>
+        <item>Thursday</item>
+        <item>Friday</item>
     </string-array>
 
     <string-array name="notification_modes">

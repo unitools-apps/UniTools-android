@@ -23,8 +23,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".uI.activities.GuideActivity"/>
-        <!-- QR scanner activity -> for setting screen orientation -->
+
+        <activity android:name=".uI.activities.InputLinkActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <data
+                    android:host="program.unitools"
+                    android:scheme="http" />
+                <data android:pathPattern=".*" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".uI.activities.GuideActivity" /> <!-- QR scanner activity -> for setting screen orientation -->
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"

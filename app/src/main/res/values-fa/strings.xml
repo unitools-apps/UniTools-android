@@ -2,7 +2,7 @@
 <resources>
 
     <string name="app_name">UniTools</string>
-    <string name="app_version">1.0.0</string>
+    <string name="app_version">1.5.0</string>
 
     <string name="LangID">"fa</string>
 
@@ -130,6 +130,11 @@
     <string name="first_select_date">اول تاریخ را انتخاب کنید</string>
     <string name="date_is_not_valid">تاریخ را درست انتخاب کنید</string>
     <string name="wrong_barcode">بار کد اشتباه</string>
+    <string name="link">لینک</string>
+    <string name="link_copied">لینک کپی شد</string>
+    <string name="update_available">نسخه جدید در دسترس قرار گرفت</string>
+    <string name="cant_add_friend">مشکل در اضافه کردن دوست</string>
+    <string name="friend_added_successfully">دوست شما با موفقیت اضافه شد</string>
 
     <string-array name="nums">
         <item>۰</item>
