@@ -14,7 +14,7 @@ import android.widget.RemoteViews;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
-import com.github.ali77gh.unitools.core.alarm.Alarm15MinRepeat;
+import com.github.ali77gh.unitools.core.ReminderAndAutoSilent;
 import com.github.ali77gh.unitools.core.onlineapi.CheckForUpdate;
 import com.github.ali77gh.unitools.core.onlineapi.PushNotification;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
@@ -44,9 +44,9 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ContextHolder.initStatics(this);
         SetupNav();
-        SetupAlarms();
         CheckForUpdate.Check();
         PushNotification.Check();
+        ReminderAndAutoSilent.Reset(this);
     }
 
     private void SetupNav() {
@@ -129,6 +129,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         updateWidgets();// because classes may changed
+        ReminderAndAutoSilent.Reset(this); // because classes may changed
         super.onDestroy();
     }
 
@@ -140,11 +141,6 @@ public class HomeActivity extends AppCompatActivity {
         manager.partiallyUpdateAppWidget(appWidgetIds, remoteViews);
 
         ShowNextClassWidget.Update(this, manager, appWidgetIds);
-    }
-
-    private void SetupAlarms() {
-        Alarm15MinRepeat alarm = new Alarm15MinRepeat();
-        alarm.start(this);
     }
 
 }

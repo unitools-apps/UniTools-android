@@ -42,6 +42,21 @@ public class UserInfoRepo {
         objectRepo.Remove(id);
     }
 
+    //classes
+
+    public static UClass getById(String id){
+        UserInfo ui = getUserInfo();
+        int index = -1;
+        //find
+        for (UClass uClass : ui.Classes) {
+            if (uClass.id.equals(id))
+                index = ui.Classes.indexOf(uClass);
+        }
+        if (index == -1) throw new RuntimeException("class not found on RemoveClass");
+
+        return ui.Classes.get(index);
+    }
+
     public static void AddClass(UClass uClass) {
         UserInfo ui = getUserInfo();
         uClass.id = UUID.randomUUID().toString();
@@ -52,15 +67,8 @@ public class UserInfoRepo {
     public static void RemoveClass(String id) {
 
         UserInfo ui = getUserInfo();
-        int index = -1;
-        //find
-        for (UClass uClass : ui.Classes) {
-            if (uClass.id.equals(id)) ;
-            index = ui.Classes.indexOf(uClass);
-        }
-        if (index == -1) throw new RuntimeException("class not found on RemoveClass");
-        //remove
-        ui.Classes.remove(index);
+        UClass uClass = getById(id);
+        ui.Classes.remove(uClass);
         setUserInfo(ui);
     }
 

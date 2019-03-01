@@ -1,11 +1,14 @@
 package com.github.ali77gh.unitools.core.onlineapi;
 
 import android.app.Notification;
+import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
+import android.support.v4.app.NotificationManagerCompat;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
@@ -15,6 +18,9 @@ import com.google.gson.Gson;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
+import java.util.Random;
+
+import static android.content.Context.NOTIFICATION_SERVICE;
 
 public class PushNotification {
 
@@ -51,20 +57,33 @@ public class PushNotification {
 
     private static void PushNotify(String title, String text, String link) {
 
-        NotificationManager NM = (NotificationManager) ContextHolder.getAppContext().getSystemService(Context.NOTIFICATION_SERVICE);
-        Notification notify = new Notification.Builder
-                (ContextHolder.getAppContext())
-                .setContentTitle(title)
-                .setContentText(text)
-                .setSmallIcon(R.drawable.notification_icon).build();
+        String CHANNEL_ID = "my_channel_01";
+        Context context = ContextHolder.getAppContext();
+        NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
+
+        Notification.Builder builder = new Notification.Builder(context);
+        builder.setContentTitle(title);
+        builder.setContentText(text); // todo replace with context.getString(R.string.next_class_is_close)
+        builder.setSmallIcon(R.drawable.notification_icon);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
+                    "Channel human readable title",
+                    NotificationManager.IMPORTANCE_DEFAULT);
+            notificationManager.createNotificationChannel(channel);
+            builder.setChannelId(CHANNEL_ID);
+        }
 
         //put link on notification click
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        notify.contentIntent = PendingIntent.getActivity(ContextHolder.getAppContext(), 1, intent, 0);
+        PendingIntent pendingIntent = PendingIntent.getActivity(context, 2, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+        //to be able to launch your activity from the notification
+        builder.setContentIntent(pendingIntent);
+        builder.setContentIntent(pendingIntent);
 
-        notify.flags |= Notification.FLAG_AUTO_CANCEL;
-        NM.notify(1, notify);
+        Notification notificationCompat = builder.build();
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(context);
+        managerCompat.notify(new Random().nextInt(), notificationCompat);
 
     }
 }

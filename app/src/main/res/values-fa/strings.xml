@@ -56,9 +56,9 @@
     <string name="what_is_this">چیه؟</string>
     <string name="scan_qr_code">اسکن بارکد</string>
     <string name="paste">چسباندن</string>
-    <string name="week_number_5">هفته پنجم</string>
-    <string name="reminder">یادآوری (بتا)</string>
-    <string name="auto_silent">سایلنت اتوماتیک (بتا)</string>
+    <string name="week_number_5">هفته پنجم : شنبه</string>
+    <string name="reminder">یادآوری (آزمایشی)</string>
+    <string name="auto_silent">سایلنت اتوماتیک (آزمایشی)</string>
     <string name="copy">کپی</string>
     <string name="classes">کلاس ها</string>
     <string name="next">بعدی: </string>
@@ -135,6 +135,7 @@
     <string name="update_available">نسخه جدید در دسترس قرار گرفت</string>
     <string name="cant_add_friend">مشکل در اضافه کردن دوست</string>
     <string name="friend_added_successfully">دوست شما با موفقیت اضافه شد</string>
+    <string name="first_take_some_picture">ابتدا حداقل یک عکس بگیرید</string>
 
     <string-array name="nums">
         <item>۰</item>

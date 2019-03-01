@@ -1,12 +1,9 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
-import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -83,7 +80,7 @@ public class SettingsAlarmConfigDialog extends BaseDialog {
                         selectedNotifiType = UserInfo.NOTIFICATION_WITH_SOUND;
                         break;
                     case 1:
-                        selectedNotifiType = UserInfo.NOTIFICATION_JUST_NOTIFI;
+                        selectedNotifiType = UserInfo.NOTIFICATION_JUST_NOTIFY;
                         break;
                     case 2:
                         selectedNotifiType = UserInfo.NOTIFICATION_NOTHING;
@@ -105,9 +102,9 @@ public class SettingsAlarmConfigDialog extends BaseDialog {
                 notificationSpinner.setSelection(0);
                 selectedNotifiType = UserInfo.NOTIFICATION_WITH_SOUND;
                 break;
-            case UserInfo.NOTIFICATION_JUST_NOTIFI:
+            case UserInfo.NOTIFICATION_JUST_NOTIFY:
                 notificationSpinner.setSelection(1);
-                selectedNotifiType = UserInfo.NOTIFICATION_JUST_NOTIFI;
+                selectedNotifiType = UserInfo.NOTIFICATION_JUST_NOTIFY;
                 break;
             case UserInfo.NOTIFICATION_NOTHING:
                 notificationSpinner.setSelection(2);

@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.Translator;
+import com.github.ali77gh.unitools.core.tools.DateTimeTools;
 import com.github.ali77gh.unitools.core.tools.Sort;
 import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.model.Friend;
@@ -102,7 +103,7 @@ public class WallFragment extends Fragment implements Backable {
 
         SetupClassesList();
         SetupEventsList();
-        SetupFriendsList();
+//        SetupFriendsList(); //this called from onResume()
 
         SetupExpandCollapse();
         SetupAddAndShare();
@@ -111,13 +112,17 @@ public class WallFragment extends Fragment implements Backable {
         return cView;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        SetupFriendsList();
+    }
+
     private void SetupWeekCounter() {
         weekNumberParent.setOnClickListener(view -> {
             SetupWeekCounterDialog dialog = new SetupWeekCounterDialog(getActivity());
             dialog.show();
-            dialog.setOnDismissListener(dialogInterface -> {
-                SetupWeekCounter();
-            });
+            dialog.setOnDismissListener(dialogInterface -> SetupWeekCounter());
         });
 
         TextView text = (TextView) weekNumberParent.getChildAt(0);
@@ -125,7 +130,7 @@ public class WallFragment extends Fragment implements Backable {
 
         int currentWeek = UserInfoRepo.getWeekNumber();
 
-        text.setText(Translator.getWeekNumberString(currentWeek));
+        text.setText(Translator.getWeekNumberString(currentWeek) + " : " + Translator.getDayString(DateTimeTools.getCurrentDayOfWeek()));
         progress.setProgress((int) (((float) currentWeek / 16) * 100));
     }
 

@@ -2,13 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.github.ali77gh.unitools">
-
+    <!-- storage part -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.RECORD_AUDIO" />
-    <uses-permission android:name="android.permission.STORAGE" /> <!-- for make phone silent -->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" /> <!-- Permission to start Alarm on device reboot -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- storage part -->
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.STORAGE" />
+    <!-- for make phone silent -->
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <!-- push notify needs this -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <!-- Permission to Reset Alarm on device reboot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- IO -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
 
@@ -23,7 +28,6 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
         <activity android:name=".uI.activities.InputLinkActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -37,7 +41,6 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
-
         <activity android:name=".uI.activities.GuideActivity" /> <!-- QR scanner activity -> for setting screen orientation -->
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
@@ -74,7 +77,12 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/show_next_class_widget_info" />
         </receiver>
-        <receiver android:name=".core.alarm.Alarm15MinRepeat" />
+
+        <receiver
+            android:name=".core.ReminderAndAutoSilent"
+            android:enabled="true"
+            android:exported="false"
+            android:process=":remote" />
     </application>
 
 </manifest>

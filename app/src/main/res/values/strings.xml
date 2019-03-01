@@ -133,6 +133,7 @@
     <string name="update_available">Update available</string>
     <string name="cant_add_friend">can not add friend</string>
     <string name="friend_added_successfully">friend added successfully</string>
+    <string name="first_take_some_picture">first take some picture</string>
 
     <string-array name="nums">
         <item>0</item>

@@ -46,6 +46,7 @@ import java.io.OutputStream;
 import java.lang.reflect.Method;
 import java.util.Locale;
 
+import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.IMAGE_PATH_NAME;
 import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.PDF_PATH_NAME;
 
 /**
@@ -71,7 +72,7 @@ public class FilePackActivity extends AppCompatActivity {
     private final int VOICES = 1;
     private final int NOTE = 2;
     private final int PDF = 3;
-    private int _currentPage = PICS;//first page
+    private int _currentPage = PICS; // first page
 
     private FloatingActionButton cFab;
     private FloatingActionButton rFab;
@@ -114,10 +115,10 @@ public class FilePackActivity extends AppCompatActivity {
                     if (_voiceRecorder.isRecording()) {
                         _voiceRecorder.Stop();
                         filePackVoicesFragment.RefreshList();
-                        cFab.setImageDrawable(getDrawable(R.drawable.storage_mic));
+                        cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_mic));
                     } else {
                         _voiceRecorder.Record(Path + File.separator + FilePackProvider.VOICE_PATH_NAME + File.separator + FilePackProvider.getMaxVoiceCode(Path) + ".mp3");
-                        cFab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
+                        cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_voices_pause));
                     }
                 });
                 break;
@@ -133,6 +134,12 @@ public class FilePackActivity extends AppCompatActivity {
                     ImportPdf();
                 });
                 lFab.setOnClickListener(v -> {
+
+                    if (new File(FilePackActivity.Path + File.separator + IMAGE_PATH_NAME).listFiles().length == 0) {
+                        Toast.makeText(this, getString(R.string.first_take_some_picture), Toast.LENGTH_SHORT).show();
+                        return;
+                    }
+
                     new ExportPdfDialog(this, (name, images) -> {
                         GeneratePdf(images, name);
                     }).show();
@@ -246,8 +253,8 @@ public class FilePackActivity extends AppCompatActivity {
                         cFab.show();
                         lFab.show();
                         rFab.show();
-                        cFab.setImageDrawable(getDrawable(R.drawable.storage_camera));
-                        lFab.setImageDrawable(getDrawable(R.drawable.file_pack_gallery));
+                        cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_camera));
+                        lFab.setImageDrawable(getResources().getDrawable(R.drawable.file_pack_gallery));
                         _currentPage = PICS;
                         SetupFabsClicks();
                         break;
@@ -256,9 +263,9 @@ public class FilePackActivity extends AppCompatActivity {
                         lFab.hide();
                         rFab.show();
                         if (_voiceRecorder.isRecording())
-                            cFab.setImageDrawable(getDrawable(R.drawable.storage_voices_pause));
+                            cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_voices_pause));
                         else
-                            cFab.setImageDrawable(getDrawable(R.drawable.storage_mic));
+                            cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_mic));
                         _currentPage = VOICES;
                         SetupFabsClicks();
                         break;
@@ -266,7 +273,7 @@ public class FilePackActivity extends AppCompatActivity {
                         cFab.show();
                         lFab.hide();
                         rFab.show();
-                        cFab.setImageDrawable(getDrawable(R.drawable.note_save));
+                        cFab.setImageDrawable(getResources().getDrawable(R.drawable.note_save));
                         _currentPage = NOTE;
                         SetupFabsClicks();
                         break;
@@ -274,8 +281,8 @@ public class FilePackActivity extends AppCompatActivity {
                         cFab.show();
                         lFab.show();
                         rFab.show();
-                        cFab.setImageDrawable(getDrawable(R.drawable.filepack_pdf_import));
-                        lFab.setImageDrawable(getDrawable(R.drawable.fiepack_pdf_generate));
+                        cFab.setImageDrawable(getResources().getDrawable(R.drawable.filepack_pdf_import));
+                        lFab.setImageDrawable(getResources().getDrawable(R.drawable.fiepack_pdf_generate));
                         _currentPage = PDF;
                         SetupFabsClicks();
                         break;
