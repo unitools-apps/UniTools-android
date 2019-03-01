@@ -4,6 +4,7 @@ import android.content.Context;
 
 import com.github.ali77gh.unitools.data.repo.EventRepo;
 import com.github.ali77gh.unitools.data.repo.FriendRepo;
+import com.github.ali77gh.unitools.data.repo.UClassRepo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 /**
@@ -14,14 +15,15 @@ public class ContextHolder {
 
     private static Context AppContext;
 
-
     public static Context getAppContext(){
         return AppContext;
     }
 
     public static void initStatics(Context context) {
+        UClassRepo.init(context);
         EventRepo.init(context);
         FriendRepo.init(context);
+
         UserInfoRepo.init(context);
         AppContext = context;
     }

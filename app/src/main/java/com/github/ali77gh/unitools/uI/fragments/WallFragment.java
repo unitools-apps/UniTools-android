@@ -22,6 +22,7 @@ import com.github.ali77gh.unitools.data.model.Friend;
 import com.github.ali77gh.unitools.data.model.UClass;
 import com.github.ali77gh.unitools.data.repo.EventRepo;
 import com.github.ali77gh.unitools.data.repo.FriendRepo;
+import com.github.ali77gh.unitools.data.repo.UClassRepo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.adapter.WallFriendAdapter;
 import com.github.ali77gh.unitools.uI.animation.ExpandAndCollapse;
@@ -139,7 +140,7 @@ public class WallFragment extends Fragment implements Backable {
         // load to list
         classesFirstRow.setText(getString(R.string.there_is_no_class_yet));
         List<String> classesString = new ArrayList<>();
-        List<UClass> uClasses = UserInfoRepo.getUserInfo().Classes;
+        List<UClass> uClasses = UClassRepo.getAll();
         Sort.SortClass(uClasses);
         for (UClass uClass : uClasses) {
             if (uClasses.indexOf(uClass) == 0)
@@ -156,12 +157,12 @@ public class WallFragment extends Fragment implements Backable {
 
             ClassInfoDialog infoDialog = new ClassInfoDialog(getActivity(), uClasses.get(0), () -> {
                 //on delete
-                UserInfoRepo.RemoveClass(uClasses.get(0).id);
+                UClassRepo.Remove(uClasses.get(0).id);
                 SetupClassesList();
             });
             infoDialog.setEditListener(uClass -> {
                 uClass.id = uClasses.get(0).id;
-                UserInfoRepo.UpdateClass(uClass);
+                UClassRepo.Update(uClass);
                 SetupClassesList();
             });
             infoDialog.show();
@@ -171,12 +172,12 @@ public class WallFragment extends Fragment implements Backable {
         classesList.setOnItemClickListener((adapterView, view, i, l) -> {
             ClassInfoDialog infoDialog = new ClassInfoDialog(getActivity(), uClasses.get(i + 1), () -> {
                 //on delete
-                UserInfoRepo.RemoveClass(uClasses.get(i + 1).id);
+                UClassRepo.Remove(uClasses.get(i + 1).id);
                 SetupClassesList();
             });
             infoDialog.setEditListener(uClass -> {
                 uClass.id = uClasses.get(i + 1).id;
-                UserInfoRepo.UpdateClass(uClass);
+                UClassRepo.Update(uClass);
                 SetupClassesList();
             });
             infoDialog.show();
@@ -190,7 +191,7 @@ public class WallFragment extends Fragment implements Backable {
             AddClassDialog addClassDialog = new AddClassDialog(getActivity(), uClasses.get(0));
             addClassDialog.setListener(uClass -> {
                 uClass.id = uClasses.get(0).id;
-                UserInfoRepo.UpdateClass(uClass);
+                UClassRepo.Update(uClass);
                 SetupClassesList();
             });
             addClassDialog.show();
@@ -203,7 +204,7 @@ public class WallFragment extends Fragment implements Backable {
             AddClassDialog addClassDialog = new AddClassDialog(getActivity(), uClasses.get(i + 1));
             addClassDialog.setListener(uClass -> {
                 uClass.id = uClasses.get(i + 1).id;
-                UserInfoRepo.UpdateClass(uClass);
+                UClassRepo.Update(uClass);
                 SetupClassesList();
             });
             addClassDialog.show();
@@ -314,7 +315,7 @@ public class WallFragment extends Fragment implements Backable {
             LinearLayout parent = (LinearLayout) classesList.getParent();
             if (parent.getVisibility() != View.VISIBLE) {
                 // expand
-                if (UserInfoRepo.getUserInfo().Classes.size() > 1) {
+                if (UClassRepo.getAll().size() > 1) {
                     ExpandAndCollapse.expand(parent);
                     expandClassesBtn.animate().rotation(180).setStartDelay(200).start();
                 } else
@@ -367,7 +368,7 @@ public class WallFragment extends Fragment implements Backable {
         addClassBtn.setOnClickListener(view -> {
             AddClassDialog addClassDialog = new AddClassDialog(getActivity(), null);
             addClassDialog.setListener(uClass -> {
-                UserInfoRepo.AddClass(uClass);
+                UClassRepo.Insert(uClass);
                 SetupClassesList();
             });
             addClassDialog.show();
@@ -375,7 +376,7 @@ public class WallFragment extends Fragment implements Backable {
         });
 
         shareClassesBtn.setOnClickListener(view -> {
-            if (UserInfoRepo.getUserInfo().Classes.size() == 0) {
+            if (UClassRepo.getAll().size() == 0) {
                 Toast.makeText(getActivity(), getString(R.string.you_have_no_more_classes), Toast.LENGTH_SHORT).show();
                 return;
             }
@@ -387,7 +388,7 @@ public class WallFragment extends Fragment implements Backable {
         addEventBtn.setOnClickListener(view -> {
             AddEventDialog addEventDialog = new AddEventDialog(getActivity(), null);
             addEventDialog.setListener(event -> {
-                EventRepo.insert(event);
+                EventRepo.Insert(event);
                 SetupEventsList();
             });
             addEventDialog.show();
@@ -399,7 +400,7 @@ public class WallFragment extends Fragment implements Backable {
         addFriendBtn.setOnClickListener(view -> {
             AddFriendDialog addFriendDialog = new AddFriendDialog(getActivity());
             addFriendDialog.setListener(friend -> {
-                FriendRepo.insert(friend);
+                FriendRepo.Insert(friend);
                 SetupFriendsList();
             });
             addFriendDialog.show();

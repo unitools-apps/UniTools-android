@@ -13,6 +13,7 @@ import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.onlineapi.Promise;
 import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.data.model.UClass;
+import com.github.ali77gh.unitools.data.repo.UClassRepo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class AddFilePackDialog extends BaseDialog {
         Button done = findViewById(R.id.btn_add_file_pack_dialog_add_all);
         Button cancel = findViewById(R.id.btn_add_file_pack_dialog_cancel);
 
-        List<String> autoCompleteValues = getNamesOfClasses(UserInfoRepo.getUserInfo().Classes);
+        List<String> autoCompleteValues = getNamesOfClasses(UClassRepo.getAll());
         List<String> filePacks = FilePackProvider.getFilePacksNames();
 
         for (String filePackName : filePacks) {

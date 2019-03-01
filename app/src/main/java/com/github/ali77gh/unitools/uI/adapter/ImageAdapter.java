@@ -19,7 +19,7 @@ public class ImageAdapter extends PagerAdapter {
 
     @Override
     public boolean isViewFromObject(View view, Object object) {
-        return view == ((ImageView) object);
+        return view == (object);
     }
 
     @Override
@@ -27,13 +27,13 @@ public class ImageAdapter extends PagerAdapter {
         ImageView imageView = new ImageView(mContext);
         imageView.setScaleType(ImageView.ScaleType.FIT_CENTER);
         imageView.setImageResource(sliderImageId[position]);
-        ((ViewPager) container).addView(imageView, 0);
+        (container).addView(imageView, 0);
         return imageView;
     }
 
     @Override
     public void destroyItem(ViewGroup container, int position, Object object) {
-        ((ViewPager) container).removeView((ImageView) object);
+        (container).removeView((ImageView) object);
     }
 
     @Override

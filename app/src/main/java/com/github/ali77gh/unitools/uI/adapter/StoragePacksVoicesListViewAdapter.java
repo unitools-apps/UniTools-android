@@ -54,9 +54,9 @@ public class StoragePacksVoicesListViewAdapter extends BaseAdapter {
         time.setText(getAudioFileTime(voice));
 
         if (i == nowPlayingPos) {
-            preview.setImageDrawable(_activity.getDrawable(R.drawable.storage_voices_pause));
+            preview.setImageDrawable(_activity.getResources().getDrawable(R.drawable.storage_voices_pause));
         } else {
-            preview.setImageDrawable(_activity.getDrawable(R.drawable.storage_voices_play));
+            preview.setImageDrawable(_activity.getResources().getDrawable(R.drawable.storage_voices_play));
         }
         return cview;
     }

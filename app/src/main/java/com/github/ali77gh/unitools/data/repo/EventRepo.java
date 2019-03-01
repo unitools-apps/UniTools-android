@@ -29,7 +29,7 @@ public class EventRepo {
         return (list);
     }
 
-    public static void insert(Event newEvent) {
+    public static void Insert(Event newEvent) {
         newEvent.id = UUID.randomUUID().toString();
         db.insert(newEvent.id, newEvent);
     }
@@ -48,5 +48,11 @@ public class EventRepo {
 
     public static void Remove(String id) {
         db.Remove(id);
+    }
+
+    public static void RemoveAll(){
+        for (Event event:getAll())
+            Remove(event.id);
+        if (!IsEmpty()) new RuntimeException("remove all not works");
     }
 }

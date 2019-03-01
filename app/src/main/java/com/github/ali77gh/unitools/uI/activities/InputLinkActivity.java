@@ -52,7 +52,7 @@ public class InputLinkActivity extends AppCompatActivity {
 
         add.setOnClickListener(v -> {
             friend.name = name.getText().toString();
-            FriendRepo.insert(friend);
+            FriendRepo.Insert(friend);
             Toast.makeText(this, getString(R.string.friend_added_successfully), Toast.LENGTH_SHORT).show();
             finish();
         });

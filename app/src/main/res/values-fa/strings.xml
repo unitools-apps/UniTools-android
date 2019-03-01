@@ -136,6 +136,14 @@
     <string name="cant_add_friend">مشکل در اضافه کردن دوست</string>
     <string name="friend_added_successfully">دوست شما با موفقیت اضافه شد</string>
     <string name="first_take_some_picture">ابتدا حداقل یک عکس بگیرید</string>
+    <string name="restore">بازیابی</string>
+    <string name="chose_file">انتخاب فایل</string>
+    <string name="delete_current">پاک کردن اطلاعات فعلی</string>
+    <string name="select_something">حداقل یه چیز را انتخاب کنید</string>
+    <string name="nothing_to_take_backup">چیزی برای بک اپ گیری وجود ندارد</string>
+    <string name="backup_saved_in">بک اپ ذخیره شد در</string>
+    <string name="successfully_done">با موفقیت انجام شد</string>
+    <string name="put_backup_file_in">فایل بک اپ را در اینجا قرار دهید</string>
 
     <string-array name="nums">
         <item>۰</item>

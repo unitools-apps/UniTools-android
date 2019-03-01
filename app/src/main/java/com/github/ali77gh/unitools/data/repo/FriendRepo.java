@@ -3,6 +3,7 @@ package com.github.ali77gh.unitools.data.repo;
 import android.content.Context;
 
 import com.example.easyrepolib.KeyValDb;
+import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.model.Friend;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class FriendRepo {
         return (list);
     }
 
-    public static void insert(Friend newFriend) {
+    public static void Insert(Friend newFriend) {
         newFriend.id = UUID.randomUUID().toString();
         db.insert(newFriend.id, newFriend);
     }
@@ -49,5 +50,11 @@ public class FriendRepo {
 
     public static void Remove(String id) {
         db.Remove(id);
+    }
+
+    public static void RemoveAll(){
+        for (Friend friend:getAll())
+            Remove(friend.id);
+        if (!IsEmpty()) new RuntimeException("remove all not works");
     }
 }

@@ -1,8 +1,12 @@
 package com.github.ali77gh.unitools.uI.fragments;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,9 +21,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.Backup;
+import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.data.model.UserInfo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.activities.GuideActivity;
+import com.github.ali77gh.unitools.uI.dialogs.BackupDialog;
 import com.github.ali77gh.unitools.uI.dialogs.SettingsAlarmConfigDialog;
 
 /**
@@ -34,6 +41,7 @@ public class SettingsFragment extends Fragment implements Backable {
     private LinearLayout autoSilentBtn;
     private Switch autoSilentSwitch;
     private FrameLayout aboutUs;
+    private BackupDialog backupDialog;
 
     public SettingsFragment() {
         // Required empty public constructor
@@ -59,6 +67,7 @@ public class SettingsFragment extends Fragment implements Backable {
         aboutUs = cView.findViewById(R.id.layout_settings_about);
         LinearLayout reminder = cView.findViewById(R.id.linear_settings_reminder);
         LinearLayout guide = cView.findViewById(R.id.linear_settings_guide);
+        LinearLayout backup = cView.findViewById(R.id.linear_settings_auto_backup);
 //        LinearLayout donateUs = cView.findViewById(R.id.linear_settings_donate_us);
 //        LinearLayout sendFeedback = cView.findViewById(R.id.linear_settings_feedback);
 
@@ -80,12 +89,41 @@ public class SettingsFragment extends Fragment implements Backable {
 //
 //        sendFeedback.setOnClickListener(view -> new SendFeedbackDialog(getActivity()).show());
 
+        backup.setOnClickListener(v -> {
+            if (CheckFilePermission()){
+                backupDialog = new BackupDialog(getActivity());
+                backupDialog.show();
+            }else {
+                ActivityCompat.requestPermissions(getActivity(), new String[]{
+                        Manifest.permission.READ_EXTERNAL_STORAGE,
+                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                }, 1754);
+            }
+
+        });
+
 
         SetupLanguageAndCalendar();
         LoadCurrentSettings();
         SetupAboutUs();
 
         return cView;
+    }
+
+    public boolean CheckFilePermission() {
+
+        if (android.os.Build.VERSION.SDK_INT < android.os.Build.VERSION_CODES.M) {
+            return true;
+        }
+
+        boolean storageR = getContext().checkCallingOrSelfPermission(android.Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+        boolean storageW = getContext().checkCallingOrSelfPermission(android.Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED;
+
+
+        if (storageR && storageW) {
+            return true;
+        }
+        return false;
     }
 
     private void LoadCurrentSettings() {
@@ -206,7 +244,11 @@ public class SettingsFragment extends Fragment implements Backable {
         UserInfoRepo.setUserInfo(ui);
 
         Toast.makeText(getActivity(),getString(R.string.open_app_again_reverse),Toast.LENGTH_LONG).show();
-        getActivity().finishAndRemoveTask();
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getActivity().finishAndRemoveTask();
+        }else {
+            getActivity().finish();
+        }
     }
 
     private void SetCalendar(char calendarId) {

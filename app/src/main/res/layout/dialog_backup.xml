@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:background="@color/white">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/backup"
+        android:textColor="@color/black"
+        android:layout_marginTop="10dp"/>
+
+    <RadioGroup
+        android:id="@+id/radio_group_backup_dialog_mode"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp">
+
+        <RadioButton
+            android:id="@+id/radio_backup_dialog_backup"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/backup"
+            android:textSize="16sp"/>
+
+        <RadioButton
+            android:id="@+id/radio_backup_dialog_restore"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/restore"
+            android:textSize="16sp"/>
+    </RadioGroup>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/background"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp">
+        <CheckBox
+            android:id="@+id/check_backup_dialog_classes"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/classes"
+            android:layout_marginStart="10dp"
+            android:checked="true"
+            android:visibility="gone"/>
+
+        <CheckBox
+            android:id="@+id/check_backup_dialog_events"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:text="@string/events"
+            android:checked="true"
+            android:visibility="gone"/>
+
+        <CheckBox
+            android:id="@+id/check_backup_dialog_friend"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/friends"
+            android:layout_marginStart="10dp"
+            android:checked="true"
+            android:visibility="gone"/>
+    </LinearLayout>
+
+        <CheckBox
+            android:visibility="gone"
+            android:id="@+id/check_home_backup_dialog_delete_current"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/delete_current"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:gravity="end"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_home_backup_dialog_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="@string/cancel"
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
+
+        <Button
+            android:id="@+id/btn_home_backup_dialog_ok"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:text="@string/ok"
+            android:textAllCaps="false"
+            android:textColor="@color/black" />
+
+    </LinearLayout>
+
+</LinearLayout>

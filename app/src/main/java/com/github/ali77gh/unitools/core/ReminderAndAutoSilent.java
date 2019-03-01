@@ -19,6 +19,7 @@ import com.github.ali77gh.unitools.core.audio.SilentManager;
 import com.github.ali77gh.unitools.core.tools.DateTimeTools;
 import com.github.ali77gh.unitools.data.model.UClass;
 import com.github.ali77gh.unitools.data.model.UserInfo;
+import com.github.ali77gh.unitools.data.repo.UClassRepo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 import java.util.Date;
@@ -55,7 +56,7 @@ public class ReminderAndAutoSilent extends BroadcastReceiver {
                 String id = intent.getStringExtra(CLASS_ID);
                 if (id == null) throw new IllegalStateException("class id should provide");
                 if (ui.NotificationMode != UserInfo.NOTIFICATION_NOTHING)
-                    PushNotify(context, Translator.getUClassReadable(UserInfoRepo.getById(id)));
+                    PushNotify(context, Translator.getUClassReadable(UClassRepo.getById(id)));
                 break;
 
             case MODE_SILENT:
@@ -77,9 +78,9 @@ public class ReminderAndAutoSilent extends BroadcastReceiver {
         if (ContextHolder.getAppContext() == null) ContextHolder.initStatics(context);
         UserInfo userInfo = UserInfoRepo.getUserInfo();
 
-        if (userInfo.Classes.size()==0) return;
+        if (UClassRepo.getAll().size()==0) return;
         //setup alarms
-        for (UClass uclass : userInfo.Classes){
+        for (UClass uclass : UClassRepo.getAll()){
 
             AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
 
@@ -88,7 +89,7 @@ public class ReminderAndAutoSilent extends BroadcastReceiver {
             Intent notifyIntent = new Intent(context , ReminderAndAutoSilent.class);
             notifyIntent.putExtra(MODE , MODE_SILENT);
             PendingIntent pendingIntent = PendingIntent.getBroadcast
-                    (context, userInfo.Classes.indexOf(uclass) * 2 , notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
+                    (context,  UClassRepo.getAll().indexOf(uclass) * 2 , notifyIntent, PendingIntent.FLAG_UPDATE_CURRENT);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 alarmManager.setExactAndAllowWhileIdle(
@@ -111,7 +112,7 @@ public class ReminderAndAutoSilent extends BroadcastReceiver {
             notifyIntent2.putExtra(MODE , MODE_ALERT);
             notifyIntent2.putExtra(CLASS_ID , uclass.id);
             PendingIntent pendingIntent2 = PendingIntent.getBroadcast
-                    (context, (userInfo.Classes.indexOf(uclass) * 2 ) - 1 , notifyIntent2, PendingIntent.FLAG_UPDATE_CURRENT);
+                    (context, (UClassRepo.getAll().indexOf(uclass) * 2 ) - 1 , notifyIntent2, PendingIntent.FLAG_UPDATE_CURRENT);
 
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 alarmManager.setExactAndAllowWhileIdle(

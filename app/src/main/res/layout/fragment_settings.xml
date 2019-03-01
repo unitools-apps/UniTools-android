@@ -58,7 +58,7 @@
                 android:alpha=".5"
                 android:background="@color/black" />
 
-            <!--language-->
+            <!--calendar-->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="60dp"
@@ -209,35 +209,36 @@
                 android:alpha=".5"
                 android:background="@color/black" />
 
-            <!--backup-->
-            <!--<LinearLayout-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="60dp"-->
-                <!--android:orientation="horizontal">-->
 
-                <!--<ImageView-->
-                    <!--android:layout_width="30dp"-->
-                    <!--android:layout_height="30dp"-->
-                    <!--android:layout_gravity="center_vertical"-->
-                    <!--android:layout_marginStart="16dp"-->
-                    <!--android:src="@drawable/settings_backup"-->
-                    <!--android:tint="@color/black" />-->
+            <LinearLayout
+                android:id="@+id/linear_settings_auto_backup"
+                android:layout_width="match_parent"
+                android:layout_height="60dp"
+                android:orientation="horizontal">
 
-                <!--<TextView-->
-                    <!--android:layout_width="wrap_content"-->
-                    <!--android:layout_height="wrap_content"-->
-                    <!--android:layout_gravity="center_vertical"-->
-                    <!--android:layout_marginStart="20dp"-->
-                    <!--android:text="@string/backup"-->
-                    <!--android:textColor="@color/black" />-->
+                <ImageView
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="16dp"
+                    android:src="@drawable/settings_backup"
+                    android:tint="@color/black" />
 
-            <!--</LinearLayout>-->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="20dp"
+                    android:text="@string/backup"
+                    android:textColor="@color/black" />
 
-            <!--<View-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="1px"-->
-                <!--android:alpha=".5"-->
-                <!--android:background="@color/black" />-->
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1px"
+                android:alpha=".5"
+                android:background="@color/black" />
 
             <!--send feedback-->
             <!--<LinearLayout-->

@@ -68,12 +68,12 @@ public class FilePackPicsFragment extends Fragment {
                 isListView = false;
                 listView.setVisibility(View.GONE);
                 gridView.setVisibility(View.VISIBLE);
-                switchViewModeFab.setImageDrawable(getActivity().getDrawable(R.drawable.docs_view_option_list));
+                switchViewModeFab.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.docs_view_option_list));
             } else {
                 isListView = true;
                 listView.setVisibility(View.VISIBLE);
                 gridView.setVisibility(View.GONE);
-                switchViewModeFab.setImageDrawable(getActivity().getDrawable(R.drawable.docs_view_option_grid));
+                switchViewModeFab.setImageDrawable(getActivity().getResources().getDrawable(R.drawable.docs_view_option_grid));
             }
             RefreshList();
         });

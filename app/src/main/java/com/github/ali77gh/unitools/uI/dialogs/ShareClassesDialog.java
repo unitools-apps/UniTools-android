@@ -14,6 +14,7 @@ import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.StringCoder;
 import com.github.ali77gh.unitools.core.qrCode.QrCodeTools;
 import com.github.ali77gh.unitools.data.model.Friend;
+import com.github.ali77gh.unitools.data.repo.UClassRepo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.google.gson.Gson;
 
@@ -47,7 +48,7 @@ public class ShareClassesDialog extends BaseDialog {
 
         if (me == null) {
             me = new Friend();
-            me.classList = UserInfoRepo.getUserInfo().Classes;
+            me.classList = UClassRepo.getAll();
         }
 
         listener = bitmap -> copy.post(() -> qrCode.setImageBitmap(bitmap));

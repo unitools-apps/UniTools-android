@@ -15,6 +15,7 @@ import com.github.ali77gh.unitools.core.ContextHolder;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.core.tools.Sort;
 import com.github.ali77gh.unitools.data.model.UClass;
+import com.github.ali77gh.unitools.data.repo.UClassRepo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.activities.SplashActivity;
 
@@ -41,7 +42,7 @@ public class ShowNextClassWidget extends AppWidgetProvider {
 
         for (int widgetId : appWidgetIds) {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_show_next_class);
-            List<UClass> classes = UserInfoRepo.getUserInfo().Classes;
+            List<UClass> classes = UClassRepo.getAll();
 
             if (classes.size() == 0) {
                 remoteViews.setTextViewText(R.id.tv_widget_next_class, ContextHolder.getAppContext().getString(R.string.there_is_no_class));

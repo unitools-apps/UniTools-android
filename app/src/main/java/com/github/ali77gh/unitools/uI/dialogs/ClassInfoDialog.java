@@ -12,6 +12,7 @@ import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.ContextHolder;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.data.model.UClass;
+import com.github.ali77gh.unitools.data.repo.UClassRepo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 /**
@@ -52,7 +53,7 @@ public class ClassInfoDialog extends BaseDialog {
         absentPlus.setOnClickListener(view -> {
             uClass.apcent++;
             absentCount.setText(String.valueOf(uClass.apcent));
-            UserInfoRepo.UpdateClass(uClass);
+            UClassRepo.Update(uClass);
             if (uClass.apcent >= 3)
                 absentCount.setTextColor(ContextHolder.getAppContext().getResources().getColor(R.color.red));
         });
@@ -62,7 +63,7 @@ public class ClassInfoDialog extends BaseDialog {
 
             uClass.apcent--;
             absentCount.setText(String.valueOf(uClass.apcent));
-            UserInfoRepo.UpdateClass(uClass);
+            UClassRepo.Update(uClass);
             if (uClass.apcent < 3)
                 absentCount.setTextColor(ContextHolder.getAppContext().getResources().getColor(R.color.black));
         });

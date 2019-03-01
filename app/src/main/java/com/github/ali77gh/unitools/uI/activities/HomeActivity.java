@@ -20,6 +20,7 @@ import com.github.ali77gh.unitools.core.onlineapi.PushNotification;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.NavToViewPagerBinder;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
+import com.github.ali77gh.unitools.uI.dialogs.BackupDialog;
 import com.github.ali77gh.unitools.uI.fragments.Backable;
 import com.github.ali77gh.unitools.uI.fragments.DocsFragment;
 import com.github.ali77gh.unitools.uI.fragments.SettingsFragment;
@@ -29,6 +30,7 @@ import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.Locale;
+import java.util.Set;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -79,7 +81,6 @@ public class HomeActivity extends AppCompatActivity {
             if (result.getContents() != null)
                 if (currentFrag instanceof WallFragment)
                     ((WallFragment) currentFrag).OnBarcodeReaded(result.getContents());
-
         } else {
             super.onActivityResult(requestCode, resultCode, data);
         }

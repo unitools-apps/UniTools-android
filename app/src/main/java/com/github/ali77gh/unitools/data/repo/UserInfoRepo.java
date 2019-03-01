@@ -44,53 +44,6 @@ public class UserInfoRepo {
 
     //classes
 
-    public static UClass getById(String id){
-        UserInfo ui = getUserInfo();
-        int index = -1;
-        //find
-        for (UClass uClass : ui.Classes) {
-            if (uClass.id.equals(id))
-                index = ui.Classes.indexOf(uClass);
-        }
-        if (index == -1) throw new RuntimeException("class not found on RemoveClass");
-
-        return ui.Classes.get(index);
-    }
-
-    public static void AddClass(UClass uClass) {
-        UserInfo ui = getUserInfo();
-        uClass.id = UUID.randomUUID().toString();
-        ui.Classes.add(uClass);
-        setUserInfo(ui);
-    }
-
-    public static void RemoveClass(String id) {
-
-        UserInfo ui = getUserInfo();
-        UClass uClass = getById(id);
-        ui.Classes.remove(uClass);
-        setUserInfo(ui);
-    }
-
-    public static void UpdateClass(UClass uClass){
-        UserInfo userInfo = getUserInfo();
-        List<UClass> uClasses =userInfo.Classes;
-        for (UClass i : uClasses){
-            if (i.id .equals(uClass.id)){
-                uClasses.set(uClasses.indexOf(i),uClass);
-                break;
-            }
-        }
-        setUserInfo(userInfo);
-    }
-
-    public static void RemoveAllClasses() {
-
-        UserInfo ui = getUserInfo();
-        ui.Classes = new ArrayList<>();
-        setUserInfo(ui);
-    }
-
     public static void setWeekNumber(int weekNumber) {
         UserInfo ui = getUserInfo();
         ui.FirstDayOfUni = DateTimeTools.WeekTools.getFirstDayOfUni(weekNumber);
