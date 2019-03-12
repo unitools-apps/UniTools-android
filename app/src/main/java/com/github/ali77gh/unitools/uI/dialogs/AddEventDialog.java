@@ -50,18 +50,17 @@ public class AddEventDialog extends BaseDialog {
         openDatePicker.setOnClickListener(v -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog();
             datePickerDialog.setListener((unixTime, date) -> {
-                int week = DateTimeTools.UnixTimeToWeek((int) unixTime);
-                if (week < 0) {
+                weekNumber = DateTimeTools.UnixTimeToWeek((int) unixTime);
+                if (weekNumber < 0) {
                     Toast.makeText(getActivity(), getActivity().getString(R.string.date_is_not_valid), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 openDatePicker.setText(getActivity().getString(R.string.week) +
                         " " +
-                        String.valueOf(week) +
+                        String.valueOf(weekNumber) +
                         " " +
                         getWeekString(date.getDayOfWeek().getValue())
                 );
-                weekNumber = DateTimeTools.UnixTimeToWeek((int) unixTime);
                 dayOfWeek = date.getDayOfWeek().getValue();
             });
             datePickerDialog.show(((AppCompatActivity) getActivity()).getSupportFragmentManager(), "");

@@ -22,7 +22,7 @@ public class DateTimeTools {
         int days = unixTimeMin / (24 * 60);
         int daysFromFirstDayOfUni = days - UserInfoRepo.getUserInfo().FirstDayOfUni;
 
-        return daysFromFirstDayOfUni / 7;
+        return (daysFromFirstDayOfUni / 7);
     }
 
     public static Time getCurrentTime() {
