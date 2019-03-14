@@ -26,6 +26,7 @@ import com.github.ali77gh.unitools.data.repo.UClassRepo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.adapter.WallFriendAdapter;
 import com.github.ali77gh.unitools.uI.animation.ExpandAndCollapse;
+import com.github.ali77gh.unitools.uI.animation.FadeLoop;
 import com.github.ali77gh.unitools.uI.dialogs.AddClassDialog;
 import com.github.ali77gh.unitools.uI.dialogs.AddEventDialog;
 import com.github.ali77gh.unitools.uI.dialogs.AddFriendDialog;
@@ -318,8 +319,10 @@ public class WallFragment extends Fragment implements Backable {
                 if (UClassRepo.getAll().size() > 1) {
                     ExpandAndCollapse.expand(parent);
                     expandClassesBtn.animate().rotation(180).setStartDelay(200).start();
-                } else
+                } else{
                     Toast.makeText(getActivity(), getString(R.string.you_have_no_more_classes), Toast.LENGTH_LONG).show();
+                    new FadeLoop(addClassBtn,3).animate();
+                }
 
             } else {
                 // collapse
@@ -336,8 +339,10 @@ public class WallFragment extends Fragment implements Backable {
                 if (EventRepo.getAll().size() > 1) {
                     ExpandAndCollapse.expand(parent);
                     expandEventsBtn.animate().rotation(180).setStartDelay(200).start();
-                } else
+                } else{
                     Toast.makeText(getActivity(), getString(R.string.you_have_no_more_events), Toast.LENGTH_LONG).show();
+                    new FadeLoop(addEventBtn,3).animate();
+                }
 
             } else {
                 // collapse
@@ -351,8 +356,14 @@ public class WallFragment extends Fragment implements Backable {
             LinearLayout parent = (LinearLayout) friendsList.getParent();
             if (parent.getVisibility() != View.VISIBLE) {
                 // expand
-                ExpandAndCollapse.expand(parent);
-                expandFriendsBtn.animate().rotation(180).setStartDelay(200).start();
+                if (FriendRepo.getAll().size() > 0) {
+                    ExpandAndCollapse.expand(parent);
+                    expandFriendsBtn.animate().rotation(180).setStartDelay(200).start();
+                } else{
+                    Toast.makeText(getActivity(), getString(R.string.you_have_no_more_friends), Toast.LENGTH_LONG).show();
+                    new FadeLoop(addFriendBtn,3).animate();
+                }
+
             } else {
                 // collapse
                 ExpandAndCollapse.collapse(parent);

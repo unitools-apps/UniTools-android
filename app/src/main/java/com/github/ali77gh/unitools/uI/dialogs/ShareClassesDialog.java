@@ -59,7 +59,8 @@ public class ShareClassesDialog extends BaseDialog {
 
         copy.setOnClickListener(view -> {
             ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
-            clipboardManager.setText("http://program.unitools/" + StringCoder.Encode(new Gson().toJson(me.getMinimal())));
+            clipboardManager.setText(getActivity().getString(R.string.open_this_with_unitools_app) + "\n" +
+                    "http://program.unitools/" + StringCoder.Encode(new Gson().toJson(me.getMinimal())));
             Toast.makeText(getActivity(), getActivity().getString(R.string.link_copied), Toast.LENGTH_SHORT).show();
             dismiss();
         });

@@ -144,6 +144,7 @@
     <string name="backup_saved_in">بک اپ ذخیره شد در</string>
     <string name="successfully_done">با موفقیت انجام شد</string>
     <string name="put_backup_file_in">فایل بک اپ را در اینجا قرار دهید</string>
+    <string name="open_this_with_unitools_app">با اپلیکیشن unitools باز کنید</string>
 
     <string-array name="nums">
         <item>۰</item>

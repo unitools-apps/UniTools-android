@@ -18,6 +18,7 @@ import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.google.gson.Gson;
 import com.google.gson.JsonParseException;
 
+import java.util.List;
 import java.util.Locale;
 
 public class InputLinkActivity extends AppCompatActivity {
@@ -51,12 +52,27 @@ public class InputLinkActivity extends AppCompatActivity {
         Friend friend = Friend.MinimalToFull(minimalFriend);
 
         add.setOnClickListener(v -> {
+
+            if (CheckFriendExist(name.getText().toString())){
+                Toast.makeText(this, getString(R.string.exists), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             friend.name = name.getText().toString();
             FriendRepo.Insert(friend);
             Toast.makeText(this, getString(R.string.friend_added_successfully), Toast.LENGTH_SHORT).show();
             finish();
         });
 
+    }
+
+    private boolean CheckFriendExist(String name){
+
+        List<Friend> friends = FriendRepo.getAll();
+        for(Friend friend : friends){
+            if (friend.name.equals(name)) return true;
+        }
+        return false;
     }
 
     private void SetupLang() {

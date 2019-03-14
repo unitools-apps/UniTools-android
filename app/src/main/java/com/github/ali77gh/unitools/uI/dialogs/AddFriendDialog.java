@@ -9,8 +9,10 @@ import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.data.model.Friend;
+import com.github.ali77gh.unitools.data.repo.FriendRepo;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by ali on 10/10/18.
@@ -39,6 +41,12 @@ public class AddFriendDialog extends BaseDialog {
                 Toast.makeText(getActivity(), getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
                 return;
             }
+
+            if (CheckFriendExist(name.getText().toString())){
+                Toast.makeText(getActivity(), getActivity().getString(R.string.exists), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             Friend friend = new Friend();
             friend.name = name.getText().toString();
             friend.classList = new ArrayList<>();
@@ -46,14 +54,21 @@ public class AddFriendDialog extends BaseDialog {
             dismiss();
         });
 
-        cancel.setOnClickListener(view -> {
-            dismiss();
-        });
+        cancel.setOnClickListener(view -> dismiss());
 
     }
 
     public void setListener(AddFriendDialogListener listener) {
         this.listener = listener;
+    }
+
+    private boolean CheckFriendExist(String name){
+
+        List<Friend> friends = FriendRepo.getAll();
+        for(Friend friend : friends){
+            if (friend.name.equals(name)) return true;
+        }
+        return false;
     }
 
     public interface AddFriendDialogListener {

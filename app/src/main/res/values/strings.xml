@@ -142,6 +142,7 @@
     <string name="backup_saved_in">backup saved in</string>
     <string name="successfully_done">successfully done</string>
     <string name="put_backup_file_in">put backup file in</string>
+    <string name="open_this_with_unitools_app">open this with unitools app</string>
 
     <string-array name="nums">
         <item>0</item>
