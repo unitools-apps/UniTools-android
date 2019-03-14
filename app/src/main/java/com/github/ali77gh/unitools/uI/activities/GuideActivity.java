@@ -26,7 +26,8 @@ public class GuideActivity extends AppCompatActivity {
             R.drawable.guide4,
             R.drawable.guide5,
             R.drawable.guide6,
-            R.drawable.guide7
+            R.drawable.guide7,
+            R.drawable.guide8
     };
 
 
