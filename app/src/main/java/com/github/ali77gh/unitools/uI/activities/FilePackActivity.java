@@ -282,7 +282,7 @@ public class FilePackActivity extends AppCompatActivity {
                         lFab.show();
                         rFab.show();
                         cFab.setImageDrawable(getResources().getDrawable(R.drawable.filepack_pdf_import));
-                        lFab.setImageDrawable(getResources().getDrawable(R.drawable.fiepack_pdf_generate));
+                        lFab.setImageDrawable(getResources().getDrawable(R.drawable.fliepack_pdf_generate));
                         _currentPage = PDF;
                         SetupFabsClicks();
                         break;

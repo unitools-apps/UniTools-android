@@ -6,8 +6,6 @@
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.STORAGE" />
-    <!-- for make phone silent -->
-    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
     <!-- push notify needs this -->
     <uses-permission android:name="android.permission.WAKE_LOCK" />
     <!-- Permission to Reset Alarm on device reboot -->
@@ -26,8 +24,7 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning">
+        android:theme="@style/AppTheme">
         <activity android:name=".uI.activities.InputLinkActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

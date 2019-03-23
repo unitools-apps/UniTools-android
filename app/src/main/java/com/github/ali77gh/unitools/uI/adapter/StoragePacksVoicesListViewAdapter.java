@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.uI.Tools;
 
 import java.io.File;
 
@@ -17,7 +18,6 @@ public class StoragePacksVoicesListViewAdapter extends BaseAdapter {
 
     private Activity _activity;
     private File[] files;
-    public int nowPlayingPos = -1;
 
     public StoragePacksVoicesListViewAdapter(Activity activity, File[] filePacks) {
 
@@ -53,17 +53,18 @@ public class StoragePacksVoicesListViewAdapter extends BaseAdapter {
         name.setText(String.valueOf(voice.getName().substring(0,voice.getName().indexOf("."))));
         time.setText(getAudioFileTime(voice));
 
-        if (i == nowPlayingPos) {
-            preview.setImageDrawable(_activity.getResources().getDrawable(R.drawable.storage_voices_pause));
-        } else {
-            preview.setImageDrawable(_activity.getResources().getDrawable(R.drawable.storage_voices_play));
+        preview.setImageDrawable(_activity.getResources().getDrawable(R.drawable.storage_voices_play));
+
+        //last item
+        if (i == files.length - 1) {
+            cview.setPadding(0, 0, 0, Tools.DpToPixel(80));
         }
         return cview;
     }
 
     private String getAudioFileTime(File file) {
         MediaPlayer mp = MediaPlayer.create(_activity, Uri.parse(file.getPath()));
-        if (mp == null) return "err";
+        if (mp == null) return "recording...";
         int duration = mp.getDuration();
         duration /= 1000;
         int min = duration / 60;

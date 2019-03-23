@@ -9,11 +9,13 @@ public class FilePack {
     public String Name;
     private int PicCount;
     private int VoiceCount;
+    private int PdfCount;
 
-    public FilePack(String name, int picCount, int voiceCount) {
+    public FilePack(String name, int picCount, int voiceCount, int pdfCount) {
         Name = name;
         PicCount = picCount;
         VoiceCount = voiceCount;
+        PdfCount = pdfCount;
     }
 
     public String getName() {
@@ -26,5 +28,9 @@ public class FilePack {
 
     public int getVoiceCount() {
         return VoiceCount;
+    }
+
+    public int getPdfCount() {
+        return PdfCount;
     }
 }

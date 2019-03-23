@@ -11,14 +11,20 @@
         android:scaleType="centerCrop"
         android:alpha=".5" />
 
-    <EditText
-        android:id="@+id/txt_file_pack_note_input"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="16dp"
-        android:gravity="top"
-        android:hint="@string/write_here"
-        android:background="@null"
-        android:paddingBottom="80dp"/>
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/txt_file_pack_note_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:gravity="top"
+            android:hint="@string/write_here"
+            android:background="@null"
+            android:paddingBottom="150dp" />
+    </ScrollView>
+
 
 </android.support.constraint.ConstraintLayout>

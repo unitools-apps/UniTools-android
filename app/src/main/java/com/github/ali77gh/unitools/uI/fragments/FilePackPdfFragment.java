@@ -9,17 +9,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.uI.activities.FilePackActivity;
+import com.github.ali77gh.unitools.uI.adapter.StoragePackPdfListViewAdapter;
 import com.github.ali77gh.unitools.uI.dialogs.FileActionDialog;
 
 import java.io.File;
 import java.net.URLConnection;
-import java.util.ArrayList;
-import java.util.List;
 
 import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.PDF_PATH_NAME;
 
@@ -51,16 +49,10 @@ public class FilePackPdfFragment extends Fragment {
     public void RefreshList() {
         File[] pdfs = new File(FilePackActivity.Path + File.separator + PDF_PATH_NAME).listFiles();
 
-        List<String> names = new ArrayList<>();
-        for (File f : pdfs) names.add(f.getName());
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(getActivity(), R.layout.item_home_global, names);
-        listView.setAdapter(adapter);
-
-        listView.addFooterView(getActivity().getLayoutInflater().inflate(R.layout.layout_list_footer, null));
+        listView.setAdapter(new StoragePackPdfListViewAdapter(getActivity(), pdfs));
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
-            if (position == pdfs.length) return;//on footer click
 
             Intent intent = new Intent(Intent.ACTION_VIEW);
             Uri data = Uri.parse("file:///" + pdfs[position].getPath());
@@ -69,7 +61,6 @@ public class FilePackPdfFragment extends Fragment {
         });
 
         listView.setOnItemLongClickListener((parent, view, position, id) -> {
-            if (position == pdfs.length) return false;//on footer click
 
             new FileActionDialog(getActivity(), pdfs[position], new FileActionDialog.FileActionDialogListener() {
                 @Override

@@ -35,11 +35,12 @@ public class FilePackProvider {
 
         _filePacks = new ArrayList<>();
         for (File f : subDirs) {
-            String name = f.getPath().substring(f.getPath().lastIndexOf(File.separator) + 1, f.getPath().length());
+            String name = f.getPath().substring(f.getPath().lastIndexOf(File.separator) + 1);
             try {
                 int imageCount = new File(f.getPath() + File.separator + IMAGE_PATH_NAME).listFiles().length;
                 int voiceCount = new File(f.getPath() + File.separator + VOICE_PATH_NAME).listFiles().length;
-                _filePacks.add(new FilePack(name, imageCount, voiceCount));
+                int pdfCount = new File(f.getPath() + File.separator + PDF_PATH_NAME).listFiles().length;
+                _filePacks.add(new FilePack(name, imageCount, voiceCount, pdfCount));
             } catch (NullPointerException e) {
                 // ignore unstandard folders
             }

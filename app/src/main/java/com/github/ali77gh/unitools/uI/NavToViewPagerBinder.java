@@ -16,7 +16,7 @@ public class NavToViewPagerBinder {
 
     public static void Bind(BottomNavigationView navigation, ViewPager viewpager, ViewPagerAdapter adapter){
 
-         BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = item -> {
+        BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener = item -> {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     viewpager.setCurrentItem(0, true);
@@ -37,7 +37,7 @@ public class NavToViewPagerBinder {
             return true;
         };
 
-         ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
+        ViewPager.OnPageChangeListener onPageChangeListener = new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int i, float v, int i1) {
             }

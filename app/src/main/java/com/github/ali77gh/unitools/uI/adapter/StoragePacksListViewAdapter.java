@@ -46,13 +46,13 @@ public class StoragePacksListViewAdapter extends BaseAdapter {
         TextView packName = cview.findViewById(R.id.text_storage_item_name);
         TextView picCount = cview.findViewById(R.id.text_storage_item_pic_count);
         TextView voiceCount = cview.findViewById(R.id.text_storage_item_voice_count);
+        TextView pdfCount = cview.findViewById(R.id.text_storage_item_pdf_count);
 
         packName.setText(filePack.getName());
         picCount.setText(String.valueOf(filePack.getPicCount()));
         voiceCount.setText(String.valueOf(filePack.getVoiceCount()));
+        pdfCount.setText(String.valueOf(filePack.getPdfCount()));
 
         return cview;
     }
-
-
 }
