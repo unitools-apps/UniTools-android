@@ -9,11 +9,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.ContextHolder;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.data.model.UClass;
 import com.github.ali77gh.unitools.data.repo.UClassRepo;
-import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 /**
  * Created by ali77gh on 11/14/18.
@@ -48,14 +47,14 @@ public class ClassInfoDialog extends BaseDialog {
 
         absentCount.setText(String.valueOf(uClass.apcent));
         if (uClass.apcent >= 3)
-            absentCount.setTextColor(ContextHolder.getAppContext().getResources().getColor(R.color.red));
+            absentCount.setTextColor(CH.getColor(R.color.red));
 
         absentPlus.setOnClickListener(view -> {
             uClass.apcent++;
             absentCount.setText(String.valueOf(uClass.apcent));
             UClassRepo.Update(uClass);
             if (uClass.apcent >= 3)
-                absentCount.setTextColor(ContextHolder.getAppContext().getResources().getColor(R.color.red));
+                absentCount.setTextColor(CH.getColor(R.color.red));
         });
 
         absentMinus.setOnClickListener(view -> {
@@ -65,7 +64,7 @@ public class ClassInfoDialog extends BaseDialog {
             absentCount.setText(String.valueOf(uClass.apcent));
             UClassRepo.Update(uClass);
             if (uClass.apcent < 3)
-                absentCount.setTextColor(ContextHolder.getAppContext().getResources().getColor(R.color.black));
+                absentCount.setTextColor(CH.getColor(R.color.black));
         });
 
         //load info

@@ -7,12 +7,10 @@ import android.view.View;
 import android.widget.Button;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.ContextHolder;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.data.model.UserInfo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.animation.SelectLanguageCollapse;
-
-import java.util.ArrayList;
 
 /**
  * this activity runs in first time
@@ -23,7 +21,7 @@ public class SelectLangActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_lang);
-        ContextHolder.initStatics(this);
+        CH.initStatics(this);
 
         Button fa = findViewById(R.id.btn_select_lang_fa);
         Button en = findViewById(R.id.btn_select_lang_en);

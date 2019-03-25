@@ -11,7 +11,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.ContextHolder;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.core.qrCode.QrCodeTools;
 import com.github.ali77gh.unitools.core.tools.Sort;
@@ -90,7 +90,7 @@ public class FriendInfoDialog extends BaseDialog {
         for (UClass uClass : uClasses) {
             classesString.add(Translator.getUClassReadable(uClass));
         }
-        ArrayAdapter<String> classesStringAdapter = new ArrayAdapter<>(ContextHolder.getAppContext(), R.layout.item_spinner, classesString);
+        ArrayAdapter<String> classesStringAdapter = new ArrayAdapter<>(CH.getAppContext(), R.layout.item_spinner, classesString);
         listView.setAdapter(classesStringAdapter);
         listView.setEmptyView(findViewById(R.id.text_home_friend_info_dialog_nothing_to_show));
 

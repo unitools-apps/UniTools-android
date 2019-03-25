@@ -11,12 +11,11 @@ import android.os.Build;
 import android.support.v4.app.NotificationManagerCompat;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.ContextHolder;
+import com.github.ali77gh.unitools.core.CH;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
-import java.util.Date;
 import java.util.Random;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
@@ -41,7 +40,7 @@ public class CheckForUpdate {
                 }
 
                 in.close();
-                if (!ContextHolder.getAppContext().getString(R.string.app_version).equals(page.toString()))
+                if (!CH.getString(R.string.app_version).equals(page.toString()))
                     PushNotify();
 
             } catch (Exception e) {
@@ -53,12 +52,12 @@ public class CheckForUpdate {
     private static void PushNotify() {
 
         String CHANNEL_ID = "my_channel_01";
-        Context context = ContextHolder.getAppContext();
+        Context context = CH.getAppContext();
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
 
         Notification.Builder builder = new Notification.Builder(context);
-        builder.setContentTitle(ContextHolder.getAppContext().getString(R.string.update_available));
-        builder.setContentText(ContextHolder.getAppContext().getString(R.string.open_on_website)); // todo replace with context.getString(R.string.next_class_is_close)
+        builder.setContentTitle(CH.getString(R.string.update_available));
+        builder.setContentText(CH.getString(R.string.open_on_website)); // todo replace with context.getString(R.string.next_class_is_close)
         builder.setSmallIcon(R.drawable.notification_icon);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,

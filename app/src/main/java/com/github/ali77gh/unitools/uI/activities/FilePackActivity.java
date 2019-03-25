@@ -24,7 +24,7 @@ import android.widget.Toast;
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.ContextHolder;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.audio.VoiceRecorder;
 import com.github.ali77gh.unitools.core.onlineapi.Promise;
 import com.github.ali77gh.unitools.core.pdf.PDFGen;
@@ -84,7 +84,7 @@ public class FilePackActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        ContextHolder.initStatics(this);
+        CH.initStatics(this);
         setContentView(R.layout.activity_file_pack);
 
         zoomableParent = findViewById(R.id.zoomview_file_pack_activity);

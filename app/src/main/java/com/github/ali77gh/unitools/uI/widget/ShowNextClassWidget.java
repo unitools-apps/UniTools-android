@@ -8,10 +8,9 @@ import android.content.Intent;
 import android.content.res.Resources;
 import android.util.DisplayMetrics;
 import android.widget.RemoteViews;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.ContextHolder;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.core.tools.Sort;
 import com.github.ali77gh.unitools.data.model.UClass;
@@ -31,7 +30,7 @@ public class ShowNextClassWidget extends AppWidgetProvider {
 
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        ContextHolder.initStatics(context);
+        CH.initStatics(context);
         SetupLang(context);
 
         Update(context, appWidgetManager, appWidgetIds);
@@ -45,7 +44,7 @@ public class ShowNextClassWidget extends AppWidgetProvider {
             List<UClass> classes = UClassRepo.getAll();
 
             if (classes.size() == 0) {
-                remoteViews.setTextViewText(R.id.tv_widget_next_class, ContextHolder.getAppContext().getString(R.string.there_is_no_class));
+                remoteViews.setTextViewText(R.id.tv_widget_next_class, CH.getString(R.string.there_is_no_class));
             } else {
                 Sort.SortClass(classes);
                 String text = context.getString(R.string.next_class) + " : " + Translator.getUClassReadable(classes.get(0), true);

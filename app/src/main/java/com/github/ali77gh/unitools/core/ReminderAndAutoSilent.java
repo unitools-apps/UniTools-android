@@ -46,7 +46,7 @@ public class ReminderAndAutoSilent extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
 
         Log.i("ReminderAndAutoSilent","onReceive()");
-        if (ContextHolder.getAppContext() == null) ContextHolder.initStatics(context);
+        if (CH.getAppContext() == null) CH.initStatics(context);
         SetupLang(context);
 
         UserInfo ui = UserInfoRepo.getUserInfo();
@@ -75,7 +75,7 @@ public class ReminderAndAutoSilent extends BroadcastReceiver {
         //first clear old alarms
         Clear(context);
 
-        if (ContextHolder.getAppContext() == null) ContextHolder.initStatics(context);
+        if (CH.getAppContext() == null) CH.initStatics(context);
         UserInfo userInfo = UserInfoRepo.getUserInfo();
 
         if (UClassRepo.getAll().size()==0) return;

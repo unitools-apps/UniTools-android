@@ -2,7 +2,9 @@ package com.github.ali77gh.unitools.uI.fragments;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -19,6 +21,7 @@ import com.github.ali77gh.unitools.uI.adapter.StoragePacksVoicesListViewAdapter;
 import com.github.ali77gh.unitools.uI.dialogs.FileActionDialog;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.net.URLConnection;
 
 import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.VOICE_PATH_NAME;
@@ -66,15 +69,24 @@ public class FilePackVoicesFragment extends Fragment {
         listView.setEmptyView(nothingToShow);
 
         listView.setOnItemClickListener((adapterView, view, i, l) -> {
+
+            if (Build.VERSION.SDK_INT >= 24) {
+                try {
+                    Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
+                    m.invoke(null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
             Intent intent = new Intent(Intent.ACTION_VIEW);
             Uri data = Uri.parse("file:///" + voices[i].getPath());
             intent.setDataAndType(data, "audio/mp3");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         });
 
         listView.setOnItemLongClickListener((parent, view, position, id) -> {
-
-            if (position == voices.length) return true;
 
             new FileActionDialog(getActivity(), voices[position], new FileActionDialog.FileActionDialogListener() {
                 @Override

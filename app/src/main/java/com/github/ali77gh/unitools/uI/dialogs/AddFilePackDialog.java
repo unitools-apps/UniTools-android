@@ -14,7 +14,6 @@ import com.github.ali77gh.unitools.core.onlineapi.Promise;
 import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.data.model.UClass;
 import com.github.ali77gh.unitools.data.repo.UClassRepo;
-import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -79,7 +78,7 @@ public class AddFilePackDialog extends BaseDialog {
 
         done.setOnClickListener(v -> {
 
-            if (filePacks.indexOf(input.getText().toString().replace(" ", "")) != -1) {
+            if (filePacks.indexOf(input.getText().toString()) != -1) {
                 //exist
                 Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.exists), Toast.LENGTH_SHORT).show();
                 return;

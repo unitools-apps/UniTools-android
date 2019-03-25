@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.ContextHolder;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.StringCoder;
 import com.github.ali77gh.unitools.data.model.Friend;
 import com.github.ali77gh.unitools.data.repo.FriendRepo;
@@ -26,7 +26,7 @@ public class InputLinkActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        ContextHolder.initStatics(this);
+        CH.initStatics(this);
         setContentView(R.layout.activity_input_link);
         SetupLang();
 

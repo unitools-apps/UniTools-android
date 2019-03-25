@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.IMAGE_PATH_NAME;
+import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.PDF_PATH_NAME;
 
 public class ExportPdfDialog extends BaseDialog {
 
@@ -48,6 +49,12 @@ public class ExportPdfDialog extends BaseDialog {
 
             File[] selected = getSelectedFiles();
 
+
+            if (isNameExist(name.getText().toString())) {
+                Toast.makeText(getActivity(), getActivity().getString(R.string.exists), Toast.LENGTH_SHORT).show();
+                return;
+            }
+
             if (selected.length == 0) {
                 Toast.makeText(getActivity(), getActivity().getString(R.string.select_somethings), Toast.LENGTH_SHORT).show();
                 return;
@@ -72,6 +79,19 @@ public class ExportPdfDialog extends BaseDialog {
             checkBox.setChecked(true);
             list.addView(checkBox);
         }
+    }
+
+    private boolean isNameExist(String name) {
+
+        File[] pdfs = new File(FilePackActivity.Path + File.separator + PDF_PATH_NAME).listFiles();
+
+        for (File pdf : pdfs) {
+            if (pdf.getName().equals(name)) {
+                return false;
+            }
+        }
+        return true;
+
     }
 
     private File[] getSelectedFiles() {

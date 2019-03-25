@@ -37,7 +37,7 @@ public class Backup {
         if (friends) friendsList = FriendRepo.getAll();
 
         BackupModel bm = new BackupModel(
-                ContextHolder.getAppContext().getString(R.string.app_version),
+                CH.getString(R.string.app_version),
                 classesList,
                 eventsList,
                 friendsList
@@ -102,14 +102,12 @@ public class Backup {
 
         if (FriendRepo.getAll().size() != 0) return true;
         if (EventRepo.getAll().size() != 0) return true;
-        if (UClassRepo.getAll().size() != 0) return true;
-        return false;
+        return UClassRepo.getAll().size() != 0;
     }
 
     public static boolean IsRestorePossible(){
         File backupFile = new File(backupFilePath);
-        if (backupFile.exists()) return true;
-        else return false;
+        return backupFile.exists();
     }
 
 }

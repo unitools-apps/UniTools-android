@@ -11,7 +11,7 @@ import android.os.Build;
 import android.support.v4.app.NotificationManagerCompat;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.ContextHolder;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.data.model.PushNotifyModel;
 import com.google.gson.Gson;
 
@@ -58,7 +58,7 @@ public class PushNotification {
     private static void PushNotify(String title, String text, String link) {
 
         String CHANNEL_ID = "my_channel_01";
-        Context context = ContextHolder.getAppContext();
+        Context context = CH.getAppContext();
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
 
         Notification.Builder builder = new Notification.Builder(context);

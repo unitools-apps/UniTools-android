@@ -2,7 +2,9 @@ package com.github.ali77gh.unitools.uI.fragments;
 
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,14 +14,15 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.uI.activities.FilePackActivity;
 import com.github.ali77gh.unitools.uI.adapter.StoragePackPdfListViewAdapter;
 import com.github.ali77gh.unitools.uI.dialogs.FileActionDialog;
 
 import java.io.File;
+import java.lang.reflect.Method;
 import java.net.URLConnection;
 
 import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.PDF_PATH_NAME;
+import static com.github.ali77gh.unitools.uI.activities.FilePackActivity.Path;
 
 public class FilePackPdfFragment extends Fragment {
 
@@ -47,16 +50,26 @@ public class FilePackPdfFragment extends Fragment {
     }
 
     public void RefreshList() {
-        File[] pdfs = new File(FilePackActivity.Path + File.separator + PDF_PATH_NAME).listFiles();
+        File[] pdfs = new File(Path + File.separator + PDF_PATH_NAME).listFiles();
 
 
         listView.setAdapter(new StoragePackPdfListViewAdapter(getActivity(), pdfs));
 
         listView.setOnItemClickListener((parent, view, position, id) -> {
 
+            if (Build.VERSION.SDK_INT >= 24) {
+                try {
+                    Method m = StrictMode.class.getMethod("disableDeathOnFileUriExposure");
+                    m.invoke(null);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+
+            File file = new File(pdfs[position].getPath());
             Intent intent = new Intent(Intent.ACTION_VIEW);
-            Uri data = Uri.parse("file:///" + pdfs[position].getPath());
-            intent.setDataAndType(data, "document/pdf");
+            intent.setDataAndType(Uri.fromFile(file), "application/pdf");
+            intent.setFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
             startActivity(intent);
         });
 

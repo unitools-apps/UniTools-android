@@ -1,8 +1,6 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.text.Editable;
@@ -14,7 +12,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.ContextHolder;
 import com.github.ali77gh.unitools.core.onlineapi.DonateUsApi;
 
 /**
