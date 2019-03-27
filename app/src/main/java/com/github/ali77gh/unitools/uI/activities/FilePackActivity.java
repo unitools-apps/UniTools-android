@@ -250,39 +250,33 @@ public class FilePackActivity extends AppCompatActivity {
             public void onPageSelected(int i) {
                 switch (i) {
                     case PICS:
-                        cFab.show();
-                        lFab.show();
-                        rFab.show();
                         cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_camera));
                         lFab.setImageDrawable(getResources().getDrawable(R.drawable.file_pack_gallery));
+                        lFab.hide();
+                        lFab.show();
                         _currentPage = PICS;
                         SetupFabsClicks();
                         break;
                     case VOICES:
-                        cFab.show();
-                        lFab.hide();
-                        rFab.show();
                         if (_voiceRecorder.isRecording())
                             cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_voices_pause));
                         else
                             cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_mic));
+                        lFab.hide();
                         _currentPage = VOICES;
                         SetupFabsClicks();
                         break;
                     case NOTE:
-                        cFab.show();
-                        lFab.hide();
-                        rFab.show();
                         cFab.setImageDrawable(getResources().getDrawable(R.drawable.note_save));
+                        lFab.hide();
                         _currentPage = NOTE;
                         SetupFabsClicks();
                         break;
                     case PDF:
-                        cFab.show();
-                        lFab.show();
-                        rFab.show();
                         cFab.setImageDrawable(getResources().getDrawable(R.drawable.filepack_pdf_import));
                         lFab.setImageDrawable(getResources().getDrawable(R.drawable.fliepack_pdf_generate));
+                        lFab.hide();
+                        lFab.show();
                         _currentPage = PDF;
                         SetupFabsClicks();
                         break;
@@ -298,7 +292,7 @@ public class FilePackActivity extends AppCompatActivity {
         });
 
         tabLayout.setupWithViewPager(viewPager);
-        tabLayout.setLayoutDirection(View.LAYOUT_DIRECTION_LOCALE);
+        tabLayout.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
     }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
