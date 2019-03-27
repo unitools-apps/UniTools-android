@@ -86,11 +86,11 @@ public class ExportPdfDialog extends BaseDialog {
         File[] pdfs = new File(FilePackActivity.Path + File.separator + PDF_PATH_NAME).listFiles();
 
         for (File pdf : pdfs) {
-            if (pdf.getName().equals(name)) {
-                return false;
+            if (pdf.getName().substring(0, pdf.getName().indexOf(".")).equals(name)) {
+                return true;
             }
         }
-        return true;
+        return false;
 
     }
 

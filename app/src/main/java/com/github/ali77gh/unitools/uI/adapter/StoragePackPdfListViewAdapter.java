@@ -42,7 +42,7 @@ public class StoragePackPdfListViewAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
 
-        ViewGroup cview = (ViewGroup) _activity.getLayoutInflater().inflate(R.layout.item_storag_pack_pdf, null);
+        ViewGroup cview = (ViewGroup) _activity.getLayoutInflater().inflate(R.layout.item_file_pack_pdf, null);
         File pdf = files[i];
 
         TextView name = cview.findViewById(R.id.text_item_storage_pdf_name);

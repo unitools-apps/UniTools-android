@@ -61,7 +61,7 @@
     <string name="classes">classes</string>
     <string name="next">next: </string>
     <string name="enter_current_week_number">enter current week number</string>
-    <string name="enter_number">enter number :|</string>
+    <string name="enter_number">enter number </string>
     <string name="week">week</string>
     <string name="coming_soon">coming soon…</string>
     <string name="friend_info">friend info</string>
@@ -144,6 +144,7 @@
     <string name="put_backup_file_in">put backup file in</string>
     <string name="open_this_with_unitools_app">open this with unitools app</string>
     <string name="pages">pages</string>
+    <string name="plz_enter_right_number">plz enter right number</string>
 
     <string-array name="nums">
         <item>0</item>

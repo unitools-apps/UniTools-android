@@ -76,7 +76,7 @@
     <string name="two_weeks_later">دو هفته بعد</string>
     <string name="weeks_later">هفته بعد</string>
     <string name="next_class_is_close"> کلاس بعدی نزدیک است</string>
-    <string name="how_match_before_class_start_time">چقدر قبلش؟</string>
+    <string name="how_match_before_class_start_time">چقدر قبل از شروع کلاس؟</string>
     <string name="notification_type">نوع اعلان</string>
     <string name="teacher">اساتید</string>
     <string name="passed">گذشته</string>
@@ -146,6 +146,7 @@
     <string name="put_backup_file_in">فایل بک اپ را در اینجا قرار دهید</string>
     <string name="open_this_with_unitools_app">با اپلیکیشن unitools باز کنید</string>
     <string name="pages">صفحه</string>
+    <string name="plz_enter_right_number">عدد را صحیح وارد کنید</string>
 
     <string-array name="nums">
         <item>۰</item>

@@ -103,7 +103,7 @@ public class Translator {
 
 
     public static String getWeekNumberString(int weekNumber) {
-        if (weekNumber > 100) {
+        if (weekNumber > 38) {
             return CH.getString(R.string.not_set);
         }
         return CH.getString(R.string.week) + " " + NumToString(weekNumber);

@@ -1,11 +1,8 @@
 package com.github.ali77gh.unitools.uI.dialogs;
 
 import android.app.Activity;
-import android.app.Dialog;
-import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -35,7 +32,7 @@ public class SetupWeekCounterDialog extends BaseDialog {
 
         cancel.setOnClickListener(view -> dismiss());
         int current = UserInfoRepo.getWeekNumber();
-        if (current < 50)
+        if (current < 38)
             input.setText(String.valueOf(current));
 
         ok.setOnClickListener(view -> {
@@ -43,7 +40,12 @@ public class SetupWeekCounterDialog extends BaseDialog {
                 Toast.makeText(getActivity(), getActivity().getString(R.string.enter_number), Toast.LENGTH_SHORT).show();
                 return;
             }
-            UserInfoRepo.setWeekNumber(Integer.valueOf(input.getText().toString()));
+            int selectedWeek = Integer.valueOf(input.getText().toString());
+            if (selectedWeek > 38) {
+                Toast.makeText(getActivity(), getActivity().getString(R.string.plz_enter_right_number), Toast.LENGTH_LONG).show();
+                return;
+            }
+            UserInfoRepo.setWeekNumber(selectedWeek);
             dismiss();
         });
     }

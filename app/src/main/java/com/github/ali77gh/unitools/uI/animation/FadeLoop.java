@@ -9,6 +9,7 @@ public class FadeLoop {
     private float maxFade = 1;
 
     private int counter = 1;
+    private boolean forceStoped = false;
     private int loop;
     private View view;
 
@@ -39,10 +40,15 @@ public class FadeLoop {
         OneTimeAnim(view,animationEnd);
     }
 
+    public void stopAnimate() {
+        forceStoped = true;
+    }
+
     private OnAnimationEnd animationEnd = new OnAnimationEnd() {
         @Override
-        public void onEnd() {
+        public void onAnimationEnd() {
             if (loop == counter) return;
+            if (forceStoped) return;
             counter++;
             OneTimeAnim(view,animationEnd);
         }
@@ -54,10 +60,10 @@ public class FadeLoop {
 
         view.postDelayed(() -> view.animate().alpha(maxFade).setDuration(duration).start(),duration+50);
 
-        view.postDelayed(onAnimationEnd::onEnd,(duration * 2) + 100);
+        view.postDelayed(onAnimationEnd::onAnimationEnd, (duration * 2) + 100);
     }
 
     private interface OnAnimationEnd{
-        void onEnd();
+        void onAnimationEnd();
     }
 }
