@@ -252,7 +252,7 @@ public class FilePackActivity extends AppCompatActivity {
                     case PICS:
                         cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_camera));
                         lFab.setImageDrawable(getResources().getDrawable(R.drawable.file_pack_gallery));
-                        lFab.hide();
+                        lFab.hide();//you can remove this when update to next support library (current 28.0.0) (support library bug)
                         lFab.show();
                         _currentPage = PICS;
                         SetupFabsClicks();
@@ -275,7 +275,7 @@ public class FilePackActivity extends AppCompatActivity {
                     case PDF:
                         cFab.setImageDrawable(getResources().getDrawable(R.drawable.filepack_pdf_import));
                         lFab.setImageDrawable(getResources().getDrawable(R.drawable.fliepack_pdf_generate));
-                        lFab.hide();
+                        lFab.hide();//you can remove this when update to next support library (current 28.0.0) (support library bug)
                         lFab.show();
                         _currentPage = PDF;
                         SetupFabsClicks();

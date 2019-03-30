@@ -36,7 +36,7 @@ public class HomeActivity extends AppCompatActivity {
     private BottomNavigationView navigation;
     private ViewPagerAdapter viewPagerAdapter;
     public static Backable currentFrag;
-    private final int DEFAULT_NAV_MENU =0;
+    private final int DEFAULT_NAV_MENU = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,10 +126,10 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onDestroy() {
+    protected void onPause() {
         updateWidgets();// because classes may changed
         ReminderAndAutoSilent.Reset(this); // because classes may changed
-        super.onDestroy();
+        super.onPause();
     }
 
     protected void updateWidgets() {

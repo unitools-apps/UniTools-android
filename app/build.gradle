@@ -6,9 +6,9 @@ android {
         applicationId "com.github.ali77gh.unitools"
         minSdkVersion 19
         targetSdkVersion 28
-        versionName '1.5.1'
+        versionName '1.6.1'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        versionCode 1
+        versionCode 3
     }
     buildTypes {
         release {

@@ -86,14 +86,13 @@ public class FilePackNotesFragment extends Fragment {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onPause() {
         try{
             Save();
         }catch (RuntimeException e){
-            //this happened when user delete doc
+            // this happened when user delete doc (fragment got killed)
         }
-
+        super.onPause();
     }
 
     private String Load() {
