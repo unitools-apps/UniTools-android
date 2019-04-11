@@ -40,6 +40,7 @@
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"/>
 
+    <!--absent counter-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -88,6 +89,49 @@
 
     </LinearLayout>
 
+    <CheckBox
+        android:id="@+id/check_home_class_info_dialog_reminder"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/reminder"
+        android:layout_marginStart="16dp" />
+
+    <LinearLayout
+        android:id="@+id/linear_home_class_info_dialog_reminder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/background"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:visibility="gone">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/how_match_before_class_start_time"
+            android:layout_marginStart="16dp" />
+
+        <EditText
+            android:id="@+id/edit_text_home_class_info_dialog_reminder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="50"
+            android:maxLength="2"
+            android:layout_weight="1"
+            android:inputType="number" />
+
+        <TextView
+            android:layout_marginEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/min" />
+
+    </LinearLayout>
+
+    <!--buttons-->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

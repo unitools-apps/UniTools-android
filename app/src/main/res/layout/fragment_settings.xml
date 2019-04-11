@@ -135,32 +135,6 @@
                 android:alpha=".5"
                 android:background="@color/black" />
 
-            <!--notification-->
-            <LinearLayout
-                android:id="@+id/linear_settings_reminder"
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/image_settings_notification_state"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="16dp"
-                    android:src="@drawable/settings_notifi"
-                    android:tint="@color/black" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="20dp"
-                    android:text="@string/reminder"
-                    android:textColor="@color/black" />
-
-            </LinearLayout>
-
             <View
                 android:layout_width="match_parent"
                 android:layout_height="1px"

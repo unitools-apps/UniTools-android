@@ -53,13 +53,10 @@ public class SplashActivity extends AppCompatActivity {
     private void SetupLang() {
 
         String lang = UserInfoRepo.getUserInfo().LangId;
-
         Resources res = getResources();
-        // Change locale settings in the app.
         DisplayMetrics dm = res.getDisplayMetrics();
         android.content.res.Configuration conf = res.getConfiguration();
-        conf.setLocale(new Locale(lang)); // API 17+ only.
-        // Use conf.locale = new Locale(...) if targeting lower versions
+        conf.setLocale(new Locale(lang)); // API 17+ only
         res.updateConfiguration(conf, dm);
     }
 }

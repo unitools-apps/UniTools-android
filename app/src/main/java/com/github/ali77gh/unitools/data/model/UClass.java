@@ -6,19 +6,23 @@ package com.github.ali77gh.unitools.data.model;
 
 public class UClass {
 
+    public static final int DISABLE_REMINDER = -1;
+
     public String id;
     public String where;
     public String what;
     public Time time;
     public int apcent;
+    public int reminder;//how match before class in millis
+
+    public UClass() {
+        reminder = DISABLE_REMINDER;
+    }
 
     public UClass(String where, String what, Time time) {
         this.where = where;
         this.what = what;
         this.time = time;
-    }
-
-    public UClass() {
     }
 
 

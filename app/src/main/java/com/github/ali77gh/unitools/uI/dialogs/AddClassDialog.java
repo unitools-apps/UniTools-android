@@ -6,7 +6,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -106,9 +105,7 @@ public class AddClassDialog extends BaseDialog {
             dismiss();
         });
 
-        cancel.setOnClickListener(view -> {
-            dismiss();
-        });
+        cancel.setOnClickListener(view -> dismiss());
     }
 
     public void setListener(AddClassDialogListener listener) {

@@ -14,9 +14,9 @@ import android.widget.RemoteViews;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.CH;
-import com.github.ali77gh.unitools.core.ReminderAndAutoSilent;
+import com.github.ali77gh.unitools.core.alarmAndAutoSilent.ReminderAndAutoSilent;
 import com.github.ali77gh.unitools.core.onlineapi.CheckForUpdate;
-import com.github.ali77gh.unitools.core.onlineapi.PushNotification;
+import com.github.ali77gh.unitools.core.onlineapi.GetCustomNews;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.NavToViewPagerBinder;
 import com.github.ali77gh.unitools.uI.adapter.ViewPagerAdapter;
@@ -45,8 +45,8 @@ public class HomeActivity extends AppCompatActivity {
         CH.initStatics(this);
         SetupNav();
         CheckForUpdate.Check();
-        PushNotification.Check();
-        ReminderAndAutoSilent.Reset(this);
+        GetCustomNews.Check();
+        ReminderAndAutoSilent.Setup(this);
     }
 
     private void SetupNav() {
@@ -128,7 +128,7 @@ public class HomeActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         updateWidgets();// because classes may changed
-        ReminderAndAutoSilent.Reset(this); // because classes may changed
+        ReminderAndAutoSilent.Setup(this); // because classes may changed
         super.onPause();
     }
 

@@ -55,7 +55,7 @@
     <string name="scan_qr_code">scan QR code</string>
     <string name="paste">paste</string>
     <string name="week_number_5">week number 5</string>
-    <string name="reminder">reminder (beta)</string>
+    <string name="reminder">reminder</string>
     <string name="auto_silent">auto silent (beta)</string>
     <string name="copy">Copy</string>
     <string name="classes">classes</string>
@@ -74,7 +74,7 @@
     <string name="two_weeks_later">two weeks later</string>
     <string name="weeks_later"> weeks later</string>
     <string name="next_class_is_close"> next class is close</string>
-    <string name="how_match_before_class_start_time">how match before class start time?</string>
+    <string name="how_match_before_class_start_time">how match before class?</string>
     <string name="notification_type">notification type</string>
     <string name="teacher">teacher</string>
     <string name="passed">passed</string>
@@ -103,6 +103,7 @@
     <string name="enter_storage_name">enter storage name</string>
     <string name="exists">already exist</string>
     <string name="open_on_github">open on github</string>
+    <string name="open_instagram">open instagram</string>
     <string name="open_on_website">open website</string>
     <string name="share_classes">share classes</string>
     <string name="started">started</string>

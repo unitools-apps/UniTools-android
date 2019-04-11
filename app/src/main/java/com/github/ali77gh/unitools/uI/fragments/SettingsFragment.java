@@ -21,13 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
-import com.github.ali77gh.unitools.core.Backup;
-import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.data.model.UserInfo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.uI.activities.GuideActivity;
 import com.github.ali77gh.unitools.uI.dialogs.BackupDialog;
-import com.github.ali77gh.unitools.uI.dialogs.SettingsAlarmConfigDialog;
 
 /**
  * Created by ali on 10/3/18.
@@ -65,13 +62,11 @@ public class SettingsFragment extends Fragment implements Backable {
         autoSilentSwitch = (Switch) autoSilentBtn.getChildAt(3);
         aboutUsBtn = cView.findViewById(R.id.linear_settings_about_us);
         aboutUs = cView.findViewById(R.id.layout_settings_about);
-        LinearLayout reminder = cView.findViewById(R.id.linear_settings_reminder);
         LinearLayout guide = cView.findViewById(R.id.linear_settings_guide);
         LinearLayout backup = cView.findViewById(R.id.linear_settings_auto_backup);
 //        LinearLayout donateUs = cView.findViewById(R.id.linear_settings_donate_us);
 //        LinearLayout sendFeedback = cView.findViewById(R.id.linear_settings_feedback);
 
-        reminder.setOnClickListener(view -> new SettingsAlarmConfigDialog(getActivity()).show());
 
         autoSilentBtn.setOnClickListener(view -> autoSilentSwitch.toggle());
         autoSilentSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
@@ -219,8 +214,11 @@ public class SettingsFragment extends Fragment implements Backable {
 
         LinearLayout github = aboutUs.findViewById(R.id.linear_about_github);
         LinearLayout website = aboutUs.findViewById(R.id.linear_about_website);
+        LinearLayout instagram = aboutUs.findViewById(R.id.linear_about_instagram);
+
         github.setOnClickListener(view -> OpenGithub());
         website.setOnClickListener(view -> OpenWebsite());
+        instagram.setOnClickListener(v -> OpenInstagram());
         aboutUsBtn.setOnClickListener(view -> {
             aboutUs.setAlpha(0);
             aboutUs.setVisibility(View.VISIBLE);
@@ -258,12 +256,19 @@ public class SettingsFragment extends Fragment implements Backable {
     }
 
     private void OpenGithub() {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://github.com/ali77gh/UniTools"));
-        startActivity(browserIntent);
+        OpenLink("https://github.com/unitools-apps/UniTools-android");
+    }
+
+    private void OpenInstagram() {
+        OpenLink("https://www.instagram.com/unitools_apps/");
     }
 
     private void OpenWebsite() {
-        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://unitools-apps.github.io/Website/"));
+        OpenLink("https://unitools-apps.github.io/Website/");
+    }
+
+    private void OpenLink(String link) {
+        Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
         startActivity(browserIntent);
     }
 

@@ -15,6 +15,9 @@ import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
  * Created by ali77gh on 10/12/18.
  */
 
+/**
+ * Context Holder
+ */
 public class CH {
 
     private static Context AppContext;

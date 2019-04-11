@@ -4,7 +4,7 @@ import android.content.Context;
 import android.media.AudioManager;
 
 import static android.media.AudioManager.RINGER_MODE_NORMAL;
-import static android.media.AudioManager.RINGER_MODE_SILENT;
+import static android.media.AudioManager.RINGER_MODE_VIBRATE;
 
 /**
  * Created by ali77gh on 11/25/18.
@@ -12,8 +12,8 @@ import static android.media.AudioManager.RINGER_MODE_SILENT;
 
 public class SilentManager {
 
-    public static void Silent(Context context) {
-        getAudioManager(context).setRingerMode(RINGER_MODE_SILENT);
+    public static void Vibrate(Context context) {
+        getAudioManager(context).setRingerMode(RINGER_MODE_VIBRATE);
     }
 
     public static void Normal(Context context) {

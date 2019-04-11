@@ -1,16 +1,16 @@
 package com.github.ali77gh.unitools.core.onlineapi;
 
-import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.AppNotification;
-import com.github.ali77gh.unitools.core.CH;
+import com.github.ali77gh.unitools.data.model.PushNotifyModel;
+import com.google.gson.Gson;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.net.URL;
 
-public class CheckForUpdate {
+public class GetCustomNews {
 
-    private static final String API_URL = "https://unitools-apps.github.io/Website/config/version.txt";
+    private static final String API_URL = "https://unitools-apps.github.io/Website/config/pushNotification.json";
 
     public static void Check() {
 
@@ -27,8 +27,9 @@ public class CheckForUpdate {
                 }
 
                 in.close();
-                if (!CH.getString(R.string.app_version).equals(page.toString()))
-                    AppNotification.ShowUpdateAvailable();
+                PushNotifyModel pnm = new Gson().fromJson(page.toString(), PushNotifyModel.class);
+                if (pnm.enable)
+                    AppNotification.ShowCustomNewsNotification(pnm.title, pnm.text, pnm.link);
 
             } catch (Exception e) {
                 e.printStackTrace();
