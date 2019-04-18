@@ -8,7 +8,11 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.data.model.Event;
+import com.github.ali77gh.unitools.data.repo.EventRepo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
+
+import java.util.List;
 
 /**
  * Created by ali77gh on 10/27/18.
@@ -31,6 +35,8 @@ public class SetupWeekCounterDialog extends BaseDialog {
         Button ok = findViewById(R.id.btn_setup_week_counter_dialog_ok);
 
         cancel.setOnClickListener(view -> dismiss());
+
+        //load current
         int current = UserInfoRepo.getWeekNumber();
         if (current < 38)
             input.setText(String.valueOf(current));
@@ -46,8 +52,20 @@ public class SetupWeekCounterDialog extends BaseDialog {
                 return;
             }
             UserInfoRepo.setWeekNumber(selectedWeek);
+
+            MoveEvents(selectedWeek - current);
+
             dismiss();
         });
+    }
+
+    private void MoveEvents(int moveForward){
+        List<Event> events = EventRepo.getAll();
+
+        for (Event e : events){
+            e.WeekNumber += moveForward;
+            EventRepo.Update(e);
+        }
     }
 
     private boolean IsInt(String s) {

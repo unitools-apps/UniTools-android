@@ -27,8 +27,10 @@ public class Translator {
             if (diff > 0 & diff < 60) {
                 toClass = "(" + CH.getString(R.string.started) + ")";
             } else if (diff < 0) {
-                toClass = "(" + String.valueOf(uClass.time.getMins() - DateTimeTools.getCurrentTime().getMins()) + " " + CH.getString(R.string.minute_later) + " )";
-            } else day = CH.getString(R.string.today);
+                toClass = "(" + ToNextClassString(uClass.time.getMins() - DateTimeTools.getCurrentTime().getMins()) + " " + CH.getString(R.string.later) + " )";
+            } else
+                day = CH.getString(R.string.today);
+
         } else if (DateTimeTools.getCurrentDayOfWeek() + 1 == uClass.time.dayOfWeek | (DateTimeTools.getCurrentDayOfWeek() == 6 & 0 == uClass.time.dayOfWeek)) {
             day = CH.getString(R.string.tomorrow);
         } else {
@@ -99,6 +101,21 @@ public class Translator {
 
     public static String NumToString(Number s) {
         return NumToString(String.valueOf(s));
+    }
+
+    public static String NumToStringClockMode(int value){
+        if (value < 10)
+            return  "0" + String.valueOf(value);
+        else
+            return String.valueOf(value);
+    }
+
+    private static String ToNextClassString(int mins){
+
+        final int hour = mins / 60;
+        final int min = mins % 60;
+
+        return NumToStringClockMode(hour) + ":" + NumToStringClockMode(min);
     }
 
 

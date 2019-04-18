@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">UniTools</string>
-    <string name="app_version">1.6.1</string>
+    <string name="app_version">1.7.0</string>
 
     <string name="LangID">"en</string>
 
@@ -107,7 +107,7 @@
     <string name="open_on_website">open website</string>
     <string name="share_classes">share classes</string>
     <string name="started">started</string>
-    <string name="minute_later">minute later</string>
+    <string name="later">later</string>
     <string name="there_is_no_class">there is no class</string>
     <string name="select_language">select language</string>
     <string name="skip">skip</string>

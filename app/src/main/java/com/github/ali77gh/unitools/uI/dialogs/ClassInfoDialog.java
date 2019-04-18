@@ -140,6 +140,10 @@ public class ClassInfoDialog extends BaseDialog {
 
             @Override
             public void afterTextChanged(Editable s) {
+                if (s.toString().equals("")){
+                    editText.setText("0");
+                    return;
+                }
                 uClass.reminder = Integer.valueOf(s.toString()) * 60 * 1000;
                 UClassRepo.Update(uClass);
             }
