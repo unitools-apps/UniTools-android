@@ -6,3 +6,14 @@
 /build
 /captures
 .externalNativeBuild
+
+
+*.apk
+*.ap_
+*.dex
+*.class
+*.iml
+
+bin/
+gen/
+out/
