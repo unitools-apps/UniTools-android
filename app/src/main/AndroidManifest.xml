@@ -27,7 +27,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".uI.activities.InputLinkActivity">
+        <activity android:name=".ui.activities.InputLinkActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
 
@@ -40,16 +40,16 @@
                 <category android:name="android.intent.category.BROWSABLE" />
             </intent-filter>
         </activity>
-        <activity android:name=".uI.activities.GuideActivity" /> <!-- QR scanner activity -> for setting screen orientation -->
+        <activity android:name=".ui.activities.GuideActivity" /> <!-- QR scanner activity -> for setting screen orientation -->
         <activity
             android:name="com.journeyapps.barcodescanner.CaptureActivity"
             android:screenOrientation="portrait"
             tools:replace="screenOrientation" />
         <activity
-            android:name=".uI.activities.HomeActivity"
+            android:name=".ui.activities.HomeActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uI.activities.SplashActivity"
+            android:name=".ui.activities.SplashActivity"
             android:label="uni tools"
             android:noHistory="true"
             android:screenOrientation="portrait">
@@ -60,14 +60,14 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".uI.activities.SelectLangActivity"
+            android:name=".ui.activities.SelectLangActivity"
             android:noHistory="true"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".uI.activities.FilePackActivity"
+            android:name=".ui.activities.FilePackActivity"
             android:screenOrientation="portrait" />
 
-        <receiver android:name=".uI.widget.ShowNextClassWidget">
+        <receiver android:name=".ui.widget.ShowNextClassWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

@@ -1,49 +1,46 @@
 # UniTools
-<br>
-under heavy development :)
-<br>
-
- این نرم افزار به صورت آزاد و کاملا رایگان در اختیار دانشجویان قرار گرفته تا کار های روزانه ی دانشجویان را راحت تر کند. این اپلیکیشن را به دوستان خود معرفی کنید و اگر انتقاد یا پیشنهاد یا در خواست قابلیت خاصی را دارید حتما با من در میان بگذارید.
+free (as freedom) software for daily student stuffs
 <br>
 # screen shots
 <p float="left">
-  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/1.png" height=500 />
-  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/2.png" height=500 />
-  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/3.png" height=500 />
+<img src= "ScreenShots/1.png" height=500 />
+ <img src= "ScreenShots/2.png" height=500 />
+ <img src= "ScreenShots/3.png" height=500 />
 </p>
 
 <br>
 
 <p float="left">
-  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/4.png" height=500 />
-  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/5.png" height=500 />
-  <img src= "https://github.com/ali77gh/UniTools/raw/master/ScreenShots/6.png" height=500 />
+  <img src= "ScreenShots/4.png" height=500 />
+ <img src= "ScreenShots/5.png" height=500 />
+ <img src= "ScreenShots/6.png" height=500 />
 </p>
 
-# امکانات
+# features
+manage classes
 <br>
-مدیریت کلاس ها
+manage events
 <br>
-مدیریت رویداد ها
+auto silent mobile when your class starts
 <br>
-سایلنت کردن گوشی وقتی که سر کلاس هستید به صورت اتوماتیک
+share classes list with frinds with QR code and link (works offline)
 <br>
-اشتراک گزاری کلاس با دوستان پشتیبانی از qr code
+widget for see next class
 <br>
-ویجت برای دیدن کلاس بعدی
+alarm when you are close to next class
 <br>
-آلارم هنگامی که به کلاس بعدی نزدیک میشوید
+manage pdf ,pics ,voices ,notes
 <br>
-مدیریت عکس ها و ویس های گرفته شده و تبدیل عکس ها به pdf
+generate pdf from photos
 <br>
-اشتراک گذاری جزوات
+share pdfs and pics and voices
 <br>
-شمارش غیبت ها
+absent counter
 <br>
-پشتیبانی از زبان انگلیسی
+support "english" and "فارسی" language
 
-# دانلود
-[دانلود](https://github.com/ali77gh/UniTools/raw/master/TODO )
-
-# لایسنس
+# LICENSE
 [MIT](https://github.com/ali77gh/UniTools/raw/master/LICENSE)
+
+# contribution
+[how to add new language to app](https://github.com/unitools-apps/UniTools-android/wiki/How-to-add-new-Language-to-this-app)

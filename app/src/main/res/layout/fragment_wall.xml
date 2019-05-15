@@ -119,7 +119,7 @@
                     android:orientation="vertical"
                     android:visibility="gone">
 
-                    <com.github.ali77gh.unitools.uI.view.NonScrollListView
+                    <com.github.ali77gh.unitools.ui.view.NonScrollListView
                         android:id="@+id/listview_home_classes_expandble"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -200,7 +200,7 @@
                     android:orientation="vertical"
                     android:visibility="gone">
 
-                    <com.github.ali77gh.unitools.uI.view.NonScrollListView
+                    <com.github.ali77gh.unitools.ui.view.NonScrollListView
                         android:id="@+id/listview_home_events_expandble"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -280,7 +280,7 @@
                     android:orientation="vertical"
                     android:visibility="gone">
 
-                    <com.github.ali77gh.unitools.uI.view.NonScrollListView
+                    <com.github.ali77gh.unitools.ui.view.NonScrollListView
                         android:id="@+id/listview_home_friends_expandble"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
