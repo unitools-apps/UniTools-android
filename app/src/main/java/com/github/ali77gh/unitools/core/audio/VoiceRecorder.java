@@ -2,6 +2,8 @@ package com.github.ali77gh.unitools.core.audio;
 
 import android.media.MediaRecorder;
 
+import com.github.ali77gh.unitools.core.MyDataBeen;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -35,6 +37,7 @@ public class VoiceRecorder {
         mediaRecorder.stop();
         mediaRecorder.release();
         isRecording = false;
+        MyDataBeen.onNewVoice();
     }
 
 

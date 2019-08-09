@@ -50,4 +50,7 @@ dependencies {
     implementation 'com.itextpdf:itextg:5.5.9'
     //pdf generator
     implementation project(':uneversaldatetools')
+    //date picker
+    implementation(group: 'ir.databeen.sdk', name: 'databeenlib', version: '1.0.5', ext: 'aar')
+    // user analyse system databeen
 }

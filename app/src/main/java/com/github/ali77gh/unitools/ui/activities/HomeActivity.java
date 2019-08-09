@@ -14,6 +14,7 @@ import android.widget.RemoteViews;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.CH;
+import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.core.alarmAndAutoSilent.ReminderAndAutoSilent;
 import com.github.ali77gh.unitools.core.onlineapi.CheckForUpdate;
 import com.github.ali77gh.unitools.core.onlineapi.GetCustomNews;
@@ -47,6 +48,8 @@ public class HomeActivity extends AppCompatActivity {
         CheckForUpdate.Check();
         GetCustomNews.Check();
         ReminderAndAutoSilent.Setup(this);
+
+        MyDataBeen.onAppStarts(this);
     }
 
     private void SetupNav() {
@@ -130,6 +133,12 @@ public class HomeActivity extends AppCompatActivity {
         updateWidgets();// because classes may changed
         ReminderAndAutoSilent.Setup(this); // because classes may changed
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        MyDataBeen.onAppStops();
     }
 
     protected void updateWidgets() {

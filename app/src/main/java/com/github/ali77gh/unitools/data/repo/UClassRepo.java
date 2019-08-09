@@ -3,6 +3,7 @@ package com.github.ali77gh.unitools.data.repo;
 import android.content.Context;
 
 import com.example.easyrepolib.KeyValDb;
+import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.data.model.UClass;
 
 import java.util.ArrayList;
@@ -28,6 +29,7 @@ public class UClassRepo {
     public static void Insert(UClass uClass) {
         uClass.id = UUID.randomUUID().toString();
         db.insert(uClass.id, uClass);
+        MyDataBeen.onNewClass();
     }
 
     public static void Update(UClass uClass) {

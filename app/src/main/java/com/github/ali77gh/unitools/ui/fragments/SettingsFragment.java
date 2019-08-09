@@ -21,6 +21,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.data.model.UserInfo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.ui.activities.GuideActivity;
@@ -223,6 +224,7 @@ public class SettingsFragment extends Fragment implements Backable {
             aboutUs.setAlpha(0);
             aboutUs.setVisibility(View.VISIBLE);
             aboutUs.animate().alpha(1).start();
+            MyDataBeen.onAboutOpened();
         });
     }
 
@@ -256,14 +258,17 @@ public class SettingsFragment extends Fragment implements Backable {
     }
 
     private void OpenGithub() {
+        MyDataBeen.onGithubBackLink();
         OpenLink("https://github.com/unitools-apps/UniTools-android");
     }
 
     private void OpenInstagram() {
+        MyDataBeen.onInstagramBackLink();
         OpenLink("https://www.instagram.com/unitools_apps/");
     }
 
     private void OpenWebsite() {
+        MyDataBeen.onWebsiteBackLink();
         OpenLink("https://unitools-apps.github.io/Website/");
     }
 

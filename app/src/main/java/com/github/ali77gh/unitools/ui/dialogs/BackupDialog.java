@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.Backup;
+import com.github.ali77gh.unitools.core.MyDataBeen;
 
 public class BackupDialog extends BaseDialog {
 
@@ -79,6 +80,7 @@ public class BackupDialog extends BaseDialog {
                     }
                     Backup.DoBackup(classes.isChecked(), events.isChecked(), friends.isChecked());
                     Toast.makeText(getActivity(), getActivity().getString(R.string.backup_saved_in) +" : "+ Backup.backupFilePath, Toast.LENGTH_LONG).show();
+                    MyDataBeen.onBackup();
                     break;
                 case  MODE_RESTORE:
                     if (Backup.IsRestorePossible()){
@@ -95,6 +97,7 @@ public class BackupDialog extends BaseDialog {
                     } else {
                         Toast.makeText(getActivity(), getActivity().getString(R.string.put_backup_file_in) +" : "+ Backup.backupFilePath, Toast.LENGTH_LONG).show();
                     }
+                    MyDataBeen.onRestore();
                     break;
                 default:
                     throw new RuntimeException("invalid state");

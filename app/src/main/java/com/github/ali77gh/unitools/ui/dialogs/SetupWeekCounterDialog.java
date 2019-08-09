@@ -8,6 +8,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.repo.EventRepo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
@@ -55,6 +56,7 @@ public class SetupWeekCounterDialog extends BaseDialog {
 
             MoveEvents(selectedWeek - current);
 
+            MyDataBeen.onWeekCounterClick();
             dismiss();
         });
     }

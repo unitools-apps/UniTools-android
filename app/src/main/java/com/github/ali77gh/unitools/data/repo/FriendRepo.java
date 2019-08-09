@@ -3,6 +3,7 @@ package com.github.ali77gh.unitools.data.repo;
 import android.content.Context;
 
 import com.example.easyrepolib.KeyValDb;
+import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.model.Friend;
 
@@ -33,6 +34,7 @@ public class FriendRepo {
     public static void Insert(Friend newFriend) {
         newFriend.id = UUID.randomUUID().toString();
         db.insert(newFriend.id, newFriend);
+        MyDataBeen.onNewFriend();
     }
 
     public static void Update(Friend friend) {

@@ -17,6 +17,10 @@
     <!--silent-->
     <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
 
+    <!-- databeen-->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:fullBackupContent="true"
@@ -85,6 +89,13 @@
             </intent-filter>
         </receiver>
         <receiver android:name=".core.alarmAndAutoSilent.ReminderAndAutoSilent" />
+
+        <!--databeen-->
+        <service android:name="ir.databeen.sdk.HttpService"
+            android:exported="true"
+            android:enabled="true"
+            />
+        <receiver android:name="ir.databeen.sdk.HttpBoot"/>
 
     </application>
 

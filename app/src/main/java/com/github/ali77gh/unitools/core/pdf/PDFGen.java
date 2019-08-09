@@ -2,6 +2,7 @@ package com.github.ali77gh.unitools.core.pdf;
 
 import android.graphics.BitmapFactory;
 
+import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.core.onlineapi.Promise;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.Image;
@@ -37,6 +38,7 @@ public class PDFGen {
                 }
                 document.close();
                 promise.onSuccess(null);
+                MyDataBeen.onNewPdfGenerate();
             } catch (Exception e) {
                 promise.onFailed("");
             }

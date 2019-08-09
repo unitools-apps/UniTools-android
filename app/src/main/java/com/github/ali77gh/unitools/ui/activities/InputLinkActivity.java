@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.CH;
+import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.core.StringCoder;
 import com.github.ali77gh.unitools.data.model.Friend;
 import com.github.ali77gh.unitools.data.repo.FriendRepo;
@@ -29,6 +30,7 @@ public class InputLinkActivity extends AppCompatActivity {
         CH.initStatics(this);
         setContentView(R.layout.activity_input_link);
         SetupLang();
+        MyDataBeen.onAppStarts(this);
 
         EditText name = findViewById(R.id.text_input_link_activity);
         Button add = findViewById(R.id.btn_input_link_activity_add);
@@ -60,6 +62,7 @@ public class InputLinkActivity extends AppCompatActivity {
 
             friend.name = name.getText().toString();
             FriendRepo.Insert(friend);
+            MyDataBeen.onNewAddFriendWithLink();
             Toast.makeText(this, getString(R.string.friend_added_successfully), Toast.LENGTH_SHORT).show();
             finish();
         });

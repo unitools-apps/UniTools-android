@@ -15,6 +15,7 @@ import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.CH;
+import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.core.tools.DateTimeTools;
 import com.github.ali77gh.unitools.core.tools.Sort;
@@ -433,6 +434,7 @@ public class WallFragment extends Fragment implements Backable {
 
     public void OnBarcodeReaded(String text) {
         friendInfoDialog.OnFriendStringReady(text);
+        MyDataBeen.onNewAddFriendWithQRCode();
     }
 
     private void SetupRefreshLoop() {

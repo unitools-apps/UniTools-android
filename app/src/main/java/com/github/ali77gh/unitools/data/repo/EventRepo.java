@@ -3,6 +3,7 @@ package com.github.ali77gh.unitools.data.repo;
 import android.content.Context;
 
 import com.example.easyrepolib.KeyValDb;
+import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.data.model.Event;
 
 import java.util.ArrayList;
@@ -32,6 +33,7 @@ public class EventRepo {
     public static void Insert(Event newEvent) {
         newEvent.id = UUID.randomUUID().toString();
         db.insert(newEvent.id, newEvent);
+        MyDataBeen.onNewEvent();
     }
 
     public static Event getById(String id) {

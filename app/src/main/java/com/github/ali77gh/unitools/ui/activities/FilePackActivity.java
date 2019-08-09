@@ -25,6 +25,7 @@ import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.CH;
+import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.core.audio.VoiceRecorder;
 import com.github.ali77gh.unitools.core.onlineapi.Promise;
 import com.github.ali77gh.unitools.core.pdf.PDFGen;
@@ -302,6 +303,7 @@ public class FilePackActivity extends AppCompatActivity {
 
         switch (requestCode) {
             case GALLERY_REQUEST_CODE:
+                MyDataBeen.onNewPhoto();
                 if (data == null || data.getData() == null) return;
                 Uri from = data.getData();
                 File to = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".bmp");
@@ -309,9 +311,11 @@ public class FilePackActivity extends AppCompatActivity {
                 filePackPicsFragment.RefreshList();
                 break;
             case CAMERA_REQUEST_CODE:
+                MyDataBeen.onNewPhoto();
                 filePackPicsFragment.RefreshList();
                 break;
             case PDF_REQUEST_CODE:
+                MyDataBeen.onNewPdfImport();
                 if (data == null || data.getData() == null) return;
                 Uri fromPdf = data.getData();
                 File toPdf = new File(Path + File.separator + FilePackProvider.PDF_PATH_NAME + File.separator + getFileName(fromPdf)); // already have .pdf

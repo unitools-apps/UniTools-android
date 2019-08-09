@@ -16,6 +16,7 @@ import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.CH;
+import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.data.model.UClass;
 import com.github.ali77gh.unitools.data.repo.UClassRepo;
@@ -125,6 +126,7 @@ public class ClassInfoDialog extends BaseDialog {
                 uClass.reminder = DISABLE_REMINDER;
                 UClassRepo.Update(uClass);
             }
+            MyDataBeen.onNewAlarm();
         });
 
         editText.addTextChangedListener(new TextWatcher() {

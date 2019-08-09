@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.core.onlineapi.Promise;
 import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.data.model.UClass;
@@ -85,6 +86,8 @@ public class AddFilePackDialog extends BaseDialog {
             }
 
             listener.onSuccess(input.getText().toString());
+
+            MyDataBeen.onNewDoc();
             dismiss();
         });
     }
