@@ -39,8 +39,12 @@ absent counter
 <br>
 support "english" and "فارسی" language
 
-# LICENSE
-[MIT](https://github.com/ali77gh/UniTools/raw/master/LICENSE)
+# People who helps 
+[Sabih farhangi](https://github.com/sabih1998) <br>
+[mohammad bagherlo](https://github.com/bgl-mmd) <br>
+[ustMeErazem](https://github.com/JustMeErazem) <br>
+[hooman mir shafiee](https://github.com/Hoomanmsh)
 
 # contribution
-[how to add new language to app](https://github.com/unitools-apps/UniTools-android/wiki/How-to-add-new-Language-to-this-app)
+[how to add new language to app](https://github.com/unitools-apps/UniTools-android/wiki/How-to-add-new-Language-to-this-app) <br>
+[report bugs and offer new feature](https://github.com/unitools-apps/UniTools-android/issues)
