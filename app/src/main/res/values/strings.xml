@@ -88,7 +88,7 @@
     <string name="thank_you">thank you</string>
     <string name="add_doc">add documnet</string>
     <string name="select_somethings">select something</string>
-    <string name="new_doc_name">new document's name</string>
+    <string name="new_doc_name">new documents name</string>
     <string name="pics">photos</string>
     <string name="voices">recordings</string>
     <string name="note">notes</string>
@@ -189,10 +189,10 @@
     <string-array name="guide">
         <item>here you can manage your classes and events</item>
         <item>you can share your classes via a qr code</item>
-        <item>you can get your friends' classes by scanning the qr code (you do not need an internet connection)</item>
+        <item>you can get your friends classes by scanning the qr code (you do not need an internet connection)</item>
         <item>you can use a widget to see your next class</item>
         <item>here you can manage the pictures that you take</item>
-        <item>this part is designed to manage your your recordings from class</item>
+        <item>this part is designed to manage your recordings from class</item>
         <item>in this section you can write notes about your classes</item>
         <item>here you can store your pdfs, which you can generate from photos you have saved</item>
     </string-array>

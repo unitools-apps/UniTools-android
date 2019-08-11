@@ -10,7 +10,7 @@ import java.net.URL;
 
 public class CheckForUpdate {
 
-    private static final String API_URL = "https://unitools-apps.github.io/Website/config/version.txt";
+    private static final String API_URL = "https://unitools.ir/config/version.txt";
 
     public static void Check() {
 

@@ -10,7 +10,7 @@ import java.net.URL;
 
 public class GetCustomNews {
 
-    private static final String API_URL = "https://unitools-apps.github.io/Website/config/pushNotification.json";
+    private static final String API_URL = "https://unitools.ir/config/pushNotification.json";
 
     public static void Check() {
 

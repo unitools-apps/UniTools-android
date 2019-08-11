@@ -269,7 +269,7 @@ public class SettingsFragment extends Fragment implements Backable {
 
     private void OpenWebsite() {
         MyDataBeen.onWebsiteBackLink();
-        OpenLink("https://unitools-apps.github.io/Website/");
+        OpenLink("https://unitools.ir");
     }
 
     private void OpenLink(String link) {

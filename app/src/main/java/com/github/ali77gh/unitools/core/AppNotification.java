@@ -22,7 +22,7 @@ public class AppNotification {
     private final static int UPDATE_IS_AVAILABE = 2003;
 
 
-    private static final String WEBSITE = "https://unitools-apps.github.io/Website/";
+    private static final String WEBSITE = "https://unitools.ir";
 
 
     private static void ShowNotify(String title, String text, @Nullable Intent intent, int id) {

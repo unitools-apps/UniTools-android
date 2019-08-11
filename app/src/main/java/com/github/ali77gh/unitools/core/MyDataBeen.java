@@ -8,7 +8,7 @@ import ir.databeen.sdk.Databeen;
 //databeen is a user analyse system see : https://my.databeen.ir
 public class MyDataBeen {
 
-
+    private final static String secret = "3836225605c2477c99b753949f2fd09a";
 
     private static void sendEvent(String name){
         Databeen.sendCustomEventData(name,new String[0], new String[0]);
