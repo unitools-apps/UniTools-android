@@ -24,13 +24,7 @@ import com.github.ali77gh.unitools.data.repo.UClassRepo;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.DISABLE_REMINDER;
-import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.REMINDER_15_MIN;
-import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.REMINDER_1_HOUR;
-import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.REMINDER_2_HOUR;
-import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.REMINDER_30_MIN;
-import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.REMINDER_3_HOUR;
-import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.REMINDER_4_HOUR;
+import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.*;
 
 /**
  * Created by ali77gh on 11/14/18.

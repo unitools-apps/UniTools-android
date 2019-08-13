@@ -147,6 +147,7 @@
     <string name="open_this_with_unitools_app">با اپلیکیشن unitools باز کنید</string>
     <string name="pages">صفحه</string>
     <string name="plz_enter_right_number">عدد را صحیح وارد کنید</string>
+    <string name="search_friends">جست و جوی دوستان</string>
 
     <string-array name="nums">
         <item>۰</item>

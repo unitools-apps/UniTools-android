@@ -146,6 +146,7 @@
     <string name="open_this_with_unitools_app">open this with unitools app</string>
     <string name="pages">pages</string>
     <string name="plz_enter_right_number">please enter correct number</string>
+    <string name="search_friends">search friends</string>
 
     <string-array name="nums">
         <item>0</item>

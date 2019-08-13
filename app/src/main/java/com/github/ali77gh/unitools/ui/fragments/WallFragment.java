@@ -35,6 +35,7 @@ import com.github.ali77gh.unitools.ui.dialogs.AddFriendDialog;
 import com.github.ali77gh.unitools.ui.dialogs.ClassInfoDialog;
 import com.github.ali77gh.unitools.ui.dialogs.EventInfoDialog;
 import com.github.ali77gh.unitools.ui.dialogs.FriendInfoDialog;
+import com.github.ali77gh.unitools.ui.dialogs.SearchFriendDialog;
 import com.github.ali77gh.unitools.ui.dialogs.SetupWeekCounterDialog;
 import com.github.ali77gh.unitools.ui.dialogs.ShareClassesDialog;
 import com.github.ali77gh.unitools.ui.view.NonScrollListView;
@@ -62,6 +63,7 @@ public class WallFragment extends Fragment implements Backable {
 
     private ImageView expandFriendsBtn;
     private ImageView addFriendBtn;
+    private ImageView searchFriendBtn;
     private NonScrollListView friendsList;
     private TextView friendsFirstRow;
 
@@ -98,6 +100,7 @@ public class WallFragment extends Fragment implements Backable {
         eventsFirstRow = cView.findViewById(R.id.text_event_first_row);
 
         addFriendBtn = cView.findViewById(R.id.btn_wall_add_friend);
+        searchFriendBtn = cView.findViewById(R.id.btn_wall_search_friend);
         expandFriendsBtn = cView.findViewById(R.id.image_wall_expand_friends);
         friendsList = cView.findViewById(R.id.listview_home_friends_expandble);
         friendsFirstRow = cView.findViewById(R.id.text_friends_first_row);
@@ -430,6 +433,7 @@ public class WallFragment extends Fragment implements Backable {
             addFriendDialog.show();
         });
 
+        searchFriendBtn.setOnClickListener(v -> new SearchFriendDialog(getActivity()).show());
     }
 
     public void OnBarcodeReaded(String text) {

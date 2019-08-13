@@ -251,6 +251,16 @@
                         android:layout_weight="1" />
 
                     <ImageView
+                        android:id="@+id/btn_wall_search_friend"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="16dp"
+                        android:padding="5dp"
+                        android:src="@drawable/all_search"
+                        android:tint="@color/black" />
+
+                    <ImageView
                         android:id="@+id/btn_wall_add_friend"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
