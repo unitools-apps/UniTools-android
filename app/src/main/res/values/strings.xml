@@ -177,9 +177,10 @@
         <item>nothing</item>
     </string-array>
 
+    <!--don't change here <KEYS> -->
     <string-array name="languages">
         <item>english</item>
-        <item>persian (فارسی)</item>
+        <item>فارسی</item>
     </string-array>
 
     <string-array name="calendar">

@@ -309,11 +309,17 @@ public class WallFragment extends Fragment implements Backable {
     }
 
     private void SetupFriendsList() {
-        friendsFirstRow.setText(getString(R.string.you_have_no_friends_yet));
+
 
         List<Friend> friends = FriendRepo.getAll();
-        if (friends.size() == 0) return;
-        friendsFirstRow.setText("");
+
+        if (friends.size() == 0) {
+            friendsFirstRow.setText(getString(R.string.you_have_no_friends_yet));
+        } else {
+            friendsFirstRow.setText("");
+        }
+
+
         friendsList.setAdapter(new WallFriendAdapter(getActivity(), friends));
 
         friendsList.setOnItemClickListener((adapterView, view, i, l) -> {
