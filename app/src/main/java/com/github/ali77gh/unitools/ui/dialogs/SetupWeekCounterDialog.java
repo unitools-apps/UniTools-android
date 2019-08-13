@@ -3,8 +3,10 @@ package com.github.ali77gh.unitools.ui.dialogs;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
@@ -13,6 +15,7 @@ import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.repo.EventRepo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,7 +34,7 @@ public class SetupWeekCounterDialog extends BaseDialog {
 
         setContentView(R.layout.dialog_setup_week_counter);
 
-        EditText input = findViewById(R.id.edt_txt_setup_week_counter_dialog);
+        Spinner spinner = findViewById(R.id.spinner_txt_setup_week_counter_dialog);
         Button cancel = findViewById(R.id.btn_setup_week_counter_dialog_cancel);
         Button ok = findViewById(R.id.btn_setup_week_counter_dialog_ok);
 
@@ -39,22 +42,15 @@ public class SetupWeekCounterDialog extends BaseDialog {
 
         //load current
         int current = UserInfoRepo.getWeekNumber();
-        if (current < 38)
-            input.setText(String.valueOf(current));
+        SetupSpinners(spinner);
+        spinner.post(() -> spinner.setSelection(current));
 
         ok.setOnClickListener(view -> {
-            if (!IsInt(input.getText().toString())) {
-                Toast.makeText(getActivity(), getActivity().getString(R.string.enter_number), Toast.LENGTH_SHORT).show();
-                return;
-            }
-            int selectedWeek = Integer.valueOf(input.getText().toString());
-            if (selectedWeek > 38) {
-                Toast.makeText(getActivity(), getActivity().getString(R.string.plz_enter_right_number), Toast.LENGTH_LONG).show();
-                return;
-            }
-            UserInfoRepo.setWeekNumber(selectedWeek);
 
-            MoveEvents(selectedWeek - current);
+
+            UserInfoRepo.setWeekNumber(spinner.getSelectedItemPosition());
+
+            MoveEvents(spinner.getSelectedItemPosition() - current);
 
             MyDataBeen.onWeekCounterClick();
             dismiss();
@@ -70,12 +66,14 @@ public class SetupWeekCounterDialog extends BaseDialog {
         }
     }
 
-    private boolean IsInt(String s) {
-        try {
-            int a = Integer.valueOf(s);
-            return true;
-        } catch (NumberFormatException e) {
-            return false;
-        }
+    private void SetupSpinners(Spinner spinner) {
+
+        List<String> nums = new ArrayList<>();
+        for (int i =0 ; i <= 18 ;i++)
+            nums.add(String .valueOf(i));
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.item_spinner, nums);
+        spinner.setAdapter(adapter);
     }
+
 }

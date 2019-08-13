@@ -28,7 +28,7 @@ import java.util.TimeZone;
 
 import static android.content.Context.ALARM_SERVICE;
 import static android.content.Intent.FLAG_INCLUDE_STOPPED_PACKAGES;
-import static com.github.ali77gh.unitools.data.model.UClass.DISABLE_REMINDER;
+import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.DISABLE_REMINDER;
 
 /**
  * Created by ali77gh on 11/25/18.

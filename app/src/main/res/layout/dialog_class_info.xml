@@ -109,25 +109,23 @@
         android:visibility="gone">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/how_match_before_class_start_time"
-            android:layout_marginStart="16dp" />
-
-        <EditText
-            android:id="@+id/edit_text_home_class_info_dialog_reminder"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="50"
-            android:maxLength="2"
+            android:layout_width="0dp"
             android:layout_weight="1"
-            android:inputType="number" />
+            android:layout_height="match_parent"
+            android:text="@string/how_match_before_class_start_time"
+            android:layout_marginStart="16dp"
+            android:gravity="center_vertical"/>
 
-        <TextView
-            android:layout_marginEnd="16dp"
+        <Spinner
+            android:id="@+id/spinner_text_home_class_info_dialog_reminder"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/min" />
+            android:layout_gravity="center_vertical"
+            android:layout_marginEnd="20dp"
+            android:layout_marginStart="20dp"
+            android:background="@null"
+            android:gravity="end"
+            android:spinnerMode="dropdown" />
 
     </LinearLayout>
 

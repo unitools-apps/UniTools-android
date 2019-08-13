@@ -3,14 +3,14 @@ package com.github.ali77gh.unitools.ui.dialogs;
 import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +21,16 @@ import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.data.model.UClass;
 import com.github.ali77gh.unitools.data.repo.UClassRepo;
 
-import static com.github.ali77gh.unitools.data.model.UClass.DISABLE_REMINDER;
+import java.util.ArrayList;
+import java.util.List;
+
+import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.DISABLE_REMINDER;
+import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.REMINDER_15_MIN;
+import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.REMINDER_1_HOUR;
+import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.REMINDER_2_HOUR;
+import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.REMINDER_30_MIN;
+import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.REMINDER_3_HOUR;
+import static com.github.ali77gh.unitools.data.model.UClass.ReminderValues.REMINDER_4_HOUR;
 
 /**
  * Created by ali77gh on 11/14/18.
@@ -32,6 +41,14 @@ public class ClassInfoDialog extends BaseDialog {
     private UClass uClass;
     private OnDeleteListener deleteListener;
     private AddClassDialog.AddClassDialogListener editListener;
+
+    private final static String REMINDER_15_MIN_NAME = "15 min";
+    private final static String REMINDER_30_MIN_NAME = "30 min";
+    private final static String REMINDER_1_HOUR_NAME = "1 hour";
+    private final static String REMINDER_2_HOUR_NAME = "2 hour";
+    private final static String REMINDER_3_HOUR_NAME = "3 hour";
+    private final static String REMINDER_4_HOUR_NAME = "4 hour";
+
 
     public ClassInfoDialog(@NonNull Activity activity, UClass uClass, OnDeleteListener deleteListener) {
         super(activity);
@@ -83,25 +100,25 @@ public class ClassInfoDialog extends BaseDialog {
         TextView absentCount = findViewById(R.id.text_home_class_info_dialog_absent_count);
 
         //load current
-        absentCount.setText(String.valueOf(uClass.apcent));
-        if (uClass.apcent >= 3)
+        absentCount.setText(String.valueOf(uClass.absence));
+        if (uClass.absence >= 3)
             absentCount.setTextColor(CH.getColor(R.color.red));
 
         absentPlus.setOnClickListener(view -> {
-            uClass.apcent++;
-            absentCount.setText(String.valueOf(uClass.apcent));
+            uClass.absence++;
+            absentCount.setText(String.valueOf(uClass.absence));
             UClassRepo.Update(uClass);
-            if (uClass.apcent >= 3)
+            if (uClass.absence >= 3)
                 absentCount.setTextColor(CH.getColor(R.color.red));
         });
 
         absentMinus.setOnClickListener(view -> {
-            if (uClass.apcent == 0) return;
+            if (uClass.absence == 0) return;
 
-            uClass.apcent--;
-            absentCount.setText(String.valueOf(uClass.apcent));
+            uClass.absence--;
+            absentCount.setText(String.valueOf(uClass.absence));
             UClassRepo.Update(uClass);
-            if (uClass.apcent < 3)
+            if (uClass.absence < 3)
                 absentCount.setTextColor(CH.getColor(R.color.black));
         });
     }
@@ -109,18 +126,44 @@ public class ClassInfoDialog extends BaseDialog {
     private void SetupReminder() {
         CheckBox checkBox = findViewById(R.id.check_home_class_info_dialog_reminder);
         LinearLayout linearLayout = findViewById(R.id.linear_home_class_info_dialog_reminder);
-        EditText editText = findViewById(R.id.edit_text_home_class_info_dialog_reminder);
+        Spinner spinner = findViewById(R.id.spinner_text_home_class_info_dialog_reminder);
 
-        //load current
+        SetupSpinners(spinner);
+
+        // load current
         if (uClass.reminder != DISABLE_REMINDER) {
             checkBox.setChecked(true);
             linearLayout.setVisibility(View.VISIBLE);
-            editText.setText(String.valueOf(uClass.reminder / (60 * 1000)));
+            switch (uClass.reminder){
+                case REMINDER_15_MIN:
+                    spinner.setSelection(0);
+                    break;
+                case REMINDER_30_MIN:
+                    spinner.setSelection(1);
+                    break;
+                case REMINDER_1_HOUR:
+                    spinner.setSelection(2);
+                    break;
+                case REMINDER_2_HOUR:
+                    spinner.setSelection(3);
+                    break;
+                case REMINDER_3_HOUR:
+                    spinner.setSelection(4);
+                    break;
+                case REMINDER_4_HOUR:
+                    spinner.setSelection(5);
+                    break;
+                default:
+                    throw new RuntimeException("invalid reminder value");
+            }
         }
 
         checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
                 linearLayout.setVisibility(View.VISIBLE);
+                spinner.setSelection(0);
+                uClass.reminder = REMINDER_15_MIN;
+                UClassRepo.Update(uClass);
             } else {
                 linearLayout.setVisibility(View.GONE);
                 uClass.reminder = DISABLE_REMINDER;
@@ -129,30 +172,58 @@ public class ClassInfoDialog extends BaseDialog {
             MyDataBeen.onNewAlarm();
         });
 
-        editText.addTextChangedListener(new TextWatcher() {
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                if (s.toString().equals("")){
-                    editText.setText("0");
-                    return;
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                switch (((TextView) view).getText().toString()){
+                    case REMINDER_15_MIN_NAME:
+                        uClass.reminder = REMINDER_15_MIN;
+                        break;
+                    case REMINDER_30_MIN_NAME:
+                        uClass.reminder = REMINDER_30_MIN;
+                        break;
+                    case REMINDER_1_HOUR_NAME:
+                        uClass.reminder = REMINDER_15_MIN;
+                        break;
+                    case REMINDER_2_HOUR_NAME:
+                        uClass.reminder = REMINDER_2_HOUR;
+                        break;
+                    case REMINDER_3_HOUR_NAME:
+                        uClass.reminder = REMINDER_3_HOUR;
+                        break;
+                    case REMINDER_4_HOUR_NAME:
+                        uClass.reminder = REMINDER_4_HOUR;
+                        break;
+                    default:
+                        throw new RuntimeException("invalid reminder value");
                 }
-                uClass.reminder = Integer.valueOf(s.toString()) * 60 * 1000;
                 UClassRepo.Update(uClass);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
             }
         });
     }
 
     public void setEditListener(AddClassDialog.AddClassDialogListener editListener) {
         this.editListener = editListener;
+    }
+
+    private void SetupSpinners(Spinner spinner) {
+
+        List<String> times = new ArrayList<>();
+
+        times.add(REMINDER_15_MIN_NAME);
+        times.add(REMINDER_30_MIN_NAME);
+        times.add(REMINDER_1_HOUR_NAME);
+        times.add(REMINDER_2_HOUR_NAME);
+        times.add(REMINDER_3_HOUR_NAME);
+        times.add(REMINDER_4_HOUR_NAME);
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(getContext(), R.layout.item_spinner, times);
+        spinner.setAdapter(adapter);
     }
 }

@@ -13,15 +13,16 @@
         android:textColor="@color/black"
         android:layout_margin="16dp"/>
 
-    <EditText
-        android:id="@+id/edt_txt_setup_week_counter_dialog"
+    <Spinner
+        android:id="@+id/spinner_txt_setup_week_counter_dialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="16dp"
-        android:textColor="@color/black"
-        android:inputType="number"/>
+        android:layout_gravity="center_vertical"
+        android:layout_marginEnd="20dp"
+        android:layout_marginStart="20dp"
+        android:background="@null"
+        android:gravity="end"
+        android:spinnerMode="dropdown" />
 
     <LinearLayout
         android:layout_width="match_parent"
