@@ -33,7 +33,7 @@
             android:id="@+id/text_home_add_event_dialog_date_picker"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="@string/chose_date"
+            android:text="@string/choose_date"
             android:layout_marginStart="10dp"
             android:gravity="center_vertical" />
 

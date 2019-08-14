@@ -123,10 +123,11 @@
     <string name="generate_pdf_from_photos">ساختن پی دی اف از عکس ها</string>
     <string name="start_generate_pdf">در حال ساختن پی دی اف</string>
     <string name="pdf_generate_failed">پی دی اف ساخته نشد</string>
+    <string name="pdf_copy_failed">مشکل در کپی کردن فایل</string>
     <string name="pdf_saved_to_pdf_list">پی دی اف به لیست اضافه شد</string>
     <string name="enter_name">نام را وارد کنید</string>
     <string name="calendar">تقویم</string>
-    <string name="chose_date">انتخاب تاریخ</string>
+    <string name="choose_date">انتخاب تاریخ</string>
     <string name="first_select_date">اول تاریخ را انتخاب کنید</string>
     <string name="date_is_not_valid">تاریخ را درست انتخاب کنید</string>
     <string name="wrong_barcode">بار کد اشتباه</string>
@@ -137,7 +138,7 @@
     <string name="friend_added_successfully">دوست شما با موفقیت اضافه شد</string>
     <string name="first_take_some_picture">ابتدا حداقل یک عکس بگیرید</string>
     <string name="restore">بازیابی</string>
-    <string name="chose_file">انتخاب فایل</string>
+    <string name="choose_file">انتخاب فایل</string>
     <string name="delete_current">پاک کردن اطلاعات فعلی</string>
     <string name="select_something">حداقل یه چیز را انتخاب کنید</string>
     <string name="nothing_to_take_backup">چیزی برای بک اپ گیری وجود ندارد</string>
@@ -148,6 +149,7 @@
     <string name="pages">صفحه</string>
     <string name="plz_enter_right_number">عدد را صحیح وارد کنید</string>
     <string name="search_friends">جست و جوی دوستان</string>
+    <string name="choose_doc">جزوه را انتخاب کنید</string>
 
     <string-array name="nums">
         <item>۰</item>

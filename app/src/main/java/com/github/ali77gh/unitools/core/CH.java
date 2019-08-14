@@ -6,6 +6,7 @@ import android.support.annotation.ArrayRes;
 import android.support.annotation.ColorRes;
 import android.support.annotation.StringRes;
 
+import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
 import com.github.ali77gh.unitools.data.repo.EventRepo;
 import com.github.ali77gh.unitools.data.repo.FriendRepo;
 import com.github.ali77gh.unitools.data.repo.UClassRepo;
@@ -46,6 +47,7 @@ public class CH {
         UClassRepo.init(context);
         EventRepo.init(context);
         FriendRepo.init(context);
+        FilePackProvider.Init();
 
         UserInfoRepo.init(context);
         AppContext = context;

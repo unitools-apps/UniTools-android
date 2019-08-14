@@ -5,21 +5,15 @@
     <!-- storage part -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.STORAGE" />
-    <!-- push notify needs this -->
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-    <!-- Permission to Setup Alarm on device reboot -->
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <!-- IO -->
+    <uses-permission android:name="android.permission.STORAGE" /> <!-- push notify needs this -->
+    <uses-permission android:name="android.permission.WAKE_LOCK" /> <!-- Permission to Setup Alarm on device reboot -->
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" /> <!-- IO -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
     <uses-permission android:name="android.permission.CAMERA" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <!--silent-->
-    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-
-    <!-- databeen-->
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.INTERNET" /> <!-- silent -->
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" /> <!-- databeen -->
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <application
         android:allowBackup="true"
@@ -31,6 +25,31 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+        <activity android:name=".ui.activities.InputPdfActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:host="*" />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:pathPattern=".*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\.pdf" />
+                <data android:pathPattern=".*\\..*\\..*\\.pdf" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:host="*" />
+                <data android:scheme="file" />
+                <data android:scheme="content" />
+                <data android:mimeType="application/pdf" />
+            </intent-filter>
+        </activity>
+
+
         <activity android:name=".ui.activities.InputLinkActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
@@ -80,7 +99,6 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/show_next_class_widget_info" />
         </receiver>
-
         <receiver
             android:name=".core.alarmAndAutoSilent.BootReceiver"
             android:enabled="false">
@@ -88,15 +106,13 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <receiver android:name=".core.alarmAndAutoSilent.ReminderAndAutoSilent" />
-
-        <!--databeen-->
-        <service android:name="ir.databeen.sdk.HttpService"
-            android:exported="true"
+        <receiver android:name=".core.alarmAndAutoSilent.ReminderAndAutoSilent" /> <!-- databeen -->
+        <service
+            android:name="ir.databeen.sdk.HttpService"
             android:enabled="true"
-            />
-        <receiver android:name="ir.databeen.sdk.HttpBoot"/>
+            android:exported="true" />
 
+        <receiver android:name="ir.databeen.sdk.HttpBoot" />
     </application>
 
 </manifest>
