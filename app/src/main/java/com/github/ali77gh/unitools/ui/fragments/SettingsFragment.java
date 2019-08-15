@@ -3,13 +3,16 @@ package com.github.ali77gh.unitools.ui.fragments;
 import android.Manifest;
 import android.appwidget.AppWidgetManager;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +33,8 @@ import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.ui.activities.GuideActivity;
 import com.github.ali77gh.unitools.ui.dialogs.BackupDialog;
 import com.github.ali77gh.unitools.ui.widget.ShowNextClassWidget;
+
+import java.util.Locale;
 
 /**
  * Created by ali on 10/3/18.
@@ -262,12 +267,29 @@ public class SettingsFragment extends Fragment implements Backable {
         ui.LangId = lang;
         UserInfoRepo.setUserInfo(ui);
 
+        //todo update widget
+        SetupLang(getActivity());
+        updateWidgets();
+
         Toast.makeText(getActivity(),getString(R.string.open_app_again_reverse),Toast.LENGTH_LONG).show();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getActivity().finishAndRemoveTask();
         }else {
             getActivity().finish();
         }
+    }
+
+    private void SetupLang(Context context) {
+
+        String lang = UserInfoRepo.getUserInfo().LangId;
+
+        Resources res = context.getResources();
+        // Change locale settings in the app.
+        DisplayMetrics dm = res.getDisplayMetrics();
+        android.content.res.Configuration conf = res.getConfiguration();
+        conf.setLocale(new Locale(lang)); // API 17+ only.
+        // Use conf.locale = new Locale(...) if targeting lower versions
+        res.updateConfiguration(conf, dm);
     }
 
     private void SetCalendar(char calendarId) {

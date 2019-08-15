@@ -12,6 +12,7 @@ import android.support.v4.app.NotificationManagerCompat;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.data.repo.UClassRepo;
+import com.github.ali77gh.unitools.ui.activities.SplashActivity;
 
 import static android.content.Context.NOTIFICATION_SERVICE;
 
@@ -88,7 +89,7 @@ public class AppNotification {
         ShowNotify(
                 CH.getString(R.string.next_class),
                 nextClassString,
-                null,
+                new Intent(CH.getAppContext(), SplashActivity.class),
                 ALWAYS_UP_NOTIFICATION,
                 false
         );
