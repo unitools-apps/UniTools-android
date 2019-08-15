@@ -10,6 +10,7 @@ import android.util.DisplayMetrics;
 import android.widget.RemoteViews;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.AppNotification;
 import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.core.tools.Sort;
@@ -38,18 +39,14 @@ public class ShowNextClassWidget extends AppWidgetProvider {
 
     public static void Update(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
+        String nextClass = getWidgetContent();
 
+        //widget
         for (int widgetId : appWidgetIds) {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_show_next_class);
-            List<UClass> classes = UClassRepo.getAll();
 
-            if (classes.size() == 0) {
-                remoteViews.setTextViewText(R.id.tv_widget_next_class, CH.getString(R.string.there_is_no_class));
-            } else {
-                Sort.SortClass(classes);
-                String text = context.getString(R.string.next_class) + " : " + Translator.getUClassReadable(classes.get(0), true);
-                remoteViews.setTextViewText(R.id.tv_widget_next_class, text);
-            }
+            remoteViews.setTextViewText(R.id.tv_widget_next_class, nextClass);
+
             Intent intent = new Intent(context, SplashActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
 
@@ -59,6 +56,23 @@ public class ShowNextClassWidget extends AppWidgetProvider {
             intent2.setAction(AppWidgetManager.ACTION_APPWIDGET_UPDATE);
             intent2.putExtra(AppWidgetManager.EXTRA_APPWIDGET_IDS, appWidgetIds);
             appWidgetManager.updateAppWidget(widgetId, remoteViews);
+        }
+
+        //always show next class notification
+        if (UserInfoRepo.getUserInfo().AlwaysUpNotification)
+            AppNotification.ShowAlwaysUpNotification(nextClass);
+        else
+            AppNotification.HideAlwaysUpNotification();
+    }
+
+    public static String getWidgetContent(){
+        List<UClass> classes = UClassRepo.getAll();
+
+        if (classes.size() == 0) {
+            return CH.getString(R.string.there_is_no_class);
+        } else {
+            Sort.SortClass(classes);
+            return CH.getString(R.string.next_class) + " : " + Translator.getUClassReadable(classes.get(0), true);
         }
     }
 

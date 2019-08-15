@@ -19,13 +19,13 @@ public class AppNotification {
 
     private final static int CUSTOM_NEWS = 2001;
     private final static int NEXT_CLASS_IS_CLOSE = 2002;
-    private final static int UPDATE_IS_AVAILABE = 2003;
-
+    private final static int UPDATE_IS_AVAILABLE = 2003;
+    private final static int ALWAYS_UP_NOTIFICATION = 2004;
 
     private static final String WEBSITE = "https://unitools.ir";
 
 
-    private static void ShowNotify(String title, String text, @Nullable Intent intent, int id) {
+    private static void ShowNotify(String title, String text, @Nullable Intent intent, int id,boolean cancelable) {
         String CHANNEL_ID = "my_channel_01";
         Context context = CH.getAppContext();
         NotificationManager notificationManager = (NotificationManager) context.getSystemService(NOTIFICATION_SERVICE);
@@ -34,6 +34,8 @@ public class AppNotification {
         builder.setContentTitle(title);
         builder.setContentText(text);
         builder.setSmallIcon(R.drawable.notification_icon);
+        if (!cancelable) builder.setOngoing(true);
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel channel = new NotificationChannel(CHANNEL_ID,
                     "Channel human readable title",
@@ -54,6 +56,9 @@ public class AppNotification {
         managerCompat.notify(id, notificationCompat);
     }
 
+    private static void ShowNotify(String title, String text, @Nullable Intent intent, int id){
+        ShowNotify(title,text,intent,id,true);
+    }
 
     public static void ShowCustomNewsNotification(String title, String text, String link) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
@@ -67,7 +72,6 @@ public class AppNotification {
                 null,
                 NEXT_CLASS_IS_CLOSE
         );
-
     }
 
     public static void ShowUpdateAvailable() {
@@ -76,7 +80,22 @@ public class AppNotification {
                 CH.getString(R.string.update_available),
                 CH.getString(R.string.open_on_website),
                 intent,
-                UPDATE_IS_AVAILABE
+                UPDATE_IS_AVAILABLE
         );
+    }
+
+    public static void ShowAlwaysUpNotification(String nextClassString){
+        ShowNotify(
+                CH.getString(R.string.next_class),
+                nextClassString,
+                null,
+                ALWAYS_UP_NOTIFICATION,
+                false
+        );
+    }
+
+    public static void HideAlwaysUpNotification(){
+        NotificationManagerCompat managerCompat = NotificationManagerCompat.from(CH.getAppContext());
+        managerCompat.cancel(ALWAYS_UP_NOTIFICATION);
     }
 }

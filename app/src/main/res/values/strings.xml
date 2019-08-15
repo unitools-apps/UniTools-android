@@ -149,6 +149,7 @@
     <string name="plz_enter_right_number">please enter correct number</string>
     <string name="search_friends">search friends</string>
     <string name="choose_doc">choose doc</string>
+    <string name="always_show_next_class">always show next class</string>
 
     <string-array name="nums">
         <item>0</item>

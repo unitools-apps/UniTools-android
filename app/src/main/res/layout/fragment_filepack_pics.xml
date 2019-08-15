@@ -22,7 +22,8 @@
         android:horizontalSpacing="10dp"
         android:stretchMode="columnWidth"
         android:gravity="center"
-        android:visibility="gone"/>
+        android:visibility="gone"
+        android:scrollbars="none"/>
 
     <TextView
         android:id="@+id/text_storage_nothing_to_show"

@@ -150,6 +150,7 @@
     <string name="plz_enter_right_number">عدد را صحیح وارد کنید</string>
     <string name="search_friends">جست و جوی دوستان</string>
     <string name="choose_doc">جزوه را انتخاب کنید</string>
+    <string name="always_show_next_class">اعلان همیشگی برای کلاس بعدی</string>
 
     <string-array name="nums">
         <item>۰</item>

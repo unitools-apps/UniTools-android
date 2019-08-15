@@ -1,5 +1,6 @@
 package com.github.ali77gh.unitools.ui.activities;
 
+import android.content.ClipData;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.database.Cursor;
@@ -163,7 +164,7 @@ public class FilePackActivity extends AppCompatActivity {
         }
 
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        File photo = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".bmp");
+        File photo = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".jpg");
         Uri imageUri = Uri.fromFile(photo);
         intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
         startActivityForResult(intent, CAMERA_REQUEST_CODE);
@@ -171,8 +172,9 @@ public class FilePackActivity extends AppCompatActivity {
 
     private void OpenGallery() {
         Intent intent = new Intent();
-        // Show only images, no videos or anything else
+        // Update only images, no videos or anything else
         intent.setType("image/*");
+        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true);
         intent.setAction(Intent.ACTION_GET_CONTENT);
         // Always show the chooser (if there are multiple options available)
         startActivityForResult(Intent.createChooser(intent, "Select Picture"), GALLERY_REQUEST_CODE);
@@ -304,10 +306,27 @@ public class FilePackActivity extends AppCompatActivity {
         switch (requestCode) {
             case GALLERY_REQUEST_CODE:
                 MyDataBeen.onNewPhoto();
-                if (data == null || data.getData() == null) return;
-                Uri from = data.getData();
-                File to = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".bmp");
-                CopyFileUsingStream(from, to);
+                if (data == null) return;
+
+                if (data.getClipData() != null) {
+
+                    // handle multiple photo
+                    ClipData clipData = data.getClipData();
+                    for (int i = 0; i < clipData.getItemCount(); i++) {
+                        Uri from = clipData.getItemAt(i).getUri();
+                        File to = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".jpg");
+                        CopyFileUsingStream(from, to);
+                    }
+                } else if(data.getData() != null) {
+
+                    // handle single photo
+                    Uri from = data.getData();
+                    File to = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".jpg");
+                    CopyFileUsingStream(from, to);
+                } else {
+                    Toast.makeText(this,"can't import file :(",Toast.LENGTH_SHORT).show();
+                }
+
                 filePackPicsFragment.RefreshList();
                 break;
             case CAMERA_REQUEST_CODE:

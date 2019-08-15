@@ -54,6 +54,7 @@ public class SelectLangActivity extends AppCompatActivity {
         userInfo.DarkTheme = true;
         userInfo.FirstDayOfUni = 0;
         userInfo.Calendar = lang.equals("fa") ? 'j' : 'g'; // default calendar for persian is jalali and for english is miladi
+        userInfo.AlwaysUpNotification = false;
         UserInfoRepo.setUserInfo(userInfo);
     }
 }

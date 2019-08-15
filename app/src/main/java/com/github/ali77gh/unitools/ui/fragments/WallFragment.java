@@ -1,5 +1,7 @@
 package com.github.ali77gh.unitools.ui.fragments;
 
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
@@ -10,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RemoteViews;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -39,6 +42,7 @@ import com.github.ali77gh.unitools.ui.dialogs.SearchFriendDialog;
 import com.github.ali77gh.unitools.ui.dialogs.SetupWeekCounterDialog;
 import com.github.ali77gh.unitools.ui.dialogs.ShareClassesDialog;
 import com.github.ali77gh.unitools.ui.view.NonScrollListView;
+import com.github.ali77gh.unitools.ui.widget.ShowNextClassWidget;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -210,6 +214,7 @@ public class WallFragment extends Fragment implements Backable {
                 uClass.id = uClasses.get(0).id;
                 UClassRepo.Update(uClass);
                 SetupClassesList();
+
             });
             addClassDialog.show();
             Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
@@ -288,6 +293,7 @@ public class WallFragment extends Fragment implements Backable {
                 event.id = events.get(0).id;
                 EventRepo.Update(event);
                 SetupEventsList();
+                updateWidgets();
             });
             addClassDialog.show();
             Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
@@ -301,6 +307,7 @@ public class WallFragment extends Fragment implements Backable {
                 event.id = events.get(0).id;
                 EventRepo.Update(event);
                 SetupEventsList();
+                updateWidgets();
             });
             addClassDialog.show();
             Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
@@ -403,6 +410,7 @@ public class WallFragment extends Fragment implements Backable {
             addClassDialog.setListener(uClass -> {
                 UClassRepo.Insert(uClass);
                 SetupClassesList();
+                updateWidgets();
             });
             addClassDialog.show();
             Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
@@ -445,6 +453,16 @@ public class WallFragment extends Fragment implements Backable {
     public void OnBarcodeReaded(String text) {
         friendInfoDialog.OnFriendStringReady(text);
         MyDataBeen.onNewAddFriendWithQRCode();
+    }
+
+    protected void updateWidgets() {
+        RemoteViews remoteViews = new RemoteViews(getActivity().getPackageName(), R.layout.widget_show_next_class);
+        ComponentName thisWidget = new ComponentName(getActivity(), ShowNextClassWidget.class);
+        AppWidgetManager manager = AppWidgetManager.getInstance(getActivity());
+        int[] appWidgetIds = manager.getAppWidgetIds(thisWidget);
+        manager.partiallyUpdateAppWidget(appWidgetIds, remoteViews);
+
+        ShowNextClassWidget.Update(getActivity(), manager, appWidgetIds);
     }
 
     private void SetupRefreshLoop() {

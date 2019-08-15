@@ -1,6 +1,8 @@
 package com.github.ali77gh.unitools.ui.fragments;
 
 import android.Manifest;
+import android.appwidget.AppWidgetManager;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -15,6 +17,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.RemoteViews;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
@@ -26,6 +29,7 @@ import com.github.ali77gh.unitools.data.model.UserInfo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 import com.github.ali77gh.unitools.ui.activities.GuideActivity;
 import com.github.ali77gh.unitools.ui.dialogs.BackupDialog;
+import com.github.ali77gh.unitools.ui.widget.ShowNextClassWidget;
 
 /**
  * Created by ali on 10/3/18.
@@ -38,6 +42,8 @@ public class SettingsFragment extends Fragment implements Backable {
     private LinearLayout aboutUsBtn;
     private LinearLayout autoSilentBtn;
     private Switch autoSilentSwitch;
+    private LinearLayout alwaysUpBtn;
+    private Switch alwaysUpSwitch;
     private FrameLayout aboutUs;
     private BackupDialog backupDialog;
 
@@ -61,6 +67,10 @@ public class SettingsFragment extends Fragment implements Backable {
 
         autoSilentBtn = cView.findViewById(R.id.linear_settings_auto_silent);
         autoSilentSwitch = (Switch) autoSilentBtn.getChildAt(3);
+
+        alwaysUpBtn = cView.findViewById(R.id.linear_settings_always_up_notification);
+        alwaysUpSwitch = (Switch) alwaysUpBtn.getChildAt(3);
+
         aboutUsBtn = cView.findViewById(R.id.linear_settings_about_us);
         aboutUs = cView.findViewById(R.id.layout_settings_about);
         LinearLayout guide = cView.findViewById(R.id.linear_settings_guide);
@@ -68,6 +78,14 @@ public class SettingsFragment extends Fragment implements Backable {
 //        LinearLayout donateUs = cView.findViewById(R.id.linear_settings_donate_us);
 //        LinearLayout sendFeedback = cView.findViewById(R.id.linear_settings_feedback);
 
+
+        alwaysUpBtn.setOnClickListener(view -> alwaysUpSwitch.toggle());
+        alwaysUpSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
+            UserInfo ui = UserInfoRepo.getUserInfo();
+            ui.AlwaysUpNotification = b;
+            UserInfoRepo.setUserInfo(ui);
+            updateWidgets();
+        });
 
         autoSilentBtn.setOnClickListener(view -> autoSilentSwitch.toggle());
         autoSilentSwitch.setOnCheckedChangeListener((compoundButton, b) -> {
@@ -149,6 +167,7 @@ public class SettingsFragment extends Fragment implements Backable {
         }
 
         autoSilentSwitch.setChecked(ui.AutoSilent);
+        alwaysUpSwitch.setChecked(ui.AlwaysUpNotification);
     }
 
     private void SetupLanguageAndCalendar() {
@@ -275,6 +294,16 @@ public class SettingsFragment extends Fragment implements Backable {
     private void OpenLink(String link) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
         startActivity(browserIntent);
+    }
+
+    protected void updateWidgets() {
+        RemoteViews remoteViews = new RemoteViews(getActivity().getPackageName(), R.layout.widget_show_next_class);
+        ComponentName thisWidget = new ComponentName(getActivity(), ShowNextClassWidget.class);
+        AppWidgetManager manager = AppWidgetManager.getInstance(getActivity());
+        int[] appWidgetIds = manager.getAppWidgetIds(thisWidget);
+        manager.partiallyUpdateAppWidget(appWidgetIds, remoteViews);
+
+        ShowNextClassWidget.Update(getActivity(), manager, appWidgetIds);
     }
 
     @Override
