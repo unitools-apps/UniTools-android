@@ -8,14 +8,12 @@ public class Event {
 
     public String what;
     public String describe = "";
-    public Time time;
     public String id;
-    public int WeekNumber;
+    public long unixTime;
 
-    public Event(String what, Time time, int weekNumber, String describe) {
+    public Event(String what, long time, String describe) {
         this.what = what;
-        this.time = time;
-        this.WeekNumber = weekNumber;
+        this.unixTime = time;
         this.describe = describe;
     }
 

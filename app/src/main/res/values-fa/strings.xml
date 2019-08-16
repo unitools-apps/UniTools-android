@@ -151,6 +151,9 @@
     <string name="search_friends">جست و جوی دوستان</string>
     <string name="choose_doc">جزوه را انتخاب کنید</string>
     <string name="always_show_next_class">اعلان همیشگی برای کلاس بعدی</string>
+    <string name="day">روز</string>
+    <string name="after">بعد</string>
+    <string name="ago">قبل</string>
 
     <string-array name="nums">
         <item>۰</item>

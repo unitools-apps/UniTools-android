@@ -150,6 +150,9 @@
     <string name="search_friends">search friends</string>
     <string name="choose_doc">choose doc</string>
     <string name="always_show_next_class">always show next class</string>
+    <string name="day">day</string>
+    <string name="after">later</string>
+    <string name="ago">passed</string>
 
     <string-array name="nums">
         <item>0</item>

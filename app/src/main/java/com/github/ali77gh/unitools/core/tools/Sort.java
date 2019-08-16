@@ -1,11 +1,9 @@
 package com.github.ali77gh.unitools.core.tools;
 
+import com.ali.uneversaldatetools.date.JalaliDateTime;
 import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.model.Friend;
-import com.github.ali77gh.unitools.data.model.Time;
 import com.github.ali77gh.unitools.data.model.UClass;
-import com.github.ali77gh.unitools.data.model.UserInfo;
-import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,17 +44,14 @@ public class Sort {
 
     public static void SortEvent(List<Event> events) {
 
-        Time now = DateTimeTools.getCurrentTime();
-        int currentWeek = UserInfoRepo.getWeekNumber();
+        long now = JalaliDateTime.Now().toUnixTime();
 
         ExchangeSortEvent(events);
 
         //shift
         int nextClassIndex = 0;
         for (Event u : events) {
-            if (u.WeekNumber > currentWeek |
-                    (u.WeekNumber == currentWeek &
-                            u.time.getMins() > now.getMins())) {
+            if (u.unixTime > now) {
                 nextClassIndex = events.indexOf(u);
                 break;
             }
@@ -87,9 +82,7 @@ public class Sort {
         Event temp;
         for (i = 0; i < events.size() - 1; i++) {
             for (j = i + 1; j < events.size(); j++) {
-                if (events.get(i).WeekNumber > events.get(j).WeekNumber |
-                        (events.get(i).WeekNumber == events.get(j).WeekNumber &
-                                events.get(i).time.getMins() > events.get(j).time.getMins())){
+                if (events.get(i).unixTime > events.get(j).unixTime) {
                     temp = events.get(i);
                     events.set(i, events.get(j));
                     events.set(j, temp);

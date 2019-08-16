@@ -12,10 +12,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.ali.uneversaldatetools.date.GregorianDateTime;
+import com.ali.uneversaldatetools.date.JalaliDateTime;
+import com.ali.uneversaldatetools.date.TimeZoneHelper;
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.core.tools.DateTimeTools;
 import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.model.Time;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 /**
  * Created by ali77gh on 10/17/18.
@@ -25,8 +30,7 @@ public class AddEventDialog extends BaseDialog {
 
     private EventDialogListener listener;
     private Event event;
-    private int weekNumber = 10;
-    private int dayOfWeek = 10;
+    private long selectedTime = -1;
 
     public AddEventDialog(@NonNull Activity activity, @Nullable Event event) {
         super(activity);
@@ -50,29 +54,32 @@ public class AddEventDialog extends BaseDialog {
         openDatePicker.setOnClickListener(v -> {
             DatePickerDialog datePickerDialog = new DatePickerDialog();
             datePickerDialog.setListener((unixTime, date) -> {
-                weekNumber = DateTimeTools.UnixTimeToWeek((int) unixTime);
-                if (weekNumber < 0) {
+
+                if (DateTimeTools.UnixTimeToWeek((int) unixTime) < 0) {
                     Toast.makeText(getActivity(), getActivity().getString(R.string.date_is_not_valid), Toast.LENGTH_SHORT).show();
                     return;
                 }
-                openDatePicker.setText(getActivity().getString(R.string.week) +
-                        " " +
-                        String.valueOf(weekNumber) +
-                        " " +
-                        getWeekString(date.getDayOfWeek().getValue())
-                );
-                dayOfWeek = date.getDayOfWeek().getValue();
+                openDatePicker.setText(Translator.getDateString(date));
+
+                selectedTime = unixTime;
             });
             datePickerDialog.show(((AppCompatActivity) getActivity()).getSupportFragmentManager(), "");
         });
 
         // fill fields if edit mode
         if (event != null) {
-            openDatePicker.setText(getActivity().getString(R.string.week) + " " + event.WeekNumber + " " + getWeekString(event.time.dayOfWeek));
+            if (UserInfoRepo.getUserInfo().Calendar == 'j') {
+                openDatePicker.setText(Translator.getDateString(new JalaliDateTime((int) event.unixTime, TimeZoneHelper.getSystemTimeZone())));
+            } else if (UserInfoRepo.getUserInfo().Calendar == 'g') {
+                openDatePicker.setText(Translator.getDateString(new GregorianDateTime((int) event.unixTime, TimeZoneHelper.getSystemTimeZone())));
+            } else {
+                throw new RuntimeException("invalid date system id:" + UserInfoRepo.getUserInfo().Calendar);
+            }
+
             title.setText(getActivity().getResources().getString(R.string.edit_new_event));
             what.setText(event.what);
-            hour.setText(String.valueOf(event.time.hour));
-            min.setText(String.valueOf(event.time.min));
+            hour.setText(String.valueOf(new JalaliDateTime((int) event.unixTime, TimeZoneHelper.getSystemTimeZone()).getHour()));
+            min.setText(String.valueOf(new JalaliDateTime((int) event.unixTime, TimeZoneHelper.getSystemTimeZone()).getMin()));
         }
 
 
@@ -112,15 +119,24 @@ public class AddEventDialog extends BaseDialog {
                 return;
             }
 
-            if (weekNumber == 10) {
+            if (selectedTime == -1) {
                 Toast.makeText(getActivity(), getContext().getString(R.string.first_select_date), Toast.LENGTH_SHORT).show();
                 return;
             }
 
             if (event == null) event = new Event();
             event.what = what.getText().toString();
-            event.time = new Time(dayOfWeek, Integer.valueOf(hour.getText().toString()), Integer.valueOf(min.getText().toString()));
-            event.WeekNumber = weekNumber;
+            GregorianDateTime dateTime = new GregorianDateTime((int) selectedTime, TimeZoneHelper.getSystemTimeZone());
+            event.unixTime = new GregorianDateTime(
+                    dateTime.getYear(),
+                    dateTime.getMonth(),
+                    dateTime.getDay(),
+                    Integer.valueOf(hour.getText().toString()),
+                    Integer.valueOf(min.getText().toString()),
+                    0,
+                    TimeZoneHelper.getSystemTimeZone()
+            ).toUnixTime();
+
 
             listener.onNewEvent(event);
             dismiss();

@@ -267,7 +267,6 @@ public class SettingsFragment extends Fragment implements Backable {
         ui.LangId = lang;
         UserInfoRepo.setUserInfo(ui);
 
-        //todo update widget
         SetupLang(getActivity());
         updateWidgets();
 
