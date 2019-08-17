@@ -1,10 +1,9 @@
 package com.github.ali77gh.unitools.ui.activities;
 
 import android.net.Uri;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.widget.ListView;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.CH;
@@ -20,6 +19,8 @@ import java.io.OutputStream;
 import java.util.List;
 
 import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.PDF_PATH_NAME;
+
+;
 
 public class InputPdfActivity extends AppCompatActivity {
 
@@ -40,10 +41,11 @@ public class InputPdfActivity extends AppCompatActivity {
             String to = FilePackProvider.getPathOfPack(filePacks.get(position).getName() + File.separator + PDF_PATH_NAME + File.separator + getNameOfUriFile(from));
             try {
                 CopyFileUsingStream(from, new File(to));
-                Toast.makeText(this, CH.getString(R.string.successfully_done), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.successfully_done);
+
                 finish();
             } catch (IOException e) {
-                Toast.makeText(this, CH.getString(R.string.pdf_copy_failed), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.pdf_copy_failed);
             }
 
         });

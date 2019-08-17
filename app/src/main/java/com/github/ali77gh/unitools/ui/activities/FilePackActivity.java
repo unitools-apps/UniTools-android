@@ -20,7 +20,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.davemorrissey.labs.subscaleview.ImageSource;
 import com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView;
@@ -50,6 +49,8 @@ import java.util.Locale;
 
 import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.IMAGE_PATH_NAME;
 import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.PDF_PATH_NAME;
+
+;
 
 /**
  * Created by ali77gh on 12/13/18.
@@ -138,7 +139,7 @@ public class FilePackActivity extends AppCompatActivity {
                 lFab.setOnClickListener(v -> {
 
                     if (new File(FilePackActivity.Path + File.separator + IMAGE_PATH_NAME).listFiles().length == 0) {
-                        Toast.makeText(this, getString(R.string.first_take_some_picture), Toast.LENGTH_SHORT).show();
+                        CH.toast(R.string.first_take_some_picture);
                         return;
                     }
 
@@ -202,17 +203,17 @@ public class FilePackActivity extends AppCompatActivity {
     private void GeneratePdf(File[] images, String name) {
         File pdfPath = new File(FilePackActivity.Path + File.separator + PDF_PATH_NAME + File.separator + name + ".pdf");
 
-        Toast.makeText(this, getString(R.string.start_generate_pdf), Toast.LENGTH_SHORT).show();
+        CH.toast(R.string.start_generate_pdf);
         PDFGen.Generate(images, pdfPath, new Promise() {
             @Override
             public void onFailed(String msg) {
-                runOnUiThread(() -> Toast.makeText(FilePackActivity.this, getString(R.string.pdf_generate_failed), Toast.LENGTH_SHORT).show());
+                runOnUiThread(() -> CH.toast(R.string.pdf_generate_failed));
             }
 
             @Override
             public void onSuccess(Object ignore) {
                 runOnUiThread(() -> {
-                    Toast.makeText(FilePackActivity.this, getString(R.string.pdf_saved_to_pdf_list), Toast.LENGTH_SHORT).show();
+                    CH.toast(R.string.pdf_saved_to_pdf_list);
                     filePackPdfFragment.RefreshList();
                 });
             }
@@ -324,7 +325,7 @@ public class FilePackActivity extends AppCompatActivity {
                     File to = new File(Path + File.separator + FilePackProvider.IMAGE_PATH_NAME + File.separator + FilePackProvider.getMaxPicCode(Path) + ".jpg");
                     CopyFileUsingStream(from, to);
                 } else {
-                    Toast.makeText(this,"can't import file :(",Toast.LENGTH_SHORT).show();
+                    CH.toast("can't import file :(");
                 }
 
                 filePackPicsFragment.RefreshList();

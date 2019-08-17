@@ -5,14 +5,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.data.model.Friend;
 import com.github.ali77gh.unitools.data.repo.FriendRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+;
 
 /**
  * Created by ali on 10/10/18.
@@ -38,12 +40,12 @@ public class AddFriendDialog extends BaseDialog {
 
         ok.setOnClickListener(view -> {
             if (name.getText().toString().equals("")){
-                Toast.makeText(getActivity(), getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.fill_blanks);
                 return;
             }
 
             if (CheckFriendExist(name.getText().toString())){
-                Toast.makeText(getActivity(), getActivity().getString(R.string.exists), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.exists);
                 return;
             }
 

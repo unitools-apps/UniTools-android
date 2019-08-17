@@ -7,9 +7,9 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.ui.activities.FilePackActivity;
 
 import java.io.File;
@@ -18,6 +18,8 @@ import java.util.List;
 
 import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.IMAGE_PATH_NAME;
 import static com.github.ali77gh.unitools.data.FileManager.FilePackProvider.PDF_PATH_NAME;
+
+;
 
 public class ExportPdfDialog extends BaseDialog {
 
@@ -51,17 +53,17 @@ public class ExportPdfDialog extends BaseDialog {
 
 
             if (isNameExist(name.getText().toString())) {
-                Toast.makeText(getActivity(), getActivity().getString(R.string.exists), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.exists);
                 return;
             }
 
             if (selected.length == 0) {
-                Toast.makeText(getActivity(), getActivity().getString(R.string.select_somethings), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.select_somethings);
                 return;
             }
 
             if (name.getText().toString().isEmpty()) {
-                Toast.makeText(getActivity(), getActivity().getString(R.string.enter_name), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.enter_name);
                 return;
             }
 

@@ -7,9 +7,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.repo.EventRepo;
@@ -68,7 +68,7 @@ public class EventInfoDialog extends BaseDialog {
                 name.setText(Translator.getEventReadable(event2));
             });
             addFriendDialog.show();
-            Toast.makeText(getActivity(), getActivity().getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
+            CH.toast(R.string.enter_time_in_24_system);
         });
 
     }

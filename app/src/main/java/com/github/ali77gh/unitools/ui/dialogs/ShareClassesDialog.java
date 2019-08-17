@@ -8,14 +8,16 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.StringCoder;
 import com.github.ali77gh.unitools.core.qrCode.QrCodeTools;
 import com.github.ali77gh.unitools.data.model.Friend;
 import com.github.ali77gh.unitools.data.repo.UClassRepo;
 import com.google.gson.Gson;
+
+;
 
 /**
  * Created by ali77gh on 10/27/18.
@@ -60,7 +62,7 @@ public class ShareClassesDialog extends BaseDialog {
             ClipboardManager clipboardManager = (ClipboardManager) getContext().getSystemService(Context.CLIPBOARD_SERVICE);
             clipboardManager.setText(getActivity().getString(R.string.open_this_with_unitools_app) + "\n" +
                     "http://program.unitools/" + StringCoder.Encode(new Gson().toJson(me.getMinimal())));
-            Toast.makeText(getActivity(), getActivity().getString(R.string.link_copied), Toast.LENGTH_SHORT).show();
+            CH.toast(R.string.link_copied);
             dismiss();
         });
 

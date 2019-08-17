@@ -11,11 +11,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.data.model.Time;
 import com.github.ali77gh.unitools.data.model.UClass;
+
+;
 
 /**
  * Created by ali77gh on 10/12/18.
@@ -81,17 +83,17 @@ public class AddClassDialog extends BaseDialog {
         ok.setOnClickListener(view -> {
 
             if (!IsInt(hour.getText().toString()) | !IsInt(min.getText().toString())) {
-                Toast.makeText(getActivity(), getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.hour_or_min_is_not_valid);
                 return;
             }
 
             if (!Time.Validator(Integer.valueOf(hour.getText().toString()), Integer.valueOf(min.getText().toString()))) {
-                Toast.makeText(getActivity(), getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.hour_or_min_is_not_valid);
                 return;
             }
 
             if (label.getText().toString().equals("") | where.getText().toString().equals("")) {
-                Toast.makeText(getActivity(), getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.fill_blanks);
                 return;
             }
 

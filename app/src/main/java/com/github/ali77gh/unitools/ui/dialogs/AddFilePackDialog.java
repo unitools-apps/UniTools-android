@@ -7,9 +7,9 @@ import android.text.TextWatcher;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.core.onlineapi.Promise;
 import com.github.ali77gh.unitools.data.FileManager.FilePackProvider;
@@ -18,6 +18,8 @@ import com.github.ali77gh.unitools.data.repo.UClassRepo;
 
 import java.util.ArrayList;
 import java.util.List;
+
+;
 
 /**
  * Created by ali77gh on 12/11/18.
@@ -81,7 +83,7 @@ public class AddFilePackDialog extends BaseDialog {
 
             if (filePacks.indexOf(input.getText().toString()) != -1) {
                 //exist
-                Toast.makeText(getActivity(), getActivity().getResources().getString(R.string.exists), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.exists);
                 return;
             }
 

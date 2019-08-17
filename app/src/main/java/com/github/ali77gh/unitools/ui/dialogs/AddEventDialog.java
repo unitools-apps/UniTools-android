@@ -10,17 +10,19 @@ import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.ali.uneversaldatetools.date.GregorianDateTime;
 import com.ali.uneversaldatetools.date.JalaliDateTime;
 import com.ali.uneversaldatetools.date.TimeZoneHelper;
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.core.tools.DateTimeTools;
 import com.github.ali77gh.unitools.data.model.Event;
 import com.github.ali77gh.unitools.data.model.Time;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
+
+;
 
 /**
  * Created by ali77gh on 10/17/18.
@@ -35,6 +37,8 @@ public class AddEventDialog extends BaseDialog {
     public AddEventDialog(@NonNull Activity activity, @Nullable Event event) {
         super(activity);
         this.event = event;
+        if (event != null)
+            selectedTime = event.unixTime;
     }
 
     @Override
@@ -56,7 +60,7 @@ public class AddEventDialog extends BaseDialog {
             datePickerDialog.setListener((unixTime, date) -> {
 
                 if (DateTimeTools.UnixTimeToWeek((int) unixTime) < 0) {
-                    Toast.makeText(getActivity(), getActivity().getString(R.string.date_is_not_valid), Toast.LENGTH_SHORT).show();
+                    CH.toast(R.string.date_is_not_valid);
                     return;
                 }
                 openDatePicker.setText(Translator.getDateString(date));
@@ -105,22 +109,22 @@ public class AddEventDialog extends BaseDialog {
 
             if (!IsInt(hour.getText().toString()) |
                     !IsInt(min.getText().toString())) {
-                Toast.makeText(getActivity(), getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.hour_or_min_is_not_valid);
                 return;
             }
 
             if (!Time.Validator(Integer.valueOf(hour.getText().toString()), Integer.valueOf(min.getText().toString()))) {
-                Toast.makeText(getActivity(), getContext().getString(R.string.hour_or_min_is_not_valid), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.hour_or_min_is_not_valid);
                 return;
             }
 
             if (what.getText().toString().equals("")) {
-                Toast.makeText(getActivity(), getContext().getString(R.string.fill_blanks), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.fill_blanks);
                 return;
             }
 
             if (selectedTime == -1) {
-                Toast.makeText(getActivity(), getContext().getString(R.string.first_select_date), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.first_select_date);
                 return;
             }
 

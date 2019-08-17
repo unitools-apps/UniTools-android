@@ -5,7 +5,6 @@
     <string name="LangID">"en</string>
 
     <string name="about_text">this is a free and open source application for students. if you have ideas for improvement, contact me via email</string>
-    <string name="thanks">با تشکر از : \n ناهید قهرمانی  \n صبیح فرهنگی  \n سعید زبده  \n و هومن میرشفیی \n و....   </string>
     <string name="language">language</string>
     <string name="theme">theme</string>
     <string name="notification">notification</string>
@@ -153,6 +152,7 @@
     <string name="day">day</string>
     <string name="after">later</string>
     <string name="ago">passed</string>
+    <string name="supporters">supporters</string>
 
     <string-array name="nums">
         <item>0</item>

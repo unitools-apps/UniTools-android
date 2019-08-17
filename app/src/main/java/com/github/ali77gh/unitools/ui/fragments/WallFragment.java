@@ -14,7 +14,6 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RemoteViews;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.CH;
@@ -48,6 +47,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
+
+;
 
 
 public class WallFragment extends Fragment implements Backable {
@@ -217,7 +218,7 @@ public class WallFragment extends Fragment implements Backable {
 
             });
             addClassDialog.show();
-            Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
+            CH.toast(R.string.enter_time_in_24_system);
             return true;
         });
 
@@ -230,7 +231,7 @@ public class WallFragment extends Fragment implements Backable {
                 SetupClassesList();
             });
             addClassDialog.show();
-            Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
+            CH.toast(R.string.enter_time_in_24_system);
             return true;
         });
     }
@@ -296,7 +297,7 @@ public class WallFragment extends Fragment implements Backable {
                 updateWidgets();
             });
             addClassDialog.show();
-            Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
+            CH.toast(R.string.enter_time_in_24_system);
             return true;
         });
 
@@ -310,7 +311,7 @@ public class WallFragment extends Fragment implements Backable {
                 updateWidgets();
             });
             addClassDialog.show();
-            Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
+            CH.toast(R.string.enter_time_in_24_system);
             return true;
         });
     }
@@ -349,7 +350,7 @@ public class WallFragment extends Fragment implements Backable {
                     ExpandAndCollapse.expand(parent);
                     expandClassesBtn.animate().rotation(180).setStartDelay(200).start();
                 } else{
-                    Toast.makeText(getActivity(), getString(R.string.you_have_no_more_classes), Toast.LENGTH_LONG).show();
+                    CH.toast(R.string.you_have_no_more_classes);
                     new FadeLoop(addClassBtn,3).animate();
                 }
 
@@ -369,7 +370,7 @@ public class WallFragment extends Fragment implements Backable {
                     ExpandAndCollapse.expand(parent);
                     expandEventsBtn.animate().rotation(180).setStartDelay(200).start();
                 } else{
-                    Toast.makeText(getActivity(), getString(R.string.you_have_no_more_events), Toast.LENGTH_LONG).show();
+                    CH.toast(R.string.you_have_no_more_events);
                     new FadeLoop(addEventBtn,3).animate();
                 }
 
@@ -389,7 +390,7 @@ public class WallFragment extends Fragment implements Backable {
                     ExpandAndCollapse.expand(parent);
                     expandFriendsBtn.animate().rotation(180).setStartDelay(200).start();
                 } else{
-                    Toast.makeText(getActivity(), getString(R.string.you_have_no_more_friends), Toast.LENGTH_LONG).show();
+                    CH.toast(R.string.you_have_no_more_friends);
                     new FadeLoop(addFriendBtn,3).animate();
                 }
 
@@ -413,12 +414,12 @@ public class WallFragment extends Fragment implements Backable {
                 updateWidgets();
             });
             addClassDialog.show();
-            Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
+            CH.toast(R.string.enter_time_in_24_system);
         });
 
         shareClassesBtn.setOnClickListener(view -> {
             if (UClassRepo.getAll().size() == 0) {
-                Toast.makeText(getActivity(), getString(R.string.you_have_no_more_classes), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.you_have_no_more_classes);
                 return;
             }
             new ShareClassesDialog(getActivity()).show();
@@ -433,7 +434,7 @@ public class WallFragment extends Fragment implements Backable {
                 SetupEventsList();
             });
             addEventDialog.show();
-            Toast.makeText(getActivity(), getString(R.string.enter_time_in_24_system), Toast.LENGTH_SHORT).show();
+            CH.toast(R.string.enter_time_in_24_system);
         });
 
         //friends

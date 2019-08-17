@@ -13,7 +13,7 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
-            <!--open source-->
+            open source
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -36,7 +36,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal|bottom"
                         android:layout_marginBottom="10dp"
-                        android:text="MIT licenses"
+                        android:text="GPL3"
                         android:textColor="@color/black"
                         android:textSize="20sp" />
 
@@ -227,7 +227,7 @@
                 </LinearLayout>
             </android.support.v7.widget.CardView>
 
-            <!--playStore-->
+            <!--website-->
             <android.support.v7.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -275,15 +275,70 @@
                 android:layout_marginRight="16dp"
                 android:layout_marginBottom="16dp"
                 android:background="@color/white"
-                android:visibility="gone">
+                android:visibility="visible">
 
-                <TextView
+
+                <!--here tags means list-->
+                <LinearLayout
+                    android:id="@+id/linear_about_us_supporters"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:background="@color/white"
-                    android:padding="16dp"
-                    android:text="@string/thanks"
-                    android:textColor="@color/black" />
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:padding="16dp"
+                        android:text="@string/supporters"
+                        android:layout_gravity="center"
+                        android:textColor="@color/black" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="nahid ghahremani"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:tag="https://www.instagram.com/anahid_gh_/" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="sabih farhangi"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:tag="https://www.instagram.com/sabihfarhangi/" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="hooman mirshafee"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:tag="https://www.instagram.com/hoomi_msh/" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="mohammad bagherlo"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:tag="https://www.instagram.com/bgl.mmd/" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="negative_azad"
+                        android:padding="10dp"
+                        android:gravity="center_horizontal"
+                        android:textColor="@color/black"
+                        android:tag="https://www.instagram.com/negative_azad/" />
+                </LinearLayout>
+
             </android.support.v7.widget.CardView>
 
             <!--version-->

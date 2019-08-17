@@ -7,11 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RadioGroup;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.Backup;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.MyDataBeen;
+
+;
 
 public class BackupDialog extends BaseDialog {
 
@@ -68,34 +70,34 @@ public class BackupDialog extends BaseDialog {
         done.setOnClickListener(v -> {
 
             if (!classes.isChecked() && !events.isChecked() && !friends.isChecked()){
-                Toast.makeText(getActivity(), "select_something", Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.select_something);
                 return;
             }
 
             switch (mode){
                 case MODE_BACKUP:
                     if (!Backup.IsBackupPossible()){
-                        Toast.makeText(getActivity(), getActivity().getString(R.string.nothing_to_take_backup), Toast.LENGTH_SHORT).show();
+                        CH.toast(R.string.nothing_to_take_backup);
                         return;
                     }
                     Backup.DoBackup(classes.isChecked(), events.isChecked(), friends.isChecked());
-                    Toast.makeText(getActivity(), getActivity().getString(R.string.backup_saved_in) +" : "+ Backup.backupFilePath, Toast.LENGTH_LONG).show();
+                    CH.toast(getActivity().getString(R.string.backup_saved_in) + " : " + Backup.backupFilePath);
                     MyDataBeen.onBackup();
                     break;
                 case  MODE_RESTORE:
                     if (Backup.IsRestorePossible()){
                         if (deleteCurrent.isChecked()){
                             Backup.ClearCurrentAndRestore(classes.isChecked(), events.isChecked(), friends.isChecked());
-                            Toast.makeText(getActivity(), getActivity().getString(R.string.successfully_done), Toast.LENGTH_SHORT).show();
+                            CH.toast(R.string.successfully_done);
                         }
 
                         else{
                             Backup.Restore(classes.isChecked(), events.isChecked(), friends.isChecked());
-                            Toast.makeText(getActivity(), getActivity().getString(R.string.successfully_done), Toast.LENGTH_SHORT).show();
+                            CH.toast(R.string.successfully_done);
                         }
 
                     } else {
-                        Toast.makeText(getActivity(), getActivity().getString(R.string.put_backup_file_in) +" : "+ Backup.backupFilePath, Toast.LENGTH_LONG).show();
+                        CH.toast(getActivity().getString(R.string.put_backup_file_in) + " : " + Backup.backupFilePath);
                     }
                     MyDataBeen.onRestore();
                     break;

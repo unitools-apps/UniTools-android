@@ -7,7 +7,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.CH;
@@ -46,7 +45,7 @@ public class InputLinkActivity extends AppCompatActivity {
             String friendStr = StringCoder.Decode(friendStrBase64);
             minimalFriend = new Gson().fromJson(friendStr, Friend.MinimalFriend.class);
         } catch (JsonParseException e) {
-            Toast.makeText(this, getString(R.string.cant_add_friend), Toast.LENGTH_SHORT).show();
+            CH.toast(R.string.cant_add_friend);
             finish();
             return;
         }
@@ -56,14 +55,14 @@ public class InputLinkActivity extends AppCompatActivity {
         add.setOnClickListener(v -> {
 
             if (CheckFriendExist(name.getText().toString())){
-                Toast.makeText(this, getString(R.string.exists), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.exists);
                 return;
             }
 
             friend.name = name.getText().toString();
             FriendRepo.Insert(friend);
             MyDataBeen.onNewAddFriendWithLink();
-            Toast.makeText(this, getString(R.string.friend_added_successfully), Toast.LENGTH_SHORT).show();
+            CH.toast(R.string.friend_added_successfully);
             finish();
         });
 

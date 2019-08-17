@@ -7,11 +7,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.onlineapi.Promise;
 import com.github.ali77gh.unitools.core.onlineapi.SendFeedbackApi;
+
+;
 
 /**
  * Created by ali77gh on 12/11/18.
@@ -41,7 +43,7 @@ public class SendFeedbackDialog extends BaseDialog {
         send.setOnClickListener(view -> {
 
             if (input.getText().toString().equals("")){
-                Toast.makeText(getActivity(), getActivity().getString(R.string.enter_your_feedback), Toast.LENGTH_SHORT).show();
+                CH.toast(R.string.enter_your_feedback);
                 return;
             }
 
@@ -52,7 +54,7 @@ public class SendFeedbackDialog extends BaseDialog {
             SendFeedbackApi.Send(getActivity(), input.getText().toString(), new Promise<String>() {
                 @Override
                 public void onFailed(String msg) {
-                    Toast.makeText(getActivity(), msg, Toast.LENGTH_SHORT).show();
+                    CH.toast(msg);
                     progressBar.setVisibility(View.GONE);
                     send.setEnabled(true);
                     send.setAlpha(1);
@@ -60,8 +62,8 @@ public class SendFeedbackDialog extends BaseDialog {
 
                 @Override
                 public void onSuccess(String output) {
-                    Toast.makeText(getActivity(), getActivity().getString(R.string.feedback_recorded), Toast.LENGTH_SHORT).show();
-                    Toast.makeText(getActivity(), getActivity().getString(R.string.thank_you), Toast.LENGTH_SHORT).show();
+                    CH.toast(R.string.feedback_recorded);
+                    CH.toast(R.string.thank_you);
                     dismiss();
                 }
             });

@@ -8,7 +8,6 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.CH;
@@ -22,6 +21,8 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
+
+;
 
 /**
  * Created by ali77gh on 11/10/18.
@@ -112,7 +113,7 @@ public class FriendInfoDialog extends BaseDialog {
 
             RefreshList();
         } catch (RuntimeException e) {
-            Toast.makeText(getActivity(), getActivity().getString(R.string.wrong_barcode), Toast.LENGTH_LONG).show();
+            CH.toast(R.string.wrong_barcode);
         }
     }
 }

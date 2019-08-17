@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.onlineapi.DonateUsApi;
+
+;
 
 /**
  * Created by ali77gh on 12/11/18.
@@ -71,10 +73,7 @@ public class DonateUsDialog extends BaseDialog {
 
         donateBtn.setOnClickListener(view -> {
             if (!IsInt(input.getText().toString()) || input.getText().toString().equals("")) {
-                Toast.makeText(getActivity(),
-                        getActivity().getResources().getString(R.string.enter_number),
-                        Toast.LENGTH_SHORT)
-                        .show();
+                CH.toast(R.string.enter_number);
                 return;
             }
 

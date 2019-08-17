@@ -24,9 +24,9 @@ import android.widget.RemoteViews;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.github.ali77gh.unitools.R;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.data.model.UserInfo;
 import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
@@ -35,6 +35,8 @@ import com.github.ali77gh.unitools.ui.dialogs.BackupDialog;
 import com.github.ali77gh.unitools.ui.widget.ShowNextClassWidget;
 
 import java.util.Locale;
+
+;
 
 /**
  * Created by ali on 10/3/18.
@@ -82,6 +84,7 @@ public class SettingsFragment extends Fragment implements Backable {
         LinearLayout backup = cView.findViewById(R.id.linear_settings_auto_backup);
 //        LinearLayout donateUs = cView.findViewById(R.id.linear_settings_donate_us);
 //        LinearLayout sendFeedback = cView.findViewById(R.id.linear_settings_feedback);
+        LinearLayout supporters = cView.findViewById(R.id.linear_about_us_supporters);
 
 
         alwaysUpBtn.setOnClickListener(view -> alwaysUpSwitch.toggle());
@@ -125,6 +128,7 @@ public class SettingsFragment extends Fragment implements Backable {
         SetupLanguageAndCalendar();
         LoadCurrentSettings();
         SetupAboutUs();
+        SetupSupportersLinks(supporters);
 
         return cView;
     }
@@ -270,7 +274,7 @@ public class SettingsFragment extends Fragment implements Backable {
         SetupLang(getActivity());
         updateWidgets();
 
-        Toast.makeText(getActivity(),getString(R.string.open_app_again_reverse),Toast.LENGTH_LONG).show();
+        CH.toast(R.string.open_app_again_reverse);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             getActivity().finishAndRemoveTask();
         }else {
@@ -315,6 +319,17 @@ public class SettingsFragment extends Fragment implements Backable {
     private void OpenLink(String link) {
         Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(link));
         startActivity(browserIntent);
+    }
+
+    private void SetupSupportersLinks(LinearLayout parent) {
+
+        for (int i = 0; i < parent.getChildCount(); i++) {
+            View child = parent.getChildAt(i);
+            child.setOnClickListener(v -> {
+                if (child.getTag() != null)
+                    OpenLink(child.getTag().toString());
+            });
+        }
     }
 
     protected void updateWidgets() {
