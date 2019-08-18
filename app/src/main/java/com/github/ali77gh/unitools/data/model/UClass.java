@@ -27,6 +27,7 @@ public class UClass {
     public Time time;
     public int absence;
     public int reminder;//how match before class in millis
+    public String teacherName;
 
     public UClass() {
         reminder = DISABLE_REMINDER;

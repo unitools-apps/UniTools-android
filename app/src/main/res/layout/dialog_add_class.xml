@@ -155,6 +155,32 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_marginStart="16dp"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:src="@drawable/all_teacher"
+            android:layout_gravity="center_vertical"
+            android:tint="@color/black" />
+
+        <EditText
+            android:id="@+id/text_home_add_class_dialog_teacher"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:hint="@string/teacher_name_optional"
+            android:textColorHint="@color/gray_middle"
+            android:layout_margin="10dp"
+            android:maxLines="1"
+            android:singleLine="true" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:gravity="end"
         android:orientation="horizontal">

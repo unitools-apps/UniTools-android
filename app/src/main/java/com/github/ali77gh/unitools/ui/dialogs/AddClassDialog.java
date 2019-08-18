@@ -46,6 +46,7 @@ public class AddClassDialog extends BaseDialog {
         EditText where = findViewById(R.id.text_home_add_class_dialog_where);
         EditText hour = findViewById(R.id.text_home_add_class_dialog_hour);
         EditText min = findViewById(R.id.text_home_add_class_dialog_min);
+        EditText teacher = findViewById(R.id.text_home_add_class_dialog_teacher);
 
         // fill fields if edit mode
         if (uClass != null) {
@@ -53,6 +54,7 @@ public class AddClassDialog extends BaseDialog {
             title.setText(getActivity().getResources().getString(R.string.edit_new_class));
             label.setText(uClass.what);
             where.setText(uClass.where);
+            teacher.setText(uClass.teacherName);
             hour.setText(String.valueOf(uClass.time.hour));
             min.setText(String.valueOf(uClass.time.min));
         }
@@ -101,6 +103,7 @@ public class AddClassDialog extends BaseDialog {
 
             uClass.where = where.getText().toString();
             uClass.what = label.getText().toString();
+            uClass.teacherName = teacher.getText().toString();
             uClass.time = new Time(daySpinner.getSelectedItemPosition(), Integer.valueOf(hour.getText().toString()), Integer.valueOf(min.getText().toString()));
 
             listener.onNewClass(uClass);

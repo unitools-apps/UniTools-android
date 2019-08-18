@@ -399,8 +399,18 @@ public class FilePackActivity extends AppCompatActivity {
 
         SubsamplingScaleImageView imageZomable = (SubsamplingScaleImageView) zoomableParent.getChildAt(1);
         ImageView back = (ImageView) zoomableParent.getChildAt(2);
+        ImageView rotateRight = (ImageView) zoomableParent.getChildAt(3);
+        ImageView rotateLeft = (ImageView) zoomableParent.getChildAt(4);
 
         imageZomable.setImage(ImageSource.uri(path));
+
+        rotateRight.setOnClickListener(v ->
+                imageZomable.setRotation(imageZomable.getRotation() + 90)
+        );
+
+        rotateLeft.setOnClickListener(v ->
+                imageZomable.setRotation(imageZomable.getRotation() - 90)
+        );
 
         zoomableParent.setVisibility(View.VISIBLE);
 

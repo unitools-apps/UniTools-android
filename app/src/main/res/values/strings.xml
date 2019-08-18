@@ -153,6 +153,7 @@
     <string name="after">later</string>
     <string name="ago">passed</string>
     <string name="supporters">supporters</string>
+    <string name="teacher_name_optional">teacher name (optional)</string>
 
     <string-array name="nums">
         <item>0</item>

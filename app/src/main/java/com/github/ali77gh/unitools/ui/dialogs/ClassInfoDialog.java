@@ -43,6 +43,9 @@ public class ClassInfoDialog extends BaseDialog {
     private OnDeleteListener deleteListener;
     private AddClassDialog.AddClassDialogListener editListener;
 
+    private TextView name;
+    private TextView teacherName;
+
     private final static String REMINDER_15_MIN_NAME = "15 min";
     private final static String REMINDER_30_MIN_NAME = "30 min";
     private final static String REMINDER_1_HOUR_NAME = "1 hour";
@@ -64,7 +67,8 @@ public class ClassInfoDialog extends BaseDialog {
 
         ImageView edit = findViewById(R.id.image_home_class_info_dialog_edit);
 
-        TextView name = findViewById(R.id.txt_home_class_info_dialog_name);
+        name = findViewById(R.id.txt_home_class_info_dialog_name);
+        teacherName = findViewById(R.id.txt_home_class_info_dialog_teacher);
         Button cancel = findViewById(R.id.btn_home_class_info_dialog_cancel);
         Button delete = findViewById(R.id.btn_home_class_info_dialog_delete);
 
@@ -72,7 +76,7 @@ public class ClassInfoDialog extends BaseDialog {
         SetupReminder();
 
         //load info
-        name.setText(Translator.getUClassReadable(uClass));
+        LoadData(uClass);
 
         //setup events
         delete.setOnClickListener(view -> {
@@ -87,11 +91,21 @@ public class ClassInfoDialog extends BaseDialog {
             addFriendDialog.setListener(uClass2 -> {
                 uClass2.id = uClass.id;
                 editListener.onNewClass(uClass2);
-                name.setText(Translator.getUClassReadable(uClass2));
+                LoadData(uClass2);
             });
             addFriendDialog.show();
             CH.toast(R.string.enter_time_in_24_system);
         });
+    }
+
+    private void LoadData(UClass uClass) {
+        name.setText(Translator.getUClassReadable(uClass));
+        if (!uClass.teacherName.equals("")) {
+            teacherName.setText(CH.getString(R.string.teacher) + " : " + uClass.teacherName);
+            teacherName.setVisibility(View.VISIBLE);
+        } else {
+            teacherName.setVisibility(View.GONE);
+        }
     }
 
     private void SetupAbsent() {

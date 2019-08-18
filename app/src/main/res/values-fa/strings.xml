@@ -76,7 +76,7 @@
     <string name="next_class_is_close"> کلاس بعدی نزدیک است</string>
     <string name="how_match_before_class_start_time">چقدر قبل از شروع کلاس؟</string>
     <string name="notification_type">نوع اعلان</string>
-    <string name="teacher">اساتید</string>
+    <string name="teacher">استاد</string>
     <string name="passed">گذشته</string>
     <string name="enter_time_in_24_system">ساعت را با سیستم ۲۴ ساعتی وارد کنید</string>
     <string name="you_should_allow_access_to_files">ابتدا دسترسی های لازم را بدهید</string>
@@ -154,6 +154,7 @@
     <string name="after">بعد</string>
     <string name="ago">قبل</string>
     <string name="supporters">حامیان</string>
+    <string name="teacher_name_optional">نام استاد (اختیاری)</string>
 
     <string-array name="nums">
         <item>۰</item>
