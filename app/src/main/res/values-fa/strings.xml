@@ -155,6 +155,7 @@
     <string name="ago">قبل</string>
     <string name="supporters">حامیان</string>
     <string name="teacher_name_optional">نام استاد (اختیاری)</string>
+    <string name="recording">در حال ضبط صدا</string>
 
     <string-array name="nums">
         <item>۰</item>

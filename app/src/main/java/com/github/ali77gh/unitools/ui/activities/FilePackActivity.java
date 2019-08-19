@@ -60,7 +60,6 @@ public class FilePackActivity extends AppCompatActivity {
 
     public static String Path;
     public String docName;
-    public static VoiceRecorder _voiceRecorder = new VoiceRecorder();
 
     private FilePackPicsFragment filePackPicsFragment;
     private FilePackVoicesFragment filePackVoicesFragment;
@@ -115,12 +114,13 @@ public class FilePackActivity extends AppCompatActivity {
 
             case VOICES:
                 cFab.setOnClickListener(view -> {
-                    if (_voiceRecorder.isRecording()) {
-                        _voiceRecorder.Stop();
+                    if (VoiceRecorder.isRecording()) {
+                        VoiceRecorder.Stop();
                         filePackVoicesFragment.RefreshList();
                         cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_mic));
                     } else {
-                        _voiceRecorder.Record(Path + File.separator + FilePackProvider.VOICE_PATH_NAME + File.separator + FilePackProvider.getMaxVoiceCode(Path) + ".mp3");
+                        VoiceRecorder.Record(Path + File.separator + FilePackProvider.VOICE_PATH_NAME + File.separator + FilePackProvider.getMaxVoiceCode(Path) + ".mp3");
+                        filePackVoicesFragment.RefreshList();
                         cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_voices_pause));
                     }
                 });
@@ -243,6 +243,17 @@ public class FilePackActivity extends AppCompatActivity {
         adapter.AddFragment(filePackNoteFragment, getString(R.string.note));
         adapter.AddFragment(filePackPdfFragment, getString(R.string.pdf));
 
+        //get stop\start recording event to change fab icon and refresh list
+        VoiceRecorder.setCallback(recording -> {
+            if (_currentPage == VOICES) {
+                if (recording)
+                    cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_voices_pause));
+                else
+                    cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_mic));
+            }
+            filePackVoicesFragment.RefreshList(); //list should refresh anyway
+        });
+
         viewPager.setAdapter(adapter);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
@@ -262,7 +273,7 @@ public class FilePackActivity extends AppCompatActivity {
                         SetupFabsClicks();
                         break;
                     case VOICES:
-                        if (_voiceRecorder.isRecording())
+                        if (VoiceRecorder.isRecording())
                             cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_voices_pause));
                         else
                             cFab.setImageDrawable(getResources().getDrawable(R.drawable.storage_mic));

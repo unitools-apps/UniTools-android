@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     package="com.github.ali77gh.unitools">
+
     <!-- storage part -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
@@ -25,12 +26,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <receiver
+            android:name=".core.audio.VoiceRecorderReceiver"
+            android:enabled="true"
+            android:exported="true"></receiver>
 
         <activity android:name=".ui.activities.InputPdfActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:host="*" />
                 <data android:scheme="file" />
                 <data android:scheme="content" />
@@ -40,16 +47,16 @@
             </intent-filter>
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:host="*" />
                 <data android:scheme="file" />
                 <data android:scheme="content" />
                 <data android:mimeType="application/pdf" />
             </intent-filter>
         </activity>
-
-
         <activity android:name=".ui.activities.InputLinkActivity">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
