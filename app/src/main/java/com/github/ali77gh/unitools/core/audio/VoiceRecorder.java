@@ -2,10 +2,13 @@ package com.github.ali77gh.unitools.core.audio;
 
 import android.media.MediaRecorder;
 
+import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.AppNotification;
+import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.core.MyDataBeen;
 
 import java.io.IOException;
+
 /**
  * Created by ali on 10/5/18.
  */
@@ -36,6 +39,7 @@ public class VoiceRecorder {
         isRecording = true;
         AppNotification.ShowRecording();
         callback.onStateChanged(isRecording);
+        CH.toast(R.string.close_app_from_recent_will_stop_recording, true);
     }
 
     public static void Stop() {

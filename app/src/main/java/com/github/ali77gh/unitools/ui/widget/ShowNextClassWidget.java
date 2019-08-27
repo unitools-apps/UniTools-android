@@ -39,13 +39,11 @@ public class ShowNextClassWidget extends AppWidgetProvider {
 
     public static void Update(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
 
-        String nextClass = getWidgetContent();
-
         //widget
         for (int widgetId : appWidgetIds) {
             RemoteViews remoteViews = new RemoteViews(context.getPackageName(), R.layout.widget_show_next_class);
 
-            remoteViews.setTextViewText(R.id.tv_widget_next_class, nextClass);
+            remoteViews.setTextViewText(R.id.tv_widget_next_class, getWidgetContent());
 
             Intent intent = new Intent(context, SplashActivity.class);
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, intent, 0);
@@ -60,7 +58,7 @@ public class ShowNextClassWidget extends AppWidgetProvider {
 
         //always show next class notification
         if (UserInfoRepo.getUserInfo().AlwaysUpNotification)
-            AppNotification.ShowAlwaysUpNotification(nextClass);
+            AppNotification.ShowAlwaysUpNotification(getNotifyContent());
         else
             AppNotification.HideAlwaysUpNotification();
     }
@@ -73,6 +71,17 @@ public class ShowNextClassWidget extends AppWidgetProvider {
         } else {
             Sort.SortClass(classes);
             return CH.getString(R.string.next_class) + " : " + Translator.getUClassReadable(classes.get(0), true);
+        }
+    }
+
+    public static String getNotifyContent() {
+        List<UClass> classes = UClassRepo.getAll();
+
+        if (classes.size() == 0) {
+            return CH.getString(R.string.there_is_no_class);
+        } else {
+            Sort.SortClass(classes);
+            return Translator.getUClassReadable(classes.get(0), true);
         }
     }
 

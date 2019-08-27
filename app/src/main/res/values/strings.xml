@@ -155,6 +155,7 @@
     <string name="supporters">supporters</string>
     <string name="teacher_name_optional">teacher name (optional)</string>
     <string name="recording">recording</string>
+    <string name="close_app_from_recent_will_stop_recording">close app from recent will stop recording</string>
 
     <string-array name="nums">
         <item>0</item>
