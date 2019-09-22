@@ -16,8 +16,7 @@ import com.github.ali77gh.unitools.R;
 import com.github.ali77gh.unitools.core.CH;
 import com.github.ali77gh.unitools.data.model.Time;
 import com.github.ali77gh.unitools.data.model.UClass;
-
-;
+import com.github.ali77gh.unitools.data.repo.UClassRepo;
 
 /**
  * Created by ali77gh on 10/12/18.
@@ -54,7 +53,13 @@ public class AddClassDialog extends BaseDialog {
             title.setText(getActivity().getResources().getString(R.string.edit_new_class));
             label.setText(uClass.what);
             where.setText(uClass.where);
+
+            if (uClass.teacherName == null) { // while user data is older then version 1.8.0
+                uClass.teacherName = "";
+                UClassRepo.Update(uClass);
+            }
             teacher.setText(uClass.teacherName);
+
             hour.setText(String.valueOf(uClass.time.hour));
             min.setText(String.valueOf(uClass.time.min));
         }

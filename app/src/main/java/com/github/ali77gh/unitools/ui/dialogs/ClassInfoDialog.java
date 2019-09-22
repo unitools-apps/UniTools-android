@@ -19,6 +19,7 @@ import com.github.ali77gh.unitools.core.MyDataBeen;
 import com.github.ali77gh.unitools.core.Translator;
 import com.github.ali77gh.unitools.data.model.UClass;
 import com.github.ali77gh.unitools.data.repo.UClassRepo;
+import com.github.ali77gh.unitools.data.repo.UserInfoRepo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -100,6 +101,10 @@ public class ClassInfoDialog extends BaseDialog {
 
     private void LoadData(UClass uClass) {
         name.setText(Translator.getUClassReadable(uClass));
+        if (uClass.teacherName == null){ // while user data is older then version 1.8.0
+            uClass.teacherName = "";
+            UClassRepo.Update(uClass);
+        }
         if (!uClass.teacherName.equals("")) {
             teacherName.setText(CH.getString(R.string.teacher) + " : " + uClass.teacherName);
             teacherName.setVisibility(View.VISIBLE);
